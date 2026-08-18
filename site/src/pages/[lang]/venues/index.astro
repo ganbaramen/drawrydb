@@ -20,30 +20,32 @@ const sorted = venues.slice().sort((a, b) => {
 <Layout title={t(lang, 'venues.title')} lang={lang} path="venues/">
   <h1>{t(lang, 'venues.title')}</h1>
   <p>{t(lang, 'venues.count', { n: venues.length })}</p>
-  <table class="stats-table" id="venues-table">
-    <thead>
-      <tr>
-        <th>{t(lang, 'venues.name')}</th>
-        <th data-sort-type="number">{t(lang, 'venues.shows')}</th>
-        <th data-sort-type="date">{t(lang, 'venues.firstPlayed')}</th>
-        <th data-sort-type="date">{t(lang, 'venues.lastPlayed')}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        sorted.map((venue) => (
-          <tr>
-            <td>
-              <a href={`${base}/${lang}/venues/${urlSafe(venue.id)}/`}>{venue.name}</a>
-            </td>
-            <td data-sort-value={venue.shows}>{venue.shows}</td>
-            <td data-sort-value={venue.first_played}>{venue.first_played}</td>
-            <td data-sort-value={venue.last_played}>{venue.last_played}</td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <div class="table-scroll">
+    <table class="stats-table" id="venues-table">
+      <thead>
+        <tr>
+          <th>{t(lang, 'venues.name')}</th>
+          <th data-sort-type="number">{t(lang, 'venues.shows')}</th>
+          <th data-sort-type="date">{t(lang, 'venues.firstPlayed')}</th>
+          <th data-sort-type="date">{t(lang, 'venues.lastPlayed')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          sorted.map((venue) => (
+            <tr>
+              <td>
+                <a href={`${base}/${lang}/venues/${urlSafe(venue.id)}/`}>{venue.name}</a>
+              </td>
+              <td data-sort-value={venue.shows}>{venue.shows}</td>
+              <td data-sort-value={venue.first_played}>{venue.first_played}</td>
+              <td data-sort-value={venue.last_played}>{venue.last_played}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
 
   <script>
     import { initSortableTable } from '../../../lib/sortable-table';

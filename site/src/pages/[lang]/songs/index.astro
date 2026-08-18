@@ -40,34 +40,36 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
     {t(lang, 'songs.includeSpecial')}
   </label>
   <p id="songs-count" data-template={countTemplate}>{t(lang, 'songs.count', { n: songs.length })}</p>
-  <table class="stats-table" id="songs-table">
-    <thead>
-      <tr>
-        <th data-sort-type="number">{t(lang, 'songs.numberShort')}</th>
-        <th>{t(lang, 'songs.name')}</th>
-        <th data-sort-type="date">{t(lang, 'songs.debut')}</th>
-        <th data-sort-type="number">{t(lang, 'songs.plays')}</th>
-        <th data-sort-type="number">{t(lang, 'songs.playRate')}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        sorted.map((song) => (
-          <tr data-special={song.is_se || song.is_interlude ? '1' : '0'}>
-            <td data-sort-value={song.credits?.number ?? ''}>
-              {song.credits?.number ? formatTrackNumber(song.credits.number) : ''}
-            </td>
-            <td>
-              <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{songDisplayName(lang, song)}</a>
-            </td>
-            <td data-sort-value={song.first_performed}>{song.first_performed}</td>
-            <td data-sort-value={song.plays}>{song.plays}</td>
-            <td data-sort-value={song.play_rate}>{Math.round(song.play_rate * 100)}%</td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <div class="table-scroll">
+    <table class="stats-table" id="songs-table">
+      <thead>
+        <tr>
+          <th data-sort-type="number">{t(lang, 'songs.numberShort')}</th>
+          <th>{t(lang, 'songs.name')}</th>
+          <th data-sort-type="date">{t(lang, 'songs.debut')}</th>
+          <th data-sort-type="number">{t(lang, 'songs.plays')}</th>
+          <th data-sort-type="number">{t(lang, 'songs.playRate')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          sorted.map((song) => (
+            <tr data-special={song.is_se || song.is_interlude ? '1' : '0'}>
+              <td data-sort-value={song.credits?.number ?? ''}>
+                {song.credits?.number ? formatTrackNumber(song.credits.number) : ''}
+              </td>
+              <td>
+                <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{songDisplayName(lang, song)}</a>
+              </td>
+              <td data-sort-value={song.first_performed}>{song.first_performed}</td>
+              <td data-sort-value={song.plays}>{song.plays}</td>
+              <td data-sort-value={song.play_rate}>{Math.round(song.play_rate * 100)}%</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
 
   <script>
     import { initSortableTable } from '../../../lib/sortable-table';

@@ -310,6 +310,7 @@ main {
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
+  table-layout: fixed;
 }
 
 .meta-table th {
@@ -317,11 +318,19 @@ main {
   color: var(--text-muted);
   font-weight: 400;
   padding: 0.3rem 1rem 0.3rem 0;
-  white-space: nowrap;
+  width: 30%;
+  /* Not nowrap: a long value in the matching td (a credits name, a venue
+     name) needs to wrap rather than force this two-column table wider
+     than the viewport — a short label wrapping to two lines sometimes is
+     the acceptable trade, an overflowing page isn't. table-layout:fixed
+     (above) is what makes this th width actually stick instead of the
+     auto layout algorithm still sizing columns off unwrapped content. */
+  overflow-wrap: break-word;
 }
 
 .meta-table td {
   padding: 0.3rem 0;
+  overflow-wrap: break-word;
 }
 
 .ticket-links {
@@ -333,10 +342,88 @@ main {
   gap: 0.4rem 1rem;
 }
 
+.ticket-links li {
+  /* A ticket link with no label falls back to the raw URL as its text
+     (see events/[id].astro) — a flex item's default min-width:auto
+     refuses to shrink below that unbroken string's width, so on a
+     narrow viewport it pushed the page wider instead of wrapping. */
+  min-width: 0;
+}
+
+.ticket-links a {
+  overflow-wrap: break-word;
+}
+
 .stats-table {
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
+}
+
+/* A data table with several columns doesn't fit a narrow phone at any
+   readable font size — rather than shrinking text or dropping columns,
+   let the table itself scroll horizontally so the rest of the page
+   doesn't (a table growing past its container otherwise drags the whole
+   page's scrollWidth with it, per every .stats-table found doing this
+   during a mobile-viewport pass: songs, venues, and set-length pages). */
+/* lib/table-scroll.ts wraps every .table-scroll element in one of these
+   at runtime and adds the two .scroll-shadow divs — kept out of the
+   .astro markup itself so every table-scroll page gets it for free from
+   the single init call in Layout.astro, rather than each page needing
+   to remember it. */
+.table-scroll-wrap {
+  position: relative;
+  margin: 1rem 0;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+/* A table wide enough to need the wrapper above often crops its last
+   column mid-cell at the viewport edge — with no cue that it's
+   scrollable rather than broken, that reads as a rendering bug. Unlike
+   a pure-CSS background trick (tried first — painted a shadow at both
+   edges unconditionally, including on a table that fit its container
+   fine, e.g. on desktop, which looked like a stray vignette), these
+   fade in only when lib/table-scroll.ts's scroll listener finds actual
+   remaining scroll distance on that side. */
+.scroll-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.scroll-shadow--left {
+  left: 0;
+  background: linear-gradient(to right, rgb(0 0 0 / 25%), transparent);
+}
+
+.scroll-shadow--right {
+  right: 0;
+  background: linear-gradient(to left, rgb(0 0 0 / 25%), transparent);
+}
+
+.table-scroll-wrap[data-can-scroll-left] .scroll-shadow--left,
+.table-scroll-wrap[data-can-scroll-right] .scroll-shadow--right {
+  opacity: 1;
+}
+
+.table-scroll .stats-table {
+  margin: 0;
+  /* width:100% (the bare .stats-table rule) would let auto table layout
+     cram every column into the viewport's full width no matter how
+     little room that leaves each one — the same look this is meant to
+     fix, just without the scrollbar to show it's happening. min-width
+     instead means it still fills the container when content is narrow,
+     but is free to grow past 100% (and let this wrapper scroll) when
+     it isn't. */
+  width: auto;
+  min-width: 100%;
 }
 
 .stats-table th,
@@ -344,6 +431,12 @@ main {
   text-align: left;
   padding: 0.5rem;
   border-bottom: 1px solid var(--border);
+  /* Without this, a header/cell too narrow to fit its own text wraps —
+     for CJK labels (no spaces to break on) that's one character per
+     line, which reads far worse than the horizontal scrollbar this
+     table already gets from .table-scroll once nowrap makes it wider
+     than the viewport. */
+  white-space: nowrap;
 }
 
 .stats-table th {

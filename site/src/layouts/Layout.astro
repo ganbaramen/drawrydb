@@ -96,6 +96,12 @@ const base = import.meta.env.BASE_URL;
     </footer>
 
     <script>
+      import { initTableScrollShadows } from '../lib/table-scroll';
+      // No-op on a page with no .table-scroll element.
+      initTableScrollShadows();
+    </script>
+
+    <script>
       // Only meaningful on the narrow viewports where global.css's media
       // query actually turns .site-nav into a hidden dropdown — harmless
       // no-op (button stays display:none) above that breakpoint.

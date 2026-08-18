@@ -16,36 +16,38 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
 <Layout title={t(lang, 'setLength.title')} lang={lang} path="set-lengths/">
   <h1>{t(lang, 'setLength.title')}</h1>
 
-  <table class="stats-table" id="bucket-table">
-    <thead>
-      <tr>
-        <th>{t(lang, 'setLength.length')}</th>
-        <th data-sort-type="number">{t(lang, 'setLength.shows')}</th>
-        <th data-sort-type="number">{t(lang, 'setLength.avgSongs')}</th>
-        <th data-sort-type="number">{t(lang, 'setLength.withSe')}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        buckets.map((b) => (
-          <tr>
-            <td>
-              <a href={`${base}/${lang}/set-lengths/${b.minutes}/`}>{formatSetLength(lang, b.minutes)}</a>
-            </td>
-            <td data-sort-value={b.shows}>{b.shows}</td>
-            <td data-sort-value={b.avg_songs}>{b.avg_songs}</td>
-            <td data-sort-value={b.shows_with_se / b.shows}>
-              {t(lang, 'setLength.withSeDetail', {
-                count: b.shows_with_se,
-                shows: b.shows,
-                pct: Math.round((b.shows_with_se / b.shows) * 100),
-              })}
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <div class="table-scroll">
+    <table class="stats-table" id="bucket-table">
+      <thead>
+        <tr>
+          <th>{t(lang, 'setLength.length')}</th>
+          <th data-sort-type="number">{t(lang, 'setLength.shows')}</th>
+          <th data-sort-type="number">{t(lang, 'setLength.avgSongs')}</th>
+          <th data-sort-type="number">{t(lang, 'setLength.withSe')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          buckets.map((b) => (
+            <tr>
+              <td>
+                <a href={`${base}/${lang}/set-lengths/${b.minutes}/`}>{formatSetLength(lang, b.minutes)}</a>
+              </td>
+              <td data-sort-value={b.shows}>{b.shows}</td>
+              <td data-sort-value={b.avg_songs}>{b.avg_songs}</td>
+              <td data-sort-value={b.shows_with_se / b.shows}>
+                {t(lang, 'setLength.withSeDetail', {
+                  count: b.shows_with_se,
+                  shows: b.shows,
+                  pct: Math.round((b.shows_with_se / b.shows) * 100),
+                })}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
   <p class="uncovered-note">{t(lang, 'setLength.avgSongsNote')}</p>
 
   {uncovered_shows > 0 && <p class="uncovered-note">{t(lang, 'setLength.uncovered', { n: uncovered_shows })}</p>}
@@ -94,13 +96,3 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
     initSortableTable(document.getElementById('song-distribution-table') as HTMLTableElement);
   </script>
 </Layout>
-
-<style>
-  .table-scroll {
-    overflow-x: auto;
-  }
-
-  #song-distribution-table {
-    white-space: nowrap;
-  }
-</style>
