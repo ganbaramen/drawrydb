@@ -35,7 +35,7 @@ const performances = song.performances.slice().reverse();
       <th>初披露</th>
       <td>
         {song.first_performed}
-        {!song.debut_confirmed && <span class="badge-pending">未確定</span>}
+        {!song.debut_confirmed && <span class="badge">未確定</span>}
       </td>
     </tr>
     <tr>
@@ -55,18 +55,21 @@ const performances = song.performances.slice().reverse();
   </table>
 
   <h2>演奏履歴</h2>
-  <ul class="performance-list">
+  <ul style="list-style:none; padding:0;">
     {
       performances.map((p) => {
         const event = events.find((e) => e.id === p.event_id);
         return (
           <li>
-            <a href={`${base}/ja/events/${p.event_id}/`}>
-              {formatDateJa(p.date)} @ {p.venue}
+            <a class="event-card" href={`${base}/ja/events/${p.event_id}/`}>
+              <div class="event-date">{formatDateJa(p.date)}</div>
+              <div class="event-title">
+                {event?.title ?? p.venue}
+                {p.is_encore && <span class="badge">アンコール</span>}
+              </div>
+              {event?.title && <div class="event-venue">{p.venue}</div>}
+              {p.note && <div class="song-note">{p.note}</div>}
             </a>
-            {event?.title && <span class="event-title-inline"> — {event.title}</span>}
-            {p.is_encore && <span class="badge-pending">アンコール</span>}
-            {p.note && <span class="song-note"> ({p.note})</span>}
           </li>
         );
       })

@@ -166,7 +166,7 @@ main {
   font-size: 0.9rem;
 }
 
-.badge-pending {
+.badge {
   display: inline-block;
   font-size: 0.75rem;
   padding: 0.1rem 0.5rem;
@@ -194,7 +194,7 @@ main {
   min-width: 2ch;
 }
 
-.setlist .song-note {
+.song-note {
   color: var(--text-muted);
   font-size: 0.85rem;
 }
@@ -233,22 +233,6 @@ main {
 .stats-table th {
   color: var(--text-muted);
   font-weight: 400;
-}
-
-.performance-list {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-.performance-list li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.event-title-inline {
-  color: var(--text-muted);
-  font-size: 0.9rem;
 }
 
 .pending-notice {

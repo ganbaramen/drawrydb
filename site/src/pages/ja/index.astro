@@ -20,7 +20,7 @@ const recent = recentSetlists(5);
           <div class="event-date">{formatDateJa(next.date)}</div>
           <div class="event-title">
             {next.title}
-            {!next.has_setlist && <span class="badge-pending">セトリ未公開</span>}
+            {!next.has_setlist && <span class="badge">セトリ未公開</span>}
           </div>
           {next.venue && <div class="event-venue">{next.venue}</div>}
         </a>

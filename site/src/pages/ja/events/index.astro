@@ -33,7 +33,7 @@ const hasSetlistCount = events.filter((event) => event.has_setlist).length;
             <div class="event-date">{formatDateJa(event.date)}</div>
             <div class="event-title">
               {event.title}
-              {!event.has_setlist && <span class="badge-pending">セトリ未公開</span>}
+              {!event.has_setlist && <span class="badge">セトリ未公開</span>}
             </div>
             {event.venue && <div class="event-venue">{event.venue}</div>}
           </a>
