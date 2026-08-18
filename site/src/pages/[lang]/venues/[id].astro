@@ -18,6 +18,17 @@ const { venue, lang } = Astro.props as { venue: Venue; lang: Lang };
 const base = import.meta.env.BASE_URL;
 // Most recent first, matching the events list's ordering convention.
 const eventIds = venue.event_ids.slice().reverse();
+
+// first_played/last_played are dates derived in the pipeline (see
+// CLAUDE.md's venue_stats section); find the matching event among this
+// venue's own shows to link to it. See songs/[id].astro's eventFor() for
+// why a same-day tie just takes the first match.
+function eventFor(date: string) {
+  const id = venue.event_ids.find((eventId) => getEvent(eventId)?.date === date);
+  return id ? getEvent(id) : undefined;
+}
+const firstEvent = eventFor(venue.first_played);
+const lastEvent = eventFor(venue.last_played);
 ---
 
 <Layout title={venue.name} lang={lang} path={`venues/${urlSafe(venue.id)}/`}>
@@ -32,11 +43,27 @@ const eventIds = venue.event_ids.slice().reverse();
     </tr>
     <tr>
       <th>{t(lang, 'venues.firstPlayed')}</th>
-      <td>{venue.first_played}</td>
+      <td>
+        {venue.first_played}
+        {firstEvent && (
+          <>
+            {' — '}
+            <a href={`${base}/${lang}/events/${firstEvent.id}/`}>{firstEvent.title}</a>
+          </>
+        )}
+      </td>
     </tr>
     <tr>
       <th>{t(lang, 'venues.lastPlayed')}</th>
-      <td>{venue.last_played}</td>
+      <td>
+        {venue.last_played}
+        {lastEvent && (
+          <>
+            {' — '}
+            <a href={`${base}/${lang}/events/${lastEvent.id}/`}>{lastEvent.title}</a>
+          </>
+        )}
+      </td>
     </tr>
   </table>
 
