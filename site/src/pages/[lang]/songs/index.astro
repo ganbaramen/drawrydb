@@ -10,10 +10,23 @@ export function getStaticPaths() {
 
 const { lang } = Astro.props as { lang: Lang };
 const base = import.meta.env.BASE_URL;
-// Most-played first — that's the ordering visitors browsing "the songs" of
-// a band actually want, unlike events (chronological) or venues (also by
-// play count, see venues/index.astro).
-const sorted = songs.slice().sort((a, b) => b.plays - a.plays);
+// Debut order first (first_performed is ISO, so plain string comparison
+// sorts correctly), then track number as a tiebreaker for songs debuted
+// the same day — a song with no number (SE/Interlude) sorts after one
+// that has it, same "blanks last" convention as the sortable columns
+// below (see lib/sortable-table.ts). This is just the *default* order;
+// every column here is still independently sortable by clicking it.
+const sorted = songs.slice().sort((a, b) => {
+  if (a.first_performed !== b.first_performed) {
+    return a.first_performed < b.first_performed ? -1 : 1;
+  }
+  const na = a.credits?.number ? parseInt(a.credits.number, 10) : null;
+  const nb = b.credits?.number ? parseInt(b.credits.number, 10) : null;
+  if (na === null && nb === null) return 0;
+  if (na === null) return 1;
+  if (nb === null) return -1;
+  return na - nb;
+});
 // Client script reuses this template (with {n} swapped for the live count),
 // same pattern as the events list's filter count.
 const countTemplate = t(lang, 'songs.count', { n: '__N__' });
