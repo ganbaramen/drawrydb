@@ -298,6 +298,11 @@ main {
   opacity: 1;
 }
 
+.uncovered-note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
 .pending-notice {
   background: var(--accent-bg);
   color: var(--accent);
