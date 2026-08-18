@@ -79,6 +79,21 @@ export interface Song {
   credits: SongCredits | null;
 }
 
+export interface CreatorCredit {
+  song_id: string;
+  song_name: string;
+  translation: string | null;
+  // Subset of "lyrics" | "composition" | "arrangement" | "choreography",
+  // in that fixed order — everything this person did on this one song.
+  roles: string[];
+}
+
+export interface Creator {
+  id: string;
+  name: string;
+  songs: CreatorCredit[];
+}
+
 export interface Venue {
   id: string;
   name: string;
@@ -122,6 +137,7 @@ interface SiteData {
   events: Event[];
   songs: Song[];
   venues: Venue[];
+  creators: Creator[];
   set_length_stats: SetLengthStats;
 }
 
@@ -131,6 +147,7 @@ const data = raw as SiteData;
 export const events: Event[] = data.events;
 export const songs: Song[] = data.songs;
 export const venues: Venue[] = data.venues;
+export const creators: Creator[] = data.creators;
 export const setLengthStats: SetLengthStats = data.set_length_stats;
 
 export function getEvent(id: string): Event | undefined {
@@ -150,6 +167,13 @@ export function getSong(name: string): Song | undefined {
 
 export function getVenue(name: string): Venue | undefined {
   return venues.find((venue) => venue.name === name);
+}
+
+// By name, same reasoning as getSong/getVenue — a credit field (e.g.
+// "nenene, & Yoshimura") stores creators' raw display names, split on
+// " & " at render time, never an id.
+export function getCreator(name: string): Creator | undefined {
+  return creators.find((creator) => creator.name === name);
 }
 
 // Build-time "today" (JST, matching the calendar's own timezone) — this is a

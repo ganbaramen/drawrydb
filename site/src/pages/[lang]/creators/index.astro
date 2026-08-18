@@ -1,0 +1,47 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { creators } from '../../../lib/data';
+import { urlSafe } from '../../../lib/format';
+import { LOCALES, t, type Lang } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props as { lang: Lang };
+const base = import.meta.env.BASE_URL;
+// Already sorted by the exporter: most-credited first, name as a full
+// tiebreak (see export_site_data.py's build_creators()).
+---
+
+<Layout title={t(lang, 'creators.title')} lang={lang} path="creators/">
+  <h1>{t(lang, 'creators.title')}</h1>
+  <p>{t(lang, 'creators.count', { n: creators.length })}</p>
+  <div class="table-scroll">
+    <table class="stats-table" id="creators-table">
+      <thead>
+        <tr>
+          <th>{t(lang, 'creators.name')}</th>
+          <th data-sort-type="number">{t(lang, 'creators.songs')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          creators.map((creator) => (
+            <tr>
+              <td>
+                <a href={`${base}/${lang}/creators/${urlSafe(creator.id)}/`}>{creator.name}</a>
+              </td>
+              <td data-sort-value={creator.songs.length}>{creator.songs.length}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    import { initSortableTable } from '../../../lib/sortable-table';
+    initSortableTable(document.getElementById('creators-table') as HTMLTableElement);
+  </script>
+</Layout>

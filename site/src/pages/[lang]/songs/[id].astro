@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import CreditNames from '../../../components/CreditNames.astro';
 import { songs, events, type Song } from '../../../lib/data';
 import { autoLink, formatDate, formatTrackNumber, songDisplayName, songSubtitle, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -35,6 +36,7 @@ function eventFor(date: string) {
 const debutEvent = eventFor(song.first_performed);
 const lastEvent = eventFor(song.last_performed);
 const credits = song.credits;
+
 ---
 
 <Layout title={songDisplayName(lang, song)} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
@@ -57,25 +59,33 @@ const credits = song.credits;
         {credits.lyrics && (
           <tr>
             <th>{t(lang, 'songs.lyrics')}</th>
-            <td>{credits.lyrics}</td>
+            <td>
+              <CreditNames value={credits.lyrics} lang={lang} />
+            </td>
           </tr>
         )}
         {credits.composition && (
           <tr>
             <th>{t(lang, 'songs.composition')}</th>
-            <td>{credits.composition}</td>
+            <td>
+              <CreditNames value={credits.composition} lang={lang} />
+            </td>
           </tr>
         )}
         {credits.arrangement && (
           <tr>
             <th>{t(lang, 'songs.arrangement')}</th>
-            <td>{credits.arrangement}</td>
+            <td>
+              <CreditNames value={credits.arrangement} lang={lang} />
+            </td>
           </tr>
         )}
         {credits.choreography && (
           <tr>
             <th>{t(lang, 'songs.choreography')}</th>
-            <td>{credits.choreography}</td>
+            <td>
+              <CreditNames value={credits.choreography} lang={lang} />
+            </td>
           </tr>
         )}
         {credits.note && (

@@ -397,6 +397,74 @@ def build_songs(events: list[dict]) -> list[dict]:
     return songs
 
 
+ROLE_FIELDS = ["lyrics", "composition", "arrangement", "choreography"]
+
+
+def split_creators(value: str) -> list[str]:
+    """"nenene, & Yoshimura" -> ["nenene,", "Yoshimura"] — " & " (with the
+    surrounding spaces) is the only separator real data uses for a
+    co-credited role; a bare comma inside a name ("nenene,") is part of
+    the name itself, not a list separator, so this doesn't split on it."""
+    return [name.strip() for name in value.split(" & ") if name.strip()]
+
+
+def build_creators(songs: list[dict]) -> list[dict]:
+    """One entry per person credited on lyrics/composition/arrangement/
+    choreography (data/input/song_details.csv), each listing every song
+    they worked on and which role(s) — the credits table on a song's own
+    page, inverted (person -> songs instead of song -> people). "A & B" in
+    a credit field means two people share that credit; split via
+    split_creators() into separate entries, same person merged across every
+    song and field they appear in.
+    """
+    slugs = load_slugs("creator_slugs.csv")
+    song_by_id = {song["id"]: song for song in songs if song.get("credits")}
+
+    # name -> song_id -> roles (in ROLE_FIELDS order, since that's the
+    # order fields are visited below for each song).
+    by_name: dict[str, dict[str, list[str]]] = {}
+    for song in song_by_id.values():
+        credits = song["credits"]
+        for field in ROLE_FIELDS:
+            value = credits.get(field, "")
+            if not value:
+                continue
+            for name in split_creators(value):
+                roles = by_name.setdefault(name, {}).setdefault(song["id"], [])
+                if field not in roles:
+                    roles.append(field)
+
+    creators = []
+    for name, song_roles in by_name.items():
+        song_entries = [
+            {
+                "song_id": song_id,
+                "song_name": song_by_id[song_id]["name"],
+                "translation": song_by_id[song_id]["translation"],
+                "roles": roles,
+            }
+            for song_id, roles in song_roles.items()
+        ]
+        song_entries.sort(
+            key=lambda e: (
+                song_by_id[e["song_id"]]["first_performed"],
+                song_by_id[e["song_id"]]["name"],
+            )
+        )
+        creators.append(
+            {
+                "id": slugs.get(name, name),
+                "name": name,
+                "songs": song_entries,
+            }
+        )
+    # Most-credited first — the closest equivalent here to venues.csv's own
+    # shows-desc default; name is a full tiebreak (creator names are unique
+    # keys into by_name, so this alone already makes the sort deterministic).
+    creators.sort(key=lambda c: (-len(c["songs"]), c["name"]))
+    return creators
+
+
 def build_venues(events: list[dict]) -> list[dict]:
     stats = read_csv("venue_stats.csv")
     shows = read_csv("shows.csv")
@@ -547,10 +615,12 @@ def build_set_length_stats(events: list[dict]) -> dict:
 
 def main() -> None:
     events = build_events()
+    songs = build_songs(events)
     data = {
         "events": events,
-        "songs": build_songs(events),
+        "songs": songs,
         "venues": build_venues(events),
+        "creators": build_creators(songs),
         "set_length_stats": build_set_length_stats(events),
     }
     with open(OUTPUT_JSON, "w", encoding="utf-8") as fh:

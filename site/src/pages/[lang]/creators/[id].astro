@@ -1,0 +1,45 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { creators, type Creator } from '../../../lib/data';
+import { songDisplayName, urlSafe } from '../../../lib/format';
+import { LOCALES, t, type Lang } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+  // See songs/[id].astro for why params.id stays the raw name.
+  return LOCALES.flatMap((lang) =>
+    creators.map((creator) => ({
+      params: { lang, id: creator.id },
+      props: { creator, lang },
+    })),
+  );
+}
+
+const { creator, lang } = Astro.props as { creator: Creator; lang: Lang };
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title={creator.name} lang={lang} path={`creators/${urlSafe(creator.id)}/`}>
+  <p><a href="../">{t(lang, 'creators.back')}</a></p>
+
+  <h1>{creator.name}</h1>
+  <p>{t(lang, 'creators.songCount', { n: creator.songs.length })}</p>
+
+  <ul style="list-style:none; padding:0;">
+    {
+      creator.songs.map((credit) => (
+        <li>
+          <a class="event-card" href={`${base}/${lang}/songs/${urlSafe(credit.song_id)}/`}>
+            <div class="event-title">
+              {songDisplayName(lang, { name: credit.song_name, translation: credit.translation })}
+            </div>
+            <div>
+              {credit.roles.map((role) => (
+                <span class="badge">{t(lang, `songs.${role}`)}</span>
+              ))}
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

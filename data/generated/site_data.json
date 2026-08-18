@@ -20658,6 +20658,397 @@
       ]
     }
   ],
+  "creators": [
+    {
+      "id": "nancy",
+      "name": "ナンシー",
+      "songs": [
+        {
+          "song_id": "dear-history",
+          "song_name": "Dear,History",
+          "translation": null,
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "moving-lights",
+          "song_name": "Moving Lights!",
+          "translation": null,
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "primary",
+          "song_name": "プライマリ",
+          "translation": "primary",
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "draw-a-line",
+          "song_name": "Draw a line",
+          "translation": null,
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "stand-by-me",
+          "song_name": "スタンドバイミー",
+          "translation": "Stand by Me",
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "time-capsule",
+          "song_name": "タイムカプセル",
+          "translation": "Time Capsule",
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "ginmaku",
+          "song_name": "銀幕",
+          "translation": "Ginmaku",
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "into-the-blue",
+          "song_name": "Into the Blue",
+          "translation": null,
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "fly-by",
+          "song_name": "Fly By",
+          "translation": null,
+          "roles": [
+            "choreography"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nenene",
+      "name": "nenene,",
+      "songs": [
+        {
+          "song_id": "dear-history",
+          "song_name": "Dear,History",
+          "translation": null,
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        },
+        {
+          "song_id": "asayake-to-shasou",
+          "song_name": "朝焼けと車窓",
+          "translation": "Morning Glow and the Train Window",
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        },
+        {
+          "song_id": "stand-by-me",
+          "song_name": "スタンドバイミー",
+          "translation": "Stand by Me",
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takanashi-kairi",
+      "name": "小鳥遊カイリ",
+      "songs": [
+        {
+          "song_id": "moving-lights",
+          "song_name": "Moving Lights!",
+          "translation": null,
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        },
+        {
+          "song_id": "begin-the-journey",
+          "song_name": "Begin the Journey!",
+          "translation": null,
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        },
+        {
+          "song_id": "into-the-blue",
+          "song_name": "Into the Blue",
+          "translation": null,
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maho",
+      "name": "MaHO",
+      "songs": [
+        {
+          "song_id": "blooming",
+          "song_name": "Blooming",
+          "translation": null,
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "love-story-ga-hajimaranai",
+          "song_name": "ラブストーリーが始まらない",
+          "translation": "A Love Story That Never Begins",
+          "roles": [
+            "choreography"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yoshimura",
+      "name": "Yoshimura",
+      "songs": [
+        {
+          "song_id": "dear-history",
+          "song_name": "Dear,History",
+          "translation": null,
+          "roles": [
+            "lyrics"
+          ]
+        },
+        {
+          "song_id": "stand-by-me",
+          "song_name": "スタンドバイミー",
+          "translation": "Stand by Me",
+          "roles": [
+            "lyrics"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mimimiyu",
+      "name": "ミミミユ",
+      "songs": [
+        {
+          "song_id": "asayake-to-shasou",
+          "song_name": "朝焼けと車窓",
+          "translation": "Morning Glow and the Train Window",
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "egakikake-no-sora",
+          "song_name": "描きかけの空",
+          "translation": "Egakikake no Sora",
+          "roles": [
+            "choreography"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yamagishidaiki",
+      "name": "ヤマギシダイキ",
+      "songs": [
+        {
+          "song_id": "love-story-ga-hajimaranai",
+          "song_name": "ラブストーリーが始まらない",
+          "translation": "A Love Story That Never Begins",
+          "roles": [
+            "arrangement"
+          ]
+        },
+        {
+          "song_id": "draw-a-line",
+          "song_name": "Draw a line",
+          "translation": null,
+          "roles": [
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hasegawa-kai",
+      "name": "長谷川海",
+      "songs": [
+        {
+          "song_id": "love-story-ga-hajimaranai",
+          "song_name": "ラブストーリーが始まらない",
+          "translation": "A Love Story That Never Begins",
+          "roles": [
+            "lyrics",
+            "composition"
+          ]
+        },
+        {
+          "song_id": "draw-a-line",
+          "song_name": "Draw a line",
+          "translation": null,
+          "roles": [
+            "lyrics",
+            "composition"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overnote",
+      "name": "OverNote'",
+      "songs": [
+        {
+          "song_id": "egakikake-no-sora",
+          "song_name": "描きかけの空",
+          "translation": "Egakikake no Sora",
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "serina",
+      "name": "SERINA",
+      "songs": [
+        {
+          "song_id": "luminous",
+          "song_name": "ルミナス",
+          "translation": "Luminous",
+          "roles": [
+            "choreography"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cuum",
+      "name": "cuum",
+      "songs": [
+        {
+          "song_id": "ginmaku",
+          "song_name": "銀幕",
+          "translation": "Ginmaku",
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kr-kuura",
+      "name": "kr-KuuRa",
+      "songs": [
+        {
+          "song_id": "fly-by",
+          "song_name": "Fly By",
+          "translation": null,
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ways",
+      "name": "ways",
+      "songs": [
+        {
+          "song_id": "time-capsule",
+          "song_name": "タイムカプセル",
+          "translation": "Time Capsule",
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shiika",
+      "name": "しいか",
+      "songs": [
+        {
+          "song_id": "primary",
+          "song_name": "プライマリ",
+          "translation": "primary",
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shijimafumi",
+      "name": "シジマフミ",
+      "songs": [
+        {
+          "song_id": "luminous",
+          "song_name": "ルミナス",
+          "translation": "Luminous",
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hinoharuki",
+      "name": "ヒノハルキ",
+      "songs": [
+        {
+          "song_id": "blooming",
+          "song_name": "Blooming",
+          "translation": null,
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    }
+  ],
   "set_length_stats": {
     "buckets": [
       {

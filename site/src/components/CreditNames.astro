@@ -1,0 +1,35 @@
+---
+// Renders one song_details.csv credit field ("nenene, & Yoshimura") as
+// individual names joined by the same " & ", each linked to that person's
+// own creator page when one exists — see pipeline/export_site_data.py's
+// build_creators() for the identical split, and songs/[id].astro (this
+// component's only caller, once per credit field) for why it's a
+// component rather than a frontmatter helper: Astro only compiles
+// JSX-like template syntax in the template section, not in an arbitrary
+// function defined in the frontmatter script.
+import { getCreator } from '../lib/data';
+import { urlSafe } from '../lib/format';
+import type { Lang } from '../lib/i18n';
+
+interface Props {
+  value: string;
+  lang: Lang;
+}
+
+const { value, lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const names = value.split(' & ').map((name) => name.trim());
+---
+
+{
+  names.map((name, i) => (
+    <>
+      {i > 0 && ' & '}
+      {getCreator(name) ? (
+        <a href={`${base}/${lang}/creators/${urlSafe(getCreator(name)!.id)}/`}>{name}</a>
+      ) : (
+        name
+      )}
+    </>
+  ))
+}
