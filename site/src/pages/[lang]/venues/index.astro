@@ -10,7 +10,11 @@ export function getStaticPaths() {
 
 const { lang } = Astro.props as { lang: Lang };
 const base = import.meta.env.BASE_URL;
-const sorted = venues.slice().sort((a, b) => b.shows - a.shows);
+const sorted = venues.slice().sort((a, b) => {
+  if (a.shows !== b.shows) return b.shows - a.shows;
+  if (a.first_played !== b.first_played) return a.first_played < b.first_played ? -1 : 1;
+  return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+});
 ---
 
 <Layout title={t(lang, 'venues.title')} lang={lang} path="venues/">
