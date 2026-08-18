@@ -11196,7 +11196,7 @@
   ],
   "songs": [
     {
-      "id": "朝焼けと車窓",
+      "id": "asayake-to-shasou",
       "name": "朝焼けと車窓",
       "plays": 138,
       "shows": 138,
@@ -12316,7 +12316,7 @@
       ]
     },
     {
-      "id": "ルミナス",
+      "id": "luminous",
       "name": "ルミナス",
       "plays": 137,
       "shows": 137,
@@ -13428,7 +13428,7 @@
       ]
     },
     {
-      "id": "Dear,History",
+      "id": "dear-history",
       "name": "Dear,History",
       "plays": 96,
       "shows": 95,
@@ -14212,7 +14212,7 @@
       ]
     },
     {
-      "id": "Moving Lights!",
+      "id": "moving-lights",
       "name": "Moving Lights!",
       "plays": 83,
       "shows": 83,
@@ -14892,7 +14892,7 @@
       ]
     },
     {
-      "id": "Blooming",
+      "id": "blooming",
       "name": "Blooming",
       "plays": 73,
       "shows": 73,
@@ -15492,7 +15492,7 @@
       ]
     },
     {
-      "id": "ラブストーリーが始まらない",
+      "id": "love-story-ga-hajimaranai",
       "name": "ラブストーリーが始まらない",
       "plays": 71,
       "shows": 70,
@@ -16076,7 +16076,7 @@
       ]
     },
     {
-      "id": "SE",
+      "id": "se",
       "name": "SE",
       "plays": 64,
       "shows": 64,
@@ -16604,7 +16604,7 @@
       ]
     },
     {
-      "id": "プライマリ",
+      "id": "primary",
       "name": "プライマリ",
       "plays": 59,
       "shows": 59,
@@ -17092,7 +17092,7 @@
       ]
     },
     {
-      "id": "Begin the Journey!",
+      "id": "begin-the-journey",
       "name": "Begin the Journey!",
       "plays": 49,
       "shows": 49,
@@ -17500,7 +17500,7 @@
       ]
     },
     {
-      "id": "スタンドバイミー",
+      "id": "stand-by-me",
       "name": "スタンドバイミー",
       "plays": 46,
       "shows": 46,
@@ -17884,7 +17884,7 @@
       ]
     },
     {
-      "id": "Interlude",
+      "id": "interlude",
       "name": "Interlude",
       "plays": 42,
       "shows": 40,
@@ -18236,7 +18236,7 @@
       ]
     },
     {
-      "id": "描きかけの空",
+      "id": "kakikake-no-sora",
       "name": "描きかけの空",
       "plays": 35,
       "shows": 35,
@@ -18532,7 +18532,7 @@
       ]
     },
     {
-      "id": "タイムカプセル",
+      "id": "time-capsule",
       "name": "タイムカプセル",
       "plays": 30,
       "shows": 30,
@@ -18788,7 +18788,7 @@
       ]
     },
     {
-      "id": "Into the Blue",
+      "id": "into-the-blue",
       "name": "Into the Blue",
       "plays": 24,
       "shows": 24,
@@ -18996,7 +18996,7 @@
       ]
     },
     {
-      "id": "SE(Moving Lights!)",
+      "id": "se-moving-lights",
       "name": "SE(Moving Lights!)",
       "plays": 19,
       "shows": 19,
@@ -19164,7 +19164,7 @@
       ]
     },
     {
-      "id": "SE(Draw a Story)",
+      "id": "se-draw-a-story",
       "name": "SE(Draw a Story)",
       "plays": 15,
       "shows": 15,
@@ -19300,7 +19300,7 @@
       ]
     },
     {
-      "id": "SE(スタンドバイミー)",
+      "id": "se-stand-by-me",
       "name": "SE(スタンドバイミー)",
       "plays": 11,
       "shows": 11,
@@ -19404,7 +19404,7 @@
       ]
     },
     {
-      "id": "Draw a line",
+      "id": "draw-a-line",
       "name": "Draw a line",
       "plays": 9,
       "shows": 9,
@@ -19492,7 +19492,7 @@
       ]
     },
     {
-      "id": "銀幕",
+      "id": "ginmaku",
       "name": "銀幕",
       "plays": 9,
       "shows": 9,
@@ -19580,7 +19580,7 @@
       ]
     },
     {
-      "id": "SE(プライマリ)",
+      "id": "se-primary",
       "name": "SE(プライマリ)",
       "plays": 6,
       "shows": 6,
@@ -19644,7 +19644,7 @@
       ]
     },
     {
-      "id": "Fly By",
+      "id": "fly-by",
       "name": "Fly By",
       "plays": 5,
       "shows": 5,
@@ -19700,7 +19700,7 @@
       ]
     },
     {
-      "id": "SE(ラブストーリーが始まらない)",
+      "id": "se-love-story-ga-hajimaranai",
       "name": "SE(ラブストーリーが始まらない)",
       "plays": 1,
       "shows": 1,
@@ -19726,7 +19726,7 @@
   ],
   "venues": [
     {
-      "id": "新宿MARZ",
+      "id": "shinjuku-marz",
       "name": "新宿MARZ",
       "shows": 14,
       "first_played": "2025-10-03",
@@ -19749,7 +19749,7 @@
       ]
     },
     {
-      "id": "Flowers Loft",
+      "id": "flowers-loft",
       "name": "Flowers Loft",
       "shows": 12,
       "first_played": "2025-09-28",
@@ -19770,7 +19770,7 @@
       ]
     },
     {
-      "id": "下北沢MOSAiC",
+      "id": "shimokitazawa-mosaic",
       "name": "下北沢MOSAiC",
       "shows": 11,
       "first_played": "2025-10-12",
@@ -19790,7 +19790,7 @@
       ]
     },
     {
-      "id": "Spotify O-Crest",
+      "id": "spotify-o-crest",
       "name": "Spotify O-Crest",
       "shows": 6,
       "first_played": "2025-09-20",
@@ -19805,7 +19805,7 @@
       ]
     },
     {
-      "id": "SHIBUYA RING",
+      "id": "shibuya-ring",
       "name": "SHIBUYA RING",
       "shows": 5,
       "first_played": "2025-09-23",
@@ -19819,7 +19819,7 @@
       ]
     },
     {
-      "id": "大塚Hearts+",
+      "id": "otsuka-hearts-plus",
       "name": "大塚Hearts+",
       "shows": 5,
       "first_played": "2025-10-21",
@@ -19833,7 +19833,7 @@
       ]
     },
     {
-      "id": "渋谷近未来会館",
+      "id": "shibuya-kinmirai-kaikan",
       "name": "渋谷近未来会館",
       "shows": 5,
       "first_played": "2026-03-02",
@@ -19847,7 +19847,7 @@
       ]
     },
     {
-      "id": "銀座BASE GRANBELL",
+      "id": "ginza-base-granbell",
       "name": "銀座BASE GRANBELL",
       "shows": 5,
       "first_played": "2026-02-01",
@@ -19861,7 +19861,7 @@
       ]
     },
     {
-      "id": "DESEO mini with VILLAGE VANGUARD",
+      "id": "deseo-mini-with-village-vanguard",
       "name": "DESEO mini with VILLAGE VANGUARD",
       "shows": 4,
       "first_played": "2025-12-28",
@@ -19874,7 +19874,7 @@
       ]
     },
     {
-      "id": "下北沢シャングリラ",
+      "id": "shimokitazawa-shangri-la",
       "name": "下北沢シャングリラ",
       "shows": 4,
       "first_played": "2025-12-31",
@@ -19887,7 +19887,7 @@
       ]
     },
     {
-      "id": "恵比寿CreAto",
+      "id": "ebisu-creato",
       "name": "恵比寿CreAto",
       "shows": 4,
       "first_played": "2025-09-21",
@@ -19900,7 +19900,7 @@
       ]
     },
     {
-      "id": "新宿LOFT",
+      "id": "shinjuku-loft",
       "name": "新宿LOFT",
       "shows": 4,
       "first_played": "2025-09-23",
@@ -19913,7 +19913,7 @@
       ]
     },
     {
-      "id": "下北沢SHELTER",
+      "id": "shimokitazawa-shelter",
       "name": "下北沢SHELTER",
       "shows": 3,
       "first_played": "2026-03-15",
@@ -19925,7 +19925,7 @@
       ]
     },
     {
-      "id": "四谷LOTUS",
+      "id": "yotsuya-lotus",
       "name": "四谷LOTUS",
       "shows": 3,
       "first_played": "2025-11-01",
@@ -19937,7 +19937,7 @@
       ]
     },
     {
-      "id": "渋谷WOMB",
+      "id": "shibuya-womb",
       "name": "渋谷WOMB",
       "shows": 3,
       "first_played": "2025-12-01",
@@ -19949,7 +19949,7 @@
       ]
     },
     {
-      "id": "渋谷チェルシーホテル",
+      "id": "shibuya-chelsea-hotel",
       "name": "渋谷チェルシーホテル",
       "shows": 3,
       "first_played": "2026-02-05",
@@ -19961,7 +19961,7 @@
       ]
     },
     {
-      "id": "青山RizM",
+      "id": "aoyama-rizm",
       "name": "青山RizM",
       "shows": 3,
       "first_played": "2025-12-20",
@@ -19973,7 +19973,7 @@
       ]
     },
     {
-      "id": "SHIBUYA CLUB QUATTRO",
+      "id": "shibuya-club-quattro",
       "name": "SHIBUYA CLUB QUATTRO",
       "shows": 2,
       "first_played": "2026-04-22",
@@ -19984,7 +19984,7 @@
       ]
     },
     {
-      "id": "SHIBUYA CYCLONE",
+      "id": "shibuya-cyclone",
       "name": "SHIBUYA CYCLONE",
       "shows": 2,
       "first_played": "2025-09-27",
@@ -19995,7 +19995,7 @@
       ]
     },
     {
-      "id": "Shibuya Milkyway",
+      "id": "shibuya-milkyway",
       "name": "Shibuya Milkyway",
       "shows": 2,
       "first_played": "2026-06-10",
@@ -20006,7 +20006,7 @@
       ]
     },
     {
-      "id": "TwinBoxGARAGE",
+      "id": "twinbox-garage",
       "name": "TwinBoxGARAGE",
       "shows": 2,
       "first_played": "2025-10-11",
@@ -20017,7 +20017,7 @@
       ]
     },
     {
-      "id": "いわき湯本温泉 旅館こいと",
+      "id": "iwaki-yumoto-onsen-ryokan-koito",
       "name": "いわき湯本温泉 旅館こいと",
       "shows": 2,
       "first_played": "2026-04-18",
@@ -20028,7 +20028,7 @@
       ]
     },
     {
-      "id": "アメリカ村BEYOND",
+      "id": "amerikamura-beyond",
       "name": "アメリカ村BEYOND",
       "shows": 2,
       "first_played": "2026-05-09",
@@ -20039,7 +20039,7 @@
       ]
     },
     {
-      "id": "三崎公園野外音楽堂",
+      "id": "misaki-koen-yagai-ongakudo",
       "name": "三崎公園野外音楽堂",
       "shows": 2,
       "first_played": "2026-05-23",
@@ -20050,7 +20050,7 @@
       ]
     },
     {
-      "id": "京都ROKA",
+      "id": "kyoto-roka",
       "name": "京都ROKA",
       "shows": 2,
       "first_played": "2026-01-23",
@@ -20061,7 +20061,7 @@
       ]
     },
     {
-      "id": "大塚Hearts Next",
+      "id": "otsuka-hearts-next",
       "name": "大塚Hearts Next",
       "shows": 2,
       "first_played": "2025-10-18",
@@ -20072,7 +20072,7 @@
       ]
     },
     {
-      "id": "KANDA SQUARE HALL",
+      "id": "kanda-square-hall",
       "name": "KANDA SQUARE HALL",
       "shows": 1,
       "first_played": "2026-07-05",
@@ -20082,7 +20082,7 @@
       ]
     },
     {
-      "id": "LIVLIV(静岡ARTIE)",
+      "id": "livliv-shizuoka-artie",
       "name": "LIVLIV(静岡ARTIE)",
       "shows": 1,
       "first_played": "2026-08-16",
@@ -20092,7 +20092,7 @@
       ]
     },
     {
-      "id": "SHIBUYA DESEO",
+      "id": "shibuya-deseo",
       "name": "SHIBUYA DESEO",
       "shows": 1,
       "first_played": "2026-02-23",
@@ -20102,7 +20102,7 @@
       ]
     },
     {
-      "id": "SHIBUYA PLEASURE PLEASURE",
+      "id": "shibuya-pleasure-pleasure",
       "name": "SHIBUYA PLEASURE PLEASURE",
       "shows": 1,
       "first_played": "2026-07-02",
@@ -20112,7 +20112,7 @@
       ]
     },
     {
-      "id": "SUPERNOVA KAWASAKI",
+      "id": "supernova-kawasaki",
       "name": "SUPERNOVA KAWASAKI",
       "shows": 1,
       "first_played": "2025-11-30",
@@ -20122,7 +20122,7 @@
       ]
     },
     {
-      "id": "Spotify O-WEST",
+      "id": "spotify-o-west",
       "name": "Spotify O-WEST",
       "shows": 1,
       "first_played": "2026-01-03",
@@ -20132,7 +20132,7 @@
       ]
     },
     {
-      "id": "Spotify O-nest",
+      "id": "spotify-o-nest",
       "name": "Spotify O-nest",
       "shows": 1,
       "first_played": "2026-01-04",
@@ -20142,7 +20142,7 @@
       ]
     },
     {
-      "id": "Studio Freedom",
+      "id": "studio-freedom",
       "name": "Studio Freedom",
       "shows": 1,
       "first_played": "2026-07-12",
@@ -20152,7 +20152,7 @@
       ]
     },
     {
-      "id": "TFTホール300",
+      "id": "tft-hall-300",
       "name": "TFTホール300",
       "shows": 1,
       "first_played": "2026-06-27",
@@ -20162,7 +20162,7 @@
       ]
     },
     {
-      "id": "Veats SHIBUYA",
+      "id": "veats-shibuya",
       "name": "Veats SHIBUYA",
       "shows": 1,
       "first_played": "2025-09-13",
@@ -20172,7 +20172,7 @@
       ]
     },
     {
-      "id": "YOANI LIVE STATION",
+      "id": "yoani-live-station",
       "name": "YOANI LIVE STATION",
       "shows": 1,
       "first_played": "2025-12-29",
@@ -20182,7 +20182,7 @@
       ]
     },
     {
-      "id": "Zirco Tokyo",
+      "id": "zirco-tokyo",
       "name": "Zirco Tokyo",
       "shows": 1,
       "first_played": "2026-07-22",
@@ -20192,7 +20192,7 @@
       ]
     },
     {
-      "id": "お台場R地区",
+      "id": "odaiba-r-chiku",
       "name": "お台場R地区",
       "shows": 1,
       "first_played": "2026-08-15",
@@ -20202,7 +20202,7 @@
       ]
     },
     {
-      "id": "アメリカ村DROP",
+      "id": "amerikamura-drop",
       "name": "アメリカ村DROP",
       "shows": 1,
       "first_played": "2026-07-17",
@@ -20212,7 +20212,7 @@
       ]
     },
     {
-      "id": "タワーレコード新宿店",
+      "id": "tower-records-shinjuku",
       "name": "タワーレコード新宿店",
       "shows": 1,
       "first_played": "2026-03-20",
@@ -20222,7 +20222,7 @@
       ]
     },
     {
-      "id": "ベルサール渋谷",
+      "id": "bellesalle-shibuya",
       "name": "ベルサール渋谷",
       "shows": 1,
       "first_played": "2025-11-29",
@@ -20232,7 +20232,7 @@
       ]
     },
     {
-      "id": "下北沢ADRIFT",
+      "id": "shimokitazawa-adrift",
       "name": "下北沢ADRIFT",
       "shows": 1,
       "first_played": "2025-12-20",
@@ -20242,7 +20242,7 @@
       ]
     },
     {
-      "id": "大塚FUTURE:",
+      "id": "otsuka-future",
       "name": "大塚FUTURE:",
       "shows": 1,
       "first_played": "2026-04-11",
@@ -20252,7 +20252,7 @@
       ]
     },
     {
-      "id": "心斎橋SUNHALL",
+      "id": "shinsaibashi-sunhall",
       "name": "心斎橋SUNHALL",
       "shows": 1,
       "first_played": "2026-07-18",
@@ -20262,7 +20262,7 @@
       ]
     },
     {
-      "id": "新代田FEVER",
+      "id": "shindaita-fever",
       "name": "新代田FEVER",
       "shows": 1,
       "first_played": "2026-07-09",
@@ -20272,7 +20272,7 @@
       ]
     },
     {
-      "id": "新宿Marble",
+      "id": "shinjuku-marble",
       "name": "新宿Marble",
       "shows": 1,
       "first_played": "2026-01-27",
@@ -20282,7 +20282,7 @@
       ]
     },
     {
-      "id": "池袋リヴォイス",
+      "id": "ikebukuro-revoice",
       "name": "池袋リヴォイス",
       "shows": 1,
       "first_played": "2026-02-22",
@@ -20292,7 +20292,7 @@
       ]
     },
     {
-      "id": "渋谷CLUB CRAWL",
+      "id": "shibuya-club-crawl",
       "name": "渋谷CLUB CRAWL",
       "shows": 1,
       "first_played": "2026-03-07",
@@ -20302,7 +20302,7 @@
       ]
     },
     {
-      "id": "渋谷GRIT",
+      "id": "shibuya-grit",
       "name": "渋谷GRIT",
       "shows": 1,
       "first_played": "2026-08-10",
@@ -20312,7 +20312,7 @@
       ]
     },
     {
-      "id": "渋谷音楽堂",
+      "id": "shibuya-ongakudo",
       "name": "渋谷音楽堂",
       "shows": 1,
       "first_played": "2026-06-21",
@@ -20322,7 +20322,7 @@
       ]
     },
     {
-      "id": "白金高輪SELENE b2",
+      "id": "shirokanetakanawa-selene-b2",
       "name": "白金高輪SELENE b2",
       "shows": 1,
       "first_played": "2026-02-14",
@@ -20332,7 +20332,7 @@
       ]
     },
     {
-      "id": "神田CLUB F#",
+      "id": "kanda-club-f-sharp",
       "name": "神田CLUB F#",
       "shows": 1,
       "first_played": "2025-10-13",
@@ -20342,7 +20342,7 @@
       ]
     },
     {
-      "id": "表参道GROUND",
+      "id": "omotesando-ground",
       "name": "表参道GROUND",
       "shows": 1,
       "first_played": "2025-12-14",
@@ -20352,7 +20352,7 @@
       ]
     },
     {
-      "id": "高円寺HIGH",
+      "id": "koenji-high",
       "name": "高円寺HIGH",
       "shows": 1,
       "first_played": "2025-11-11",
@@ -20526,7 +20526,7 @@
     ],
     "songs": [
       {
-        "id": "朝焼けと車窓",
+        "id": "asayake-to-shasou",
         "name": "朝焼けと車窓",
         "rates": {
           "10": {
@@ -20548,7 +20548,7 @@
         }
       },
       {
-        "id": "ルミナス",
+        "id": "luminous",
         "name": "ルミナス",
         "rates": {
           "10": {
@@ -20570,7 +20570,7 @@
         }
       },
       {
-        "id": "Dear,History",
+        "id": "dear-history",
         "name": "Dear,History",
         "rates": {
           "10": {
@@ -20592,7 +20592,7 @@
         }
       },
       {
-        "id": "Moving Lights!",
+        "id": "moving-lights",
         "name": "Moving Lights!",
         "rates": {
           "10": {
@@ -20614,7 +20614,7 @@
         }
       },
       {
-        "id": "Blooming",
+        "id": "blooming",
         "name": "Blooming",
         "rates": {
           "10": {
@@ -20636,7 +20636,7 @@
         }
       },
       {
-        "id": "ラブストーリーが始まらない",
+        "id": "love-story-ga-hajimaranai",
         "name": "ラブストーリーが始まらない",
         "rates": {
           "10": {
@@ -20658,7 +20658,7 @@
         }
       },
       {
-        "id": "SE",
+        "id": "se",
         "name": "SE",
         "rates": {
           "10": {
@@ -20680,7 +20680,7 @@
         }
       },
       {
-        "id": "プライマリ",
+        "id": "primary",
         "name": "プライマリ",
         "rates": {
           "10": {
@@ -20702,29 +20702,7 @@
         }
       },
       {
-        "id": "Begin the Journey!",
-        "name": "Begin the Journey!",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 3,
-            "eligible": 10
-          },
-          "25": {
-            "count": 26,
-            "eligible": 47
-          },
-          "30": {
-            "count": 12,
-            "eligible": 21
-          }
-        }
-      },
-      {
-        "id": "スタンドバイミー",
+        "id": "stand-by-me",
         "name": "スタンドバイミー",
         "rates": {
           "10": {
@@ -20746,7 +20724,29 @@
         }
       },
       {
-        "id": "Interlude",
+        "id": "begin-the-journey",
+        "name": "Begin the Journey!",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 3,
+            "eligible": 10
+          },
+          "25": {
+            "count": 26,
+            "eligible": 47
+          },
+          "30": {
+            "count": 12,
+            "eligible": 21
+          }
+        }
+      },
+      {
+        "id": "interlude",
         "name": "Interlude",
         "rates": {
           "10": {
@@ -20768,7 +20768,7 @@
         }
       },
       {
-        "id": "描きかけの空",
+        "id": "kakikake-no-sora",
         "name": "描きかけの空",
         "rates": {
           "10": {
@@ -20790,7 +20790,7 @@
         }
       },
       {
-        "id": "タイムカプセル",
+        "id": "time-capsule",
         "name": "タイムカプセル",
         "rates": {
           "10": {
@@ -20812,7 +20812,7 @@
         }
       },
       {
-        "id": "Into the Blue",
+        "id": "into-the-blue",
         "name": "Into the Blue",
         "rates": {
           "10": {
@@ -20834,7 +20834,7 @@
         }
       },
       {
-        "id": "SE(Moving Lights!)",
+        "id": "se-moving-lights",
         "name": "SE(Moving Lights!)",
         "rates": {
           "10": {
@@ -20856,7 +20856,7 @@
         }
       },
       {
-        "id": "SE(スタンドバイミー)",
+        "id": "se-stand-by-me",
         "name": "SE(スタンドバイミー)",
         "rates": {
           "10": {
@@ -20878,7 +20878,7 @@
         }
       },
       {
-        "id": "SE(Draw a Story)",
+        "id": "se-draw-a-story",
         "name": "SE(Draw a Story)",
         "rates": {
           "10": {
@@ -20900,7 +20900,7 @@
         }
       },
       {
-        "id": "Draw a line",
+        "id": "draw-a-line",
         "name": "Draw a line",
         "rates": {
           "10": {
@@ -20922,7 +20922,7 @@
         }
       },
       {
-        "id": "銀幕",
+        "id": "ginmaku",
         "name": "銀幕",
         "rates": {
           "10": {
@@ -20944,7 +20944,7 @@
         }
       },
       {
-        "id": "SE(プライマリ)",
+        "id": "se-primary",
         "name": "SE(プライマリ)",
         "rates": {
           "10": {
@@ -20966,7 +20966,7 @@
         }
       },
       {
-        "id": "Fly By",
+        "id": "fly-by",
         "name": "Fly By",
         "rates": {
           "10": {
@@ -20988,7 +20988,7 @@
         }
       },
       {
-        "id": "SE(ラブストーリーが始まらない)",
+        "id": "se-love-story-ga-hajimaranai",
         "name": "SE(ラブストーリーが始まらない)",
         "rates": {
           "10": {
