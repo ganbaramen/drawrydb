@@ -16,7 +16,8 @@ const ja: Dict = {
   'disclaimer.pre': '非公式のファンサイトです — Drawry. 本人・関係者・公式とは一切関係ありません。',
   'disclaimer.post': 'が個人的に作成・運営しています。',
   'footer.disclaimer':
-    'これは非公式のファンプロジェクトであり、Drawry. または関係者とは一切関係ありません。連絡先:',
+    'これは非公式のファンプロジェクトであり、Drawry. または関係者とは一切関係ありません。',
+  'footer.contact': '連絡先：',
   'footer.credit': '（ramen）',
   'footer.source': 'GitHubでソースを見る',
   'home.next': '次のライブ',
@@ -71,7 +72,8 @@ const en: Dict = {
     'This is an unofficial fan site — not affiliated with Drawry. or their management. Made and run independently by ',
   'disclaimer.post': '.',
   'footer.disclaimer':
-    'This is an unofficial fan project, not affiliated with Drawry. or their management. Contact: ',
+    'This is an unofficial fan project, not affiliated with Drawry. or their management.',
+  'footer.contact': 'Contact: ',
   'footer.credit': ' (ramen)',
   'footer.source': 'Source on GitHub',
   'home.next': 'Next show',
