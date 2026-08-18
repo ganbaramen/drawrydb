@@ -506,10 +506,17 @@ def build_set_length_stats(events: list[dict]) -> dict:
     # Debut order, then track number as a tiebreaker — matching
     # songs/index.astro's own default ordering (see its comment for why:
     # a song with no number, e.g. SE/Interlude, sorts after one that has
-    # it, same "blanks last" convention as the sortable columns).
-    def song_sort_key(name: str) -> tuple[str, int]:
+    # it, same "blanks last" convention as the sortable columns). Name is
+    # a final tiebreak so the order is fully determined even when two
+    # songs share both a debut date and a (missing) number — necessary
+    # because the input is a set: without a total order, ties would be
+    # broken by set-iteration order, which depends on Python's per-process
+    # string hash randomization and silently reshuffles on every run (this
+    # is what caused "Automated data refresh" commits that only reordered
+    # a couple of songs with no actual data change).
+    def song_sort_key(name: str) -> tuple[str, int, str]:
         number = details.get(name, {}).get("number")
-        return (first_performed.get(name, ""), int(number) if number else 10**9)
+        return (first_performed.get(name, ""), int(number) if number else 10**9, name)
 
     all_song_names = sorted(
         {name for counts in song_counts.values() for name in counts},
