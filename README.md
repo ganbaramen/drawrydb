@@ -23,6 +23,13 @@ python3 pipeline/export_site_data.py    # rebuild site/'s data/generated/site_da
 Run the calendar first — setlist posts are matched against it. All three work
 from any directory. Python 3.9+, standard library only.
 
+Or run all three at once with `pipeline/refresh_all.sh` — a plain wrapper
+around the same three commands, for the common "just refresh everything"
+case. Prefer the individual commands when testing one script's own change.
+If you've only edited `event_overrides.csv`, add `--offline`
+(`refresh_all.sh --offline` or `export_calendar.py --offline`) to reapply
+it from the last fetch's cache instead of hitting the calendar again.
+
 To run the site itself:
 
 ```sh

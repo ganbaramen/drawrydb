@@ -86,9 +86,13 @@ join it to the calendar on `event_uid` ↔ `uid`.
 ```sh
 python3 pipeline/export_calendar.py     # refresh the calendar
 python3 pipeline/sync_setlists.py       # rebuild everything else
+python3 pipeline/export_site_data.py    # rebuild site/'s site_data.json
 ```
 
-Run the calendar first — setlist posts are matched against it.
+Run the calendar first — setlist posts are matched against it. Or run all
+three with `pipeline/refresh_all.sh`, a plain wrapper for the common "just
+refresh everything" case; prefer the individual commands when testing one
+script's own change or to skip the calendar's network call.
 
 ### Adding setlists
 
@@ -301,7 +305,8 @@ anything (stale) or match more than one event (ambiguous).
 | `--tz UTC` | Render times in another timezone (default `Asia/Tokyo`) |
 | `--quiet` | Print only on change or warning — good for cron |
 | `--watch 3600` | Stay running, refresh every N seconds |
-| `-o`, `--overrides` | Override paths |
+| `--offline` | Reapply overrides from the last fetch's cache, no network call — for when you've only edited `event_overrides.csv` |
+| `-o`, `--overrides`, `--cache` | Override paths |
 
 Writes are atomic, so a spreadsheet reading mid-refresh never sees a partial
 file. For automatic updates, either leave `--watch` running or add a cron entry:

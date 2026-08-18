@@ -48,6 +48,15 @@ GENERATED_DIR = os.path.join(ROOT, "data", "generated")
 
 DEFAULT_OUTPUT = os.path.join(GENERATED_DIR, "drawry_schedule.csv")
 DEFAULT_OVERRIDES = os.path.join(INPUT_DIR, "event_overrides.csv")
+# Not a generated artifact for anyone to read — a local cache of the last
+# successful fetch, so --offline can re-run the *entire* parse (including
+# re-deriving doors/showtime/venue from each event's description) without
+# hitting the network. That distinction matters: drawry_schedule.csv itself
+# already has overrides baked into its venue/doors/etc. columns, so
+# reapplying overrides on top of *that* instead of a fresh parse would
+# silently keep a stale value forever if an override is ever loosened or
+# removed. Gitignored — see .gitignore.
+CACHE_PATH = os.path.join(GENERATED_DIR, "calendar_cache.ics")
 
 
 def rel(path: str) -> str:
@@ -486,7 +495,18 @@ def fetch(url: str, retries: int = 3) -> str:
 
 def run_once(args: argparse.Namespace) -> None:
     tz = ZoneInfo(args.tz)
-    ics = fetch(args.url)
+    if args.offline:
+        if not os.path.exists(args.cache):
+            raise SystemExit(
+                f"error: --offline but no cache at {rel(args.cache)} — "
+                "run once without --offline first"
+            )
+        with open(args.cache, encoding="utf-8") as fh:
+            ics = fh.read()
+    else:
+        ics = fetch(args.url)
+        with open(args.cache, "w", encoding="utf-8") as fh:
+            fh.write(ics)
     if "BEGIN:VCALENDAR" not in ics:
         raise SystemExit("error: response was not an iCal feed (is the calendar public?)")
 
@@ -543,6 +563,13 @@ def main() -> None:
         help="stay running and refresh on this interval",
     )
     parser.add_argument("--quiet", action="store_true", help="print only on change")
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="reapply overrides from the last fetch's cache, no network call "
+        "(e.g. after only editing event_overrides.csv)",
+    )
+    parser.add_argument("--cache", default=CACHE_PATH, help="raw-feed cache path")
     args = parser.parse_args()
 
     if args.watch:

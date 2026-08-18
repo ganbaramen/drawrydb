@@ -7,3 +7,4 @@ export.log
 IDEAS.md
 DRAWRYDB.md
 .~lock.*#
+data/generated/calendar_cache.ics
