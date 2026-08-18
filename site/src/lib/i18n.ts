@@ -52,7 +52,7 @@ const ja: Dict = {
   'songs.playRateDetail': '{pct}% ({shows}/{total}公演)',
   'songs.encores': 'アンコール',
   'songs.credits': 'クレジット',
-  'songs.number': '曲番号',
+  'songs.number': '番号',
   'songs.lyrics': '作詞',
   'songs.composition': '作曲',
   'songs.arrangement': '編曲',

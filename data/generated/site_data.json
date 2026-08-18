@@ -12314,7 +12314,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "05",
+        "lyrics": "nenene,",
+        "composition": "nenene,",
+        "arrangement": "nenene,",
+        "choreography": "ミミミユ",
+        "note": "https://x.com/Drawry0920/status/1969260873446539648"
+      }
     },
     {
       "id": "luminous",
@@ -13427,7 +13434,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "04",
+        "lyrics": "シジマフミ",
+        "composition": "シジマフミ",
+        "arrangement": "シジマフミ",
+        "choreography": "SERINA",
+        "note": "https://x.com/Drawry0920/status/1979831133203476597"
+      }
     },
     {
       "id": "dear-history",
@@ -14212,7 +14226,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "01",
+        "lyrics": "nenene, & Yoshimura",
+        "composition": "nenene,",
+        "arrangement": "nenene,",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/1969260873446539648"
+      }
     },
     {
       "id": "moving-lights",
@@ -14893,7 +14914,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "03",
+        "lyrics": "小鳥遊カイリ",
+        "composition": "小鳥遊カイリ",
+        "arrangement": "小鳥遊カイリ",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/1969260873446539648"
+      }
     },
     {
       "id": "blooming",
@@ -15494,7 +15522,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "06",
+        "lyrics": "ヒノハルキ",
+        "composition": "ヒノハルキ",
+        "arrangement": "ヒノハルキ",
+        "choreography": "MaHO",
+        "note": "https://x.com/Drawry0920/status/2033885556615332339"
+      }
     },
     {
       "id": "love-story-ga-hajimaranai",
@@ -16079,7 +16114,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "08",
+        "lyrics": "長谷川海",
+        "composition": "長谷川海",
+        "arrangement": "ヤマギシダイキ",
+        "choreography": "MaHO",
+        "note": "https://x.com/Drawry0920/status/1992800585226293669"
+      }
     },
     {
       "id": "se",
@@ -17097,7 +17139,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "02",
+        "lyrics": "しいか",
+        "composition": "しいか",
+        "arrangement": "しいか",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/1969260873446539648"
+      }
     },
     {
       "id": "begin-the-journey",
@@ -17506,7 +17555,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "12",
+        "lyrics": "小鳥遊カイリ",
+        "composition": "小鳥遊カイリ",
+        "arrangement": "小鳥遊カイリ",
+        "choreography": "",
+        "note": "https://x.com/Drawry0920/status/2067926003566166494"
+      }
     },
     {
       "id": "stand-by-me",
@@ -17891,7 +17947,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "07",
+        "lyrics": "nenene, & Yoshimura",
+        "composition": "nenene,",
+        "arrangement": "nenene,",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/2037751256262099028"
+      }
     },
     {
       "id": "interlude",
@@ -18805,7 +18868,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "17",
+        "lyrics": "ways",
+        "composition": "ways",
+        "arrangement": "ways",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/2037751125622018188"
+      }
     },
     {
       "id": "into-the-blue",
@@ -19014,7 +19084,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "19",
+        "lyrics": "小鳥遊カイリ",
+        "composition": "小鳥遊カイリ",
+        "arrangement": "小鳥遊カイリ",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/2082067817122369858"
+      }
     },
     {
       "id": "se-moving-lights",
@@ -19514,7 +19591,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "09",
+        "lyrics": "長谷川海",
+        "composition": "長谷川海 & ヤマギシダイキ",
+        "arrangement": "ヤマギシダイキ",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/2051937676581011514"
+      }
     },
     {
       "id": "ginmaku",
@@ -19603,7 +19687,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "",
+        "lyrics": "cuum",
+        "composition": "cuum",
+        "arrangement": "cuum",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/2060612225422041420"
+      }
     },
     {
       "id": "se-primary",
@@ -19725,7 +19816,14 @@
           "note": ""
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "",
+        "lyrics": "kr-KuuRa",
+        "composition": "kr-KuuRa",
+        "arrangement": "kr-KuuRa",
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/2082095158775181743"
+      }
     },
     {
       "id": "se-love-story-ga-hajimaranai",
@@ -20731,28 +20829,6 @@
         }
       },
       {
-        "id": "stand-by-me",
-        "name": "スタンドバイミー",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 3,
-            "eligible": 8
-          },
-          "25": {
-            "count": 24,
-            "eligible": 29
-          },
-          "30": {
-            "count": 14,
-            "eligible": 16
-          }
-        }
-      },
-      {
         "id": "begin-the-journey",
         "name": "Begin the Journey!",
         "rates": {
@@ -20771,6 +20847,28 @@
           "30": {
             "count": 12,
             "eligible": 21
+          }
+        }
+      },
+      {
+        "id": "stand-by-me",
+        "name": "スタンドバイミー",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 3,
+            "eligible": 8
+          },
+          "25": {
+            "count": 24,
+            "eligible": 29
+          },
+          "30": {
+            "count": 14,
+            "eligible": 16
           }
         }
       },
@@ -20951,28 +21049,6 @@
         }
       },
       {
-        "id": "se-primary",
-        "name": "SE(プライマリ)",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 0,
-            "eligible": 10
-          },
-          "25": {
-            "count": 4,
-            "eligible": 48
-          },
-          "30": {
-            "count": 1,
-            "eligible": 23
-          }
-        }
-      },
-      {
         "id": "ginmaku",
         "name": "銀幕",
         "rates": {
@@ -20991,6 +21067,28 @@
           "30": {
             "count": 3,
             "eligible": 11
+          }
+        }
+      },
+      {
+        "id": "se-primary",
+        "name": "SE(プライマリ)",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 0,
+            "eligible": 10
+          },
+          "25": {
+            "count": 4,
+            "eligible": 48
+          },
+          "30": {
+            "count": 1,
+            "eligible": 23
           }
         }
       },
