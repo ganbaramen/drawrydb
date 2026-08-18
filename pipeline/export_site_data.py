@@ -155,14 +155,15 @@ def read_csv(name: str) -> list[dict[str, str]]:
 
 
 def load_slugs(name: str) -> dict[str, str]:
-    """name -> hand-typed URL slug (data/input/song_slugs.csv or
-    venue_slugs.csv, both `name,slug`). Per DRAWRYDB.md's slug section: a
-    missing file, or a name with no row yet, isn't an error — that name's id
-    just falls back to itself (raw Japanese, percent-encoded by the browser
-    same as it already is), so the site works before this table is filled
-    in. Filling one in is purely additive — it doesn't touch anything else
-    the id is used for (song/venue matching stays keyed by name throughout
-    the rest of this pipeline)."""
+    """name -> hand-typed URL slug (data/input/venue_slugs.csv, `name,slug`
+    — songs' own slug lives in song_details.csv alongside their credits, see
+    load_song_details()). Per DRAWRYDB.md's slug section: a missing file, or
+    a name with no row yet, isn't an error — that name's id just falls back
+    to itself (raw Japanese, percent-encoded by the browser same as it
+    already is), so the site works before this table is filled in. Filling
+    one in is purely additive — it doesn't touch anything else the id is
+    used for (venue matching stays keyed by name throughout the rest of
+    this pipeline)."""
     path = os.path.join(INPUT_DIR, name)
     if not os.path.exists(path):
         return {}
@@ -177,20 +178,26 @@ def load_slugs(name: str) -> dict[str, str]:
 CREDIT_FIELDS = ["number", "lyrics", "composition", "arrangement", "choreography", "note"]
 
 
-def load_credits() -> dict[str, dict[str, str]]:
-    """name -> {number, lyrics, composition, arrangement, choreography,
-    note} from data/input/song_credits.csv (a track number, plus 作詞/作曲/
-    編曲/振付 and a free-form note — e.g. a link to the lyrics post).
-    Hand-maintained, optional per song; nothing else in the pipeline reads
-    or derives this, unlike everything else in song_stats.csv. Same
-    missing-file/missing-row tolerance as load_slugs() — a song with no row
-    just gets no credits section."""
-    path = os.path.join(INPUT_DIR, "song_credits.csv")
+def load_song_details() -> dict[str, dict[str, str]]:
+    """name -> {slug, number, lyrics, composition, arrangement,
+    choreography, note} from data/input/song_details.csv. One file, not
+    two — a song's slug and its credits (作詞/作曲/編曲/振付, a track
+    number, a free-form note e.g. a lyrics-post link) are both exactly one
+    hand-curated row per song, so splitting them across song_slugs.csv and
+    song_credits.csv just meant editing two files for what's conceptually
+    one "everything about this song that isn't derived" row. Same
+    missing-file/missing-row tolerance as before: a song with no row here
+    just gets no slug (id falls back to its raw name) and no credits
+    section."""
+    path = os.path.join(INPUT_DIR, "song_details.csv")
     if not os.path.exists(path):
         return {}
     with open(path, newline="", encoding="utf-8-sig") as fh:
         return {
-            row["name"].strip(): {field: row.get(field, "").strip() for field in CREDIT_FIELDS}
+            row["name"].strip(): {
+                "slug": row.get("slug", "").strip(),
+                **{field: row.get(field, "").strip() for field in CREDIT_FIELDS},
+            }
             for row in csv.DictReader(fh)
             if row.get("name")
         }
@@ -284,11 +291,19 @@ def build_events() -> list[dict]:
     return events
 
 
+def song_credits(details: dict[str, str] | None) -> dict[str, str] | None:
+    """None unless at least one actual credit field is filled in — most
+    song_details.csv rows have a slug and nothing else right now, and a
+    credits section with every field blank isn't worth rendering."""
+    if not details or not any(details.get(field) for field in CREDIT_FIELDS):
+        return None
+    return {field: details.get(field, "") for field in CREDIT_FIELDS}
+
+
 def build_songs(events: list[dict]) -> list[dict]:
     stats = read_csv("song_stats.csv")
     setlists = read_csv("setlists.csv")
-    slugs = load_slugs("song_slugs.csv")
-    credits = load_credits()
+    details = load_song_details()
 
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
@@ -314,7 +329,7 @@ def build_songs(events: list[dict]) -> list[dict]:
         )
         songs.append(
             {
-                "id": slugs.get(row["song"], row["song"]),
+                "id": details.get(row["song"], {}).get("slug") or row["song"],
                 "name": row["song"],
                 "plays": int(row["plays"]),
                 "shows": int(row["shows"]),
@@ -327,7 +342,7 @@ def build_songs(events: list[dict]) -> list[dict]:
                 "is_se": row["is_se"] == "yes",
                 "is_interlude": row["is_interlude"] == "yes",
                 "performances": performances,
-                "credits": credits.get(row["song"]),
+                "credits": song_credits(details.get(row["song"])),
             }
         )
     return songs
@@ -383,7 +398,7 @@ def build_set_length_stats(events: list[dict]) -> dict:
     # that length, the same reasoning song_stats.csv's own play_rate uses
     # (see CLAUDE.md's shows_since_debut/play_rate section).
     first_performed = {row["song"]: row["first_performed"] for row in read_csv("song_stats.csv")}
-    slugs = load_slugs("song_slugs.csv")
+    details = load_song_details()
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
     }
@@ -454,7 +469,7 @@ def build_set_length_stats(events: list[dict]) -> dict:
                 "count": song_counts[b].get(name, 0),
                 "eligible": eligible,
             }
-        songs.append({"id": slugs.get(name, name), "name": name, "rates": rates})
+        songs.append({"id": details.get(name, {}).get("slug") or name, "name": name, "rates": rates})
 
     uncovered = len(shows) - sum(b["shows"] for b in buckets)
     return {"buckets": buckets, "songs": songs, "uncovered_shows": uncovered}
