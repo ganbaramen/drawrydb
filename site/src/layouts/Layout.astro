@@ -36,28 +36,32 @@ const base = import.meta.env.BASE_URL;
   <body>
     <header class="site-header">
       <a class="site-title" href={`${base}/${lang}/`}>DrawryDB</a>
-      <nav>
-        <a href={`${base}/${lang}/events/`}>{t(lang, 'nav.events')}</a>
-        <a href={`${base}/${lang}/songs/`}>{t(lang, 'nav.songs')}</a>
-        <a href={`${base}/${lang}/venues/`}>{t(lang, 'nav.venues')}</a>
-        <a href={`${base}/${lang}/set-lengths/`}>{t(lang, 'nav.setLength')}</a>
-        <span class="lang-switch">
-          {
-            LOCALES.map((l) =>
-              l === lang ? (
-                <span class="lang-current" aria-current="true">
-                  {l.toUpperCase()}
-                </span>
-              ) : (
-                <a href={`${base}/${l}/${path}`}>{l.toUpperCase()}</a>
-              ),
-            )
-          }
-        </span>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label={t(lang, 'theme.toggle')}>
-          🌙
-        </button>
-      </nav>
+      <div class="header-right">
+        <nav class="site-nav">
+          <a href={`${base}/${lang}/events/`}>{t(lang, 'nav.events')}</a>
+          <a href={`${base}/${lang}/songs/`}>{t(lang, 'nav.songs')}</a>
+          <a href={`${base}/${lang}/venues/`}>{t(lang, 'nav.venues')}</a>
+          <a href={`${base}/${lang}/set-lengths/`}>{t(lang, 'nav.setLength')}</a>
+        </nav>
+        <div class="header-controls">
+          <span class="lang-switch">
+            {
+              LOCALES.map((l) =>
+                l === lang ? (
+                  <span class="lang-current" aria-current="true">
+                    {l.toUpperCase()}
+                  </span>
+                ) : (
+                  <a href={`${base}/${l}/${path}`}>{l.toUpperCase()}</a>
+                ),
+              )
+            }
+          </span>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label={t(lang, 'theme.toggle')}>
+            🌙
+          </button>
+        </div>
+      </div>
     </header>
 
     <main>

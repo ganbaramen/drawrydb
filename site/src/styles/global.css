@@ -66,6 +66,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
   padding: 1rem;
   max-width: 720px;
   margin: 0 auto;
@@ -78,29 +80,57 @@ a {
   color: var(--text);
 }
 
-.site-header nav {
+/* Wraps site-nav and header-controls as two independent units — on a
+   narrow viewport the whole controls group (language switch + theme
+   toggle) drops to its own line below the page links, rather than the
+   two groups' items interleaving mid-wrap depending on exactly how much
+   width happens to be left on the page-links' last row. */
+.header-right {
   display: flex;
   align-items: center;
-  /* One source of truth for spacing between nav children (links, the lang
-     switch, the theme button) — measured identical (16px) in both ja and en
-     before this change too, so the uneven *look* was CJK glyphs' own
-     right-side bearing (e.g. "ト" trails more whitespace inside its own
-     character cell than "場"/"曲" do), not an actual spacing bug. Giving
-     each link a visible padded box normalizes that instead of relying on
-     bare text edges. */
-  gap: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  row-gap: 0.4rem;
+  column-gap: 1rem;
 }
 
-.site-header nav a {
+.site-nav {
+  display: flex;
+  align-items: center;
+  /* One source of truth for spacing between nav links — measured
+     identical (16px) in both ja and en before this change too, so the
+     uneven *look* was CJK glyphs' own right-side bearing (e.g. "ト"
+     trails more whitespace inside its own character cell than "場"/"曲"
+     do), not an actual spacing bug. Giving each link a visible padded
+     box normalizes that instead of relying on bare text edges. */
+  gap: 0.25rem;
+  /* Fallback for a viewport too narrow even for the four links alone —
+     lets whole links drop to a second line instead of shrinking a
+     single link's box below its text's width, which for CJK labels (no
+     spaces to break on) wraps one character per line instead of
+     wrapping the whole label. */
+  flex-wrap: wrap;
+  row-gap: 0.25rem;
+  justify-content: flex-end;
+}
+
+.site-nav a {
   text-decoration: none;
   color: var(--link);
   padding: 0.35rem 0.6rem;
   border-radius: 0.4rem;
+  white-space: nowrap;
 }
 
-.site-header nav a:hover {
+.site-nav a:hover {
   background: var(--accent-bg);
   color: var(--accent);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .lang-switch {
@@ -121,12 +151,6 @@ a {
 }
 
 .theme-toggle {
-  /* The nav's own gap (0.25rem) is sized for the links, which have their
-     own padding on top of it. .lang-switch has no such padding, so its
-     last letter (EN, when current+bold) sits right up against this
-     button with only that gap — extra breathing room on top of it,
-     specifically here rather than raising the shared gap. */
-  margin-left: 0.5rem;
   padding: 0.3rem 0.5rem;
   border: 1px solid var(--border);
   border-radius: 0.4rem;
