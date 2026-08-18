@@ -6946,8 +6946,8 @@
       "venue": "下北沢MOSAiC",
       "doors": "15:10",
       "showtime": "15:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "16:20",
+      "live_end": "16:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -7021,8 +7021,8 @@
       "venue": "Flowers Loft",
       "doors": "10:40",
       "showtime": "11:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "11:25",
+      "live_end": "11:50",
       "has_setlist": true,
       "setlist": [
         {
@@ -7187,8 +7187,8 @@
       "venue": "新宿MARZ",
       "doors": "18:00",
       "showtime": "18:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "18:55",
+      "live_end": "19:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -7803,8 +7803,8 @@
       "venue": "新宿MARZ",
       "doors": "18:50",
       "showtime": "19:10",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "20:25",
+      "live_end": "20:50",
       "has_setlist": true,
       "setlist": [
         {
@@ -8168,8 +8168,8 @@
       "venue": "渋谷近未来会館",
       "doors": "18:40",
       "showtime": "19:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:30",
+      "live_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -8259,7 +8259,7 @@
       "venue": "Spotify O-Crest",
       "doors": "11:25",
       "showtime": "11:50",
-      "live_start": null,
+      "live_start": "12:40",
       "live_end": null,
       "has_setlist": true,
       "setlist": [
@@ -8923,7 +8923,7 @@
       "venue": "下北沢SHELTER",
       "doors": "18:50",
       "showtime": "19:15",
-      "live_start": null,
+      "live_start": "20:15",
       "live_end": null,
       "has_setlist": true,
       "setlist": [
@@ -9151,7 +9151,7 @@
       "venue": "新宿MARZ",
       "doors": "10:45",
       "showtime": "11:10",
-      "live_start": null,
+      "live_start": "12:10",
       "live_end": null,
       "has_setlist": true,
       "setlist": [
@@ -10133,8 +10133,8 @@
       "venue": "下北沢シャングリラ",
       "doors": "18:30",
       "showtime": "19:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:30",
+      "live_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -10307,8 +10307,8 @@
       "venue": "下北沢MOSAiC",
       "doors": "10:40",
       "showtime": "11:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "12:40",
+      "live_end": "13:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -10582,8 +10582,8 @@
       "venue": "恵比寿CreAto",
       "doors": "18:20",
       "showtime": "18:40",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "20:20",
+      "live_end": "20:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -10736,8 +10736,8 @@
       "venue": "LIVLIV(静岡ARTIE)",
       "doors": "11:00",
       "showtime": "11:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "11:30",
+      "live_end": "11:58",
       "has_setlist": true,
       "setlist": [
         {
