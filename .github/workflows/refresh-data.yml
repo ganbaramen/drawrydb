@@ -1,0 +1,44 @@
+name: Refresh calendar data
+
+# export_calendar.py hits the band's public iCal feed (no auth, no key —
+# see CLAUDE.md) and is the only half of the pipeline that can run
+# unattended; sync_setlists.py only re-derives its outputs from files
+# already in the repo (the pasted setlist posts, which still require a
+# human to paste), so re-running it here just keeps setlists.csv/shows.csv/
+# etc. in sync with whatever the calendar refresh changed (new events,
+# corrected venues/times). Same commands pipeline/README.md suggests for a
+# local cron job — this is that job, running on GitHub's clock instead of
+# needing a machine left on.
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: python3 pipeline/export_calendar.py --quiet
+      - run: python3 pipeline/sync_setlists.py
+      - run: python3 pipeline/export_site_data.py
+
+      - name: Commit changes, if any
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/generated/
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            git commit -m "Automated data refresh"
+            git push
+          fi
