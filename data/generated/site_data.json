@@ -6,8 +6,8 @@
       "venue": "Veats SHIBUYA",
       "doors": "11:30",
       "showtime": "12:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "12:30",
+      "live_end": "12:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -124,8 +124,8 @@
       "venue": "恵比寿CreAto",
       "doors": "10:15",
       "showtime": "10:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "11:45",
+      "live_end": "12:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -191,8 +191,8 @@
       "venue": "新宿LOFT",
       "doors": "11:30",
       "showtime": "12:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "12:50",
+      "live_end": "13:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -258,8 +258,8 @@
       "venue": "SHIBUYA RING",
       "doors": "15:00",
       "showtime": "15:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "16:30",
+      "live_end": "17:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -333,8 +333,8 @@
       "venue": "SHIBUYA CYCLONE",
       "doors": "11:30",
       "showtime": "12:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "12:00",
+      "live_end": "12:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -400,8 +400,8 @@
       "venue": "Flowers Loft",
       "doors": "10:45",
       "showtime": "11:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "12:00",
+      "live_end": "12:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -467,8 +467,8 @@
       "venue": "新宿MARZ",
       "doors": "18:30",
       "showtime": "19:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "20:00",
+      "live_end": "20:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -542,8 +542,8 @@
       "venue": "Flowers Loft",
       "doors": "16:30",
       "showtime": "17:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:20",
+      "live_end": "19:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -743,8 +743,8 @@
       "venue": "神田CLUB F#",
       "doors": "16:30",
       "showtime": "17:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:15",
+      "live_end": "19:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -810,8 +810,8 @@
       "venue": "恵比寿CreAto",
       "doors": "10:15",
       "showtime": "10:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "12:15",
+      "live_end": "12:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -1019,8 +1019,8 @@
       "venue": "大塚Hearts+",
       "doors": "18:30",
       "showtime": "19:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:30",
+      "live_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -1094,8 +1094,8 @@
       "venue": "Flowers Loft",
       "doors": "18:00",
       "showtime": "18:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "20:00",
+      "live_end": "20:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -1228,8 +1228,8 @@
       "venue": "新宿MARZ",
       "doors": "18:00",
       "showtime": "18:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:30",
+      "live_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -1303,8 +1303,8 @@
       "venue": "新宿MARZ",
       "doors": "18:50",
       "showtime": "19:10",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:35",
+      "live_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -1437,8 +1437,8 @@
       "venue": "大塚Hearts+",
       "doors": "10:30",
       "showtime": "11:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "16:00",
+      "live_end": "16:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -1575,8 +1575,8 @@
       "venue": "下北沢MOSAiC",
       "doors": "11:00",
       "showtime": "11:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "14:10",
+      "live_end": "14:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -1650,8 +1650,8 @@
       "venue": "Flowers Loft",
       "doors": "11:00",
       "showtime": "11:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "11:30",
+      "live_end": "11:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -1717,8 +1717,8 @@
       "venue": "大塚Hearts+",
       "doors": "18:00",
       "showtime": "18:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "18:30",
+      "live_end": "18:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -1784,8 +1784,8 @@
       "venue": "高円寺HIGH",
       "doors": "18:15",
       "showtime": "18:45",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:15",
+      "live_end": "19:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -1859,8 +1859,8 @@
       "venue": "新宿MARZ",
       "doors": "18:30",
       "showtime": "19:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "20:30",
+      "live_end": "21:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -1934,8 +1934,8 @@
       "venue": "Flowers Loft",
       "doors": "11:00",
       "showtime": "11:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "13:00",
+      "live_end": "13:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -2009,8 +2009,8 @@
       "venue": "新宿LOFT",
       "doors": "08:45",
       "showtime": "09:10",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "11:45",
+      "live_end": "12:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -2076,8 +2076,8 @@
       "venue": "Spotify O-Crest",
       "doors": "10:30",
       "showtime": "11:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "10:30",
+      "live_end": "10:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -2143,7 +2143,7 @@
       "venue": "下北沢MOSAiC",
       "doors": "11:00",
       "showtime": "11:20",
-      "live_start": null,
+      "live_start": "12:10",
       "live_end": null,
       "has_setlist": true,
       "setlist": [
@@ -2218,8 +2218,8 @@
       "venue": "ベルサール渋谷",
       "doors": "09:30",
       "showtime": "10:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "16:00",
+      "live_end": "16:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -2344,8 +2344,8 @@
       "venue": "四谷LOTUS",
       "doors": "17:00",
       "showtime": "17:15",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "18:05",
+      "live_end": "18:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -2411,8 +2411,8 @@
       "venue": "渋谷WOMB",
       "doors": "17:00",
       "showtime": "17:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "17:30",
+      "live_end": "18:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -2486,8 +2486,8 @@
       "venue": "SHIBUYA RING",
       "doors": "15:40",
       "showtime": "16:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "18:40",
+      "live_end": "19:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -2553,8 +2553,8 @@
       "venue": "新宿MARZ",
       "doors": "18:30",
       "showtime": "19:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:30",
+      "live_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -2636,8 +2636,8 @@
       "venue": "下北沢MOSAiC",
       "doors": "16:45",
       "showtime": "17:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "18:15",
+      "live_end": "18:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -2703,8 +2703,8 @@
       "venue": "表参道GROUND",
       "doors": "11:30",
       "showtime": "12:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "12:30",
+      "live_end": "13:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -2782,87 +2782,12 @@
     },
     {
       "date": "2025-12-20",
-      "title": "NEW AGE  ＋ HASYAGE JAPAN 2025 忘年会『ニューハシャゲ』",
-      "venue": "下北沢ADRIFT",
-      "doors": "11:00",
-      "showtime": "11:30",
-      "live_start": null,
-      "live_end": null,
-      "has_setlist": true,
-      "setlist": [
-        {
-          "position": 1,
-          "song": "SE",
-          "note": "",
-          "is_se": true,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 2,
-          "song": "プライマリ",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 3,
-          "song": "ラブストーリーが始まらない",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 4,
-          "song": "Moving Lights!",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 5,
-          "song": "朝焼けと車窓",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 6,
-          "song": "ルミナス",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 7,
-          "song": "Dear,History",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        }
-      ],
-      "ticket_links": [
-        {
-          "label": null,
-          "url": "https://t-dv.com/newagehasyage2025"
-        }
-      ],
-      "id": "2025-12-20-1"
-    },
-    {
-      "date": "2025-12-20",
       "title": "脱却presents【 BREAKING RizMVol.1】",
       "venue": "青山RizM",
       "doors": "11:00",
       "showtime": "11:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "12:20",
+      "live_end": "12:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -2926,6 +2851,81 @@
         {
           "label": null,
           "url": "https://livepocket.jp/e/mlavi"
+        }
+      ],
+      "id": "2025-12-20-1"
+    },
+    {
+      "date": "2025-12-20",
+      "title": "NEW AGE  ＋ HASYAGE JAPAN 2025 忘年会『ニューハシャゲ』",
+      "venue": "下北沢ADRIFT",
+      "doors": "11:00",
+      "showtime": "11:30",
+      "live_start": "16:45",
+      "live_end": "17:10",
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "SE",
+          "note": "",
+          "is_se": true,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "プライマリ",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "ラブストーリーが始まらない",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "Moving Lights!",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "朝焼けと車窓",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 6,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 7,
+          "song": "Dear,History",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/newagehasyage2025"
         }
       ],
       "id": "2025-12-20-2"
@@ -3094,8 +3094,8 @@
       "venue": "DESEO mini with VILLAGE VANGUARD",
       "doors": "10:30",
       "showtime": "11:15",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "20:00",
+      "live_end": "20:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -3153,8 +3153,8 @@
       "venue": "YOANI LIVE STATION",
       "doors": "11:30",
       "showtime": "11:45",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "16:05",
+      "live_end": "16:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -3228,8 +3228,8 @@
       "venue": "大塚Hearts+",
       "doors": "16:30",
       "showtime": "17:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "17:00",
+      "live_end": "17:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -3295,8 +3295,8 @@
       "venue": "下北沢シャングリラ",
       "doors": "11:00",
       "showtime": "11:30",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "14:35",
+      "live_end": "15:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -4571,8 +4571,8 @@
       "venue": "白金高輪SELENE b2",
       "doors": "10:00",
       "showtime": "10:15",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:15",
+      "live_end": "19:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -4962,7 +4962,7 @@
       "venue": "SHIBUYA DESEO",
       "doors": "11:20",
       "showtime": "11:50",
-      "live_start": null,
+      "live_start": "12:40",
       "live_end": null,
       "has_setlist": true,
       "setlist": [
@@ -5460,8 +5460,8 @@
       "venue": "渋谷近未来会館",
       "doors": "18:40",
       "showtime": "19:00",
-      "live_start": null,
-      "live_end": null,
+      "live_start": "19:30",
+      "live_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -11524,16 +11524,16 @@
         {
           "event_id": "2025-12-20-1",
           "date": "2025-12-20",
-          "venue": "下北沢ADRIFT",
-          "position": 5,
+          "venue": "青山RizM",
+          "position": 6,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2025-12-20-2",
           "date": "2025-12-20",
-          "venue": "青山RizM",
-          "position": 6,
+          "venue": "下北沢ADRIFT",
+          "position": 5,
           "is_encore": false,
           "note": ""
         },
@@ -12644,16 +12644,16 @@
         {
           "event_id": "2025-12-20-1",
           "date": "2025-12-20",
-          "venue": "下北沢ADRIFT",
-          "position": 6,
+          "venue": "青山RizM",
+          "position": 5,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2025-12-20-2",
           "date": "2025-12-20",
-          "venue": "青山RizM",
-          "position": 5,
+          "venue": "下北沢ADRIFT",
+          "position": 6,
           "is_encore": false,
           "note": ""
         },
@@ -13764,7 +13764,7 @@
         {
           "event_id": "2025-12-20-1",
           "date": "2025-12-20",
-          "venue": "下北沢ADRIFT",
+          "venue": "青山RizM",
           "position": 7,
           "is_encore": false,
           "note": ""
@@ -13772,7 +13772,7 @@
         {
           "event_id": "2025-12-20-2",
           "date": "2025-12-20",
-          "venue": "青山RizM",
+          "venue": "下北沢ADRIFT",
           "position": 7,
           "is_encore": false,
           "note": ""
@@ -14460,16 +14460,16 @@
         {
           "event_id": "2025-12-20-1",
           "date": "2025-12-20",
-          "venue": "下北沢ADRIFT",
-          "position": 4,
+          "venue": "青山RizM",
+          "position": 2,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2025-12-20-2",
           "date": "2025-12-20",
-          "venue": "青山RizM",
-          "position": 2,
+          "venue": "下北沢ADRIFT",
+          "position": 4,
           "is_encore": false,
           "note": ""
         },
@@ -15146,7 +15146,7 @@
           "note": ""
         },
         {
-          "event_id": "2025-12-20-2",
+          "event_id": "2025-12-20-1",
           "date": "2025-12-20",
           "venue": "青山RizM",
           "position": 3,
@@ -15572,16 +15572,16 @@
         {
           "event_id": "2025-12-20-1",
           "date": "2025-12-20",
-          "venue": "下北沢ADRIFT",
-          "position": 3,
+          "venue": "青山RizM",
+          "position": 4,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2025-12-20-2",
           "date": "2025-12-20",
-          "venue": "青山RizM",
-          "position": 4,
+          "venue": "下北沢ADRIFT",
+          "position": 3,
           "is_encore": false,
           "note": ""
         },
@@ -16370,7 +16370,7 @@
           "note": ""
         },
         {
-          "event_id": "2025-12-20-1",
+          "event_id": "2025-12-20-2",
           "date": "2025-12-20",
           "venue": "下北沢ADRIFT",
           "position": 1,
@@ -16842,7 +16842,7 @@
           "note": ""
         },
         {
-          "event_id": "2025-12-20-1",
+          "event_id": "2025-12-20-2",
           "date": "2025-12-20",
           "venue": "下北沢ADRIFT",
           "position": 2,
@@ -19042,7 +19042,7 @@
           "note": ""
         },
         {
-          "event_id": "2025-12-20-2",
+          "event_id": "2025-12-20-1",
           "date": "2025-12-20",
           "venue": "青山RizM",
           "position": 1,
@@ -19967,7 +19967,7 @@
       "first_played": "2025-12-20",
       "last_played": "2026-05-17",
       "event_ids": [
-        "2025-12-20-2",
+        "2025-12-20-1",
         "2026-02-07-1",
         "2026-05-17-1"
       ]
@@ -20238,7 +20238,7 @@
       "first_played": "2025-12-20",
       "last_played": "2025-12-20",
       "event_ids": [
-        "2025-12-20-1"
+        "2025-12-20-2"
       ]
     },
     {
@@ -20365,205 +20365,263 @@
   "set_length_stats": {
     "buckets": [
       {
+        "length": "10 min",
+        "minutes": 10,
+        "shows": 1,
+        "avg_songs": 2.0,
+        "shows_with_se": 0
+      },
+      {
         "length": "20 min",
         "minutes": 20,
-        "shows": 13,
+        "shows": 15,
         "avg_songs": 4.8,
-        "shows_with_se": 9
+        "shows_with_se": 10
       },
       {
         "length": "25 min",
         "minutes": 25,
-        "shows": 53,
-        "avg_songs": 5.9,
-        "shows_with_se": 41
+        "shows": 74,
+        "avg_songs": 5.7,
+        "shows_with_se": 61
       },
       {
         "length": "30 min",
         "minutes": 30,
-        "shows": 23,
-        "avg_songs": 7.0,
-        "shows_with_se": 19
+        "shows": 36,
+        "avg_songs": 6.8,
+        "shows_with_se": 32
+      },
+      {
+        "length": "35 min",
+        "minutes": 35,
+        "shows": 1,
+        "avg_songs": 6.0,
+        "shows_with_se": 1
       }
     ],
     "songs": [
       {
         "name": "朝焼けと車窓",
         "counts": {
-          "20 min": 12,
-          "25 min": 53,
-          "30 min": 22
+          "10 min": 0,
+          "20 min": 14,
+          "25 min": 74,
+          "30 min": 35,
+          "35 min": 1
         }
       },
       {
         "name": "ルミナス",
         "counts": {
-          "20 min": 12,
-          "25 min": 51,
-          "30 min": 22
-        }
-      },
-      {
-        "name": "Moving Lights!",
-        "counts": {
-          "20 min": 11,
-          "25 min": 23,
-          "30 min": 13
+          "10 min": 1,
+          "20 min": 14,
+          "25 min": 72,
+          "30 min": 35,
+          "35 min": 1
         }
       },
       {
         "name": "Dear,History",
         "counts": {
-          "20 min": 4,
-          "25 min": 31,
-          "30 min": 12
+          "10 min": 1,
+          "20 min": 6,
+          "25 min": 52,
+          "30 min": 25,
+          "35 min": 1
         }
       },
       {
-        "name": "ラブストーリーが始まらない",
+        "name": "Moving Lights!",
         "counts": {
-          "20 min": 1,
-          "25 min": 28,
-          "30 min": 17
-        }
-      },
-      {
-        "name": "スタンドバイミー",
-        "counts": {
-          "20 min": 3,
-          "25 min": 24,
-          "30 min": 14
-        }
-      },
-      {
-        "name": "Begin the Journey!",
-        "counts": {
-          "20 min": 3,
-          "25 min": 25,
-          "30 min": 12
+          "10 min": 0,
+          "20 min": 11,
+          "25 min": 36,
+          "30 min": 26,
+          "35 min": 1
         }
       },
       {
         "name": "Blooming",
         "counts": {
-          "20 min": 5,
-          "25 min": 22,
-          "30 min": 10
+          "10 min": 0,
+          "20 min": 6,
+          "25 min": 33,
+          "30 min": 22,
+          "35 min": 1
         }
       },
       {
-        "name": "Interlude",
+        "name": "ラブストーリーが始まらない",
         "counts": {
-          "20 min": 7,
-          "25 min": 20,
-          "30 min": 8
-        }
-      },
-      {
-        "name": "描きかけの空",
-        "counts": {
+          "10 min": 0,
           "20 min": 3,
-          "25 min": 18,
-          "30 min": 6
+          "25 min": 36,
+          "30 min": 20,
+          "35 min": 1
         }
       },
       {
         "name": "SE",
         "counts": {
-          "20 min": 0,
-          "25 min": 19,
-          "30 min": 6
-        }
-      },
-      {
-        "name": "タイムカプセル",
-        "counts": {
+          "10 min": 0,
           "20 min": 1,
-          "25 min": 15,
-          "30 min": 8
+          "25 min": 37,
+          "30 min": 19,
+          "35 min": 1
         }
       },
       {
         "name": "プライマリ",
         "counts": {
+          "10 min": 0,
           "20 min": 0,
-          "25 min": 14,
-          "30 min": 9
+          "25 min": 29,
+          "30 min": 22,
+          "35 min": 0
+        }
+      },
+      {
+        "name": "スタンドバイミー",
+        "counts": {
+          "10 min": 0,
+          "20 min": 3,
+          "25 min": 24,
+          "30 min": 14,
+          "35 min": 0
+        }
+      },
+      {
+        "name": "Begin the Journey!",
+        "counts": {
+          "10 min": 0,
+          "20 min": 3,
+          "25 min": 26,
+          "30 min": 12,
+          "35 min": 0
+        }
+      },
+      {
+        "name": "Interlude",
+        "counts": {
+          "10 min": 0,
+          "20 min": 7,
+          "25 min": 20,
+          "30 min": 8,
+          "35 min": 0
+        }
+      },
+      {
+        "name": "描きかけの空",
+        "counts": {
+          "10 min": 0,
+          "20 min": 3,
+          "25 min": 18,
+          "30 min": 7,
+          "35 min": 0
+        }
+      },
+      {
+        "name": "タイムカプセル",
+        "counts": {
+          "10 min": 0,
+          "20 min": 1,
+          "25 min": 15,
+          "30 min": 8,
+          "35 min": 0
         }
       },
       {
         "name": "Into the Blue",
         "counts": {
+          "10 min": 0,
           "20 min": 8,
           "25 min": 7,
-          "30 min": 5
+          "30 min": 5,
+          "35 min": 0
         }
       },
       {
         "name": "SE(Moving Lights!)",
         "counts": {
+          "10 min": 0,
           "20 min": 6,
-          "25 min": 6,
-          "30 min": 5
+          "25 min": 8,
+          "30 min": 5,
+          "35 min": 0
         }
       },
       {
         "name": "SE(スタンドバイミー)",
         "counts": {
+          "10 min": 0,
           "20 min": 3,
           "25 min": 4,
-          "30 min": 4
+          "30 min": 4,
+          "35 min": 0
         }
       },
       {
         "name": "SE(Draw a Story)",
         "counts": {
+          "10 min": 0,
           "20 min": 0,
           "25 min": 7,
-          "30 min": 3
+          "30 min": 3,
+          "35 min": 0
         }
       },
       {
         "name": "Draw a line",
         "counts": {
+          "10 min": 0,
           "20 min": 0,
           "25 min": 0,
-          "30 min": 7
-        }
-      },
-      {
-        "name": "SE(プライマリ)",
-        "counts": {
-          "20 min": 0,
-          "25 min": 4,
-          "30 min": 1
+          "30 min": 7,
+          "35 min": 0
         }
       },
       {
         "name": "銀幕",
         "counts": {
+          "10 min": 0,
           "20 min": 0,
           "25 min": 2,
-          "30 min": 3
+          "30 min": 3,
+          "35 min": 0
+        }
+      },
+      {
+        "name": "SE(プライマリ)",
+        "counts": {
+          "10 min": 0,
+          "20 min": 0,
+          "25 min": 4,
+          "30 min": 1,
+          "35 min": 0
         }
       },
       {
         "name": "Fly By",
         "counts": {
+          "10 min": 0,
           "20 min": 0,
           "25 min": 1,
-          "30 min": 2
+          "30 min": 2,
+          "35 min": 0
         }
       },
       {
         "name": "SE(ラブストーリーが始まらない)",
         "counts": {
+          "10 min": 0,
           "20 min": 0,
           "25 min": 1,
-          "30 min": 0
+          "30 min": 0,
+          "35 min": 0
         }
       }
     ],
-    "uncovered_shows": 52
+    "uncovered_shows": 14
   }
 }
