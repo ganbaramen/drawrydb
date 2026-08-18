@@ -1,16 +1,19 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { events, getVenue, type Event } from '../../../lib/data';
-import { formatDateJa, urlSafe } from '../../../lib/format';
+import { formatDate, urlSafe } from '../../../lib/format';
+import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
-  return events.map((event) => ({
-    params: { id: event.id },
-    props: { event },
-  }));
+  return LOCALES.flatMap((lang) =>
+    events.map((event) => ({
+      params: { lang, id: event.id },
+      props: { event, lang },
+    })),
+  );
 }
 
-const { event } = Astro.props as { event: Event };
+const { event, lang } = Astro.props as { event: Event; lang: Lang };
 const base = import.meta.env.BASE_URL;
 // A pending event's venue may be blank, or an unresolved multi-venue string
 // the calendar couldn't disambiguate (see CLAUDE.md's VENUE_AMBIGUOUS) — only
@@ -18,19 +21,19 @@ const base = import.meta.env.BASE_URL;
 const venue = event.venue ? getVenue(event.venue) : undefined;
 ---
 
-<Layout title={event.title}>
-  <p><a href="../">← イベント一覧に戻る</a></p>
+<Layout title={event.title} lang={lang} path={`events/${event.id}/`}>
+  <p><a href="../">{t(lang, 'events.back')}</a></p>
 
   <h1>{event.title}</h1>
-  <p class="event-date">{formatDateJa(event.date)}</p>
+  <p class="event-date">{formatDate(lang, event.date)}</p>
 
   <table class="meta-table">
     {event.venue && (
       <tr>
-        <th>会場</th>
+        <th>{t(lang, 'events.venue')}</th>
         <td>
           {venue ? (
-            <a href={`${base}/ja/venues/${urlSafe(venue.id)}/`}>{event.venue}</a>
+            <a href={`${base}/${lang}/venues/${urlSafe(venue.id)}/`}>{event.venue}</a>
           ) : (
             event.venue
           )}
@@ -39,22 +42,22 @@ const venue = event.venue ? getVenue(event.venue) : undefined;
     )}
     {event.doors && (
       <tr>
-        <th>開場</th>
+        <th>{t(lang, 'events.doors')}</th>
         <td>{event.doors}</td>
       </tr>
     )}
     {event.showtime && (
       <tr>
-        <th>開演</th>
+        <th>{t(lang, 'events.showtime')}</th>
         <td>{event.showtime}</td>
       </tr>
     )}
     {event.live_start && (
       <tr>
-        <th>ライブ</th>
+        <th>{t(lang, 'events.live')}</th>
         <td>
           {event.live_start}
-          {event.live_end && `〜${event.live_end}`}
+          {event.live_end && `${t(lang, 'events.timeRangeSep')}${event.live_end}`}
         </td>
       </tr>
     )}
@@ -67,16 +70,14 @@ const venue = event.venue ? getVenue(event.venue) : undefined;
           <li>
             <span class="position">{song.is_encore ? 'En' : song.position}</span>
             <span>
-              <a href={`${base}/ja/songs/${urlSafe(song.song)}/`}>{song.song}</a>
+              <a href={`${base}/${lang}/songs/${urlSafe(song.song)}/`}>{song.song}</a>
               {song.note && <span class="song-note"> ({song.note})</span>}
             </span>
           </li>
         ))}
       </ol>
     ) : (
-      <p class="pending-notice">
-        このライブのセットリストはまだ公開されていません。投稿され次第、追加されます。
-      </p>
+      <p class="pending-notice">{t(lang, 'events.pending')}</p>
     )
   }
 </Layout>

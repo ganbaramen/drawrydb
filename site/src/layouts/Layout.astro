@@ -1,14 +1,21 @@
 ---
+import { LOCALES, t, type Lang } from '../lib/i18n';
+
 interface Props {
   title: string;
+  lang: Lang;
+  // This page's path relative to `/{lang}/` — "" for home, "events/",
+  // "events/2026-08-17-1/", etc. — so the language switcher can link to
+  // the same page in the other locale instead of always going home.
+  path: string;
 }
 
-const { title } = Astro.props;
+const { title, lang, path } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,19 +35,35 @@ const base = import.meta.env.BASE_URL;
   </head>
   <body>
     <div class="disclaimer">
-      非公式のファンサイトです — Drawry.
-      本人・関係者・公式とは一切関係ありません。
-      <a href="https://x.com/soreyoriramen" target="_blank" rel="noopener noreferrer">ramen</a>
-      が個人的に作成・運営しています。
+      {t(lang, 'disclaimer.pre')}<a
+        href="https://x.com/soreyoriramen"
+        target="_blank"
+        rel="noopener noreferrer">ramen</a
+      >{t(lang, 'disclaimer.post')}
     </div>
 
     <header class="site-header">
-      <a class="site-title" href={`${base}/ja/`}>DrawryDB</a>
+      <a class="site-title" href={`${base}/${lang}/`}>DrawryDB</a>
       <nav>
-        <a href={`${base}/ja/events/`}>イベント</a>
-        <a href={`${base}/ja/songs/`}>楽曲</a>
-        <a href={`${base}/ja/venues/`}>会場</a>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">🌙</button>
+        <a href={`${base}/${lang}/events/`}>{t(lang, 'nav.events')}</a>
+        <a href={`${base}/${lang}/songs/`}>{t(lang, 'nav.songs')}</a>
+        <a href={`${base}/${lang}/venues/`}>{t(lang, 'nav.venues')}</a>
+        <span class="lang-switch">
+          {
+            LOCALES.map((l) =>
+              l === lang ? (
+                <span class="lang-current" aria-current="true">
+                  {l.toUpperCase()}
+                </span>
+              ) : (
+                <a href={`${base}/${l}/${path}`}>{l.toUpperCase()}</a>
+              ),
+            )
+          }
+        </span>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label={t(lang, 'theme.toggle')}>
+          🌙
+        </button>
       </nav>
     </header>
 
@@ -50,13 +73,14 @@ const base = import.meta.env.BASE_URL;
 
     <footer class="site-footer">
       <p>
-        This is an unofficial fan project, not affiliated with Drawry. or
-        their management. Contact:
-        <a href="https://x.com/soreyoriramen" target="_blank" rel="noopener noreferrer">@soreyoriramen</a>
-        (ramen).
+        {t(lang, 'footer.disclaimer')}
+        <a href="https://x.com/soreyoriramen" target="_blank" rel="noopener noreferrer">@soreyoriramen</a
+        >{t(lang, 'footer.credit')}.
       </p>
       <p>
-        <a href="https://github.com/ganbaramen/drawrydb" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+        <a href="https://github.com/ganbaramen/drawrydb" target="_blank" rel="noopener noreferrer">
+          {t(lang, 'footer.source')}
+        </a>
       </p>
     </footer>
 

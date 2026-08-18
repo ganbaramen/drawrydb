@@ -105,6 +105,24 @@ a {
   color: var(--text);
 }
 
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.lang-switch a,
+.lang-switch .lang-current {
+  color: var(--text-muted);
+}
+
+.lang-switch .lang-current {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .theme-toggle {
   margin-left: 1rem;
   padding: 0.3rem 0.5rem;

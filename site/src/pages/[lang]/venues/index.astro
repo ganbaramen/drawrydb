@@ -1,0 +1,43 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { venues } from '../../../lib/data';
+import { urlSafe } from '../../../lib/format';
+import { LOCALES, t, type Lang } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props as { lang: Lang };
+const base = import.meta.env.BASE_URL;
+const sorted = venues.slice().sort((a, b) => b.shows - a.shows);
+---
+
+<Layout title={t(lang, 'venues.title')} lang={lang} path="venues/">
+  <h1>{t(lang, 'venues.title')}</h1>
+  <p>{t(lang, 'venues.count', { n: venues.length })}</p>
+  <table class="stats-table">
+    <thead>
+      <tr>
+        <th>{t(lang, 'venues.name')}</th>
+        <th>{t(lang, 'venues.shows')}</th>
+        <th>{t(lang, 'venues.firstPlayed')}</th>
+        <th>{t(lang, 'venues.lastPlayed')}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        sorted.map((venue) => (
+          <tr>
+            <td>
+              <a href={`${base}/${lang}/venues/${urlSafe(venue.id)}/`}>{venue.name}</a>
+            </td>
+            <td>{venue.shows}</td>
+            <td>{venue.first_played}</td>
+            <td>{venue.last_played}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</Layout>

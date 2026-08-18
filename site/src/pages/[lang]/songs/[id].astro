@@ -1,7 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { songs, events, type Song } from '../../../lib/data';
-import { formatDateJa } from '../../../lib/format';
+import { formatDate, urlSafe } from '../../../lib/format';
+import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
   // params.id must stay the raw name — Astro's route matcher compares
@@ -9,63 +10,71 @@ export function getStaticPaths() {
   // Astro itself only percent-escapes structurally unsafe characters (like
   // "#") in the output path, leaving Japanese text and most punctuation
   // untouched; hrefs use the matching urlSafe() from lib/format.ts.
-  return songs.map((song) => ({
-    params: { id: song.id },
-    props: { song },
-  }));
+  return LOCALES.flatMap((lang) =>
+    songs.map((song) => ({
+      params: { lang, id: song.id },
+      props: { song, lang },
+    })),
+  );
 }
 
-const { song } = Astro.props as { song: Song };
+const { song, lang } = Astro.props as { song: Song; lang: Lang };
 const base = import.meta.env.BASE_URL;
 // Most recent first, matching the events list's ordering convention.
 const performances = song.performances.slice().reverse();
 ---
 
-<Layout title={song.name}>
-  <p><a href="../">← 楽曲一覧に戻る</a></p>
+<Layout title={song.name} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
+  <p><a href="../">{t(lang, 'songs.back')}</a></p>
 
   <h1>{song.name}</h1>
 
   <table class="meta-table">
     <tr>
-      <th>演奏回数</th>
-      <td>{song.plays}回</td>
+      <th>{t(lang, 'songs.plays')}</th>
+      <td>{t(lang, 'songs.playsCount', { n: song.plays })}</td>
     </tr>
     <tr>
-      <th>初披露</th>
+      <th>{t(lang, 'songs.debut')}</th>
       <td>
         {song.first_performed}
-        {!song.debut_confirmed && <span class="badge">未確定</span>}
+        {!song.debut_confirmed && <span class="badge">{t(lang, 'badge.unconfirmed')}</span>}
       </td>
     </tr>
     <tr>
-      <th>最終披露</th>
+      <th>{t(lang, 'songs.lastPerformed')}</th>
       <td>{song.last_performed}</td>
     </tr>
     <tr>
-      <th>披露率</th>
-      <td>{Math.round(song.play_rate * 100)}% ({song.shows}/{song.shows_since_debut}公演)</td>
+      <th>{t(lang, 'songs.playRate')}</th>
+      <td>
+        {t(lang, 'songs.playRateDetail', {
+          pct: Math.round(song.play_rate * 100),
+          shows: song.shows,
+          total: song.shows_since_debut,
+        })}
+      </td>
     </tr>
     {song.encores > 0 && (
       <tr>
-        <th>アンコール</th>
-        <td>{song.encores}回</td>
+        <th>{t(lang, 'songs.encores')}</th>
+        <td>{t(lang, 'songs.playsCount', { n: song.encores })}</td>
       </tr>
     )}
   </table>
 
-  <h2>演奏履歴</h2>
+  <h2>{t(lang, 'songs.history')}</h2>
   <ul style="list-style:none; padding:0;">
     {
       performances.map((p) => {
         const event = events.find((e) => e.id === p.event_id);
         return (
           <li>
-            <a class="event-card" href={`${base}/ja/events/${p.event_id}/`}>
-              <div class="event-date">{formatDateJa(p.date)}</div>
+            <a class="event-card" href={`${base}/${lang}/events/${p.event_id}/`}>
+              <div class="event-date">{formatDate(lang, p.date)}</div>
               <div class="event-title">
                 {event?.title ?? p.venue}
-                {p.is_encore && <span class="badge">アンコール</span>}
+                {p.is_encore && <span class="badge">{t(lang, 'badge.encore')}</span>}
               </div>
               {event?.title && <div class="event-venue">{p.venue}</div>}
               {p.note && <div class="song-note">{p.note}</div>}

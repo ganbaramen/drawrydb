@@ -1,16 +1,25 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { events } from '../../../lib/data';
-import { formatDateJa } from '../../../lib/format';
+import { formatDate } from '../../../lib/format';
+import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props as { lang: Lang };
 const base = import.meta.env.BASE_URL;
 // Reverse chronological, per DRAWRYDB.md's route plan.
 const sorted = events.slice().reverse();
 const hasSetlistCount = events.filter((event) => event.has_setlist).length;
+// Client script reuses this template (with {n} swapped for the live count)
+// so it doesn't need its own copy of the locale's count phrasing.
+const countTemplate = t(lang, 'events.count', { n: '__N__' });
 ---
 
-<Layout title="イベント一覧">
-  <h1>イベント一覧</h1>
+<Layout title={t(lang, 'events.title')} lang={lang} path="events/">
+  <h1>{t(lang, 'events.title')}</h1>
 
   <!--
     Default view (セトリあり) works with CSS alone via the ul's
@@ -19,21 +28,21 @@ const hasSetlistCount = events.filter((event) => event.has_setlist).length;
     two views. Keep the initial data-filter/checked state and the CSS
     rules below in sync if a filter value is ever added.
   -->
-  <div class="filter-bar" role="group" aria-label="セトリで絞り込み">
-    <label><input type="radio" name="setlist-filter" value="has" checked /> セトリあり</label>
-    <label><input type="radio" name="setlist-filter" value="none" /> セトリなし</label>
-    <label><input type="radio" name="setlist-filter" value="all" /> すべて</label>
+  <div class="filter-bar" role="group" aria-label={t(lang, 'events.title')}>
+    <label><input type="radio" name="setlist-filter" value="has" checked /> {t(lang, 'events.filter.has')}</label>
+    <label><input type="radio" name="setlist-filter" value="none" /> {t(lang, 'events.filter.none')}</label>
+    <label><input type="radio" name="setlist-filter" value="all" /> {t(lang, 'events.filter.all')}</label>
   </div>
-  <p id="event-count">{hasSetlistCount}件</p>
+  <p id="event-count" data-template={countTemplate}>{t(lang, 'events.count', { n: hasSetlistCount })}</p>
   <ul id="event-list" data-filter="has" style="list-style:none; padding:0;">
     {
       sorted.map((event) => (
         <li data-has-setlist={event.has_setlist ? '1' : '0'}>
-          <a class="event-card" href={`${base}/ja/events/${event.id}/`}>
-            <div class="event-date">{formatDateJa(event.date)}</div>
+          <a class="event-card" href={`${base}/${lang}/events/${event.id}/`}>
+            <div class="event-date">{formatDate(lang, event.date)}</div>
             <div class="event-title">
               {event.title}
-              {!event.has_setlist && <span class="badge">セトリ未公開</span>}
+              {!event.has_setlist && <span class="badge">{t(lang, 'badge.pending')}</span>}
             </div>
             {event.venue && <div class="event-venue">{event.venue}</div>}
           </a>
@@ -45,6 +54,7 @@ const hasSetlistCount = events.filter((event) => event.has_setlist).length;
   <script>
     const list = document.getElementById('event-list')!;
     const countEl = document.getElementById('event-count')!;
+    const template = countEl.dataset.template!;
     const items = list.querySelectorAll<HTMLLIElement>('li');
     const radios = document.querySelectorAll<HTMLInputElement>(
       'input[name="setlist-filter"]',
@@ -57,7 +67,7 @@ const hasSetlistCount = events.filter((event) => event.has_setlist).length;
         const has = li.dataset.hasSetlist === '1';
         if (filter === 'all' || (filter === 'has') === has) visible++;
       });
-      countEl.textContent = `${visible}件`;
+      countEl.textContent = template.replace('__N__', String(visible));
     }
 
     radios.forEach((radio) => {

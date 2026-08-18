@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { upcomingEvents, recentSetlists } from '../../lib/data';
+import { formatDate } from '../../lib/format';
+import { LOCALES, t, type Lang } from '../../lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props as { lang: Lang };
+const base = import.meta.env.BASE_URL;
+const next = upcomingEvents(1)[0];
+const recent = recentSetlists(5);
+---
+
+<Layout title="DrawryDB" lang={lang} path="">
+  <h1>DrawryDB</h1>
+  <p>{t(lang, 'site.tagline')}</p>
+
+  {
+    next && (
+      <section>
+        <h2>{t(lang, 'home.next')}</h2>
+        <a class="event-card" href={`${base}/${lang}/events/${next.id}/`}>
+          <div class="event-date">{formatDate(lang, next.date)}</div>
+          <div class="event-title">
+            {next.title}
+            {!next.has_setlist && <span class="badge">{t(lang, 'badge.pending')}</span>}
+          </div>
+          {next.venue && <div class="event-venue">{next.venue}</div>}
+        </a>
+      </section>
+    )
+  }
+
+  <section>
+    <h2>{t(lang, 'home.recent')}</h2>
+    <ul style="list-style:none; padding:0;">
+      {
+        recent.map((event) => (
+          <li>
+            <a class="event-card" href={`${base}/${lang}/events/${event.id}/`}>
+              <div class="event-date">{formatDate(lang, event.date)}</div>
+              <div class="event-title">{event.title}</div>
+              {event.venue && <div class="event-venue">{event.venue}</div>}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p><a href={`${base}/${lang}/events/`}>{t(lang, 'home.viewAll')}</a></p>
+  </section>
+</Layout>

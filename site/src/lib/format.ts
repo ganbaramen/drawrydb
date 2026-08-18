@@ -13,10 +13,21 @@ export function urlSafe(id: string): string {
   return id.replace(/#/g, '%2523');
 }
 
+import type { Lang } from './i18n';
+
 const WEEKDAYS_JA = ['日', '月', '火', '水', '木', '金', '土'];
 
-export function formatDateJa(iso: string): string {
+export function formatDate(lang: Lang, iso: string): string {
   const [y, m, d] = iso.split('-').map(Number);
   const date = new Date(Date.UTC(y, m - 1, d));
-  return `${y}年${m}月${d}日(${WEEKDAYS_JA[date.getUTCDay()]})`;
+  if (lang === 'ja') {
+    return `${y}年${m}月${d}日(${WEEKDAYS_JA[date.getUTCDay()]})`;
+  }
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    weekday: 'short',
+    timeZone: 'UTC',
+  }).format(date);
 }
