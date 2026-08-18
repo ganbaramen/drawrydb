@@ -242,8 +242,8 @@ main {
 }
 
 .stats-table th {
-  color: var(--text-muted);
-  font-weight: 400;
+  color: var(--text);
+  font-weight: 600;
 }
 
 .stats-table th.sortable {
@@ -252,7 +252,7 @@ main {
 }
 
 .stats-table th.sortable:hover {
-  color: var(--text);
+  color: var(--accent);
 }
 
 .stats-table th.sortable::after {
