@@ -72,6 +72,7 @@ export interface LengthBucket {
   shows: number;
   avg_songs: number;
   shows_with_se: number;
+  event_ids: string[];
 }
 
 export interface SongLengthCounts {

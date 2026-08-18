@@ -316,20 +316,24 @@ def build_venues(events: list[dict]) -> list[dict]:
     return venues
 
 
-def build_set_length_stats() -> dict:
+def build_set_length_stats(events: list[dict]) -> dict:
     """Group shows by set length (shows.csv's length_bucket, already derived
     from the calendar's live_start/live_end — see CLAUDE.md's set_length_stats
     section) and report, per bucket, how many shows there are, how many real
-    songs a set that length tends to have, how many included an SE, and how
-    often each song turns up — the last one across every bucket, so the site
-    can show a single table comparing play distribution by length instead of
-    sync_setlists.py's own report's top-5-per-bucket cap.
+    songs a set that length tends to have, how many included an SE, which
+    events had that length, and how often each song turns up — the last one
+    across every bucket, so the site can show a single table comparing play
+    distribution by length instead of sync_setlists.py's own report's
+    top-5-per-bucket cap.
 
     Coverage is partial by the same token as shows.csv itself: only shows
     whose calendar entry states both live_start and live_end get a bucket.
     """
     shows = read_csv("shows.csv")
     setlists = read_csv("setlists.csv")
+    event_id_by_date_venue = {
+        (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
+    }
 
     bucket_by_show = {
         (row["event_date"], row["venue"]): row["length_bucket"]
@@ -343,9 +347,11 @@ def build_set_length_stats() -> dict:
 
     bucket_info: dict[str, dict] = {}
     song_counts: dict[str, dict[str, int]] = {}
-    for key, bucket in bucket_by_show.items():
+    for key, bucket in sorted(bucket_by_show.items()):
         songs = songs_by_show.get(key, [])
-        info = bucket_info.setdefault(bucket, {"shows": 0, "real_songs": 0, "with_se": 0})
+        info = bucket_info.setdefault(
+            bucket, {"shows": 0, "real_songs": 0, "with_se": 0, "event_ids": []}
+        )
         info["shows"] += 1
         # SE and Interlude are categories, not song choices — excluded from
         # the song count for the same reason sync_setlists.py's avg_songs is.
@@ -353,6 +359,7 @@ def build_set_length_stats() -> dict:
             1 for s in songs if s["is_se"] != "yes" and s["is_interlude"] != "yes"
         )
         info["with_se"] += 1 if any(s["is_se"] == "yes" for s in songs) else 0
+        info["event_ids"].append(event_id_by_date_venue[key])
         counts = song_counts.setdefault(bucket, {})
         for s in songs:
             counts[s["song"]] = counts.get(s["song"], 0) + 1
@@ -366,6 +373,7 @@ def build_set_length_stats() -> dict:
             "shows": bucket_info[b]["shows"],
             "avg_songs": round(bucket_info[b]["real_songs"] / bucket_info[b]["shows"], 1),
             "shows_with_se": bucket_info[b]["with_se"],
+            "event_ids": bucket_info[b]["event_ids"],
         }
         for b in bucket_keys
     ]
@@ -390,7 +398,7 @@ def main() -> None:
         "events": events,
         "songs": build_songs(events),
         "venues": build_venues(events),
-        "set_length_stats": build_set_length_stats(),
+        "set_length_stats": build_set_length_stats(events),
     }
     with open(OUTPUT_JSON, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=2)

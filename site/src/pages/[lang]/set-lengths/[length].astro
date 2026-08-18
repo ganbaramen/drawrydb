@@ -1,0 +1,67 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { setLengthStats, getEvent, type LengthBucket } from '../../../lib/data';
+import { formatDate, urlSafe } from '../../../lib/format';
+import { LOCALES, t, type Lang } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+  // See songs/[id].astro for why params stays the raw (unencoded) value —
+  // Astro's route matcher compares against the decoded request path.
+  return LOCALES.flatMap((lang) =>
+    setLengthStats.buckets.map((bucket) => ({
+      params: { lang, length: bucket.length },
+      props: { bucket, lang },
+    })),
+  );
+}
+
+const { bucket, lang } = Astro.props as { bucket: LengthBucket; lang: Lang };
+const base = import.meta.env.BASE_URL;
+// Most recent first, matching the events list's ordering convention.
+const eventIds = bucket.event_ids.slice().reverse();
+---
+
+<Layout title={bucket.length} lang={lang} path={`set-lengths/${urlSafe(bucket.length)}/`}>
+  <p><a href="../">{t(lang, 'setLength.back')}</a></p>
+
+  <h1>{bucket.length}</h1>
+
+  <table class="meta-table">
+    <tr>
+      <th>{t(lang, 'setLength.shows')}</th>
+      <td>{bucket.shows}</td>
+    </tr>
+    <tr>
+      <th>{t(lang, 'setLength.avgSongs')}</th>
+      <td>{bucket.avg_songs}</td>
+    </tr>
+    <tr>
+      <th>{t(lang, 'setLength.withSe')}</th>
+      <td>
+        {t(lang, 'setLength.withSeDetail', {
+          count: bucket.shows_with_se,
+          shows: bucket.shows,
+          pct: Math.round((bucket.shows_with_se / bucket.shows) * 100),
+        })}
+      </td>
+    </tr>
+  </table>
+
+  <ul style="list-style:none; padding:0;">
+    {
+      eventIds.map((id) => {
+        const event = getEvent(id);
+        if (!event) return null;
+        return (
+          <li>
+            <a class="event-card" href={`${base}/${lang}/events/${id}/`}>
+              <div class="event-date">{formatDate(lang, event.date)}</div>
+              <div class="event-title">{event.title}</div>
+              {event.venue && <div class="event-venue">{event.venue}</div>}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</Layout>

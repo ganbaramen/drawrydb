@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { setLengthStats } from '../../../lib/data';
+import { urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -8,6 +9,7 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.props as { lang: Lang };
+const base = import.meta.env.BASE_URL;
 const { buckets, songs, uncovered_shows } = setLengthStats;
 ---
 
@@ -27,7 +29,9 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
       {
         buckets.map((b) => (
           <tr>
-            <td>{b.length}</td>
+            <td>
+              <a href={`${base}/${lang}/set-lengths/${urlSafe(b.length)}/`}>{b.length}</a>
+            </td>
             <td data-sort-value={b.shows}>{b.shows}</td>
             <td data-sort-value={b.avg_songs}>{b.avg_songs}</td>
             <td data-sort-value={b.shows_with_se / b.shows}>
