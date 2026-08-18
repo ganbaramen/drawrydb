@@ -60,6 +60,12 @@ const totalCounts = countFor(events);
     <label><input type="radio" name="setlist-filter" value="has" checked /> {t(lang, 'events.filter.has')}</label>
     <label><input type="radio" name="setlist-filter" value="none" /> {t(lang, 'events.filter.none')}</label>
     <label><input type="radio" name="setlist-filter" value="all" /> {t(lang, 'events.filter.all')}</label>
+    <input
+      type="search"
+      id="event-search"
+      class="event-search"
+      placeholder={t(lang, 'events.search.placeholder')}
+    />
     <label class="month-filter-label">
       {t(lang, 'events.month.label')}
       <select id="month-filter">
@@ -95,7 +101,11 @@ const totalCounts = countFor(events);
             {formatMonth(lang, key)}
           </li>
           {eventsByMonth.get(key)!.map((event) => (
-            <li data-has-setlist={event.has_setlist ? '1' : '0'} data-month={key}>
+            <li
+              data-has-setlist={event.has_setlist ? '1' : '0'}
+              data-month={key}
+              data-search={`${event.title} ${event.venue ?? ''}`}
+            >
               <a class="event-card" href={`${base}/${lang}/events/${event.id}/`}>
                 <div class="event-date">{formatDate(lang, event.date)}</div>
                 <div class="event-title">
@@ -112,6 +122,8 @@ const totalCounts = countFor(events);
   </ul>
 
   <script>
+    import { fuzzyMatch } from '../../../lib/fuzzy';
+
     const list = document.getElementById('event-list')!;
     const countEl = document.getElementById('event-count')!;
     const template = countEl.dataset.template!;
@@ -121,12 +133,14 @@ const totalCounts = countFor(events);
       'input[name="setlist-filter"]',
     );
     const monthSelect = document.getElementById('month-filter') as HTMLSelectElement;
+    const searchInput = document.getElementById('event-search') as HTMLInputElement;
 
     function apply() {
       const setlistFilter = document.querySelector<HTMLInputElement>(
         'input[name="setlist-filter"]:checked',
       )!.value;
       const monthFilter = monthSelect.value;
+      const query = searchInput.value.trim();
       list.dataset.filter = setlistFilter;
 
       // Each option's count reflects the setlist filter applied first —
@@ -145,7 +159,8 @@ const totalCounts = countFor(events);
         const month = li.dataset.month!;
         const matchesSetlist = setlistFilter === 'all' || (setlistFilter === 'has') === has;
         const matchesMonth = monthFilter === 'all' || monthFilter === month;
-        const show = matchesSetlist && matchesMonth;
+        const matchesSearch = fuzzyMatch(query, li.dataset.search ?? '');
+        const show = matchesSetlist && matchesMonth && matchesSearch;
         li.hidden = !show;
         if (show) {
           visible++;
@@ -166,6 +181,7 @@ const totalCounts = countFor(events);
       radio.addEventListener('change', apply);
     });
     monthSelect.addEventListener('change', apply);
+    searchInput.addEventListener('input', apply);
 
     // The default view (セトリあり, すべての月) works from CSS/markup alone
     // before this script runs (see the comment above the filter-bar), but
@@ -201,6 +217,15 @@ const totalCounts = countFor(events);
     align-items: center;
     gap: 0.3rem;
     cursor: pointer;
+  }
+
+  .event-search {
+    padding: 0.3rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.3rem;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.85rem;
   }
 
   .month-filter-label {
