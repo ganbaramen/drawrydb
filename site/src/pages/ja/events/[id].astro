@@ -1,0 +1,71 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { events, type Event } from '../../../lib/data';
+import { formatDateJa } from '../../../lib/format';
+
+export function getStaticPaths() {
+  return events.map((event) => ({
+    params: { id: event.id },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props as { event: Event };
+---
+
+<Layout title={event.title}>
+  <p><a href="../">← イベント一覧に戻る</a></p>
+
+  <h1>{event.title}</h1>
+  <p class="event-date">{formatDateJa(event.date)}</p>
+
+  <table class="meta-table">
+    {event.venue && (
+      <tr>
+        <th>会場</th>
+        <td>{event.venue}</td>
+      </tr>
+    )}
+    {event.doors && (
+      <tr>
+        <th>開場</th>
+        <td>{event.doors}</td>
+      </tr>
+    )}
+    {event.showtime && (
+      <tr>
+        <th>開演</th>
+        <td>{event.showtime}</td>
+      </tr>
+    )}
+    {event.live_start && (
+      <tr>
+        <th>ライブ</th>
+        <td>
+          {event.live_start}
+          {event.live_end && `〜${event.live_end}`}
+        </td>
+      </tr>
+    )}
+  </table>
+
+  {
+    event.has_setlist ? (
+      <ol class="setlist">
+        {event.setlist.map((song) => (
+          <li>
+            <span class="position">{song.is_encore ? 'En' : song.position}</span>
+            <span>
+              {song.song}
+              {song.note && <span class="song-note"> ({song.note})</span>}
+            </span>
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <p class="pending-notice">
+        このライブのセットリストはまだ公開されていません。投稿され次第、追加されます。
+      </p>
+    )
+  }
+</Layout>

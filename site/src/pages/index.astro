@@ -1,0 +1,22 @@
+---
+// `/` -> `/ja/` (the default locale). A meta-refresh + JS fallback rather
+// than Astro.redirect(), since this is a fully static export (no server to
+// issue a real 3xx) — see https://docs.astro.build/en/guides/routing/#redirects
+const target = `${import.meta.env.BASE_URL}/ja/`;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>DrawryDB</title>
+  </head>
+  <body>
+    <p><a href={target}>DrawryDB へ移動</a></p>
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+  </body>
+</html>

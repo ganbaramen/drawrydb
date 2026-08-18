@@ -1,0 +1,88 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { events } from '../../../lib/data';
+import { formatDateJa } from '../../../lib/format';
+
+const base = import.meta.env.BASE_URL;
+// Reverse chronological, per DRAWRYDB.md's route plan.
+const sorted = events.slice().reverse();
+const hasSetlistCount = events.filter((event) => event.has_setlist).length;
+---
+
+<Layout title="イベント一覧">
+  <h1>イベント一覧</h1>
+
+  <!--
+    Default view (セトリあり) works with CSS alone via the ul's
+    data-filter attribute, so it's correct even before the script below
+    runs or if JS is disabled — the radios and script only add the other
+    two views. Keep the initial data-filter/checked state and the CSS
+    rules below in sync if a filter value is ever added.
+  -->
+  <div class="filter-bar" role="group" aria-label="セトリで絞り込み">
+    <label><input type="radio" name="setlist-filter" value="has" checked /> セトリあり</label>
+    <label><input type="radio" name="setlist-filter" value="none" /> セトリなし</label>
+    <label><input type="radio" name="setlist-filter" value="all" /> すべて</label>
+  </div>
+  <p id="event-count">{hasSetlistCount}件</p>
+  <ul id="event-list" data-filter="has" style="list-style:none; padding:0;">
+    {
+      sorted.map((event) => (
+        <li data-has-setlist={event.has_setlist ? '1' : '0'}>
+          <a class="event-card" href={`${base}/ja/events/${event.id}/`}>
+            <div class="event-date">{formatDateJa(event.date)}</div>
+            <div class="event-title">
+              {event.title}
+              {!event.has_setlist && <span class="badge-pending">セトリ未公開</span>}
+            </div>
+            {event.venue && <div class="event-venue">{event.venue}</div>}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <script>
+    const list = document.getElementById('event-list')!;
+    const countEl = document.getElementById('event-count')!;
+    const items = list.querySelectorAll<HTMLLIElement>('li');
+    const radios = document.querySelectorAll<HTMLInputElement>(
+      'input[name="setlist-filter"]',
+    );
+
+    function apply(filter: string) {
+      list.dataset.filter = filter;
+      let visible = 0;
+      items.forEach((li) => {
+        const has = li.dataset.hasSetlist === '1';
+        if (filter === 'all' || (filter === 'has') === has) visible++;
+      });
+      countEl.textContent = `${visible}件`;
+    }
+
+    radios.forEach((radio) => {
+      radio.addEventListener('change', () => apply(radio.value));
+    });
+  </script>
+</Layout>
+
+<style>
+  .filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .filter-bar label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+  }
+
+  #event-list[data-filter='has'] li[data-has-setlist='0'],
+  #event-list[data-filter='none'] li[data-has-setlist='1'] {
+    display: none;
+  }
+</style>

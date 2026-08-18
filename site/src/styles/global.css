@@ -1,0 +1,182 @@
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --text-muted: #78716c;
+  --border: #e7e5e4;
+  --accent: #be123c;
+  --accent-bg: #fff1f2;
+  --link: #9f1239;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1917;
+    --surface: #292524;
+    --text: #fafaf9;
+    --text-muted: #a8a29e;
+    --border: #44403c;
+    --accent: #fb7185;
+    --accent-bg: #3f1d24;
+    --link: #fda4af;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--link);
+}
+
+/* Deliberately prominent — a top banner, not small print in the footer. */
+.disclaimer {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.disclaimer a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.site-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.site-header nav a {
+  text-decoration: none;
+  margin-left: 1rem;
+  color: var(--text);
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.site-footer {
+  max-width: 720px;
+  margin: 3rem auto 0;
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.event-card {
+  display: block;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.event-card:hover {
+  border-color: var(--accent);
+}
+
+.event-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.event-title {
+  font-weight: 600;
+  margin: 0.15rem 0;
+}
+
+.event-venue {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.badge-pending {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  margin-left: 0.5rem;
+}
+
+.setlist {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.setlist li {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.setlist .position {
+  color: var(--text-muted);
+  min-width: 2ch;
+}
+
+.setlist .song-note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.meta-table th {
+  text-align: left;
+  color: var(--text-muted);
+  font-weight: 400;
+  padding: 0.3rem 1rem 0.3rem 0;
+  white-space: nowrap;
+}
+
+.meta-table td {
+  padding: 0.3rem 0;
+}
+
+.pending-notice {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
