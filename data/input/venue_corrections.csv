@@ -1,0 +1,17 @@
+wrong,correct,reason
+下北沢Flowers LOFT,Flowers Loft,same venue - ward prefix/case variant
+下北沢Flowers Loft,Flowers Loft,same venue - ward prefix variant
+Flowers LOFT,Flowers Loft,same venue - case variant
+恵比寿 CreAto,恵比寿CreAto,same venue - spacing variant
+BASE GRANBELL 銀座,銀座BASE GRANBELL,same venue - word order variant
+銀座 BASE GRANBELL,銀座BASE GRANBELL,same venue - spacing variant
+BEYOND,アメリカ村BEYOND,same venue - ward prefix variant
+shibuya CYCLONE,SHIBUYA CYCLONE,same venue - case variant
+チェルシーホテル,渋谷チェルシーホテル,same venue - ward prefix variant
+渋谷Spotify O-Crest,Spotify O-Crest,same venue - ward prefix variant
+大塚 Hearts＋,大塚Hearts+,same venue - full/half-width variant
+大塚Heats+,大塚Hearts+,"typo - missing an ""r"""
+DESEO mini,DESEO mini with VILLAGE VANGUARD,same venue - descriptive suffix
+渋谷WOMBLIVE,渋谷WOMB,same venue - user-confirmed
+CHELSEA HOTEL,渋谷チェルシーホテル,
+大塚hearts NEXT,大塚Hearts Next,
