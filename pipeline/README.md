@@ -66,7 +66,7 @@ you automatically, so you never have to hunt for which shows are missing data.
 | `data/input/setlist_posts/*.txt` | **source** | Post text you paste from X |
 | `data/input/event_overrides.csv` | **yours** | Venue/times the calendar didn't state (rows auto-added) |
 | `data/input/song_corrections.csv` | **yours** | Song-name typo merges, `wrong,correct,reason` |
-| `data/input/venue_corrections.csv` | **yours** | Venue-name merges, same shape |
+| `data/input/venue_corrections.csv` | **yours** | Venue-name merges, `wrong,correct` |
 | `data/generated/drawry_schedule.csv` | generated | One row per **calendar event** (199) |
 | `data/generated/setlists.csv` | generated | One row per **song played** (1021) |
 | `data/generated/shows.csv` | generated | One row per **actual performance** (141) |
@@ -236,8 +236,10 @@ Coverage is partial — only shows whose calendar entry has both `live_start` an
 
 ### `song_corrections.csv` and `venue_corrections.csv`
 
-Both are `wrong,correct,reason`. Every run flags candidates; **nothing merges
-until you say so.**
+`song_corrections.csv` is `wrong,correct,reason`; `venue_corrections.csv` is
+`wrong,correct` (no reason column — a venue rename doesn't need one the way a
+song typo's source-post citation does). Every run flags candidates; **nothing
+merges until you say so.**
 
 ```
   possible typo: 'Dear,Hisoty' (1x) vs 'Dear,History' (23x)

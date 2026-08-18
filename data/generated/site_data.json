@@ -740,7 +740,7 @@
     {
       "date": "2025-10-13",
       "title": "かんだでもおともだち 〜おてつだい じ〜け〜ないと〜",
-      "venue": "神田 CLUB F#",
+      "venue": "神田CLUB F#",
       "doors": "16:30",
       "showtime": "17:00",
       "live_start": null,
@@ -4568,7 +4568,7 @@
     {
       "date": "2026-02-14",
       "title": "new story",
-      "venue": "白金高輪SELENEb2",
+      "venue": "白金高輪SELENE b2",
       "doors": "10:00",
       "showtime": "10:15",
       "live_start": null,
@@ -8025,7 +8025,7 @@
     {
       "date": "2026-05-23",
       "title": "リーディング エクストロメ‼",
-      "venue": "三崎公園野外音楽堂(福島県いわき市)",
+      "venue": "三崎公園野外音楽堂",
       "doors": "11:00",
       "showtime": "11:30",
       "live_start": "11:30",
@@ -8103,7 +8103,7 @@
     {
       "date": "2026-05-24",
       "title": "リーディング エクストロメ‼",
-      "venue": "三崎公園野外音楽堂(福島県いわき市)",
+      "venue": "三崎公園野外音楽堂",
       "doors": "11:00",
       "showtime": "11:30",
       "live_start": "11:30",
@@ -9926,7 +9926,7 @@
     {
       "date": "2026-07-22",
       "title": "UTAGE FES Vol.5",
-      "venue": "ZircoTokyo",
+      "venue": "Zirco Tokyo",
       "doors": "10:00",
       "showtime": "10:30",
       "live_start": "12:45",
@@ -11292,7 +11292,7 @@
         {
           "event_id": "2025-10-13-1",
           "date": "2025-10-13",
-          "venue": "神田 CLUB F#",
+          "venue": "神田CLUB F#",
           "position": 3,
           "is_encore": false,
           "note": ""
@@ -11708,7 +11708,7 @@
         {
           "event_id": "2026-02-14-1",
           "date": "2026-02-14",
-          "venue": "白金高輪SELENEb2",
+          "venue": "白金高輪SELENE b2",
           "position": 4,
           "is_encore": false,
           "note": ""
@@ -12044,7 +12044,7 @@
         {
           "event_id": "2026-05-23-1",
           "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 7,
           "is_encore": false,
           "note": ""
@@ -12052,7 +12052,7 @@
         {
           "event_id": "2026-05-24-1",
           "date": "2026-05-24",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 5,
           "is_encore": false,
           "note": ""
@@ -12228,7 +12228,7 @@
         {
           "event_id": "2026-07-22-1",
           "date": "2026-07-22",
-          "venue": "ZircoTokyo",
+          "venue": "Zirco Tokyo",
           "position": 2,
           "is_encore": false,
           "note": ""
@@ -12420,7 +12420,7 @@
         {
           "event_id": "2025-10-13-1",
           "date": "2025-10-13",
-          "venue": "神田 CLUB F#",
+          "venue": "神田CLUB F#",
           "position": 5,
           "is_encore": false,
           "note": ""
@@ -12828,7 +12828,7 @@
         {
           "event_id": "2026-02-14-1",
           "date": "2026-02-14",
-          "venue": "白金高輪SELENEb2",
+          "venue": "白金高輪SELENE b2",
           "position": 5,
           "is_encore": false,
           "note": ""
@@ -13140,7 +13140,7 @@
         {
           "event_id": "2026-05-23-1",
           "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 6,
           "is_encore": false,
           "note": ""
@@ -13148,7 +13148,7 @@
         {
           "event_id": "2026-05-24-1",
           "date": "2026-05-24",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 4,
           "is_encore": false,
           "note": ""
@@ -13332,7 +13332,7 @@
         {
           "event_id": "2026-07-22-1",
           "date": "2026-07-22",
-          "venue": "ZircoTokyo",
+          "venue": "Zirco Tokyo",
           "position": 5,
           "is_encore": false,
           "note": ""
@@ -13540,7 +13540,7 @@
         {
           "event_id": "2025-10-13-1",
           "date": "2025-10-13",
-          "venue": "神田 CLUB F#",
+          "venue": "神田CLUB F#",
           "position": 2,
           "is_encore": false,
           "note": ""
@@ -13940,7 +13940,7 @@
         {
           "event_id": "2026-02-14-1",
           "date": "2026-02-14",
-          "venue": "白金高輪SELENEb2",
+          "venue": "白金高輪SELENE b2",
           "position": 2,
           "is_encore": false,
           "note": ""
@@ -14284,7 +14284,7 @@
         {
           "event_id": "2025-10-13-1",
           "date": "2025-10-13",
-          "venue": "神田 CLUB F#",
+          "venue": "神田CLUB F#",
           "position": 4,
           "is_encore": false,
           "note": ""
@@ -14740,7 +14740,7 @@
         {
           "event_id": "2026-05-23-1",
           "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 2,
           "is_encore": false,
           "note": ""
@@ -14844,7 +14844,7 @@
         {
           "event_id": "2026-07-22-1",
           "date": "2026-07-22",
-          "venue": "ZircoTokyo",
+          "venue": "Zirco Tokyo",
           "position": 3,
           "is_encore": false,
           "note": ""
@@ -15380,7 +15380,7 @@
         {
           "event_id": "2026-05-23-1",
           "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 5,
           "is_encore": false,
           "note": ""
@@ -15732,7 +15732,7 @@
         {
           "event_id": "2026-02-14-1",
           "date": "2026-02-14",
-          "venue": "白金高輪SELENEb2",
+          "venue": "白金高輪SELENE b2",
           "position": 6,
           "is_encore": false,
           "note": ""
@@ -15956,7 +15956,7 @@
         {
           "event_id": "2026-05-24-1",
           "date": "2026-05-24",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 2,
           "is_encore": false,
           "note": ""
@@ -16172,7 +16172,7 @@
         {
           "event_id": "2025-10-13-1",
           "date": "2025-10-13",
-          "venue": "神田 CLUB F#",
+          "venue": "神田CLUB F#",
           "position": 1,
           "is_encore": false,
           "note": ""
@@ -16492,7 +16492,7 @@
         {
           "event_id": "2026-02-14-1",
           "date": "2026-02-14",
-          "venue": "白金高輪SELENEb2",
+          "venue": "白金高輪SELENE b2",
           "position": 1,
           "is_encore": false,
           "note": ""
@@ -16692,7 +16692,7 @@
         {
           "event_id": "2025-10-13-1",
           "date": "2025-10-13",
-          "venue": "神田 CLUB F#",
+          "venue": "神田CLUB F#",
           "position": 6,
           "is_encore": false,
           "note": ""
@@ -16972,7 +16972,7 @@
         {
           "event_id": "2026-02-14-1",
           "date": "2026-02-14",
-          "venue": "白金高輪SELENEb2",
+          "venue": "白金高輪SELENE b2",
           "position": 7,
           "is_encore": false,
           "note": ""
@@ -17180,7 +17180,7 @@
         {
           "event_id": "2026-02-14-1",
           "date": "2026-02-14",
-          "venue": "白金高輪SELENEb2",
+          "venue": "白金高輪SELENE b2",
           "position": 3,
           "is_encore": false,
           "note": ""
@@ -17396,7 +17396,7 @@
         {
           "event_id": "2026-05-23-1",
           "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 4,
           "is_encore": false,
           "note": ""
@@ -17676,7 +17676,7 @@
         {
           "event_id": "2026-05-23-1",
           "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 8,
           "is_encore": false,
           "note": ""
@@ -17684,7 +17684,7 @@
         {
           "event_id": "2026-05-24-1",
           "date": "2026-05-24",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 1,
           "is_encore": false,
           "note": ""
@@ -17812,7 +17812,7 @@
         {
           "event_id": "2026-07-22-1",
           "date": "2026-07-22",
-          "venue": "ZircoTokyo",
+          "venue": "Zirco Tokyo",
           "position": 1,
           "is_encore": false,
           "note": ""
@@ -18124,7 +18124,7 @@
         {
           "event_id": "2026-05-23-1",
           "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 3,
           "is_encore": false,
           "note": ""
@@ -18436,7 +18436,7 @@
         {
           "event_id": "2026-05-24-1",
           "date": "2026-05-24",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 3,
           "is_encore": false,
           "note": ""
@@ -18676,7 +18676,7 @@
         {
           "event_id": "2026-05-24-1",
           "date": "2026-05-24",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 6,
           "is_encore": false,
           "note": ""
@@ -18908,7 +18908,7 @@
         {
           "event_id": "2026-07-22-1",
           "date": "2026-07-22",
-          "venue": "ZircoTokyo",
+          "venue": "Zirco Tokyo",
           "position": 4,
           "is_encore": false,
           "note": ""
@@ -19108,7 +19108,7 @@
         {
           "event_id": "2026-05-23-1",
           "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂(福島県いわき市)",
+          "venue": "三崎公園野外音楽堂",
           "position": 1,
           "is_encore": false,
           "note": ""
@@ -20039,8 +20039,8 @@
       ]
     },
     {
-      "id": "三崎公園野外音楽堂(福島県いわき市)",
-      "name": "三崎公園野外音楽堂(福島県いわき市)",
+      "id": "三崎公園野外音楽堂",
+      "name": "三崎公園野外音楽堂",
       "shows": 2,
       "first_played": "2026-05-23",
       "last_played": "2026-05-24",
@@ -20182,8 +20182,8 @@
       ]
     },
     {
-      "id": "ZircoTokyo",
-      "name": "ZircoTokyo",
+      "id": "Zirco Tokyo",
+      "name": "Zirco Tokyo",
       "shows": 1,
       "first_played": "2026-07-22",
       "last_played": "2026-07-22",
@@ -20322,8 +20322,8 @@
       ]
     },
     {
-      "id": "白金高輪SELENEb2",
-      "name": "白金高輪SELENEb2",
+      "id": "白金高輪SELENE b2",
+      "name": "白金高輪SELENE b2",
       "shows": 1,
       "first_played": "2026-02-14",
       "last_played": "2026-02-14",
@@ -20332,8 +20332,8 @@
       ]
     },
     {
-      "id": "神田 CLUB F#",
-      "name": "神田 CLUB F#",
+      "id": "神田CLUB F#",
+      "name": "神田CLUB F#",
       "shows": 1,
       "first_played": "2025-10-13",
       "last_played": "2025-10-13",
