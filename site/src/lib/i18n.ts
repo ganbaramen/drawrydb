@@ -14,7 +14,7 @@ const ja: Dict = {
   'nav.venues': '会場',
   'theme.toggle': 'テーマを切り替える',
   'footer.disclaimer':
-    'これは非公式のファンプロジェクトであり、Drawry. または関係者とは一切関係ありません。',
+    'これは非公式のファンサイトです。Drawry. 本人・関係者・公式とは一切関係ありません。',
   'footer.contact': '連絡先：',
   'footer.source': 'GitHubでソースを見る',
   'home.next': '次のライブ',
@@ -44,7 +44,7 @@ const ja: Dict = {
   'songs.plays': '披露回数',
   'songs.playsCount': '{n}回',
   'songs.debut': '初披露',
-  'songs.lastPerformed': '最新の披露',
+  'songs.lastPerformed': '最新披露',
   'songs.playRate': '披露率',
   'songs.playRateDetail': '{pct}% ({shows}/{total}公演)',
   'songs.encores': 'アンコール',
@@ -56,7 +56,7 @@ const ja: Dict = {
   'venues.shows': '公演回数',
   'venues.showsCount': '{n}回',
   'venues.firstPlayed': '初出演',
-  'venues.lastPlayed': '最新の出演',
+  'venues.lastPlayed': '最新出演',
   'venues.history': '公演一覧',
 };
 
