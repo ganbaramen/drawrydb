@@ -22,7 +22,6 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GENERATED_DIR = os.path.join(ROOT, "data", "generated")
@@ -320,7 +319,6 @@ def build_venues(events: list[dict]) -> list[dict]:
 def main() -> None:
     events = build_events()
     data = {
-        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "events": events,
         "songs": build_songs(events),
         "venues": build_venues(events),

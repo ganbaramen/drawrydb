@@ -67,15 +67,12 @@ export interface Venue {
 }
 
 interface SiteData {
-  generated_at: string;
   events: Event[];
   songs: Song[];
   venues: Venue[];
 }
 
 const data = raw as SiteData;
-
-export const generatedAt: string = data.generated_at;
 
 // Already sorted by id (== chronological) by the exporter.
 export const events: Event[] = data.events;
