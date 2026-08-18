@@ -14,11 +14,19 @@ const base = import.meta.env.BASE_URL;
 // a band actually want, unlike events (chronological) or venues (also by
 // play count, see venues/index.astro).
 const sorted = songs.slice().sort((a, b) => b.plays - a.plays);
+// Client script reuses this template (with {n} swapped for the live count),
+// same pattern as the events list's filter count.
+const countTemplate = t(lang, 'songs.count', { n: '__N__' });
 ---
 
 <Layout title={t(lang, 'songs.title')} lang={lang} path="songs/">
   <h1>{t(lang, 'songs.title')}</h1>
-  <p>{t(lang, 'songs.count', { n: songs.length })}</p>
+
+  <label class="include-special">
+    <input type="checkbox" id="include-special" checked />
+    {t(lang, 'songs.includeSpecial')}
+  </label>
+  <p id="songs-count" data-template={countTemplate}>{t(lang, 'songs.count', { n: songs.length })}</p>
   <table class="stats-table" id="songs-table">
     <thead>
       <tr>
@@ -31,7 +39,7 @@ const sorted = songs.slice().sort((a, b) => b.plays - a.plays);
     <tbody>
       {
         sorted.map((song) => (
-          <tr>
+          <tr data-special={song.is_se || song.is_interlude ? '1' : '0'}>
             <td>
               <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{song.name}</a>
             </td>
@@ -47,5 +55,33 @@ const sorted = songs.slice().sort((a, b) => b.plays - a.plays);
   <script>
     import { initSortableTable } from '../../../lib/sortable-table';
     initSortableTable(document.getElementById('songs-table') as HTMLTableElement);
+
+    const checkbox = document.getElementById('include-special') as HTMLInputElement;
+    const rows = document.querySelectorAll<HTMLTableRowElement>('#songs-table tbody tr');
+    const countEl = document.getElementById('songs-count')!;
+    const template = countEl.dataset.template!;
+
+    function apply() {
+      let visible = 0;
+      rows.forEach((row) => {
+        const show = checkbox.checked || row.dataset.special === '0';
+        row.hidden = !show;
+        if (show) visible++;
+      });
+      countEl.textContent = template.replace('__N__', String(visible));
+    }
+
+    checkbox.addEventListener('change', apply);
   </script>
 </Layout>
+
+<style>
+  .include-special {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+</style>
