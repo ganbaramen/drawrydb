@@ -14,6 +14,17 @@ const base = import.meta.env.BASE_URL;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <title>{title} | DrawryDB</title>
+    <script is:inline>
+      // Runs synchronously, before first paint, so a stored preference
+      // applies immediately instead of flashing the OS-default theme first.
+      // No preference stored -> no attribute set -> global.css's
+      // prefers-color-scheme media query decides, same as before this
+      // toggle existed.
+      const stored = localStorage.getItem('theme');
+      if (stored === 'light' || stored === 'dark') {
+        document.documentElement.dataset.theme = stored;
+      }
+    </script>
   </head>
   <body>
     <div class="disclaimer">
@@ -29,6 +40,7 @@ const base = import.meta.env.BASE_URL;
         <a href={`${base}/ja/events/`}>イベント</a>
         <a href={`${base}/ja/songs/`}>楽曲</a>
         <a href={`${base}/ja/venues/`}>会場</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="テーマを切り替える">🌙</button>
       </nav>
     </header>
 
@@ -47,6 +59,36 @@ const base = import.meta.env.BASE_URL;
         <a href="https://github.com/ganbaramen/drawrydb" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
       </p>
     </footer>
+
+    <script>
+      const root = document.documentElement;
+      const button = document.getElementById('theme-toggle')!;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function effectiveTheme(): 'light' | 'dark' {
+        return (root.dataset.theme as 'light' | 'dark' | undefined) ?? (media.matches ? 'dark' : 'light');
+      }
+
+      // Icon shows what clicking it switches *to*, not the current state.
+      function syncIcon() {
+        button.textContent = effectiveTheme() === 'dark' ? '☀️' : '🌙';
+      }
+
+      button.addEventListener('click', () => {
+        const next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('theme', next);
+        syncIcon();
+      });
+
+      // No stored preference means the OS setting still governs — keep the
+      // icon in sync if the visitor changes it while the page is open.
+      media.addEventListener('change', () => {
+        if (!localStorage.getItem('theme')) syncIcon();
+      });
+
+      syncIcon();
+    </script>
   </body>
 </html>
 

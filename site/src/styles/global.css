@@ -9,13 +9,20 @@
   --text: #16233f;
   --text-muted: #5b6b8c;
   --border: #d9e1f0;
-  --accent: #7c5cbf;
+  --accent: #674694;
   --accent-bg: #f1ecfa;
   --link: #2f4d85;
 }
 
+/*
+ * Three states: no explicit choice follows the OS (prefers-color-scheme);
+ * an explicit choice (data-theme, set by the toggle in Layout.astro) wins
+ * either direction, so the dark block is guarded to not fight a manual
+ * "light" pick, and the manual "dark" block is repeated outside the media
+ * query so it applies regardless of OS setting.
+ */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --bg: #0e1729;
     --surface: #182338;
     --text: #eaf0fb;
@@ -25,6 +32,17 @@
     --accent-bg: #2b2545;
     --link: #93b4e8;
   }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0e1729;
+  --surface: #182338;
+  --text: #eaf0fb;
+  --text-muted: #96a6c4;
+  --border: #2c3b58;
+  --accent: #b79cec;
+  --accent-bg: #2b2545;
+  --link: #93b4e8;
 }
 
 * {
@@ -76,10 +94,31 @@ a {
   color: var(--text);
 }
 
+.site-header nav {
+  display: flex;
+  align-items: center;
+}
+
 .site-header nav a {
   text-decoration: none;
   margin-left: 1rem;
   color: var(--text);
+}
+
+.theme-toggle {
+  margin-left: 1rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
 }
 
 main {
