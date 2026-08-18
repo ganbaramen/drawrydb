@@ -81,19 +81,32 @@ a {
 .site-header nav {
   display: flex;
   align-items: center;
+  /* One source of truth for spacing between nav children (links, the lang
+     switch, the theme button) — measured identical (16px) in both ja and en
+     before this change too, so the uneven *look* was CJK glyphs' own
+     right-side bearing (e.g. "ト" trails more whitespace inside its own
+     character cell than "場"/"曲" do), not an actual spacing bug. Giving
+     each link a visible padded box normalizes that instead of relying on
+     bare text edges. */
+  gap: 0.25rem;
 }
 
 .site-header nav a {
   text-decoration: none;
-  margin-left: 1rem;
-  color: var(--text);
+  color: var(--link);
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.4rem;
+}
+
+.site-header nav a:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
 }
 
 .lang-switch {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin-left: 1rem;
   font-size: 0.8rem;
 }
 
@@ -108,7 +121,6 @@ a {
 }
 
 .theme-toggle {
-  margin-left: 1rem;
   padding: 0.3rem 0.5rem;
   border: 1px solid var(--border);
   border-radius: 0.4rem;
