@@ -48,6 +48,16 @@ def unwrap_quotes(text: str) -> str:
     its outer quotes and keeps the inner ones intact."""
     if not text:
         return text
+    # U+FE0F (VARIATION SELECTOR-16) forces emoji-style rendering of an
+    # otherwise dual-presentation character — invisible itself, so its
+    # presence is easy to miss when copy-pasting and easy to drop
+    # inconsistently. Found on a real multi-day event: 2026-04-18's post
+    # had "エクストロメ‼️" (with VS16, renders as a red emoji) and
+    # 2026-04-19's had "エクストロメ‼" (without, renders as plain bold
+    # text) for what is the same tour/title — stripped everywhere so the
+    # same title always renders the same way regardless of which post
+    # happened to include it.
+    text = text.replace("️", "")
     close = QUOTE_PAIRS.get(text[0])
     if not close or text[-1] != close:
         return text
