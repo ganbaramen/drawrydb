@@ -22,6 +22,15 @@ const base = import.meta.env.BASE_URL;
   <p><a href="../">{t(lang, 'creators.back')}</a></p>
 
   <h1>{creator.name}</h1>
+  {
+    creator.x && (
+      <p class="creator-x">
+        <a href={`https://x.com/${creator.x}`} target="_blank" rel="noopener noreferrer">
+          @{creator.x}
+        </a>
+      </p>
+    )
+  }
   <p>{t(lang, 'creators.songCount', { n: creator.songs.length })}</p>
 
   <ul style="list-style:none; padding:0;">

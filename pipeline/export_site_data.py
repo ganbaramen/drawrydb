@@ -400,6 +400,29 @@ def build_songs(events: list[dict]) -> list[dict]:
 ROLE_FIELDS = ["lyrics", "composition", "arrangement", "choreography"]
 
 
+def load_creator_details() -> dict[str, dict[str, str]]:
+    """name -> {slug, x} from data/input/creator_details.csv. Same
+    one-file-per-thing reasoning as load_song_details(): a creator's slug
+    and X/Twitter handle are both exactly one hand-curated fact per person,
+    so one row covers both instead of splitting them across files. `x` is
+    a bare handle (no "@", no URL) — build_creators() below turns it into
+    a full profile URL; same missing-file/missing-row/blank-value
+    tolerance as load_song_details() (no row, or a blank `x` cell, just
+    means no link renders)."""
+    path = os.path.join(INPUT_DIR, "creator_details.csv")
+    if not os.path.exists(path):
+        return {}
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        return {
+            row["name"].strip(): {
+                "slug": row.get("slug", "").strip(),
+                "x": row.get("x", "").strip(),
+            }
+            for row in csv.DictReader(fh)
+            if row.get("name")
+        }
+
+
 def split_creators(value: str) -> list[str]:
     """"nenene, & Yoshimura" -> ["nenene,", "Yoshimura"] — " & " (with the
     surrounding spaces) is the only separator real data uses for a
@@ -417,7 +440,7 @@ def build_creators(songs: list[dict]) -> list[dict]:
     split_creators() into separate entries, same person merged across every
     song and field they appear in.
     """
-    slugs = load_slugs("creator_slugs.csv")
+    details = load_creator_details()
     song_by_id = {song["id"]: song for song in songs if song.get("credits")}
 
     # name -> song_id -> roles (in ROLE_FIELDS order, since that's the
@@ -453,8 +476,9 @@ def build_creators(songs: list[dict]) -> list[dict]:
         )
         creators.append(
             {
-                "id": slugs.get(name, name),
+                "id": details.get(name, {}).get("slug") or name,
                 "name": name,
+                "x": details.get(name, {}).get("x") or None,
                 "songs": song_entries,
             }
         )

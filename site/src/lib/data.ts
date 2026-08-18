@@ -91,6 +91,9 @@ export interface CreatorCredit {
 export interface Creator {
   id: string;
   name: string;
+  // Bare X/Twitter handle (no "@", no URL) from data/input/
+  // creator_details.csv; null when not known.
+  x: string | null;
   songs: CreatorCredit[];
 }
 

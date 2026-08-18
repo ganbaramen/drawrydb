@@ -20662,6 +20662,7 @@
     {
       "id": "nancy",
       "name": "ナンシー",
+      "x": null,
       "songs": [
         {
           "song_id": "dear-history",
@@ -20740,6 +20741,7 @@
     {
       "id": "nenene",
       "name": "nenene,",
+      "x": null,
       "songs": [
         {
           "song_id": "dear-history",
@@ -20776,6 +20778,7 @@
     {
       "id": "takanashi-kairi",
       "name": "小鳥遊カイリ",
+      "x": null,
       "songs": [
         {
           "song_id": "moving-lights",
@@ -20812,6 +20815,7 @@
     {
       "id": "maho",
       "name": "MaHO",
+      "x": null,
       "songs": [
         {
           "song_id": "blooming",
@@ -20834,6 +20838,7 @@
     {
       "id": "yoshimura",
       "name": "Yoshimura",
+      "x": null,
       "songs": [
         {
           "song_id": "dear-history",
@@ -20856,6 +20861,7 @@
     {
       "id": "mimimiyu",
       "name": "ミミミユ",
+      "x": null,
       "songs": [
         {
           "song_id": "asayake-to-shasou",
@@ -20878,6 +20884,7 @@
     {
       "id": "yamagishidaiki",
       "name": "ヤマギシダイキ",
+      "x": null,
       "songs": [
         {
           "song_id": "love-story-ga-hajimaranai",
@@ -20901,6 +20908,7 @@
     {
       "id": "hasegawa-kai",
       "name": "長谷川海",
+      "x": null,
       "songs": [
         {
           "song_id": "love-story-ga-hajimaranai",
@@ -20925,6 +20933,7 @@
     {
       "id": "overnote",
       "name": "OverNote'",
+      "x": null,
       "songs": [
         {
           "song_id": "egakikake-no-sora",
@@ -20941,6 +20950,7 @@
     {
       "id": "serina",
       "name": "SERINA",
+      "x": null,
       "songs": [
         {
           "song_id": "luminous",
@@ -20955,6 +20965,7 @@
     {
       "id": "cuum",
       "name": "cuum",
+      "x": null,
       "songs": [
         {
           "song_id": "ginmaku",
@@ -20971,6 +20982,7 @@
     {
       "id": "kr-kuura",
       "name": "kr-KuuRa",
+      "x": null,
       "songs": [
         {
           "song_id": "fly-by",
@@ -20987,6 +20999,7 @@
     {
       "id": "ways",
       "name": "ways",
+      "x": null,
       "songs": [
         {
           "song_id": "time-capsule",
@@ -21003,6 +21016,7 @@
     {
       "id": "shiika",
       "name": "しいか",
+      "x": null,
       "songs": [
         {
           "song_id": "primary",
@@ -21019,6 +21033,7 @@
     {
       "id": "shijimafumi",
       "name": "シジマフミ",
+      "x": null,
       "songs": [
         {
           "song_id": "luminous",
@@ -21035,6 +21050,7 @@
     {
       "id": "hinoharuki",
       "name": "ヒノハルキ",
+      "x": null,
       "songs": [
         {
           "song_id": "blooming",
