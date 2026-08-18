@@ -46,6 +46,7 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
       }
     </tbody>
   </table>
+  <p class="uncovered-note">{t(lang, 'setLength.avgSongsNote')}</p>
 
   {uncovered_shows > 0 && <p class="uncovered-note">{t(lang, 'setLength.uncovered', { n: uncovered_shows })}</p>}
 
