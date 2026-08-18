@@ -32,16 +32,6 @@ for (const event of sorted) {
   eventsByMonth.get(key)!.push(event);
 }
 
-// Per-month option counts, one per setlist-filter value, so the dropdown
-// can show e.g. "2026年7月 (14)" reflecting *whichever* setlist filter is
-// currently active rather than always the unfiltered total — the setlist
-// filter applies first, the month count reflects what's left after it.
-function countFor(list: typeof sorted) {
-  const has = list.filter((e) => e.has_setlist).length;
-  return { has, none: list.length - has, all: list.length };
-}
-const monthCounts = new Map(monthKeys.map((key) => [key, countFor(eventsByMonth.get(key)!)]));
-const totalCounts = countFor(events);
 ---
 
 <Layout title={t(lang, 'events.title')} lang={lang} path="events/">
@@ -75,22 +65,16 @@ const totalCounts = countFor(events);
     <label class="month-filter-label">
       {t(lang, 'events.month.label')}
       <select id="month-filter">
-        <option
-          value="all"
-          data-label={t(lang, 'events.month.all')}
-          data-count-has={totalCounts.has}
-          data-count-none={totalCounts.none}
-          data-count-all={totalCounts.all}
-        >
-          {t(lang, 'events.month.all')} ({totalCounts.has})
+        <option value="all" data-label={t(lang, 'events.month.all')}>
+          {t(lang, 'events.month.all')} ({hasSetlistCount})
         </option>
         {
           monthKeys.map((key) => {
-            const c = monthCounts.get(key)!;
             const label = formatMonth(lang, key);
+            const has = eventsByMonth.get(key)!.filter((e) => e.has_setlist).length;
             return (
-              <option value={key} data-label={label} data-count-has={c.has} data-count-none={c.none} data-count-all={c.all}>
-                {label} ({c.has})
+              <option value={key} data-label={label}>
+                {label} ({has})
               </option>
             );
           })
@@ -149,29 +133,38 @@ const totalCounts = countFor(events);
       const query = searchInput.value.trim();
       list.dataset.filter = setlistFilter;
 
-      // Each option's count reflects the setlist filter applied first —
-      // e.g. under "セトリあり" a month shows how many of *those* fall in
-      // it, not its raw total.
-      const countAttr = `count${setlistFilter[0].toUpperCase()}${setlistFilter.slice(1)}`;
-      Array.from(monthSelect.options).forEach((opt) => {
-        opt.textContent = `${opt.dataset.label} (${opt.dataset[countAttr]})`;
-      });
-
+      // One pass over all 163 events computes both the per-month option
+      // counts and each row's visibility — cheap enough (well under a
+      // millisecond) to redo on every keystroke rather than precomputing
+      // combinations of setlist-filter × search at build time, which
+      // isn't possible anyway since the search query only exists at
+      // runtime.
       let visible = 0;
+      const monthCounts = new Map<string, number>();
       const monthHasVisible = new Map<string, boolean>();
 
       items.forEach((li) => {
         const has = li.dataset.hasSetlist === '1';
         const month = li.dataset.month!;
         const matchesSetlist = setlistFilter === 'all' || (setlistFilter === 'has') === has;
-        const matchesMonth = monthFilter === 'all' || monthFilter === month;
         const matchesSearch = fuzzyMatch(query, li.dataset.search ?? '');
-        const show = matchesSetlist && matchesMonth && matchesSearch;
+        if (matchesSetlist && matchesSearch) {
+          monthCounts.set(month, (monthCounts.get(month) ?? 0) + 1);
+        }
+
+        const matchesMonth = monthFilter === 'all' || monthFilter === month;
+        const show = matchesSetlist && matchesSearch && matchesMonth;
         li.hidden = !show;
         if (show) {
           visible++;
           monthHasVisible.set(month, true);
         }
+      });
+
+      const totalMatching = Array.from(monthCounts.values()).reduce((a, b) => a + b, 0);
+      Array.from(monthSelect.options).forEach((opt) => {
+        const count = opt.value === 'all' ? totalMatching : monthCounts.get(opt.value) ?? 0;
+        opt.textContent = `${opt.dataset.label} (${count})`;
       });
 
       headings.forEach((h) => {
