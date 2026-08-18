@@ -500,7 +500,14 @@ def build_stats(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[
 
     stats = []
     notes = []
-    for song, count in plays.most_common():
+    # Debut order (matching the site's default song-list ordering — see
+    # CLAUDE.md/export_site_data.py's build_set_length_stats), not play
+    # count. This file has no track-number field to tiebreak with (that
+    # lives only in the hand-curated song_details.csv, which this
+    # independent script doesn't read — see the module's constraints), so
+    # ties fall back to the song name for a deterministic order.
+    for song in sorted(plays, key=lambda s: (first[s], s)):
+        count = plays[song]
         # A debut is "confirmed" when the band tagged that same performance
         # 初披露; otherwise first_performed is only a lower bound, limited by
         # how far back the pastes go.

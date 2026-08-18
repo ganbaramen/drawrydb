@@ -456,10 +456,17 @@ def build_set_length_stats(events: list[dict]) -> dict:
         for b in bucket_keys
     ]
 
-    # Most-played overall first, matching songs/index.astro's own ordering.
+    # Debut order, then track number as a tiebreaker — matching
+    # songs/index.astro's own default ordering (see its comment for why:
+    # a song with no number, e.g. SE/Interlude, sorts after one that has
+    # it, same "blanks last" convention as the sortable columns).
+    def song_sort_key(name: str) -> tuple[str, int]:
+        number = details.get(name, {}).get("number")
+        return (first_performed.get(name, ""), int(number) if number else 10**9)
+
     all_song_names = sorted(
         {name for counts in song_counts.values() for name in counts},
-        key=lambda name: -sum(song_counts[b].get(name, 0) for b in bucket_keys),
+        key=song_sort_key,
     )
     songs = []
     for name in all_song_names:
