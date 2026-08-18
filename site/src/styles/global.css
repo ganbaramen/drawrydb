@@ -121,6 +121,12 @@ a {
 }
 
 .theme-toggle {
+  /* The nav's own gap (0.25rem) is sized for the links, which have their
+     own padding on top of it. .lang-switch has no such padding, so its
+     last letter (EN, when current+bold) sits right up against this
+     button with only that gap — extra breathing room on top of it,
+     specifically here rather than raising the shared gap. */
+  margin-left: 0.5rem;
   padding: 0.3rem 0.5rem;
   border: 1px solid var(--border);
   border-radius: 0.4rem;
