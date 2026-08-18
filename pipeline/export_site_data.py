@@ -73,6 +73,71 @@ def clean_title(summary: str) -> str:
     return unwrap_quotes(text)
 
 
+# Anchors on the "■チケット販売サイト"-style header that precedes a ticket
+# URL in the calendar description prose (142/200 events use that exact
+# label; チケット抽選サイト/チケットサイト/チケット詳細・販売サイト/販売サイト
+# are the other real variants found by auditing every description — see
+# CLAUDE.md's approach elsewhere in this pipeline of testing against real
+# data rather than guessing). Requiring チケット or 販売 in the header, and
+# then excluding the ones that also mention 配信 (livestream) or チェキ
+# (cheki photos), keeps out the other kinds of "■...サイト" headers that
+# also appear (streaming links, cheki sales) without needing a header
+# allowlist that would miss a new phrasing.
+TICKET_HEADER = re.compile(r"^■.*(?:チケット|販売).*$")
+TICKET_HEADER_EXCLUDE = ("配信", "チェキ", "マワループ", "質問")
+# A header-like line that isn't a ticket link at all (a festival's "公式HP"
+# often follows right after its ticket link, with no further ■ header to
+# signal the ticket section ended) — closes the section same as a
+# non-matching ■ header would.
+NON_TICKET_LABELS = {"公式HP"}
+TICKET_URL = re.compile(r"https?://\S+")
+# One event's ticket URL is missing its scheme entirely
+# ("ticketvillage.jp/events/13764") — a real typo in the source post, not a
+# parsing edge case to special-case away; this catches bare domains
+# generally instead.
+BARE_DOMAIN = re.compile(r"^[\w.-]+\.[a-zA-Z]{2,}(?:/\S*)?$")
+
+
+def parse_ticket_links(description: str) -> list[dict]:
+    """Pull (label, url) ticket-sale links out of the description prose.
+
+    label is the platform/tier name on its own line just above the URL when
+    present (e.g. "イープラス" / "VIPチケット" for events with more than one
+    ticket link), else None for the common case of one bare URL under the
+    header.
+    """
+    links: list[dict] = []
+    in_section = False
+    pending_label: str | None = None
+    for line in description.split("\n"):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("■"):
+            in_section = bool(TICKET_HEADER.match(stripped)) and not any(
+                word in stripped for word in TICKET_HEADER_EXCLUDE
+            )
+            pending_label = None
+            continue
+        if stripped in NON_TICKET_LABELS:
+            in_section = False
+            pending_label = None
+            continue
+        if not in_section:
+            continue
+        match = TICKET_URL.search(stripped)
+        if match:
+            url = re.split(r"[\s※]", match.group(0))[0]
+            links.append({"label": pending_label, "url": url})
+            pending_label = None
+        elif BARE_DOMAIN.match(stripped):
+            links.append({"label": pending_label, "url": f"https://{stripped}"})
+            pending_label = None
+        else:
+            pending_label = stripped
+    return links
+
+
 def read_csv(name: str) -> list[dict[str, str]]:
     path = os.path.join(GENERATED_DIR, name)
     with open(path, newline="", encoding="utf-8-sig") as fh:
@@ -96,6 +161,10 @@ def build_events() -> list[dict]:
         songs_by_uid_date.setdefault(key, []).append(row)
 
     linked_uids = {row["event_uid"] for row in shows if row["event_uid"]}
+    # shows.csv has no description column (see CLAUDE.md's shows.csv section
+    # — it only carries what building the show list itself needed), so a
+    # show's ticket links come from the calendar row via event_uid instead.
+    description_by_uid = {row["uid"]: row["description"] for row in calendar}
 
     # One entry per real show, plus one per calendar event that should have a
     # setlist but doesn't have one linked yet (past gap or future show).
@@ -126,6 +195,7 @@ def build_events() -> list[dict]:
                         key=lambda s: int(s["position"]),
                     )
                 ],
+                "ticket_links": parse_ticket_links(description_by_uid.get(row["event_uid"], "")),
                 "sort_key": sort_key(row),
             }
         )
@@ -145,6 +215,7 @@ def build_events() -> list[dict]:
                 "live_end": row["live_end"] or None,
                 "has_setlist": False,
                 "setlist": [],
+                "ticket_links": parse_ticket_links(row["description"]),
                 "sort_key": sort_key(row),
             }
         )

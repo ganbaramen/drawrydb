@@ -13,6 +13,11 @@ export interface SetlistEntry {
   is_encore: boolean;
 }
 
+export interface TicketLink {
+  label: string | null;
+  url: string;
+}
+
 export interface Event {
   id: string;
   date: string;
@@ -24,6 +29,7 @@ export interface Event {
   live_end: string | null;
   has_setlist: boolean;
   setlist: SetlistEntry[];
+  ticket_links: TicketLink[];
 }
 
 export interface Performance {

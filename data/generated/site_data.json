@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T14:30:16+00:00",
+  "generated_at": "2026-08-18T14:53:23+00:00",
   "events": [
     {
       "date": "2025-09-13",
@@ -26,6 +26,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/atticparade"
         }
       ],
       "id": "2025-09-13-1"
@@ -105,6 +111,12 @@
           "is_encore": true
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/drawry01"
+        }
+      ],
       "id": "2025-09-20-1"
     },
     {
@@ -166,6 +178,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/ebf3z"
+        }
+      ],
       "id": "2025-09-21-1"
     },
     {
@@ -225,6 +243,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/dededededaylive"
         }
       ],
       "id": "2025-09-23-1"
@@ -296,6 +320,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13556"
+        }
+      ],
       "id": "2025-09-23-2"
     },
     {
@@ -357,6 +387,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/cnswb"
+        }
+      ],
       "id": "2025-09-27-1"
     },
     {
@@ -416,6 +452,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/20250928_day"
         }
       ],
       "id": "2025-09-28-1"
@@ -487,6 +529,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/aanrl"
+        }
+      ],
       "id": "2025-10-03-1"
     },
     {
@@ -546,6 +594,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/anemone1005"
         }
       ],
       "id": "2025-10-05-1"
@@ -609,6 +663,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/bestfriendakibaday"
+        }
+      ],
       "id": "2025-10-11-1"
     },
     {
@@ -668,6 +728,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://perfectmusic.zaiko.io/item/374338"
         }
       ],
       "id": "2025-10-12-1"
@@ -731,6 +797,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/kandademobestfriend2025"
+        }
+      ],
       "id": "2025-10-13-1"
     },
     {
@@ -790,6 +862,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/vy7g3"
         }
       ],
       "id": "2025-10-18-1"
@@ -861,6 +939,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/gyu251018eve"
+        }
+      ],
       "id": "2025-10-18-2"
     },
     {
@@ -920,6 +1004,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/newageemomugenday1019"
         }
       ],
       "id": "2025-10-19-1"
@@ -991,6 +1081,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/pmbf01"
+        }
+      ],
       "id": "2025-10-21-1"
     },
     {
@@ -1060,6 +1156,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/anemone251024"
+        }
+      ],
       "id": "2025-10-24-1"
     },
     {
@@ -1111,6 +1213,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13532"
         }
       ],
       "id": "2025-10-26-1"
@@ -1182,6 +1290,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/xnl9r"
+        }
+      ],
       "id": "2025-10-26-2"
     },
     {
@@ -1243,6 +1357,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/z82vf"
+        }
+      ],
       "id": "2025-10-27-1"
     },
     {
@@ -1302,6 +1422,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/20251101_night"
         }
       ],
       "id": "2025-11-01-1"
@@ -1373,6 +1499,16 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": "イープラス",
+          "url": "https://eplus.jp/sf/detail/4413460001-P0030001"
+        },
+        {
+          "label": "LivePocket",
+          "url": "https://t.livepocket.jp/e/yoimachi1102"
+        }
+      ],
       "id": "2025-11-02-1"
     },
     {
@@ -1424,6 +1560,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://atjam.jp/ticket"
         }
       ],
       "id": "2025-11-03-1"
@@ -1495,6 +1637,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/idolcruising2025wakuwakucircuit"
+        }
+      ],
       "id": "2025-11-08-1"
     },
     {
@@ -1556,6 +1704,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/weekendmugendakkyakuspecial2025"
+        }
+      ],
       "id": "2025-11-09-1"
     },
     {
@@ -1615,6 +1769,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/hnm1110ohp"
         }
       ],
       "id": "2025-11-10-1"
@@ -1686,6 +1846,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/hopni"
+        }
+      ],
       "id": "2025-11-11-1"
     },
     {
@@ -1753,6 +1919,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/0qd3g"
         }
       ],
       "id": "2025-11-14-1"
@@ -1824,6 +1996,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/anemone3"
+        }
+      ],
       "id": "2025-11-16-1"
     },
     {
@@ -1885,6 +2063,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketdive.com/event/tomodachifes2025"
+        }
+      ],
       "id": "2025-11-22-1"
     },
     {
@@ -1944,6 +2128,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/newageemomugen1123d"
         }
       ],
       "id": "2025-11-23-1"
@@ -2015,6 +2205,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/build_a_family1"
+        }
+      ],
       "id": "2025-11-24-1"
     },
     {
@@ -2066,6 +2262,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13585"
         }
       ],
       "id": "2025-11-29-1"
@@ -2129,6 +2331,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://tiget.net/events/438337"
+        }
+      ],
       "id": "2025-11-30-1"
     },
     {
@@ -2188,6 +2396,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/20251130_night"
         }
       ],
       "id": "2025-11-30-2"
@@ -2259,6 +2473,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/nuts_buddy"
+        }
+      ],
       "id": "2025-12-01-1"
     },
     {
@@ -2318,6 +2538,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13608"
         }
       ],
       "id": "2025-12-06-1"
@@ -2397,6 +2623,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/3dy7e"
+        }
+      ],
       "id": "2025-12-08-1"
     },
     {
@@ -2456,6 +2688,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/20251213_night"
         }
       ],
       "id": "2025-12-13-1"
@@ -2535,6 +2773,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13632"
+        }
+      ],
       "id": "2025-12-14-1"
     },
     {
@@ -2604,6 +2848,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/newagehasyage2025"
+        }
+      ],
       "id": "2025-12-20-1"
     },
     {
@@ -2671,6 +2921,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/mlavi"
         }
       ],
       "id": "2025-12-20-2"
@@ -2750,6 +3006,12 @@
           "is_encore": true
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/3bq9q"
+        }
+      ],
       "id": "2025-12-21-1"
     },
     {
@@ -2819,6 +3081,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/20251225_xmas"
+        }
+      ],
       "id": "2025-12-25-1"
     },
     {
@@ -2870,6 +3138,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13604"
         }
       ],
       "id": "2025-12-28-1"
@@ -2941,6 +3215,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/aritamavol_19"
+        }
+      ],
       "id": "2025-12-29-1"
     },
     {
@@ -3000,6 +3280,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t.livepocket.jp/e/hnm1230ohp"
         }
       ],
       "id": "2025-12-30-1"
@@ -3071,6 +3357,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/newage2025finalcountdown"
+        }
+      ],
       "id": "2025-12-31-1"
     },
     {
@@ -3130,6 +3422,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/aikou_0103w"
         }
       ],
       "id": "2026-01-03-1"
@@ -3199,6 +3497,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/aikou_0104n"
         }
       ],
       "id": "2026-01-04-1"
@@ -3278,6 +3582,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/owl_nest10"
+        }
+      ],
       "id": "2026-01-07-1"
     },
     {
@@ -3353,6 +3663,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/m48xo"
         }
       ],
       "id": "2026-01-09-1"
@@ -3440,6 +3756,12 @@
           "is_encore": true
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/sevtu"
+        }
+      ],
       "id": "2026-01-11-1"
     },
     {
@@ -3517,6 +3839,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13642"
+        }
+      ],
       "id": "2026-01-12-1"
     },
     {
@@ -3584,6 +3912,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/n05y7"
         }
       ],
       "id": "2026-01-15-1"
@@ -3663,6 +3997,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/newageemomugen0117d"
+        }
+      ],
       "id": "2026-01-17-1"
     },
     {
@@ -3732,6 +4072,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/hnm0118ohnday"
+        }
+      ],
       "id": "2026-01-18-1"
     },
     {
@@ -3793,6 +4139,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/hnm0123ge"
+        }
+      ],
       "id": "2026-01-23-1"
     },
     {
@@ -3805,6 +4157,12 @@
       "live_end": "13:28",
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/kc_260124"
+        }
+      ],
       "id": "2026-01-24-1"
     },
     {
@@ -3817,6 +4175,12 @@
       "live_end": "13:28",
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/kc_260125"
+        }
+      ],
       "id": "2026-01-25-1"
     },
     {
@@ -3876,6 +4240,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/0127_UTAGEFES"
         }
       ],
       "id": "2026-01-27-1"
@@ -3945,6 +4315,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/yomrk"
         }
       ],
       "id": "2026-02-01-1"
@@ -4024,6 +4400,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/20260205_nikipre"
+        }
+      ],
       "id": "2026-02-05-1"
     },
     {
@@ -4101,6 +4483,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13661"
+        }
+      ],
       "id": "2026-02-07-1"
     },
     {
@@ -4170,6 +4558,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260211_day"
+        }
+      ],
       "id": "2026-02-11-1"
     },
     {
@@ -4237,6 +4631,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/9k8s0"
         }
       ],
       "id": "2026-02-14-1"
@@ -4316,6 +4716,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/260215sonouti"
+        }
+      ],
       "id": "2026-02-15-1"
     },
     {
@@ -4385,6 +4791,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/idolwakukun217osanpo"
+        }
+      ],
       "id": "2026-02-17-1"
     },
     {
@@ -4452,6 +4864,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/colorlinix_t"
         }
       ],
       "id": "2026-02-21-1"
@@ -4529,6 +4947,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/circuit_20260222"
         }
       ],
       "id": "2026-02-22-1"
@@ -4616,6 +5040,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/build_a_family2"
+        }
+      ],
       "id": "2026-02-23-1"
     },
     {
@@ -4685,6 +5115,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/0228goo"
+        }
+      ],
       "id": "2026-02-28-1"
     },
     {
@@ -4752,6 +5188,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260301_night"
         }
       ],
       "id": "2026-03-01-1"
@@ -4839,6 +5281,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/20260302_nikipre"
+        }
+      ],
       "id": "2026-03-02-1"
     },
     {
@@ -4906,6 +5354,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260307_day"
         }
       ],
       "id": "2026-03-07-1"
@@ -4993,6 +5447,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260308_evening"
+        }
+      ],
       "id": "2026-03-08-1"
     },
     {
@@ -5070,6 +5530,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/20260310_nikipre"
+        }
+      ],
       "id": "2026-03-10-1"
     },
     {
@@ -5145,6 +5611,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/ccc2026"
         }
       ],
       "id": "2026-03-14-1"
@@ -5256,6 +5728,12 @@
           "is_encore": true
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/8cv81"
+        }
+      ],
       "id": "2026-03-15-1"
     },
     {
@@ -5341,6 +5819,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/j1-ac"
+        }
+      ],
       "id": "2026-03-20-1"
     },
     {
@@ -5418,6 +5902,7 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [],
       "id": "2026-03-20-2"
     },
     {
@@ -5487,6 +5972,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13702"
+        }
+      ],
       "id": "2026-03-21-1"
     },
     {
@@ -5554,6 +6045,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/pfcvp"
         }
       ],
       "id": "2026-03-22-1"
@@ -5673,6 +6170,12 @@
           "is_encore": true
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/drawry_1st"
+        }
+      ],
       "id": "2026-03-28-1"
     },
     {
@@ -5740,6 +6243,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/3n99k"
         }
       ],
       "id": "2026-03-29-1"
@@ -5859,6 +6368,12 @@
           "is_encore": true
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/nRTusGcuy8dCHffTWbZ9"
+        }
+      ],
       "id": "2026-04-04-1"
     },
     {
@@ -5928,6 +6443,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260405_flowersloft"
+        }
+      ],
       "id": "2026-04-05-1"
     },
     {
@@ -5995,6 +6516,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13729"
         }
       ],
       "id": "2026-04-11-1"
@@ -6082,6 +6609,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/20260414_nikipre_2"
+        }
+      ],
       "id": "2026-04-14-1"
     },
     {
@@ -6159,6 +6692,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/8cklr"
+        }
+      ],
       "id": "2026-04-18-1"
     },
     {
@@ -6228,6 +6767,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/8cklr"
+        }
+      ],
       "id": "2026-04-19-1"
     },
     {
@@ -6295,6 +6840,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/soul_0422"
         }
       ],
       "id": "2026-04-22-1"
@@ -6382,6 +6933,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/6zrzo"
+        }
+      ],
       "id": "2026-04-24-1"
     },
     {
@@ -6449,6 +7006,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20250425_evening"
         }
       ],
       "id": "2026-04-25-1"
@@ -6528,6 +7091,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260426_day"
+        }
+      ],
       "id": "2026-04-26-1"
     },
     {
@@ -6605,6 +7174,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/260429sonouti"
+        }
+      ],
       "id": "2026-04-29-1"
     },
     {
@@ -6664,6 +7239,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/Starlight0430"
         }
       ],
       "id": "2026-04-30-1"
@@ -6743,6 +7324,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/kawaii_ine_260502"
+        }
+      ],
       "id": "2026-05-02-1"
     },
     {
@@ -6818,6 +7405,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketdive.com/event/weekendfesta2026"
         }
       ],
       "id": "2026-05-03-1"
@@ -6897,6 +7490,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://r10.to/kabukiage2026"
+        }
+      ],
       "id": "2026-05-05-1"
     },
     {
@@ -6964,6 +7563,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/owldec"
         }
       ],
       "id": "2026-05-06-1"
@@ -7035,6 +7640,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/0508aqbs"
+        }
+      ],
       "id": "2026-05-08-1"
     },
     {
@@ -7094,6 +7705,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://eplus.jp/mawaloop/"
         }
       ],
       "id": "2026-05-09-1"
@@ -7173,6 +7790,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://user.my-th.jp/tickets/event/creora_20260513"
+        }
+      ],
       "id": "2026-05-13-1"
     },
     {
@@ -7240,6 +7863,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/5s0vd"
         }
       ],
       "id": "2026-05-15-1"
@@ -7311,6 +7940,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13764"
+        }
+      ],
       "id": "2026-05-17-1"
     },
     {
@@ -7378,6 +8013,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/soul-520"
         }
       ],
       "id": "2026-05-20-1"
@@ -7457,6 +8098,7 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [],
       "id": "2026-05-23-1"
     },
     {
@@ -7518,6 +8160,7 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [],
       "id": "2026-05-24-1"
     },
     {
@@ -7601,6 +8244,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketdive.com/event/20260528_nikipre"
         }
       ],
       "id": "2026-05-28-1"
@@ -7688,6 +8337,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/build-a-family-vol3"
+        }
+      ],
       "id": "2026-05-30-1"
     },
     {
@@ -7763,6 +8418,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/o6fd6"
         }
       ],
       "id": "2026-06-03-1"
@@ -7850,6 +8511,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/ASTROCIRCLE2026"
+        }
+      ],
       "id": "2026-06-06-1"
     },
     {
@@ -7927,6 +8594,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/papimuzfes2026miinicircuit"
+        }
+      ],
       "id": "2026-06-07-1"
     },
     {
@@ -7994,6 +8667,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketdive.com/event/20260610_nikipre"
         }
       ],
       "id": "2026-06-10-1"
@@ -8071,6 +8750,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/025dg"
         }
       ],
       "id": "2026-06-13-1"
@@ -8158,6 +8843,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/s_5yb"
+        }
+      ],
       "id": "2026-06-14-1"
     },
     {
@@ -8217,6 +8908,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/kc20260621"
         }
       ],
       "id": "2026-06-21-1"
@@ -8296,6 +8993,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/SOVA_NextChallengers_01"
+        }
+      ],
       "id": "2026-06-22-1"
     },
     {
@@ -8373,6 +9076,7 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [],
       "id": "2026-06-25-1"
     },
     {
@@ -8432,6 +9136,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://user.my-th.jp/tickets/event/ikoufes_0627"
         }
       ],
       "id": "2026-06-27-1"
@@ -8527,6 +9237,12 @@
           "is_encore": true
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/sevtu2s"
+        }
+      ],
       "id": "2026-06-28-1"
     },
     {
@@ -8596,6 +9312,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/0702_pt"
+        }
+      ],
       "id": "2026-07-02-1"
     },
     {
@@ -8663,6 +9385,16 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": "①Tシャツ（M〜2XL）付(+優先入場) _¥6,400",
+          "url": "https://livepocket.jp/e/nancy0704tee"
+        },
+        {
+          "label": "②一般 _¥3,000",
+          "url": "https://livepocket.jp/e/nancy0704"
         }
       ],
       "id": "2026-07-04-1"
@@ -8742,6 +9474,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/glittre_260705"
+        }
+      ],
       "id": "2026-07-05-1"
     },
     {
@@ -8801,6 +9539,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/hyperproof24"
         }
       ],
       "id": "2026-07-09-1"
@@ -8864,6 +9608,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://t-dv.com/spark2026_summer"
+        }
+      ],
       "id": "2026-07-11-1"
     },
     {
@@ -8923,6 +9673,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://t-dv.com/spark2026_summer"
         }
       ],
       "id": "2026-07-12-1"
@@ -9002,6 +9758,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260717_nikipre_osaka"
+        }
+      ],
       "id": "2026-07-17-1"
     },
     {
@@ -9079,6 +9841,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/kc20260718"
+        }
+      ],
       "id": "2026-07-18-1"
     },
     {
@@ -9148,6 +9916,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/kc20260719"
+        }
+      ],
       "id": "2026-07-19-1"
     },
     {
@@ -9199,6 +9973,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/0722_UTAGEFES"
         }
       ],
       "id": "2026-07-22-1"
@@ -9270,6 +10050,7 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [],
       "id": "2026-07-25-1"
     },
     {
@@ -9337,6 +10118,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/TOKYOPOP_260726"
         }
       ],
       "id": "2026-07-26-1"
@@ -9414,6 +10201,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/OwlParty"
         }
       ],
       "id": "2026-07-27-1"
@@ -9501,6 +10294,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/Drawry_summer1"
+        }
+      ],
       "id": "2026-07-28-1"
     },
     {
@@ -9568,6 +10367,12 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260802_day"
         }
       ],
       "id": "2026-08-02-1"
@@ -9679,6 +10484,12 @@
           "is_encore": true
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/Drawry-NewScene-20260809"
+        }
+      ],
       "id": "2026-08-09-1"
     },
     {
@@ -9740,6 +10551,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://l-tike.com/neokassen/"
+        }
+      ],
       "id": "2026-08-10-1"
     },
     {
@@ -9752,6 +10569,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/0txl4ZGrMO0MvYiksEJG"
+        }
+      ],
       "id": "2026-08-11-1"
     },
     {
@@ -9829,6 +10652,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/enjoinus260813"
+        }
+      ],
       "id": "2026-08-13-1"
     },
     {
@@ -9888,6 +10717,16 @@
           "is_se": false,
           "is_interlude": false,
           "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": "VIPチケット",
+          "url": "https://t-dv.com/popgalaxy0815_vip"
+        },
+        {
+          "label": "一般チケット",
+          "url": "https://t-dv.com/popgalaxy0815"
         }
       ],
       "id": "2026-08-15-1"
@@ -9967,6 +10806,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/itsukuma-20260816"
+        }
+      ],
       "id": "2026-08-16-1"
     },
     {
@@ -10044,6 +10889,12 @@
           "is_encore": false
         }
       ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260817_nikipre"
+        }
+      ],
       "id": "2026-08-17-1"
     },
     {
@@ -10056,6 +10907,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/GIRLSPARADE_260822"
+        }
+      ],
       "id": "2026-08-22-1"
     },
     {
@@ -10068,6 +10925,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260726_nikipre"
+        }
+      ],
       "id": "2026-08-24-1"
     },
     {
@@ -10080,6 +10943,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/Drawry_summer2"
+        }
+      ],
       "id": "2026-08-27-1"
     },
     {
@@ -10092,6 +10961,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260829_8utterpop"
+        }
+      ],
       "id": "2026-08-29-1"
     },
     {
@@ -10104,6 +10979,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketvillage.jp/events/13849"
+        }
+      ],
       "id": "2026-08-31-1"
     },
     {
@@ -10116,6 +10997,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketdive.com/event/dakeno1"
+        }
+      ],
       "id": "2026-09-02-1"
     },
     {
@@ -10128,6 +11015,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://kusanoneidolfes.com/#ticket"
+        }
+      ],
       "id": "2026-09-05-1"
     },
     {
@@ -10140,6 +11033,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-09-05-2"
     },
     {
@@ -10152,6 +11046,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://kusanoneidolfes.com/#ticket"
+        }
+      ],
       "id": "2026-09-06-1"
     },
     {
@@ -10164,6 +11064,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-09-12-1"
     },
     {
@@ -10176,6 +11077,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/First_and_Last"
+        }
+      ],
       "id": "2026-09-13-1"
     },
     {
@@ -10188,6 +11095,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-09-15-1"
     },
     {
@@ -10200,6 +11108,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-09-19-1"
     },
     {
@@ -10212,6 +11121,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-09-20-1"
     },
     {
@@ -10224,6 +11134,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-09-30-1"
     },
     {
@@ -10236,6 +11147,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-10-11-1"
     },
     {
@@ -10248,6 +11160,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-10-17-1"
     },
     {
@@ -10260,6 +11173,7 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [],
       "id": "2026-10-18-1"
     },
     {
@@ -10272,6 +11186,12 @@
       "live_end": null,
       "has_setlist": false,
       "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/drawry_2nd"
+        }
+      ],
       "id": "2026-10-26-1"
     }
   ],

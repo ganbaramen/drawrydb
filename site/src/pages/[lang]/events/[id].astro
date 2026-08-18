@@ -61,6 +61,22 @@ const venue = event.venue ? getVenue(event.venue) : undefined;
         </td>
       </tr>
     )}
+    {event.ticket_links.length > 0 && (
+      <tr>
+        <th>{t(lang, 'events.tickets')}</th>
+        <td>
+          <ul class="ticket-links">
+            {event.ticket_links.map((link) => (
+              <li>
+                <a href={link.url} target="_blank" rel="noopener noreferrer">
+                  {link.label ?? t(lang, 'events.ticketLinkDefault')}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </td>
+      </tr>
+    )}
   </table>
 
   {
