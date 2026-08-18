@@ -1,6 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { events, getSong, getVenue, type Event } from '../../../lib/data';
+import { events, getSong, getVenue, setLengthStats, type Event } from '../../../lib/data';
 import { formatDate, liveDurationMinutes, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
@@ -24,6 +24,11 @@ const venue = event.venue ? getVenue(event.venue) : undefined;
 // single-encore case stays plain "En" rather than an unnecessary "En1".
 const encoreCount = event.setlist.filter((s) => s.is_encore).length;
 let encoreIndex = 0;
+// This show's set-length bucket, if it has one — same partial coverage as
+// shows.csv's length_bucket (only shows with both live_start/live_end).
+const bucket = setLengthStats.buckets.find((b) => b.event_ids.includes(event.id));
+const durationMinutes =
+  event.live_start && event.live_end ? liveDurationMinutes(event.live_start, event.live_end) : null;
 ---
 
 <Layout title={event.title} lang={lang} path={`events/${event.id}/`}>
@@ -63,8 +68,17 @@ let encoreIndex = 0;
         <td>
           {event.live_start}
           {event.live_end && `${t(lang, 'events.timeRangeSep')}${event.live_end}`}
-          {event.live_end &&
-            ` ${t(lang, 'events.liveDuration', { n: liveDurationMinutes(event.live_start, event.live_end) })}`}
+          {durationMinutes !== null &&
+            (bucket ? (
+              <>
+                {' '}
+                <a href={`${base}/${lang}/set-lengths/${bucket.minutes}/`}>
+                  {t(lang, 'events.liveDuration', { n: durationMinutes })}
+                </a>
+              </>
+            ) : (
+              ` ${t(lang, 'events.liveDuration', { n: durationMinutes })}`
+            ))}
         </td>
       </tr>
     )}
