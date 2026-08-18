@@ -30,7 +30,7 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
         buckets.map((b) => (
           <tr>
             <td>
-              <a href={`${base}/${lang}/set-lengths/${urlSafe(b.length)}/`}>{b.length}</a>
+              <a href={`${base}/${lang}/set-lengths/${b.minutes}/`}>{b.length}</a>
             </td>
             <td data-sort-value={b.shows}>{b.shows}</td>
             <td data-sort-value={b.avg_songs}>{b.avg_songs}</td>
@@ -62,15 +62,20 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
         {
           songs.map((song) => (
             <tr>
-              <td>{song.name}</td>
+              <td>
+                <a href={`${base}/${lang}/songs/${urlSafe(song.name)}/`}>{song.name}</a>
+              </td>
               {buckets.map((b) => {
-                const count = song.counts[b.length] ?? 0;
+                const rate = song.rates[b.length] ?? { count: 0, eligible: 0 };
+                if (rate.eligible === 0) {
+                  return <td data-sort-value={-1}>—</td>;
+                }
                 return (
-                  <td data-sort-value={count / b.shows}>
+                  <td data-sort-value={rate.count / rate.eligible}>
                     {t(lang, 'setLength.rateDetail', {
-                      pct: Math.round((count / b.shows) * 100),
-                      count,
-                      shows: b.shows,
+                      pct: Math.round((rate.count / rate.eligible) * 100),
+                      count: rate.count,
+                      shows: rate.eligible,
                     })}
                   </td>
                 );

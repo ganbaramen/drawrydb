@@ -331,6 +331,11 @@ def build_set_length_stats(events: list[dict]) -> dict:
     """
     shows = read_csv("shows.csv")
     setlists = read_csv("setlists.csv")
+    # A song can't have been played before it existed — the fair denominator
+    # per bucket is shows on/after *that song's* debut, not every show of
+    # that length, the same reasoning song_stats.csv's own play_rate uses
+    # (see CLAUDE.md's shows_since_debut/play_rate section).
+    first_performed = {row["song"]: row["first_performed"] for row in read_csv("song_stats.csv")}
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
     }
@@ -347,7 +352,9 @@ def build_set_length_stats(events: list[dict]) -> dict:
 
     bucket_info: dict[str, dict] = {}
     song_counts: dict[str, dict[str, int]] = {}
+    bucket_dates: dict[str, list[str]] = {}
     for key, bucket in sorted(bucket_by_show.items()):
+        date, _venue = key
         songs = songs_by_show.get(key, [])
         info = bucket_info.setdefault(
             bucket, {"shows": 0, "real_songs": 0, "with_se": 0, "event_ids": []}
@@ -360,6 +367,7 @@ def build_set_length_stats(events: list[dict]) -> dict:
         )
         info["with_se"] += 1 if any(s["is_se"] == "yes" for s in songs) else 0
         info["event_ids"].append(event_id_by_date_venue[key])
+        bucket_dates.setdefault(bucket, []).append(date)
         counts = song_counts.setdefault(bucket, {})
         for s in songs:
             counts[s["song"]] = counts.get(s["song"], 0) + 1
@@ -383,10 +391,14 @@ def build_set_length_stats(events: list[dict]) -> dict:
         {name for counts in song_counts.values() for name in counts},
         key=lambda name: -sum(song_counts[b].get(name, 0) for b in bucket_keys),
     )
-    songs = [
-        {"name": name, "counts": {b: song_counts[b].get(name, 0) for b in bucket_keys}}
-        for name in all_song_names
-    ]
+    songs = []
+    for name in all_song_names:
+        debut = first_performed.get(name, "")
+        rates = {}
+        for b in bucket_keys:
+            eligible = sum(1 for d in bucket_dates[b] if d >= debut)
+            rates[b] = {"count": song_counts[b].get(name, 0), "eligible": eligible}
+        songs.append({"name": name, "rates": rates})
 
     uncovered = len(shows) - sum(b["shows"] for b in buckets)
     return {"buckets": buckets, "songs": songs, "uncovered_shows": uncovered}

@@ -75,10 +75,18 @@ export interface LengthBucket {
   event_ids: string[];
 }
 
+export interface SongLengthRate {
+  count: number;
+  // Shows in this bucket on/after the song's own first_performed — not the
+  // bucket's total show count, since a song can't have been played before
+  // it existed (same reasoning as song_stats.csv's own play_rate).
+  eligible: number;
+}
+
 export interface SongLengthCounts {
   name: string;
   // Keyed by LengthBucket.length ("20 min", "25 min", ...).
-  counts: Record<string, number>;
+  rates: Record<string, SongLengthRate>;
 }
 
 export interface SetLengthStats {

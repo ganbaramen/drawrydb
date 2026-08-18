@@ -20531,200 +20531,464 @@
     "songs": [
       {
         "name": "朝焼けと車窓",
-        "counts": {
-          "10 min": 0,
-          "20 min": 14,
-          "25 min": 75,
-          "30 min": 35
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 14,
+            "eligible": 15
+          },
+          "25 min": {
+            "count": 75,
+            "eligible": 75
+          },
+          "30 min": {
+            "count": 35,
+            "eligible": 36
+          }
         }
       },
       {
         "name": "ルミナス",
-        "counts": {
-          "10 min": 1,
-          "20 min": 14,
-          "25 min": 73,
-          "30 min": 35
+        "rates": {
+          "10 min": {
+            "count": 1,
+            "eligible": 1
+          },
+          "20 min": {
+            "count": 14,
+            "eligible": 15
+          },
+          "25 min": {
+            "count": 73,
+            "eligible": 75
+          },
+          "30 min": {
+            "count": 35,
+            "eligible": 36
+          }
         }
       },
       {
         "name": "Dear,History",
-        "counts": {
-          "10 min": 1,
-          "20 min": 6,
-          "25 min": 53,
-          "30 min": 25
+        "rates": {
+          "10 min": {
+            "count": 1,
+            "eligible": 1
+          },
+          "20 min": {
+            "count": 6,
+            "eligible": 15
+          },
+          "25 min": {
+            "count": 53,
+            "eligible": 75
+          },
+          "30 min": {
+            "count": 25,
+            "eligible": 36
+          }
         }
       },
       {
         "name": "Moving Lights!",
-        "counts": {
-          "10 min": 0,
-          "20 min": 11,
-          "25 min": 37,
-          "30 min": 26
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 11,
+            "eligible": 15
+          },
+          "25 min": {
+            "count": 37,
+            "eligible": 75
+          },
+          "30 min": {
+            "count": 26,
+            "eligible": 36
+          }
         }
       },
       {
         "name": "Blooming",
-        "counts": {
-          "10 min": 0,
-          "20 min": 6,
-          "25 min": 34,
-          "30 min": 22
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 6,
+            "eligible": 15
+          },
+          "25 min": {
+            "count": 34,
+            "eligible": 75
+          },
+          "30 min": {
+            "count": 22,
+            "eligible": 36
+          }
         }
       },
       {
         "name": "ラブストーリーが始まらない",
-        "counts": {
-          "10 min": 0,
-          "20 min": 3,
-          "25 min": 37,
-          "30 min": 20
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 3,
+            "eligible": 13
+          },
+          "25 min": {
+            "count": 37,
+            "eligible": 59
+          },
+          "30 min": {
+            "count": 20,
+            "eligible": 25
+          }
         }
       },
       {
         "name": "SE",
-        "counts": {
-          "10 min": 0,
-          "20 min": 1,
-          "25 min": 38,
-          "30 min": 19
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 1,
+            "eligible": 15
+          },
+          "25 min": {
+            "count": 38,
+            "eligible": 75
+          },
+          "30 min": {
+            "count": 19,
+            "eligible": 36
+          }
         }
       },
       {
         "name": "プライマリ",
-        "counts": {
-          "10 min": 0,
-          "20 min": 0,
-          "25 min": 29,
-          "30 min": 22
-        }
-      },
-      {
-        "name": "Begin the Journey!",
-        "counts": {
-          "10 min": 0,
-          "20 min": 3,
-          "25 min": 26,
-          "30 min": 12
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 0,
+            "eligible": 15
+          },
+          "25 min": {
+            "count": 29,
+            "eligible": 75
+          },
+          "30 min": {
+            "count": 22,
+            "eligible": 36
+          }
         }
       },
       {
         "name": "スタンドバイミー",
-        "counts": {
-          "10 min": 0,
-          "20 min": 3,
-          "25 min": 24,
-          "30 min": 14
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 3,
+            "eligible": 8
+          },
+          "25 min": {
+            "count": 24,
+            "eligible": 29
+          },
+          "30 min": {
+            "count": 14,
+            "eligible": 16
+          }
+        }
+      },
+      {
+        "name": "Begin the Journey!",
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 3,
+            "eligible": 10
+          },
+          "25 min": {
+            "count": 26,
+            "eligible": 47
+          },
+          "30 min": {
+            "count": 12,
+            "eligible": 21
+          }
         }
       },
       {
         "name": "Interlude",
-        "counts": {
-          "10 min": 0,
-          "20 min": 7,
-          "25 min": 20,
-          "30 min": 8
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 7,
+            "eligible": 10
+          },
+          "25 min": {
+            "count": 20,
+            "eligible": 47
+          },
+          "30 min": {
+            "count": 8,
+            "eligible": 21
+          }
         }
       },
       {
         "name": "描きかけの空",
-        "counts": {
-          "10 min": 0,
-          "20 min": 3,
-          "25 min": 18,
-          "30 min": 7
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 3,
+            "eligible": 9
+          },
+          "25 min": {
+            "count": 18,
+            "eligible": 34
+          },
+          "30 min": {
+            "count": 7,
+            "eligible": 20
+          }
         }
       },
       {
         "name": "タイムカプセル",
-        "counts": {
-          "10 min": 0,
-          "20 min": 1,
-          "25 min": 15,
-          "30 min": 8
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 1,
+            "eligible": 8
+          },
+          "25 min": {
+            "count": 15,
+            "eligible": 29
+          },
+          "30 min": {
+            "count": 8,
+            "eligible": 16
+          }
         }
       },
       {
         "name": "Into the Blue",
-        "counts": {
-          "10 min": 0,
-          "20 min": 8,
-          "25 min": 7,
-          "30 min": 5
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 8,
+            "eligible": 8
+          },
+          "25 min": {
+            "count": 7,
+            "eligible": 8
+          },
+          "30 min": {
+            "count": 5,
+            "eligible": 5
+          }
         }
       },
       {
         "name": "SE(Moving Lights!)",
-        "counts": {
-          "10 min": 0,
-          "20 min": 6,
-          "25 min": 8,
-          "30 min": 5
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 6,
+            "eligible": 15
+          },
+          "25 min": {
+            "count": 8,
+            "eligible": 65
+          },
+          "30 min": {
+            "count": 5,
+            "eligible": 31
+          }
         }
       },
       {
         "name": "SE(スタンドバイミー)",
-        "counts": {
-          "10 min": 0,
-          "20 min": 3,
-          "25 min": 4,
-          "30 min": 4
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 3,
+            "eligible": 8
+          },
+          "25 min": {
+            "count": 4,
+            "eligible": 27
+          },
+          "30 min": {
+            "count": 4,
+            "eligible": 16
+          }
         }
       },
       {
         "name": "SE(Draw a Story)",
-        "counts": {
-          "10 min": 0,
-          "20 min": 0,
-          "25 min": 7,
-          "30 min": 3
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 0,
+            "eligible": 8
+          },
+          "25 min": {
+            "count": 7,
+            "eligible": 29
+          },
+          "30 min": {
+            "count": 3,
+            "eligible": 16
+          }
         }
       },
       {
         "name": "Draw a line",
-        "counts": {
-          "10 min": 0,
-          "20 min": 0,
-          "25 min": 0,
-          "30 min": 7
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 0,
+            "eligible": 8
+          },
+          "25 min": {
+            "count": 0,
+            "eligible": 29
+          },
+          "30 min": {
+            "count": 7,
+            "eligible": 16
+          }
         }
       },
       {
         "name": "銀幕",
-        "counts": {
-          "10 min": 0,
-          "20 min": 0,
-          "25 min": 2,
-          "30 min": 3
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 0,
+            "eligible": 8
+          },
+          "25 min": {
+            "count": 2,
+            "eligible": 9
+          },
+          "30 min": {
+            "count": 3,
+            "eligible": 11
+          }
         }
       },
       {
         "name": "SE(プライマリ)",
-        "counts": {
-          "10 min": 0,
-          "20 min": 0,
-          "25 min": 4,
-          "30 min": 1
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 0,
+            "eligible": 10
+          },
+          "25 min": {
+            "count": 4,
+            "eligible": 48
+          },
+          "30 min": {
+            "count": 1,
+            "eligible": 23
+          }
         }
       },
       {
         "name": "Fly By",
-        "counts": {
-          "10 min": 0,
-          "20 min": 0,
-          "25 min": 1,
-          "30 min": 2
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 0,
+            "eligible": 2
+          },
+          "25 min": {
+            "count": 1,
+            "eligible": 2
+          },
+          "30 min": {
+            "count": 2,
+            "eligible": 2
+          }
         }
       },
       {
         "name": "SE(ラブストーリーが始まらない)",
-        "counts": {
-          "10 min": 0,
-          "20 min": 0,
-          "25 min": 1,
-          "30 min": 0
+        "rates": {
+          "10 min": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20 min": {
+            "count": 0,
+            "eligible": 8
+          },
+          "25 min": {
+            "count": 1,
+            "eligible": 17
+          },
+          "30 min": {
+            "count": 0,
+            "eligible": 13
+          }
         }
       }
     ],
