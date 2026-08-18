@@ -17952,8 +17952,8 @@
         "lyrics": "小鳥遊カイリ",
         "composition": "小鳥遊カイリ",
         "arrangement": "小鳥遊カイリ",
-        "choreography": "",
-        "note": "https://x.com/Drawry0920/status/2067926003566166494"
+        "choreography": "ナンシー",
+        "note": "https://x.com/Drawry0920/status/2067926003566166494\nhttps://x.com/nancy_jpn/status/2011806531982090414"
       }
     },
     {
@@ -19734,7 +19734,7 @@
         "composition": "cuum",
         "arrangement": "cuum",
         "choreography": "ナンシー",
-        "note": "https://x.com/Drawry0920/status/2060612225422041420"
+        "note": "https://x.com/Drawry0920/status/2060612225422041420\nhttps://x.com/nancy_jpn/status/2063985102234001760"
       }
     },
     {
@@ -20016,7 +20016,7 @@
         "composition": "kr-KuuRa",
         "arrangement": "kr-KuuRa",
         "choreography": "ナンシー",
-        "note": "https://x.com/Drawry0920/status/2082095158775181743"
+        "note": "https://x.com/Drawry0920/status/2082095158775181743\nhttps://x.com/9ra919/status/2082429341968011622"
       }
     }
   ],
@@ -20684,6 +20684,14 @@
           "song_id": "primary",
           "song_name": "プライマリ",
           "translation": "primary",
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "begin-the-journey",
+          "song_name": "Begin the Journey!",
+          "translation": null,
           "roles": [
             "choreography"
           ]
