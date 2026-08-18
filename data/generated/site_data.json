@@ -20694,27 +20694,6 @@
         }
       },
       {
-        "name": "スタンドバイミー",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 3,
-            "eligible": 8
-          },
-          "25": {
-            "count": 24,
-            "eligible": 29
-          },
-          "30": {
-            "count": 14,
-            "eligible": 16
-          }
-        }
-      },
-      {
         "name": "Begin the Journey!",
         "rates": {
           "10": {
@@ -20732,6 +20711,27 @@
           "30": {
             "count": 12,
             "eligible": 21
+          }
+        }
+      },
+      {
+        "name": "スタンドバイミー",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 3,
+            "eligible": 8
+          },
+          "25": {
+            "count": 24,
+            "eligible": 29
+          },
+          "30": {
+            "count": 14,
+            "eligible": 16
           }
         }
       },
@@ -20904,27 +20904,6 @@
         }
       },
       {
-        "name": "SE(プライマリ)",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 0,
-            "eligible": 10
-          },
-          "25": {
-            "count": 4,
-            "eligible": 48
-          },
-          "30": {
-            "count": 1,
-            "eligible": 23
-          }
-        }
-      },
-      {
         "name": "銀幕",
         "rates": {
           "10": {
@@ -20942,6 +20921,27 @@
           "30": {
             "count": 3,
             "eligible": 11
+          }
+        }
+      },
+      {
+        "name": "SE(プライマリ)",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 0,
+            "eligible": 10
+          },
+          "25": {
+            "count": 4,
+            "eligible": 48
+          },
+          "30": {
+            "count": 1,
+            "eligible": 23
           }
         }
       },
