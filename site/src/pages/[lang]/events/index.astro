@@ -56,16 +56,22 @@ const totalCounts = countFor(events);
     data-filter/checked/selected state and the CSS rules below in sync if
     a filter value is ever added.
   -->
-  <div class="filter-bar" role="group" aria-label={t(lang, 'events.title')}>
-    <label><input type="radio" name="setlist-filter" value="has" checked /> {t(lang, 'events.filter.has')}</label>
-    <label><input type="radio" name="setlist-filter" value="none" /> {t(lang, 'events.filter.none')}</label>
-    <label><input type="radio" name="setlist-filter" value="all" /> {t(lang, 'events.filter.all')}</label>
+  <div class="search-box">
     <input
       type="search"
       id="event-search"
       class="event-search"
       placeholder={t(lang, 'events.search.placeholder')}
     />
+    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2" />
+      <line x1="20" y1="20" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </div>
+  <div class="filter-bar" role="group" aria-label={t(lang, 'events.title')}>
+    <label><input type="radio" name="setlist-filter" value="has" checked /> {t(lang, 'events.filter.has')}</label>
+    <label><input type="radio" name="setlist-filter" value="none" /> {t(lang, 'events.filter.none')}</label>
+    <label><input type="radio" name="setlist-filter" value="all" /> {t(lang, 'events.filter.all')}</label>
     <label class="month-filter-label">
       {t(lang, 'events.month.label')}
       <select id="month-filter">
@@ -203,6 +209,39 @@ const totalCounts = countFor(events);
     margin-top: 0;
   }
 
+  .search-box {
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+
+  .event-search {
+    width: 100%;
+    padding: 0.6rem 2.5rem 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+
+  /* Safari/WebKit adds its own cancel/search decorations to
+     type="search" inputs, which would double up with .search-icon. */
+  .event-search::-webkit-search-cancel-button,
+  .event-search::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.8rem;
+    transform: translateY(-50%);
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
   .filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -217,15 +256,6 @@ const totalCounts = countFor(events);
     align-items: center;
     gap: 0.3rem;
     cursor: pointer;
-  }
-
-  .event-search {
-    padding: 0.3rem 0.5rem;
-    border: 1px solid var(--border);
-    border-radius: 0.3rem;
-    background: var(--surface);
-    color: var(--text);
-    font-size: 0.85rem;
   }
 
   .month-filter-label {
