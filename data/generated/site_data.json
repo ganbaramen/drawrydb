@@ -20694,27 +20694,6 @@
         }
       },
       {
-        "name": "Begin the Journey!",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 3,
-            "eligible": 10
-          },
-          "25": {
-            "count": 26,
-            "eligible": 47
-          },
-          "30": {
-            "count": 12,
-            "eligible": 21
-          }
-        }
-      },
-      {
         "name": "スタンドバイミー",
         "rates": {
           "10": {
@@ -20732,6 +20711,27 @@
           "30": {
             "count": 14,
             "eligible": 16
+          }
+        }
+      },
+      {
+        "name": "Begin the Journey!",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 3,
+            "eligible": 10
+          },
+          "25": {
+            "count": 26,
+            "eligible": 47
+          },
+          "30": {
+            "count": 12,
+            "eligible": 21
           }
         }
       },
