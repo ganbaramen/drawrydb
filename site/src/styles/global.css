@@ -253,6 +253,34 @@ main {
   font-weight: 400;
 }
 
+.stats-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.stats-table th.sortable:hover {
+  color: var(--text);
+}
+
+.stats-table th.sortable::after {
+  content: '⇅';
+  margin-left: 0.3rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.stats-table th.sortable[data-sort-dir='asc']::after {
+  content: '↑';
+  color: var(--accent);
+  opacity: 1;
+}
+
+.stats-table th.sortable[data-sort-dir='desc']::after {
+  content: '↓';
+  color: var(--accent);
+  opacity: 1;
+}
+
 .pending-notice {
   background: var(--accent-bg);
   color: var(--accent);
