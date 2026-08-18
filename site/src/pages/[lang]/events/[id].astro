@@ -69,7 +69,7 @@ const venue = event.venue ? getVenue(event.venue) : undefined;
             {event.ticket_links.map((link) => (
               <li>
                 <a href={link.url} target="_blank" rel="noopener noreferrer">
-                  {link.label ?? t(lang, 'events.ticketLinkDefault')}
+                  {link.label ?? link.url}
                 </a>
               </li>
             ))}
