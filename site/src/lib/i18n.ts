@@ -13,12 +13,9 @@ const ja: Dict = {
   'nav.songs': '楽曲',
   'nav.venues': '会場',
   'theme.toggle': 'テーマを切り替える',
-  'disclaimer.pre': '非公式のファンサイトです — Drawry. 本人・関係者・公式とは一切関係ありません。',
-  'disclaimer.post': 'が個人的に作成・運営しています。',
   'footer.disclaimer':
     'これは非公式のファンプロジェクトであり、Drawry. または関係者とは一切関係ありません。',
   'footer.contact': '連絡先：',
-  'footer.credit': '（ramen）',
   'footer.source': 'GitHubでソースを見る',
   'home.next': '次のライブ',
   'home.recent': '最近のセットリスト',
@@ -68,9 +65,6 @@ const en: Dict = {
   'nav.songs': 'Songs',
   'nav.venues': 'Venues',
   'theme.toggle': 'Toggle theme',
-  'disclaimer.pre':
-    'This is an unofficial fan site — not affiliated with Drawry. or their management. Made and run independently by ',
-  'disclaimer.post': '.',
   'footer.disclaimer':
     'This is an unofficial fan project, not affiliated with Drawry. or their management.',
   'footer.contact': 'Contact: ',
