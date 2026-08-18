@@ -22,6 +22,18 @@ const { song, lang } = Astro.props as { song: Song; lang: Lang };
 const base = import.meta.env.BASE_URL;
 // Most recent first, matching the events list's ordering convention.
 const performances = song.performances.slice().reverse();
+
+// first_performed/last_performed are dates derived in the pipeline (see
+// CLAUDE.md's song_stats section); find the matching performance to link
+// to the actual event. A tie (two shows the same day) just takes the
+// first match in performances' own order — which show gets linked barely
+// matters here, both are "correct" for the date shown.
+function eventFor(date: string) {
+  const performance = song.performances.find((p) => p.date === date);
+  return performance ? events.find((e) => e.id === performance.event_id) : undefined;
+}
+const debutEvent = eventFor(song.first_performed);
+const lastEvent = eventFor(song.last_performed);
 ---
 
 <Layout title={song.name} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
@@ -36,11 +48,27 @@ const performances = song.performances.slice().reverse();
     </tr>
     <tr>
       <th>{t(lang, 'songs.debut')}</th>
-      <td>{song.first_performed}</td>
+      <td>
+        {song.first_performed}
+        {debutEvent && (
+          <>
+            {' — '}
+            <a href={`${base}/${lang}/events/${debutEvent.id}/`}>{debutEvent.title}</a>
+          </>
+        )}
+      </td>
     </tr>
     <tr>
       <th>{t(lang, 'songs.lastPerformed')}</th>
-      <td>{song.last_performed}</td>
+      <td>
+        {song.last_performed}
+        {lastEvent && (
+          <>
+            {' — '}
+            <a href={`${base}/${lang}/events/${lastEvent.id}/`}>{lastEvent.title}</a>
+          </>
+        )}
+      </td>
     </tr>
     <tr>
       <th>{t(lang, 'songs.playRate')}</th>
