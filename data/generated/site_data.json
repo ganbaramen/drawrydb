@@ -20859,29 +20859,6 @@
         }
       },
       {
-        "id": "stand-by-me",
-        "name": "スタンドバイミー",
-        "translation": "Stand by Me",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 3,
-            "eligible": 8
-          },
-          "25": {
-            "count": 24,
-            "eligible": 29
-          },
-          "30": {
-            "count": 14,
-            "eligible": 16
-          }
-        }
-      },
-      {
         "id": "begin-the-journey",
         "name": "Begin the Journey!",
         "translation": null,
@@ -20901,6 +20878,29 @@
           "30": {
             "count": 12,
             "eligible": 21
+          }
+        }
+      },
+      {
+        "id": "stand-by-me",
+        "name": "スタンドバイミー",
+        "translation": "Stand by Me",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 3,
+            "eligible": 8
+          },
+          "25": {
+            "count": 24,
+            "eligible": 29
+          },
+          "30": {
+            "count": 14,
+            "eligible": 16
           }
         }
       },
@@ -21089,29 +21089,6 @@
         }
       },
       {
-        "id": "ginmaku",
-        "name": "銀幕",
-        "translation": "Ginmaku",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 0,
-            "eligible": 8
-          },
-          "25": {
-            "count": 2,
-            "eligible": 9
-          },
-          "30": {
-            "count": 3,
-            "eligible": 11
-          }
-        }
-      },
-      {
         "id": "se-primary",
         "name": "SE(プライマリ)",
         "translation": "SE(primary)",
@@ -21131,6 +21108,29 @@
           "30": {
             "count": 1,
             "eligible": 23
+          }
+        }
+      },
+      {
+        "id": "ginmaku",
+        "name": "銀幕",
+        "translation": "Ginmaku",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 0,
+            "eligible": 8
+          },
+          "25": {
+            "count": 2,
+            "eligible": 9
+          },
+          "30": {
+            "count": 3,
+            "eligible": 11
           }
         }
       },

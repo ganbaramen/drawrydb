@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { songs, events, type Song } from '../../../lib/data';
-import { autoLink, formatDate, songDisplayName, songSubtitle, urlSafe } from '../../../lib/format';
+import { autoLink, formatDate, formatTrackNumber, songDisplayName, songSubtitle, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -51,7 +51,7 @@ const credits = song.credits;
         {credits.number && (
           <tr>
             <th>{t(lang, 'songs.number')}</th>
-            <td>{credits.number}</td>
+            <td>{formatTrackNumber(credits.number)}</td>
           </tr>
         )}
         {credits.lyrics && (

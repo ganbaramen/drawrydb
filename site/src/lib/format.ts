@@ -48,6 +48,13 @@ export function formatSetLength(lang: Lang, minutes: number): string {
   return lang === 'ja' ? `${minutes}分` : `${minutes} min`;
 }
 
+// song_details.csv's track numbers are entered as plain digits ("1", "11")
+// — padded to 2 digits at display time so the site doesn't require typing
+// a leading zero by hand.
+export function formatTrackNumber(number: string): string {
+  return number.padStart(2, '0');
+}
+
 interface NamedWithTranslation {
   name: string;
   translation: string | null;
