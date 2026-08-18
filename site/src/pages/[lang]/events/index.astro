@@ -31,6 +31,17 @@ for (const event of sorted) {
   }
   eventsByMonth.get(key)!.push(event);
 }
+
+// Per-month option counts, one per setlist-filter value, so the dropdown
+// can show e.g. "2026年7月 (14)" reflecting *whichever* setlist filter is
+// currently active rather than always the unfiltered total — the setlist
+// filter applies first, the month count reflects what's left after it.
+function countFor(list: typeof sorted) {
+  const has = list.filter((e) => e.has_setlist).length;
+  return { has, none: list.length - has, all: list.length };
+}
+const monthCounts = new Map(monthKeys.map((key) => [key, countFor(eventsByMonth.get(key)!)]));
+const totalCounts = countFor(events);
 ---
 
 <Layout title={t(lang, 'events.title')} lang={lang} path="events/">
@@ -49,11 +60,29 @@ for (const event of sorted) {
     <label><input type="radio" name="setlist-filter" value="has" checked /> {t(lang, 'events.filter.has')}</label>
     <label><input type="radio" name="setlist-filter" value="none" /> {t(lang, 'events.filter.none')}</label>
     <label><input type="radio" name="setlist-filter" value="all" /> {t(lang, 'events.filter.all')}</label>
-    <label>
+    <label class="month-filter-label">
       {t(lang, 'events.month.label')}
       <select id="month-filter">
-        <option value="all">{t(lang, 'events.month.all')}</option>
-        {monthKeys.map((key) => <option value={key}>{formatMonth(lang, key)}</option>)}
+        <option
+          value="all"
+          data-label={t(lang, 'events.month.all')}
+          data-count-has={totalCounts.has}
+          data-count-none={totalCounts.none}
+          data-count-all={totalCounts.all}
+        >
+          {t(lang, 'events.month.all')} ({totalCounts.has})
+        </option>
+        {
+          monthKeys.map((key) => {
+            const c = monthCounts.get(key)!;
+            const label = formatMonth(lang, key);
+            return (
+              <option value={key} data-label={label} data-count-has={c.has} data-count-none={c.none} data-count-all={c.all}>
+                {label} ({c.has})
+              </option>
+            );
+          })
+        }
       </select>
     </label>
   </div>
@@ -99,6 +128,14 @@ for (const event of sorted) {
       )!.value;
       const monthFilter = monthSelect.value;
       list.dataset.filter = setlistFilter;
+
+      // Each option's count reflects the setlist filter applied first —
+      // e.g. under "セトリあり" a month shows how many of *those* fall in
+      // it, not its raw total.
+      const countAttr = `count${setlistFilter[0].toUpperCase()}${setlistFilter.slice(1)}`;
+      Array.from(monthSelect.options).forEach((opt) => {
+        opt.textContent = `${opt.dataset.label} (${opt.dataset[countAttr]})`;
+      });
 
       let visible = 0;
       const monthHasVisible = new Map<string, boolean>();
@@ -164,6 +201,10 @@ for (const event of sorted) {
     align-items: center;
     gap: 0.3rem;
     cursor: pointer;
+  }
+
+  .month-filter-label {
+    margin-left: auto;
   }
 
   #month-filter {
