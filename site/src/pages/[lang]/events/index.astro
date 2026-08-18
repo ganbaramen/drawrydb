@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { events } from '../../../lib/data';
-import { formatDate } from '../../../lib/format';
+import { formatDate, formatMonth } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -16,16 +16,36 @@ const hasSetlistCount = events.filter((event) => event.has_setlist).length;
 // Client script reuses this template (with {n} swapped for the live count)
 // so it doesn't need its own copy of the locale's count phrasing.
 const countTemplate = t(lang, 'events.count', { n: '__N__' });
+
+// Group into months (most recent first, matching `sorted`) so the list can
+// get a heading per month plus a jump-to-month nav — 163 events in one flat
+// scroll had no way to get to e.g. "last February" short of scrolling past
+// everything after it.
+const monthKeys: string[] = [];
+const eventsByMonth = new Map<string, typeof sorted>();
+for (const event of sorted) {
+  const key = event.date.slice(0, 7);
+  if (!eventsByMonth.has(key)) {
+    eventsByMonth.set(key, []);
+    monthKeys.push(key);
+  }
+  eventsByMonth.get(key)!.push(event);
+}
 ---
 
 <Layout title={t(lang, 'events.title')} lang={lang} path="events/">
   <h1>{t(lang, 'events.title')}</h1>
 
+  <nav class="month-nav" aria-label={t(lang, 'events.title')}>
+    {monthKeys.map((key) => <a href={`#m-${key}`} data-month-nav={key}>{formatMonth(lang, key)}</a>)}
+  </nav>
+
   <!--
     Default view (セトリあり) works with CSS alone via the ul's
     data-filter attribute, so it's correct even before the script below
     runs or if JS is disabled — the radios and script only add the other
-    two views. Keep the initial data-filter/checked state and the CSS
+    two views (and the per-month hide/show, and the nav's active-month
+    highlighting). Keep the initial data-filter/checked state and the CSS
     rules below in sync if a filter value is ever added.
   -->
   <div class="filter-bar" role="group" aria-label={t(lang, 'events.title')}>
@@ -36,17 +56,24 @@ const countTemplate = t(lang, 'events.count', { n: '__N__' });
   <p id="event-count" data-template={countTemplate}>{t(lang, 'events.count', { n: hasSetlistCount })}</p>
   <ul id="event-list" data-filter="has" style="list-style:none; padding:0;">
     {
-      sorted.map((event) => (
-        <li data-has-setlist={event.has_setlist ? '1' : '0'}>
-          <a class="event-card" href={`${base}/${lang}/events/${event.id}/`}>
-            <div class="event-date">{formatDate(lang, event.date)}</div>
-            <div class="event-title">
-              {event.title}
-              {!event.has_setlist && <span class="badge">{t(lang, 'badge.pending')}</span>}
-            </div>
-            {event.venue && <div class="event-venue">{event.venue}</div>}
-          </a>
-        </li>
+      monthKeys.map((key) => (
+        <>
+          <li class="month-heading" id={`m-${key}`} data-month={key}>
+            {formatMonth(lang, key)}
+          </li>
+          {eventsByMonth.get(key)!.map((event) => (
+            <li data-has-setlist={event.has_setlist ? '1' : '0'} data-month={key}>
+              <a class="event-card" href={`${base}/${lang}/events/${event.id}/`}>
+                <div class="event-date">{formatDate(lang, event.date)}</div>
+                <div class="event-title">
+                  {event.title}
+                  {!event.has_setlist && <span class="badge">{t(lang, 'badge.pending')}</span>}
+                </div>
+                {event.venue && <div class="event-venue">{event.venue}</div>}
+              </a>
+            </li>
+          ))}
+        </>
       ))
     }
   </ul>
@@ -55,7 +82,9 @@ const countTemplate = t(lang, 'events.count', { n: '__N__' });
     const list = document.getElementById('event-list')!;
     const countEl = document.getElementById('event-count')!;
     const template = countEl.dataset.template!;
-    const items = list.querySelectorAll<HTMLLIElement>('li');
+    const items = list.querySelectorAll<HTMLLIElement>('li[data-has-setlist]');
+    const headings = list.querySelectorAll<HTMLLIElement>('li.month-heading');
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-month-nav]');
     const radios = document.querySelectorAll<HTMLInputElement>(
       'input[name="setlist-filter"]',
     );
@@ -63,20 +92,76 @@ const countTemplate = t(lang, 'events.count', { n: '__N__' });
     function apply(filter: string) {
       list.dataset.filter = filter;
       let visible = 0;
+      const monthHasVisible = new Map<string, boolean>();
+
       items.forEach((li) => {
         const has = li.dataset.hasSetlist === '1';
-        if (filter === 'all' || (filter === 'has') === has) visible++;
+        const show = filter === 'all' || (filter === 'has') === has;
+        if (show) {
+          visible++;
+          monthHasVisible.set(li.dataset.month!, true);
+        }
       });
+
+      headings.forEach((h) => {
+        h.hidden = !monthHasVisible.get(h.dataset.month!);
+      });
+      navLinks.forEach((a) => {
+        a.hidden = !monthHasVisible.get(a.dataset.monthNav!);
+      });
+
       countEl.textContent = template.replace('__N__', String(visible));
     }
 
     radios.forEach((radio) => {
       radio.addEventListener('change', () => apply(radio.value));
     });
+
+    // The default "has" view works from CSS alone before this script runs
+    // (see the comment above the filter-bar), but headings/nav visibility
+    // has no CSS equivalent — sync them once up front to match.
+    const checked = document.querySelector<HTMLInputElement>('input[name="setlist-filter"]:checked');
+    apply(checked?.value ?? 'has');
   </script>
 </Layout>
 
 <style>
+  .month-nav {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .month-nav a {
+    flex: none;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+
+  .month-nav a:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+
+  .month-heading {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    scroll-margin-top: 0.5rem;
+  }
+
+  .month-heading:first-child {
+    margin-top: 0;
+  }
+
   .filter-bar {
     display: flex;
     gap: 1rem;

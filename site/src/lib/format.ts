@@ -31,3 +31,17 @@ export function formatDate(lang: Lang, iso: string): string {
     timeZone: 'UTC',
   }).format(date);
 }
+
+// key is "YYYY-MM", e.g. from an event date's first 7 characters.
+export function formatMonth(lang: Lang, key: string): string {
+  const [y, m] = key.split('-').map(Number);
+  const date = new Date(Date.UTC(y, m - 1, 1));
+  if (lang === 'ja') {
+    return `${y}年${m}月`;
+  }
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    timeZone: 'UTC',
+  }).format(date);
+}
