@@ -1,24 +1,29 @@
+/*
+ * Palette inspired by Drawry.'s own colors: navy/pale blue (the neck-ribbon
+ * blue) for the base UI, purple (the outfit's main lavender) reserved for
+ * attention/alert accents — the disclaimer banner, pending badges, notices.
+ */
 :root {
-  --bg: #fafaf9;
+  --bg: #f2f5fb;
   --surface: #ffffff;
-  --text: #1c1917;
-  --text-muted: #78716c;
-  --border: #e7e5e4;
-  --accent: #be123c;
-  --accent-bg: #fff1f2;
-  --link: #9f1239;
+  --text: #16233f;
+  --text-muted: #5b6b8c;
+  --border: #d9e1f0;
+  --accent: #7c5cbf;
+  --accent-bg: #f1ecfa;
+  --link: #2f4d85;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1c1917;
-    --surface: #292524;
-    --text: #fafaf9;
-    --text-muted: #a8a29e;
-    --border: #44403c;
-    --accent: #fb7185;
-    --accent-bg: #3f1d24;
-    --link: #fda4af;
+    --bg: #0e1729;
+    --surface: #182338;
+    --text: #eaf0fb;
+    --text-muted: #96a6c4;
+    --border: #2c3b58;
+    --accent: #b79cec;
+    --accent-bg: #2b2545;
+    --link: #93b4e8;
   }
 }
 
