@@ -41,6 +41,13 @@ export function liveDurationMinutes(start: string, end: string): number {
   return minutes < 0 ? minutes + 24 * 60 : minutes;
 }
 
+// export_site_data.py ships bucket length as a bare minute count (not
+// shows.csv's English "20 min" label) specifically so this can render it in
+// either language.
+export function formatSetLength(lang: Lang, minutes: number): string {
+  return lang === 'ja' ? `${minutes}分` : `${minutes} min`;
+}
+
 // key is "YYYY-MM", e.g. from an event date's first 7 characters.
 export function formatMonth(lang: Lang, key: string): string {
   const [y, m] = key.split('-').map(Number);

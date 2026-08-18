@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { setLengthStats, getEvent, type LengthBucket } from '../../../lib/data';
-import { formatDate } from '../../../lib/format';
+import { formatDate, formatSetLength } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -22,10 +22,10 @@ const base = import.meta.env.BASE_URL;
 const eventIds = bucket.event_ids.slice().reverse();
 ---
 
-<Layout title={bucket.length} lang={lang} path={`set-lengths/${bucket.minutes}/`}>
+<Layout title={formatSetLength(lang, bucket.minutes)} lang={lang} path={`set-lengths/${bucket.minutes}/`}>
   <p><a href="../">{t(lang, 'setLength.back')}</a></p>
 
-  <h1>{bucket.length}</h1>
+  <h1>{formatSetLength(lang, bucket.minutes)}</h1>
 
   <table class="meta-table">
     <tr>

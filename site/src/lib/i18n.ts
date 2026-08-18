@@ -67,11 +67,11 @@ const ja: Dict = {
   'setLength.shows': '公演数',
   'setLength.avgSongs': '平均曲数（SE・Interlude除く）',
   'setLength.withSe': 'SEあり',
-  'setLength.withSeDetail': '{count}/{shows}（{pct}%）',
+  'setLength.withSeDetail': '{count}/{shows} ({pct}%)',
   'setLength.uncovered': '{n}公演は開演・終演時刻が不明のため対象外',
   'setLength.songDistribution': '曲別の披露率',
   'setLength.songName': '曲名',
-  'setLength.rateDetail': '{pct}%（{count}/{shows}）',
+  'setLength.rateDetail': '{pct}% ({count}/{shows})',
 };
 
 const en: Dict = {

@@ -372,12 +372,17 @@ def build_set_length_stats(events: list[dict]) -> dict:
         for s in songs:
             counts[s["song"]] = counts.get(s["song"], 0) + 1
 
+    # bucket_info/song_counts/bucket_dates are keyed by shows.csv's English
+    # length_bucket label ("20 min") — internal grouping only. The site
+    # needs to render this in either language, so the *exported* key is the
+    # locale-neutral minute count instead; the label itself isn't shipped at
+    # all, letting the site format "20分"/"20 min" from the number.
     bucket_keys = sorted(bucket_info, key=lambda b: int(b.split()[0]))
+    minutes_by_key = {b: int(b.split()[0]) for b in bucket_keys}
 
     buckets = [
         {
-            "length": b,
-            "minutes": int(b.split()[0]),
+            "minutes": minutes_by_key[b],
             "shows": bucket_info[b]["shows"],
             "avg_songs": round(bucket_info[b]["real_songs"] / bucket_info[b]["shows"], 1),
             "shows_with_se": bucket_info[b]["with_se"],
@@ -397,7 +402,10 @@ def build_set_length_stats(events: list[dict]) -> dict:
         rates = {}
         for b in bucket_keys:
             eligible = sum(1 for d in bucket_dates[b] if d >= debut)
-            rates[b] = {"count": song_counts[b].get(name, 0), "eligible": eligible}
+            rates[str(minutes_by_key[b])] = {
+                "count": song_counts[b].get(name, 0),
+                "eligible": eligible,
+            }
         songs.append({"name": name, "rates": rates})
 
     uncovered = len(shows) - sum(b["shows"] for b in buckets)

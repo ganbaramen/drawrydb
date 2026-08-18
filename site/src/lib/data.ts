@@ -67,7 +67,6 @@ export interface Venue {
 }
 
 export interface LengthBucket {
-  length: string;
   minutes: number;
   shows: number;
   avg_songs: number;
@@ -85,7 +84,7 @@ export interface SongLengthRate {
 
 export interface SongLengthCounts {
   name: string;
-  // Keyed by LengthBucket.length ("20 min", "25 min", ...).
+  // Keyed by LengthBucket.minutes, stringified ("20", "25", ...).
   rates: Record<string, SongLengthRate>;
 }
 
