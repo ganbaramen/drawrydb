@@ -12,6 +12,7 @@ const ja: Dict = {
   'nav.events': 'イベント',
   'nav.songs': '楽曲',
   'nav.venues': '会場',
+  'nav.setLength': 'セット尺',
   'theme.toggle': 'テーマを切り替える',
   'footer.disclaimer':
     'これは非公式のファンサイトです。Drawry. 本人・関係者・公式とは一切関係ありません。',
@@ -60,12 +61,23 @@ const ja: Dict = {
   'venues.firstPlayed': '初出演',
   'venues.lastPlayed': '最新出演',
   'venues.history': '公演一覧',
+  'setLength.title': 'セット尺別統計',
+  'setLength.length': 'セット尺',
+  'setLength.shows': '公演数',
+  'setLength.avgSongs': '平均曲数（SE・Interlude除く）',
+  'setLength.withSe': 'SEあり',
+  'setLength.withSeDetail': '{count}/{shows}（{pct}%）',
+  'setLength.uncovered': '{n}公演は開演・終演時刻が不明のため対象外',
+  'setLength.songDistribution': '曲別の披露率',
+  'setLength.songName': '曲名',
+  'setLength.rateDetail': '{pct}%（{count}/{shows}）',
 };
 
 const en: Dict = {
   'nav.events': 'Events',
   'nav.songs': 'Songs',
   'nav.venues': 'Venues',
+  'nav.setLength': 'Set Length',
   'theme.toggle': 'Toggle theme',
   'footer.disclaimer':
     'This is an unofficial fan project, not affiliated with Drawry. or their management.',
@@ -114,6 +126,16 @@ const en: Dict = {
   'venues.firstPlayed': 'First played',
   'venues.lastPlayed': 'Last played',
   'venues.history': 'Shows',
+  'setLength.title': 'Set Length Stats',
+  'setLength.length': 'Set length',
+  'setLength.shows': 'Shows',
+  'setLength.avgSongs': 'Avg songs (excl. SE/Interlude)',
+  'setLength.withSe': 'Has SE',
+  'setLength.withSeDetail': '{count}/{shows} ({pct}%)',
+  'setLength.uncovered': "{n} shows excluded — calendar doesn't state a live start/end",
+  'setLength.songDistribution': 'Play rate by song',
+  'setLength.songName': 'Song',
+  'setLength.rateDetail': '{pct}% ({count}/{shows})',
 };
 
 const dictionaries: Record<Lang, Dict> = { ja, en };

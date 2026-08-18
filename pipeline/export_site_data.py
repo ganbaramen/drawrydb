@@ -316,12 +316,81 @@ def build_venues(events: list[dict]) -> list[dict]:
     return venues
 
 
+def build_set_length_stats() -> dict:
+    """Group shows by set length (shows.csv's length_bucket, already derived
+    from the calendar's live_start/live_end — see CLAUDE.md's set_length_stats
+    section) and report, per bucket, how many shows there are, how many real
+    songs a set that length tends to have, how many included an SE, and how
+    often each song turns up — the last one across every bucket, so the site
+    can show a single table comparing play distribution by length instead of
+    sync_setlists.py's own report's top-5-per-bucket cap.
+
+    Coverage is partial by the same token as shows.csv itself: only shows
+    whose calendar entry states both live_start and live_end get a bucket.
+    """
+    shows = read_csv("shows.csv")
+    setlists = read_csv("setlists.csv")
+
+    bucket_by_show = {
+        (row["event_date"], row["venue"]): row["length_bucket"]
+        for row in shows
+        if row["length_bucket"]
+    }
+
+    songs_by_show: dict[tuple[str, str], list[dict]] = {}
+    for row in setlists:
+        songs_by_show.setdefault((row["event_date"], row["venue"]), []).append(row)
+
+    bucket_info: dict[str, dict] = {}
+    song_counts: dict[str, dict[str, int]] = {}
+    for key, bucket in bucket_by_show.items():
+        songs = songs_by_show.get(key, [])
+        info = bucket_info.setdefault(bucket, {"shows": 0, "real_songs": 0, "with_se": 0})
+        info["shows"] += 1
+        # SE and Interlude are categories, not song choices — excluded from
+        # the song count for the same reason sync_setlists.py's avg_songs is.
+        info["real_songs"] += sum(
+            1 for s in songs if s["is_se"] != "yes" and s["is_interlude"] != "yes"
+        )
+        info["with_se"] += 1 if any(s["is_se"] == "yes" for s in songs) else 0
+        counts = song_counts.setdefault(bucket, {})
+        for s in songs:
+            counts[s["song"]] = counts.get(s["song"], 0) + 1
+
+    bucket_keys = sorted(bucket_info, key=lambda b: int(b.split()[0]))
+
+    buckets = [
+        {
+            "length": b,
+            "minutes": int(b.split()[0]),
+            "shows": bucket_info[b]["shows"],
+            "avg_songs": round(bucket_info[b]["real_songs"] / bucket_info[b]["shows"], 1),
+            "shows_with_se": bucket_info[b]["with_se"],
+        }
+        for b in bucket_keys
+    ]
+
+    # Most-played overall first, matching songs/index.astro's own ordering.
+    all_song_names = sorted(
+        {name for counts in song_counts.values() for name in counts},
+        key=lambda name: -sum(song_counts[b].get(name, 0) for b in bucket_keys),
+    )
+    songs = [
+        {"name": name, "counts": {b: song_counts[b].get(name, 0) for b in bucket_keys}}
+        for name in all_song_names
+    ]
+
+    uncovered = len(shows) - sum(b["shows"] for b in buckets)
+    return {"buckets": buckets, "songs": songs, "uncovered_shows": uncovered}
+
+
 def main() -> None:
     events = build_events()
     data = {
         "events": events,
         "songs": build_songs(events),
         "venues": build_venues(events),
+        "set_length_stats": build_set_length_stats(),
     }
     with open(OUTPUT_JSON, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=2)

@@ -66,10 +66,31 @@ export interface Venue {
   event_ids: string[];
 }
 
+export interface LengthBucket {
+  length: string;
+  minutes: number;
+  shows: number;
+  avg_songs: number;
+  shows_with_se: number;
+}
+
+export interface SongLengthCounts {
+  name: string;
+  // Keyed by LengthBucket.length ("20 min", "25 min", ...).
+  counts: Record<string, number>;
+}
+
+export interface SetLengthStats {
+  buckets: LengthBucket[];
+  songs: SongLengthCounts[];
+  uncovered_shows: number;
+}
+
 interface SiteData {
   events: Event[];
   songs: Song[];
   venues: Venue[];
+  set_length_stats: SetLengthStats;
 }
 
 const data = raw as SiteData;
@@ -78,6 +99,7 @@ const data = raw as SiteData;
 export const events: Event[] = data.events;
 export const songs: Song[] = data.songs;
 export const venues: Venue[] = data.venues;
+export const setLengthStats: SetLengthStats = data.set_length_stats;
 
 export function getEvent(id: string): Event | undefined {
   return events.find((event) => event.id === id);

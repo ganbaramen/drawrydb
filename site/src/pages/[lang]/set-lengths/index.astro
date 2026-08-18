@@ -1,0 +1,101 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { setLengthStats } from '../../../lib/data';
+import { LOCALES, t, type Lang } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props as { lang: Lang };
+const { buckets, songs, uncovered_shows } = setLengthStats;
+---
+
+<Layout title={t(lang, 'setLength.title')} lang={lang} path="set-lengths/">
+  <h1>{t(lang, 'setLength.title')}</h1>
+
+  <table class="stats-table" id="bucket-table">
+    <thead>
+      <tr>
+        <th>{t(lang, 'setLength.length')}</th>
+        <th data-sort-type="number">{t(lang, 'setLength.shows')}</th>
+        <th data-sort-type="number">{t(lang, 'setLength.avgSongs')}</th>
+        <th data-sort-type="number">{t(lang, 'setLength.withSe')}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        buckets.map((b) => (
+          <tr>
+            <td>{b.length}</td>
+            <td data-sort-value={b.shows}>{b.shows}</td>
+            <td data-sort-value={b.avg_songs}>{b.avg_songs}</td>
+            <td data-sort-value={b.shows_with_se / b.shows}>
+              {t(lang, 'setLength.withSeDetail', {
+                count: b.shows_with_se,
+                shows: b.shows,
+                pct: Math.round((b.shows_with_se / b.shows) * 100),
+              })}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  {uncovered_shows > 0 && <p class="uncovered-note">{t(lang, 'setLength.uncovered', { n: uncovered_shows })}</p>}
+
+  <h2>{t(lang, 'setLength.songDistribution')}</h2>
+  <div class="table-scroll">
+    <table class="stats-table" id="song-distribution-table">
+      <thead>
+        <tr>
+          <th>{t(lang, 'setLength.songName')}</th>
+          {buckets.map((b) => <th data-sort-type="number">{b.length}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {
+          songs.map((song) => (
+            <tr>
+              <td>{song.name}</td>
+              {buckets.map((b) => {
+                const count = song.counts[b.length] ?? 0;
+                return (
+                  <td data-sort-value={count / b.shows}>
+                    {t(lang, 'setLength.rateDetail', {
+                      pct: Math.round((count / b.shows) * 100),
+                      count,
+                      shows: b.shows,
+                    })}
+                  </td>
+                );
+              })}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    import { initSortableTable } from '../../../lib/sortable-table';
+    initSortableTable(document.getElementById('bucket-table') as HTMLTableElement);
+    initSortableTable(document.getElementById('song-distribution-table') as HTMLTableElement);
+  </script>
+</Layout>
+
+<style>
+  .uncovered-note {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+  }
+
+  #song-distribution-table {
+    white-space: nowrap;
+  }
+</style>

@@ -20361,5 +20361,209 @@
         "2025-11-11-1"
       ]
     }
-  ]
+  ],
+  "set_length_stats": {
+    "buckets": [
+      {
+        "length": "20 min",
+        "minutes": 20,
+        "shows": 13,
+        "avg_songs": 4.8,
+        "shows_with_se": 9
+      },
+      {
+        "length": "25 min",
+        "minutes": 25,
+        "shows": 53,
+        "avg_songs": 5.9,
+        "shows_with_se": 41
+      },
+      {
+        "length": "30 min",
+        "minutes": 30,
+        "shows": 23,
+        "avg_songs": 7.0,
+        "shows_with_se": 19
+      }
+    ],
+    "songs": [
+      {
+        "name": "朝焼けと車窓",
+        "counts": {
+          "20 min": 12,
+          "25 min": 53,
+          "30 min": 22
+        }
+      },
+      {
+        "name": "ルミナス",
+        "counts": {
+          "20 min": 12,
+          "25 min": 51,
+          "30 min": 22
+        }
+      },
+      {
+        "name": "Moving Lights!",
+        "counts": {
+          "20 min": 11,
+          "25 min": 23,
+          "30 min": 13
+        }
+      },
+      {
+        "name": "Dear,History",
+        "counts": {
+          "20 min": 4,
+          "25 min": 31,
+          "30 min": 12
+        }
+      },
+      {
+        "name": "ラブストーリーが始まらない",
+        "counts": {
+          "20 min": 1,
+          "25 min": 28,
+          "30 min": 17
+        }
+      },
+      {
+        "name": "スタンドバイミー",
+        "counts": {
+          "20 min": 3,
+          "25 min": 24,
+          "30 min": 14
+        }
+      },
+      {
+        "name": "Begin the Journey!",
+        "counts": {
+          "20 min": 3,
+          "25 min": 25,
+          "30 min": 12
+        }
+      },
+      {
+        "name": "Blooming",
+        "counts": {
+          "20 min": 5,
+          "25 min": 22,
+          "30 min": 10
+        }
+      },
+      {
+        "name": "Interlude",
+        "counts": {
+          "20 min": 7,
+          "25 min": 20,
+          "30 min": 8
+        }
+      },
+      {
+        "name": "描きかけの空",
+        "counts": {
+          "20 min": 3,
+          "25 min": 18,
+          "30 min": 6
+        }
+      },
+      {
+        "name": "SE",
+        "counts": {
+          "20 min": 0,
+          "25 min": 19,
+          "30 min": 6
+        }
+      },
+      {
+        "name": "タイムカプセル",
+        "counts": {
+          "20 min": 1,
+          "25 min": 15,
+          "30 min": 8
+        }
+      },
+      {
+        "name": "プライマリ",
+        "counts": {
+          "20 min": 0,
+          "25 min": 14,
+          "30 min": 9
+        }
+      },
+      {
+        "name": "Into the Blue",
+        "counts": {
+          "20 min": 8,
+          "25 min": 7,
+          "30 min": 5
+        }
+      },
+      {
+        "name": "SE(Moving Lights!)",
+        "counts": {
+          "20 min": 6,
+          "25 min": 6,
+          "30 min": 5
+        }
+      },
+      {
+        "name": "SE(スタンドバイミー)",
+        "counts": {
+          "20 min": 3,
+          "25 min": 4,
+          "30 min": 4
+        }
+      },
+      {
+        "name": "SE(Draw a Story)",
+        "counts": {
+          "20 min": 0,
+          "25 min": 7,
+          "30 min": 3
+        }
+      },
+      {
+        "name": "Draw a line",
+        "counts": {
+          "20 min": 0,
+          "25 min": 0,
+          "30 min": 7
+        }
+      },
+      {
+        "name": "SE(プライマリ)",
+        "counts": {
+          "20 min": 0,
+          "25 min": 4,
+          "30 min": 1
+        }
+      },
+      {
+        "name": "銀幕",
+        "counts": {
+          "20 min": 0,
+          "25 min": 2,
+          "30 min": 3
+        }
+      },
+      {
+        "name": "Fly By",
+        "counts": {
+          "20 min": 0,
+          "25 min": 1,
+          "30 min": 2
+        }
+      },
+      {
+        "name": "SE(ラブストーリーが始まらない)",
+        "counts": {
+          "20 min": 0,
+          "25 min": 1,
+          "30 min": 0
+        }
+      }
+    ],
+    "uncovered_shows": 52
+  }
 }
