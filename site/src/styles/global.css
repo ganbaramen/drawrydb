@@ -298,6 +298,10 @@ main {
   opacity: 1;
 }
 
+.event-note {
+  white-space: pre-line;
+}
+
 .uncovered-note {
   color: var(--text-muted);
   font-size: 0.85rem;

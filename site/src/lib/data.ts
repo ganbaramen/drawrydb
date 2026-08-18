@@ -30,6 +30,7 @@ export interface Event {
   has_setlist: boolean;
   setlist: SetlistEntry[];
   ticket_links: TicketLink[];
+  note: string | null;
 }
 
 export interface Performance {

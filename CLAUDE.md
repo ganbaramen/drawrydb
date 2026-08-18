@@ -142,6 +142,40 @@ Parsing anchors, in order:
 Copy-paste noise (`Show more`, `Show less`, `Translate post`, bare `·`) is
 filtered by an explicit set. Add to `NOISE_LINES` if X introduces more.
 
+**`トークパート` marks a pre-set talk segment and is excluded from the
+counted setlist entirely**, not parsed as a song — everything between it and
+the `本編` line that closes it is dropped from `setlists.csv` and printed by
+`build_rows()` (always, not gated by `--quiet`) so it stays visible rather
+than silently vanishing. This exists because of exactly one real case,
+2026-04-04@下北沢MOSAiC, where the talk part is an acoustic rendition of
+`ラブストーリーが始まらない` tagged `※初披露` — that song is *also* played
+normally later in the same set's `本編` (track 06), so counting the talk-part
+line as a song row double-counted it and made `build_stats()`'s "初披露 tag
+looks wrong" check misfire (the acoustic version's debut tag doesn't apply to
+the studio version). An earlier version of this parser folded トークパート
+content into the *event name* instead (wrong: it isn't the event's name), then
+a version after that turned it into a song row with a `トークパート` note
+(wrong for the double-counting reason above) — this is the third iteration,
+now dropped from the setlist and surfaced as a free-text event note instead
+(see below).
+
+## Event notes (`event_notes.csv`)
+
+`data/input/event_notes.csv` (`date,match,note`) is a freeform per-event note,
+hand-maintained the same way `event_overrides.csv` is — same `date` +
+optional `match` (substring of the event's calendar summary, for double-header
+days) keying, applied in `export_site_data.py`'s `apply_event_notes()`, which
+mirrors `export_calendar.py`'s `apply_overrides()` including its "ambiguous or
+stale match gets reported, not silently skipped" behavior. `note` can be
+multi-line — a quoted CSV field already supports embedded newlines, so no
+special parsing is needed on either the read or write side; the site renders
+it with `white-space: pre-line` (`.event-note` in global.css) rather than
+splitting it into paragraphs itself.
+
+This is also where a dropped トークパート block's text is meant to end up —
+`build_rows()`'s print (see above) exists specifically to remind you to copy
+it in here, since nothing does that automatically.
+
 Careful: the account's **display name** is
 `Drawry. 10/26(月) 2nd ONEMAN LIVE@渋谷WWW` — it contains both a date-like
 string and an `@venue`. Anchoring on `【セットリスト】` and taking the *next*

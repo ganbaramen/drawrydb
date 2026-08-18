@@ -204,6 +204,52 @@ def load_song_details() -> dict[str, dict[str, str]]:
         }
 
 
+def load_event_notes() -> list[dict[str, str]]:
+    """data/input/event_notes.csv (date,match,note) — the hand-entry escape
+    hatch for a freeform note on an event's page, same `date` + optional
+    `match` (substring of the event's calendar summary, for double-header
+    days) keying as event_overrides.csv. `note` can be multi-line — a
+    plain quoted CSV field already supports embedded newlines, no special
+    handling needed to read or write one."""
+    path = os.path.join(INPUT_DIR, "event_notes.csv")
+    if not os.path.exists(path):
+        return []
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        return [row for row in csv.DictReader(fh) if (row.get("date") or "").strip()]
+
+
+def apply_event_notes(events: list[dict], notes: list[dict[str, str]]) -> None:
+    """Attach a `note` field (None when there isn't one) to every event in
+    place, matching on (date, match-substring-of-calendar_summary) like
+    export_calendar.py's apply_overrides(). Ambiguous/stale rows are
+    reported rather than silently skipped, same reasoning as that
+    function's own report."""
+    by_date: dict[str, list[dict]] = {}
+    for event in events:
+        by_date.setdefault(event["date"], []).append(event)
+        event["note"] = None
+
+    for row in notes:
+        when = row["date"].strip()
+        match = (row.get("match") or "").strip()
+        candidates = by_date.get(when, [])
+        if match:
+            candidates = [e for e in candidates if match in e["title"]]
+
+        if not candidates:
+            print(f"  event note {when} {match!r} matched no event — stale?")
+            continue
+        if len(candidates) > 1:
+            titles = ", ".join(repr(e["title"][:28]) for e in candidates)
+            print(
+                f"  event note {when} matches {len(candidates)} events "
+                f"({titles}) — add a `match` column value to pick one"
+            )
+            continue
+
+        candidates[0]["note"] = row["note"]
+
+
 def sort_key(row: dict[str, str]) -> str:
     """Same fallback chain the pipeline uses elsewhere for same-day
     ordering: the band's own slot, then the event's showtime, then doors."""
@@ -289,6 +335,7 @@ def build_events() -> list[dict]:
             events.append(event)
 
     events.sort(key=lambda e: e["id"])
+    apply_event_notes(events, load_event_notes())
     return events
 
 

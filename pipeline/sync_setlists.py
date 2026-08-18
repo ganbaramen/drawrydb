@@ -123,13 +123,17 @@ SONG_NOTE = re.compile(
 # "SE(Moving Lights!) ※New" — an annotation appended with ※ rather than parens.
 # Anything after ※ is commentary, never part of the title.
 SONG_ASIDE = re.compile(r"^(.*?)\s*[※*]\s*(.+?)\s*$")
-# Bare section-header lines a few posts use to set off a pre-set segment (a
-# talk segment with a song played before the numbered main set). They stop
-# event-name accumulation and, for トークパート, label any song line that
-# follows until the next section header — that's how "トークパート" attaches
-# to the acoustic song beneath it instead of being read as part of the event
-# name (see 2026-04-04@下北沢MOSAiC).
-SECTION_LABELS = {"トークパート": "トークパート", "本編": None}
+# "トークパート" marks a pre-set talk segment (sometimes with a one-off
+# performance, e.g. an acoustic rendition) that isn't part of the counted
+# setlist — it's surfaced as an event note instead (see data/input/
+# event_notes.csv), not a song row, so it doesn't inflate that song's play
+# count or misfire the "初披露 tag looks wrong" check when the same song is
+# also played normally later in the same set (see 2026-04-04@下北沢MOSAiC:
+# the acoustic version's ※初披露 tag doesn't apply to the studio version
+# played as track 06 of 本編). "本編" closes the section and resumes normal
+# parsing; it is not itself an event-name line or a song.
+TALK_PART_LABEL = "トークパート"
+MAIN_SET_LABEL = "本編"
 # "SEなし" is a remark, not part of the event name; the absence of SE rows
 # already records it.
 NOISE_LINES = {
@@ -216,10 +220,20 @@ def parse_post(body: list[str], source: str) -> dict | None:
 
     songs: list[tuple[int, str, bool, str, bool]] = []
     name_parts: list[str] = []
-    section_note: str | None = None
+    talk_lines: list[str] = []
+    in_talk_part = False
     for line in body[header_index + 1 :]:
-        if line in SECTION_LABELS:
-            section_note = SECTION_LABELS[line]
+        if line == TALK_PART_LABEL:
+            in_talk_part = True
+            talk_lines.append(line)
+            continue
+        if line == MAIN_SET_LABEL:
+            in_talk_part = False
+            continue
+        if in_talk_part:
+            # Not a song — everything here is free text for the event note,
+            # not the counted setlist (see TALK_PART_LABEL above).
+            talk_lines.append(line)
             continue
         match = SONG_LINE.match(line)
         encore = ENCORE_LINE.match(line) if not match else None
@@ -227,20 +241,10 @@ def parse_post(body: list[str], source: str) -> dict | None:
             raw = match.group(2) if match else encore.group(1)
             song, is_se, note = parse_song(raw)
             if song:
-                if section_note:
-                    note = "; ".join(n for n in (section_note, note) if n)
                 # Encores restart or omit numbering, so keep counting from the
                 # main set to preserve true running order.
                 position = int(match.group(1)) if match else len(songs) + 1
                 songs.append((position, song, is_se, note, bool(encore)))
-        elif section_note:
-            # An unnumbered song inside a labelled section (e.g. a talk-part
-            # performance) — treat it as a song rather than swallowing it
-            # into the event name.
-            song, is_se, note = parse_song(line)
-            if song:
-                note = "; ".join(n for n in (section_note, note) if n)
-                songs.append((len(songs) + 1, song, is_se, note, False))
         elif not songs:
             # Lines between the date line and the first song are the event name.
             name_parts.append(line)
@@ -261,6 +265,7 @@ def parse_post(body: list[str], source: str) -> dict | None:
         "songs": songs,
         "posted_numbering": posted if posted != list(range(1, len(songs) + 1)) else None,
         "source": source,
+        "talk_note": "\n".join(talk_lines) if talk_lines else None,
     }
 
 
@@ -391,6 +396,7 @@ def build_rows(
     parsed = skipped = duplicates = 0
     conflicts: list[str] = []
     numbering: list[str] = []
+    talk_notes: list[str] = []
 
     for path in sorted(glob.glob(os.path.join(posts_dir, "*.txt"))):
         source = os.path.basename(path)
@@ -412,6 +418,12 @@ def build_rows(
                     conflicts.append(f"{iso} @ {post['venue']} — two pastes disagree")
                 continue
             seen[key] = songs
+            if post["talk_note"]:
+                talk_notes.append(
+                    f"{iso} @ {post['venue']} — トークパート dropped from setlist, "
+                    f"add it to data/input/event_notes.csv if not there yet: "
+                    f"{post['talk_note']!r}"
+                )
             # Corrected for display/stats only — matching above already ran on
             # the raw text, which is more likely to appear verbatim in the
             # calendar description than a canonicalized name would be.
@@ -468,6 +480,7 @@ def build_rows(
         "duplicates": duplicates,
         "conflicts": conflicts,
         "numbering": numbering,
+        "talk_notes": talk_notes,
         "applied": applied,
         "venues_applied": venues_applied,
     }
@@ -1231,6 +1244,8 @@ def main() -> None:
         print(f"  conflict: {conflict}")
     for odd in report["numbering"]:
         print(f"  numbering typo in post: {odd}")
+    for note in report["talk_notes"]:
+        print(f"  {note}")
     for event_date, venue in unmatched:
         print(f"  no calendar event for {event_date} @ {venue or '?'}")
     for wrong, count in sorted(report["applied"].items()):

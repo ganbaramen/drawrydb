@@ -127,4 +127,13 @@ const durationMinutes =
       <p class="pending-notice">{t(lang, 'events.pending')}</p>
     )
   }
+
+  {
+    event.note && (
+      <>
+        <h2>{t(lang, 'events.note')}</h2>
+        <p class="event-note">{event.note}</p>
+      </>
+    )
+  }
 </Layout>
