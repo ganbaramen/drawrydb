@@ -1,7 +1,7 @@
 # Drawry.
 
 Tracking Drawry.'s live schedule and setlists — a data pipeline, and
-[DrawryDB](DRAWRYDB.md), the static site built on top of it:
+DrawryDB, the static site built on top of it:
 **https://ganbaramen.github.io/drawrydb/**
 
 ```
@@ -72,6 +72,6 @@ every column, the paste workflow, and troubleshooting.
 | File | What it's for |
 | --- | --- |
 | [pipeline/README.md](pipeline/README.md) | How the pipeline works — start here |
-| [DRAWRYDB.md](DRAWRYDB.md) | The website's plan and phases (0–3 done, 4 in progress) |
-| [IDEAS.md](IDEAS.md) | Backlog and undecided questions |
+| `DRAWRYDB.md` | The website's plan and phases — local notes, not tracked in git |
+| `IDEAS.md` | Backlog and undecided questions — local notes, not tracked in git |
 | [CLAUDE.md](CLAUDE.md) | Notes for Claude — the *why* behind the code |

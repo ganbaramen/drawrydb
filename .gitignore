@@ -5,4 +5,5 @@ __pycache__/
 *.swo
 export.log
 IDEAS.md
+DRAWRYDB.md
 .~lock.*#
