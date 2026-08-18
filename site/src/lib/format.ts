@@ -23,13 +23,12 @@ export function formatDate(lang: Lang, iso: string): string {
   if (lang === 'ja') {
     return `${y}年${m}月${d}日(${WEEKDAYS_JA[date.getUTCDay()]})`;
   }
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    weekday: 'short',
-    timeZone: 'UTC',
-  }).format(date);
+  // Intl's en-US order is month/day/year (or weekday-first with `weekday`
+  // set); explicit year-month-day, matching the ja branch's own order, was
+  // asked for over either of those.
+  const month = new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'UTC' }).format(date);
+  const weekday = new Intl.DateTimeFormat('en-US', { weekday: 'short', timeZone: 'UTC' }).format(date);
+  return `${y} ${month} ${d} (${weekday})`;
 }
 
 // key is "YYYY-MM", e.g. from an event date's first 7 characters.
@@ -39,9 +38,6 @@ export function formatMonth(lang: Lang, key: string): string {
   if (lang === 'ja') {
     return `${y}年${m}月`;
   }
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'short',
-    timeZone: 'UTC',
-  }).format(date);
+  const month = new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'UTC' }).format(date);
+  return `${y} ${month}`;
 }

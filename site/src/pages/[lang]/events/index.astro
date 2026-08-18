@@ -36,22 +36,26 @@ for (const event of sorted) {
 <Layout title={t(lang, 'events.title')} lang={lang} path="events/">
   <h1>{t(lang, 'events.title')}</h1>
 
-  <nav class="month-nav" aria-label={t(lang, 'events.title')}>
-    {monthKeys.map((key) => <a href={`#m-${key}`} data-month-nav={key}>{formatMonth(lang, key)}</a>)}
-  </nav>
-
   <!--
-    Default view (セトリあり) works with CSS alone via the ul's
-    data-filter attribute, so it's correct even before the script below
-    runs or if JS is disabled — the radios and script only add the other
-    two views (and the per-month hide/show, and the nav's active-month
-    highlighting). Keep the initial data-filter/checked state and the CSS
-    rules below in sync if a filter value is ever added.
+    Default view (セトリあり, すべての月) works with CSS alone before the
+    script below runs / if JS is disabled: the setlist radios' default
+    hides via the ul's data-filter attribute, and the month select's
+    default ("all") needs no hiding at all. The script only adds the other
+    setlist views and the month filter itself. Keep the initial
+    data-filter/checked/selected state and the CSS rules below in sync if
+    a filter value is ever added.
   -->
   <div class="filter-bar" role="group" aria-label={t(lang, 'events.title')}>
     <label><input type="radio" name="setlist-filter" value="has" checked /> {t(lang, 'events.filter.has')}</label>
     <label><input type="radio" name="setlist-filter" value="none" /> {t(lang, 'events.filter.none')}</label>
     <label><input type="radio" name="setlist-filter" value="all" /> {t(lang, 'events.filter.all')}</label>
+    <label>
+      {t(lang, 'events.month.label')}
+      <select id="month-filter">
+        <option value="all">{t(lang, 'events.month.all')}</option>
+        {monthKeys.map((key) => <option value={key}>{formatMonth(lang, key)}</option>)}
+      </select>
+    </label>
   </div>
   <p id="event-count" data-template={countTemplate}>{t(lang, 'events.count', { n: hasSetlistCount })}</p>
   <ul id="event-list" data-filter="has" style="list-style:none; padding:0;">
@@ -84,72 +88,56 @@ for (const event of sorted) {
     const template = countEl.dataset.template!;
     const items = list.querySelectorAll<HTMLLIElement>('li[data-has-setlist]');
     const headings = list.querySelectorAll<HTMLLIElement>('li.month-heading');
-    const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-month-nav]');
     const radios = document.querySelectorAll<HTMLInputElement>(
       'input[name="setlist-filter"]',
     );
+    const monthSelect = document.getElementById('month-filter') as HTMLSelectElement;
 
-    function apply(filter: string) {
-      list.dataset.filter = filter;
+    function apply() {
+      const setlistFilter = document.querySelector<HTMLInputElement>(
+        'input[name="setlist-filter"]:checked',
+      )!.value;
+      const monthFilter = monthSelect.value;
+      list.dataset.filter = setlistFilter;
+
       let visible = 0;
       const monthHasVisible = new Map<string, boolean>();
 
       items.forEach((li) => {
         const has = li.dataset.hasSetlist === '1';
-        const show = filter === 'all' || (filter === 'has') === has;
+        const month = li.dataset.month!;
+        const matchesSetlist = setlistFilter === 'all' || (setlistFilter === 'has') === has;
+        const matchesMonth = monthFilter === 'all' || monthFilter === month;
+        const show = matchesSetlist && matchesMonth;
+        li.hidden = !show;
         if (show) {
           visible++;
-          monthHasVisible.set(li.dataset.month!, true);
+          monthHasVisible.set(month, true);
         }
       });
 
       headings.forEach((h) => {
-        h.hidden = !monthHasVisible.get(h.dataset.month!);
-      });
-      navLinks.forEach((a) => {
-        a.hidden = !monthHasVisible.get(a.dataset.monthNav!);
+        const month = h.dataset.month!;
+        const matchesMonth = monthFilter === 'all' || monthFilter === month;
+        h.hidden = !matchesMonth || !monthHasVisible.get(month);
       });
 
       countEl.textContent = template.replace('__N__', String(visible));
     }
 
     radios.forEach((radio) => {
-      radio.addEventListener('change', () => apply(radio.value));
+      radio.addEventListener('change', apply);
     });
+    monthSelect.addEventListener('change', apply);
 
-    // The default "has" view works from CSS alone before this script runs
-    // (see the comment above the filter-bar), but headings/nav visibility
-    // has no CSS equivalent — sync them once up front to match.
-    const checked = document.querySelector<HTMLInputElement>('input[name="setlist-filter"]:checked');
-    apply(checked?.value ?? 'has');
+    // The default view (セトリあり, すべての月) works from CSS/markup alone
+    // before this script runs (see the comment above the filter-bar), but
+    // heading visibility has no CSS equivalent — sync it once up front.
+    apply();
   </script>
 </Layout>
 
 <style>
-  .month-nav {
-    display: flex;
-    gap: 0.5rem;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.75rem;
-    white-space: nowrap;
-  }
-
-  .month-nav a {
-    flex: none;
-    padding: 0.25rem 0.6rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.8rem;
-  }
-
-  .month-nav a:hover {
-    border-color: var(--accent);
-    color: var(--text);
-  }
-
   .month-heading {
     margin: 1.5rem 0 0.5rem;
     font-size: 0.95rem;
@@ -164,7 +152,9 @@ for (const event of sorted) {
 
   .filter-bar {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
     margin-bottom: 0.75rem;
     font-size: 0.9rem;
   }
@@ -174,6 +164,16 @@ for (const event of sorted) {
     align-items: center;
     gap: 0.3rem;
     cursor: pointer;
+  }
+
+  #month-filter {
+    margin-left: 0.4rem;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 0.3rem;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.85rem;
   }
 
   #event-list[data-filter='has'] li[data-has-setlist='0'],
