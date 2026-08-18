@@ -57,6 +57,11 @@ export interface SongCredits {
 export interface Song {
   id: string;
   name: string;
+  // English translation of the title (data/input/song_details.csv); null
+  // if none is set. Shown as a subtitle under the title on the song's own
+  // page — song.name itself is never replaced by it (names stay in their
+  // original language everywhere else on the site).
+  translation: string | null;
   plays: number;
   shows: number;
   shows_since_debut: number;
@@ -68,7 +73,7 @@ export interface Song {
   is_se: boolean;
   is_interlude: boolean;
   performances: Performance[];
-  // Hand-maintained (data/input/song_credits.csv); null for a song with no
+  // Hand-maintained (data/input/song_details.csv); null for a song with no
   // row yet.
   credits: SongCredits | null;
 }
@@ -101,6 +106,7 @@ export interface SongLengthRate {
 export interface SongLengthCounts {
   id: string;
   name: string;
+  translation: string | null;
   // Keyed by LengthBucket.minutes, stringified ("20", "25", ...).
   rates: Record<string, SongLengthRate>;
 }

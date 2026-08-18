@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { songs, events, type Song } from '../../../lib/data';
-import { autoLink, formatDate, urlSafe } from '../../../lib/format';
+import { autoLink, formatDate, songDisplayName, songSubtitle, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -37,10 +37,11 @@ const lastEvent = eventFor(song.last_performed);
 const credits = song.credits;
 ---
 
-<Layout title={song.name} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
+<Layout title={songDisplayName(lang, song)} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
   <p><a href="../">{t(lang, 'songs.back')}</a></p>
 
-  <h1>{song.name}</h1>
+  <h1>{songDisplayName(lang, song)}</h1>
+  {songSubtitle(lang, song) && <p class="song-translation">{songSubtitle(lang, song)}</p>}
 
   {
     credits && (

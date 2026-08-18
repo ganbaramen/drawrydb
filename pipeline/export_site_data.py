@@ -179,16 +179,16 @@ CREDIT_FIELDS = ["number", "lyrics", "composition", "arrangement", "choreography
 
 
 def load_song_details() -> dict[str, dict[str, str]]:
-    """name -> {slug, number, lyrics, composition, arrangement,
-    choreography, note} from data/input/song_details.csv. One file, not
-    two — a song's slug and its credits (作詞/作曲/編曲/振付, a track
-    number, a free-form note e.g. a lyrics-post link) are both exactly one
-    hand-curated row per song, so splitting them across song_slugs.csv and
-    song_credits.csv just meant editing two files for what's conceptually
-    one "everything about this song that isn't derived" row. Same
-    missing-file/missing-row tolerance as before: a song with no row here
-    just gets no slug (id falls back to its raw name) and no credits
-    section."""
+    """name -> {slug, translation, number, lyrics, composition,
+    arrangement, choreography, note} from data/input/song_details.csv. One
+    file, not several — a song's slug, English translation, and credits
+    (作詞/作曲/編曲/振付, a track number, a free-form note e.g. a
+    lyrics-post link) are all exactly one hand-curated row per song, so
+    splitting them across separate files just meant editing several places
+    for what's conceptually one "everything about this song that isn't
+    derived" row. Same missing-file/missing-row tolerance as before: a song
+    with no row here just gets no slug (id falls back to its raw name), no
+    translation subtitle, and no credits section."""
     path = os.path.join(INPUT_DIR, "song_details.csv")
     if not os.path.exists(path):
         return {}
@@ -196,6 +196,7 @@ def load_song_details() -> dict[str, dict[str, str]]:
         return {
             row["name"].strip(): {
                 "slug": row.get("slug", "").strip(),
+                "translation": row.get("translation", "").strip(),
                 **{field: row.get(field, "").strip() for field in CREDIT_FIELDS},
             }
             for row in csv.DictReader(fh)
@@ -331,6 +332,7 @@ def build_songs(events: list[dict]) -> list[dict]:
             {
                 "id": details.get(row["song"], {}).get("slug") or row["song"],
                 "name": row["song"],
+                "translation": details.get(row["song"], {}).get("translation") or None,
                 "plays": int(row["plays"]),
                 "shows": int(row["shows"]),
                 "shows_since_debut": int(row["shows_since_debut"]),
@@ -469,7 +471,14 @@ def build_set_length_stats(events: list[dict]) -> dict:
                 "count": song_counts[b].get(name, 0),
                 "eligible": eligible,
             }
-        songs.append({"id": details.get(name, {}).get("slug") or name, "name": name, "rates": rates})
+        songs.append(
+            {
+                "id": details.get(name, {}).get("slug") or name,
+                "name": name,
+                "translation": details.get(name, {}).get("translation") or None,
+                "rates": rates,
+            }
+        )
 
     uncovered = len(shows) - sum(b["shows"] for b in buckets)
     return {"buckets": buckets, "songs": songs, "uncovered_shows": uncovered}

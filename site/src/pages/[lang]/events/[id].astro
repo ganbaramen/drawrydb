@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { events, getSong, getVenue, type Event } from '../../../lib/data';
-import { formatDate, liveDurationMinutes, urlSafe } from '../../../lib/format';
+import { formatDate, liveDurationMinutes, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -95,12 +95,14 @@ let encoreIndex = 0;
           // Fall back to the raw name if a setlist entry somehow doesn't
           // match a song_stats.csv row — shouldn't happen, but a dead link
           // beats a build failure.
-          const songId = getSong(song.song)?.id ?? song.song;
+          const matchedSong = getSong(song.song);
+          const songId = matchedSong?.id ?? song.song;
+          const songName = matchedSong ? songDisplayName(lang, matchedSong) : song.song;
           return (
             <li>
               <span class="position">{position}</span>
               <span>
-                <a href={`${base}/${lang}/songs/${urlSafe(songId)}/`}>{song.song}</a>
+                <a href={`${base}/${lang}/songs/${urlSafe(songId)}/`}>{songName}</a>
                 {song.note && <span class="song-note"> ({song.note})</span>}
               </span>
             </li>

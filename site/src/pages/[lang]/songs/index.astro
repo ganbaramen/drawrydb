@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { songs } from '../../../lib/data';
-import { urlSafe } from '../../../lib/format';
+import { songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -41,7 +41,7 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
         sorted.map((song) => (
           <tr data-special={song.is_se || song.is_interlude ? '1' : '0'}>
             <td>
-              <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{song.name}</a>
+              <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{songDisplayName(lang, song)}</a>
             </td>
             <td data-sort-value={song.plays}>{song.plays}</td>
             <td data-sort-value={song.first_performed}>{song.first_performed}</td>

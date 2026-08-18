@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { setLengthStats } from '../../../lib/data';
-import { formatSetLength, urlSafe } from '../../../lib/format';
+import { formatSetLength, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -64,7 +64,7 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
           songs.map((song) => (
             <tr>
               <td>
-                <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{song.name}</a>
+                <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{songDisplayName(lang, song)}</a>
               </td>
               {buckets.map((b) => {
                 const rate = song.rates[String(b.minutes)] ?? { count: 0, eligible: 0 };

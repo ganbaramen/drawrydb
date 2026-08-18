@@ -48,6 +48,28 @@ export function formatSetLength(lang: Lang, minutes: number): string {
   return lang === 'ja' ? `${minutes}分` : `${minutes} min`;
 }
 
+interface NamedWithTranslation {
+  name: string;
+  translation: string | null;
+}
+
+// The name shown as the *primary* text everywhere a song appears (lists,
+// setlist entries, ...) — the original name, except in English with a
+// translation set, where the translation takes over as primary. song.name
+// itself is never mutated; this is purely a display-time choice, computed
+// fresh per call so it always reflects the current page's lang.
+export function songDisplayName(lang: Lang, song: NamedWithTranslation): string {
+  return lang === 'en' && song.translation ? song.translation : song.name;
+}
+
+// The *other* name, shown as a subtitle only on the song's own page — null
+// (render nothing) when there's no translation at all, matching "if there
+// is no translation listed, only show the original."
+export function songSubtitle(lang: Lang, song: NamedWithTranslation): string | null {
+  if (!song.translation) return null;
+  return lang === 'en' ? song.name : song.translation;
+}
+
 export interface TextChunk {
   text: string;
   // Present only on chunks that should render as a link.

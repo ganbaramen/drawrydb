@@ -11198,6 +11198,7 @@
     {
       "id": "asayake-to-shasou",
       "name": "朝焼けと車窓",
+      "translation": "Morning Glow and the Train Window",
       "plays": 138,
       "shows": 138,
       "shows_since_debut": 140,
@@ -12315,7 +12316,7 @@
         }
       ],
       "credits": {
-        "number": "05",
+        "number": "5",
         "lyrics": "nenene,",
         "composition": "nenene,",
         "arrangement": "nenene,",
@@ -12326,6 +12327,7 @@
     {
       "id": "luminous",
       "name": "ルミナス",
+      "translation": "Luminous",
       "plays": 137,
       "shows": 137,
       "shows_since_debut": 141,
@@ -13435,7 +13437,7 @@
         }
       ],
       "credits": {
-        "number": "04",
+        "number": "4",
         "lyrics": "シジマフミ",
         "composition": "シジマフミ",
         "arrangement": "シジマフミ",
@@ -13446,6 +13448,7 @@
     {
       "id": "dear-history",
       "name": "Dear,History",
+      "translation": null,
       "plays": 96,
       "shows": 95,
       "shows_since_debut": 141,
@@ -14227,7 +14230,7 @@
         }
       ],
       "credits": {
-        "number": "01",
+        "number": "1",
         "lyrics": "nenene, & Yoshimura",
         "composition": "nenene,",
         "arrangement": "nenene,",
@@ -14238,6 +14241,7 @@
     {
       "id": "moving-lights",
       "name": "Moving Lights!",
+      "translation": null,
       "plays": 83,
       "shows": 83,
       "shows_since_debut": 140,
@@ -14915,7 +14919,7 @@
         }
       ],
       "credits": {
-        "number": "03",
+        "number": "3",
         "lyrics": "小鳥遊カイリ",
         "composition": "小鳥遊カイリ",
         "arrangement": "小鳥遊カイリ",
@@ -14926,6 +14930,7 @@
     {
       "id": "blooming",
       "name": "Blooming",
+      "translation": null,
       "plays": 73,
       "shows": 73,
       "shows_since_debut": 140,
@@ -15523,7 +15528,7 @@
         }
       ],
       "credits": {
-        "number": "06",
+        "number": "6",
         "lyrics": "ヒノハルキ",
         "composition": "ヒノハルキ",
         "arrangement": "ヒノハルキ",
@@ -15534,6 +15539,7 @@
     {
       "id": "love-story-ga-hajimaranai",
       "name": "ラブストーリーが始まらない",
+      "translation": "A Love Story That Never Begins",
       "plays": 71,
       "shows": 70,
       "shows_since_debut": 110,
@@ -16115,7 +16121,7 @@
         }
       ],
       "credits": {
-        "number": "08",
+        "number": "8",
         "lyrics": "長谷川海",
         "composition": "長谷川海",
         "arrangement": "ヤマギシダイキ",
@@ -16126,6 +16132,7 @@
     {
       "id": "se",
       "name": "SE",
+      "translation": null,
       "plays": 64,
       "shows": 64,
       "shows_since_debut": 140,
@@ -16655,6 +16662,7 @@
     {
       "id": "primary",
       "name": "プライマリ",
+      "translation": "primary",
       "plays": 59,
       "shows": 59,
       "shows_since_debut": 140,
@@ -17140,7 +17148,7 @@
         }
       ],
       "credits": {
-        "number": "02",
+        "number": "2",
         "lyrics": "しいか",
         "composition": "しいか",
         "arrangement": "しいか",
@@ -17151,6 +17159,7 @@
     {
       "id": "begin-the-journey",
       "name": "Begin the Journey!",
+      "translation": null,
       "plays": 49,
       "shows": 49,
       "shows_since_debut": 89,
@@ -17567,6 +17576,7 @@
     {
       "id": "stand-by-me",
       "name": "スタンドバイミー",
+      "translation": "Stand by Me",
       "plays": 46,
       "shows": 46,
       "shows_since_debut": 60,
@@ -17948,7 +17958,7 @@
         }
       ],
       "credits": {
-        "number": "07",
+        "number": "7",
         "lyrics": "nenene, & Yoshimura",
         "composition": "nenene,",
         "arrangement": "nenene,",
@@ -17959,6 +17969,7 @@
     {
       "id": "interlude",
       "name": "Interlude",
+      "translation": null,
       "plays": 42,
       "shows": 40,
       "shows_since_debut": 89,
@@ -18312,6 +18323,7 @@
     {
       "id": "egakikake-no-sora",
       "name": "描きかけの空",
+      "translation": "Egakikake no Sora",
       "plays": 35,
       "shows": 35,
       "shows_since_debut": 73,
@@ -18616,6 +18628,7 @@
     {
       "id": "time-capsule",
       "name": "タイムカプセル",
+      "translation": "Time Capsule",
       "plays": 30,
       "shows": 30,
       "shows_since_debut": 60,
@@ -18880,6 +18893,7 @@
     {
       "id": "into-the-blue",
       "name": "Into the Blue",
+      "translation": null,
       "plays": 24,
       "shows": 24,
       "shows_since_debut": 25,
@@ -19096,6 +19110,7 @@
     {
       "id": "se-moving-lights",
       "name": "SE(Moving Lights!)",
+      "translation": null,
       "plays": 19,
       "shows": 19,
       "shows_since_debut": 124,
@@ -19265,6 +19280,7 @@
     {
       "id": "se-draw-a-story",
       "name": "SE(Draw a Story)",
+      "translation": null,
       "plays": 15,
       "shows": 15,
       "shows_since_debut": 59,
@@ -19402,6 +19418,7 @@
     {
       "id": "se-stand-by-me",
       "name": "SE(スタンドバイミー)",
+      "translation": "SE(Stand by Me)",
       "plays": 11,
       "shows": 11,
       "shows_since_debut": 56,
@@ -19507,6 +19524,7 @@
     {
       "id": "draw-a-line",
       "name": "Draw a line",
+      "translation": null,
       "plays": 9,
       "shows": 9,
       "shows_since_debut": 60,
@@ -19592,7 +19610,7 @@
         }
       ],
       "credits": {
-        "number": "09",
+        "number": "9",
         "lyrics": "長谷川海",
         "composition": "長谷川海 & ヤマギシダイキ",
         "arrangement": "ヤマギシダイキ",
@@ -19603,6 +19621,7 @@
     {
       "id": "ginmaku",
       "name": "銀幕",
+      "translation": "Ginmaku",
       "plays": 9,
       "shows": 9,
       "shows_since_debut": 33,
@@ -19699,6 +19718,7 @@
     {
       "id": "se-primary",
       "name": "SE(プライマリ)",
+      "translation": "SE(primary)",
       "plays": 6,
       "shows": 6,
       "shows_since_debut": 92,
@@ -19764,6 +19784,7 @@
     {
       "id": "fly-by",
       "name": "Fly By",
+      "translation": null,
       "plays": 5,
       "shows": 5,
       "shows_since_debut": 8,
@@ -19828,6 +19849,7 @@
     {
       "id": "se-love-story-ga-hajimaranai",
       "name": "SE(ラブストーリーが始まらない)",
+      "translation": "SE(A Love Story That Never Begins)",
       "plays": 1,
       "shows": 1,
       "shows_since_debut": 43,
@@ -20655,6 +20677,7 @@
       {
         "id": "asayake-to-shasou",
         "name": "朝焼けと車窓",
+        "translation": "Morning Glow and the Train Window",
         "rates": {
           "10": {
             "count": 0,
@@ -20677,6 +20700,7 @@
       {
         "id": "luminous",
         "name": "ルミナス",
+        "translation": "Luminous",
         "rates": {
           "10": {
             "count": 1,
@@ -20699,6 +20723,7 @@
       {
         "id": "dear-history",
         "name": "Dear,History",
+        "translation": null,
         "rates": {
           "10": {
             "count": 1,
@@ -20721,6 +20746,7 @@
       {
         "id": "moving-lights",
         "name": "Moving Lights!",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -20743,6 +20769,7 @@
       {
         "id": "blooming",
         "name": "Blooming",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -20765,6 +20792,7 @@
       {
         "id": "love-story-ga-hajimaranai",
         "name": "ラブストーリーが始まらない",
+        "translation": "A Love Story That Never Begins",
         "rates": {
           "10": {
             "count": 0,
@@ -20787,6 +20815,7 @@
       {
         "id": "se",
         "name": "SE",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -20809,6 +20838,7 @@
       {
         "id": "primary",
         "name": "プライマリ",
+        "translation": "primary",
         "rates": {
           "10": {
             "count": 0,
@@ -20829,30 +20859,9 @@
         }
       },
       {
-        "id": "begin-the-journey",
-        "name": "Begin the Journey!",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 3,
-            "eligible": 10
-          },
-          "25": {
-            "count": 26,
-            "eligible": 47
-          },
-          "30": {
-            "count": 12,
-            "eligible": 21
-          }
-        }
-      },
-      {
         "id": "stand-by-me",
         "name": "スタンドバイミー",
+        "translation": "Stand by Me",
         "rates": {
           "10": {
             "count": 0,
@@ -20873,8 +20882,32 @@
         }
       },
       {
+        "id": "begin-the-journey",
+        "name": "Begin the Journey!",
+        "translation": null,
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 3,
+            "eligible": 10
+          },
+          "25": {
+            "count": 26,
+            "eligible": 47
+          },
+          "30": {
+            "count": 12,
+            "eligible": 21
+          }
+        }
+      },
+      {
         "id": "interlude",
         "name": "Interlude",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -20897,6 +20930,7 @@
       {
         "id": "egakikake-no-sora",
         "name": "描きかけの空",
+        "translation": "Egakikake no Sora",
         "rates": {
           "10": {
             "count": 0,
@@ -20919,6 +20953,7 @@
       {
         "id": "time-capsule",
         "name": "タイムカプセル",
+        "translation": "Time Capsule",
         "rates": {
           "10": {
             "count": 0,
@@ -20941,6 +20976,7 @@
       {
         "id": "into-the-blue",
         "name": "Into the Blue",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -20963,6 +20999,7 @@
       {
         "id": "se-moving-lights",
         "name": "SE(Moving Lights!)",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -20985,6 +21022,7 @@
       {
         "id": "se-stand-by-me",
         "name": "SE(スタンドバイミー)",
+        "translation": "SE(Stand by Me)",
         "rates": {
           "10": {
             "count": 0,
@@ -21007,6 +21045,7 @@
       {
         "id": "se-draw-a-story",
         "name": "SE(Draw a Story)",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -21029,6 +21068,7 @@
       {
         "id": "draw-a-line",
         "name": "Draw a line",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -21051,6 +21091,7 @@
       {
         "id": "ginmaku",
         "name": "銀幕",
+        "translation": "Ginmaku",
         "rates": {
           "10": {
             "count": 0,
@@ -21073,6 +21114,7 @@
       {
         "id": "se-primary",
         "name": "SE(プライマリ)",
+        "translation": "SE(primary)",
         "rates": {
           "10": {
             "count": 0,
@@ -21095,6 +21137,7 @@
       {
         "id": "fly-by",
         "name": "Fly By",
+        "translation": null,
         "rates": {
           "10": {
             "count": 0,
@@ -21117,6 +21160,7 @@
       {
         "id": "se-love-story-ga-hajimaranai",
         "name": "SE(ラブストーリーが始まらない)",
+        "translation": "SE(A Love Story That Never Begins)",
         "rates": {
           "10": {
             "count": 0,
