@@ -20904,27 +20904,6 @@
         }
       },
       {
-        "name": "銀幕",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 0,
-            "eligible": 8
-          },
-          "25": {
-            "count": 2,
-            "eligible": 9
-          },
-          "30": {
-            "count": 3,
-            "eligible": 11
-          }
-        }
-      },
-      {
         "name": "SE(プライマリ)",
         "rates": {
           "10": {
@@ -20942,6 +20921,27 @@
           "30": {
             "count": 1,
             "eligible": 23
+          }
+        }
+      },
+      {
+        "name": "銀幕",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 0,
+            "eligible": 8
+          },
+          "25": {
+            "count": 2,
+            "eligible": 9
+          },
+          "30": {
+            "count": 3,
+            "eligible": 11
           }
         }
       },
