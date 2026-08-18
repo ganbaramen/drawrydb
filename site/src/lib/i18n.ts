@@ -13,6 +13,7 @@ const ja: Dict = {
   'nav.songs': '楽曲',
   'nav.venues': '会場',
   'nav.setLength': 'セット尺',
+  'nav.toggle': 'メニュー',
   'theme.toggle': 'テーマを切り替える',
   'footer.disclaimer':
     'これは非公式のファンサイトです。Drawry. 本人・関係者・公式とは一切関係ありません。',
@@ -28,7 +29,7 @@ const ja: Dict = {
   'events.filter.all': 'すべて',
   'events.month.label': '月で絞り込み',
   'events.month.all': 'すべての月',
-  'events.search.placeholder': 'イベント・会場を検索',
+  'events.search.placeholder': 'イベント名・会場名を検索',
   'events.back': '← イベント一覧に戻る',
   'events.venue': '会場',
   'events.doors': '開場',
@@ -91,6 +92,7 @@ const en: Dict = {
   'nav.songs': 'Songs',
   'nav.venues': 'Venues',
   'nav.setLength': 'Set Length',
+  'nav.toggle': 'Menu',
   'theme.toggle': 'Toggle theme',
   'footer.disclaimer':
     'This is an unofficial fan project, not affiliated with Drawry. or their management.',
@@ -106,7 +108,7 @@ const en: Dict = {
   'events.filter.all': 'All',
   'events.month.label': 'Filter by month',
   'events.month.all': 'All months',
-  'events.search.placeholder': 'Search events, venues',
+  'events.search.placeholder': 'Search by event name or venue name',
   'events.back': '← Back to events',
   'events.venue': 'Venue',
   'events.doors': 'Doors',

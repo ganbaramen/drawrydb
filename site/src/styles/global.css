@@ -63,6 +63,7 @@ a {
 }
 
 .site-header {
+  position: relative; /* anchors .site-nav's dropdown on mobile */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -131,6 +132,62 @@ a {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+}
+
+.nav-toggle {
+  display: none; /* shown only below the breakpoint, see the media query */
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Below this width the four nav links plus the lang/theme controls no
+   longer comfortably fit as a couple of wrapped rows (see the git log
+   for the character-wrap bug that motivated the wrapping fix first) —
+   collapsing the page links into a hamburger dropdown keeps the header
+   to its two intended rows (title, controls) instead of growing a third
+   for nav overflow on every phone-width visit. */
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    /* Without an explicit value here, whether this dropdown paints above
+       or below page content with its own position:relative (e.g.
+       .search-box, positioned only to anchor its icon) isn't guaranteed
+       by z-index:auto stacking alone — observed rendering above/below
+       .search-box inconsistently. An explicit value forces it. */
+    z-index: 100;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    row-gap: 0;
+    padding: 0.5rem 1rem 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 15%);
+  }
+
+  .site-nav[data-open='true'] {
+    display: flex;
+  }
+
+  .site-nav a {
+    padding: 0.7rem 0.4rem;
+  }
 }
 
 .lang-switch {

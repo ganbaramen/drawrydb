@@ -37,7 +37,7 @@ const base = import.meta.env.BASE_URL;
     <header class="site-header">
       <a class="site-title" href={`${base}/${lang}/`}>DrawryDB</a>
       <div class="header-right">
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav">
           <a href={`${base}/${lang}/events/`}>{t(lang, 'nav.events')}</a>
           <a href={`${base}/${lang}/songs/`}>{t(lang, 'nav.songs')}</a>
           <a href={`${base}/${lang}/venues/`}>{t(lang, 'nav.venues')}</a>
@@ -59,6 +59,16 @@ const base = import.meta.env.BASE_URL;
           </span>
           <button id="theme-toggle" class="theme-toggle" type="button" aria-label={t(lang, 'theme.toggle')}>
             🌙
+          </button>
+          <button
+            id="nav-toggle"
+            class="nav-toggle"
+            type="button"
+            aria-label={t(lang, 'nav.toggle')}
+            aria-expanded="false"
+            aria-controls="site-nav"
+          >
+            ☰
           </button>
         </div>
       </div>
@@ -86,6 +96,42 @@ const base = import.meta.env.BASE_URL;
     </footer>
 
     <script>
+      // Only meaningful on the narrow viewports where global.css's media
+      // query actually turns .site-nav into a hidden dropdown — harmless
+      // no-op (button stays display:none) above that breakpoint.
+      const navToggle = document.getElementById('nav-toggle')!;
+      const siteNav = document.getElementById('site-nav')!;
+
+      function closeNav() {
+        siteNav.dataset.open = 'false';
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      navToggle.addEventListener('click', () => {
+        const open = siteNav.dataset.open === 'true';
+        siteNav.dataset.open = open ? 'false' : 'true';
+        navToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+
+      // Clicking a link navigates away anyway, but closing first avoids a
+      // stale "open" dropdown flashing on the next page's initial paint —
+      // Astro's static pages don't preserve script state across a
+      // navigation, so this only matters for the instant before unload.
+      siteNav.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).tagName === 'A') closeNav();
+      });
+
+      document.addEventListener('click', (e) => {
+        const target = e.target as Node;
+        if (siteNav.dataset.open === 'true' && !siteNav.contains(target) && !navToggle.contains(target)) {
+          closeNav();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && siteNav.dataset.open === 'true') closeNav();
+      });
+
       const root = document.documentElement;
       const button = document.getElementById('theme-toggle')!;
       const media = window.matchMedia('(prefers-color-scheme: dark)');
