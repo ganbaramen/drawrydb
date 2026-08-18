@@ -41,6 +41,19 @@ export interface Performance {
   note: string;
 }
 
+export interface SongCredits {
+  // A track number the band assigns — unrelated to setlist running order
+  // (SetlistEntry.position). Empty string if not set.
+  number: string;
+  lyrics: string;
+  composition: string;
+  arrangement: string;
+  choreography: string;
+  // Free-form — e.g. a link to the lyrics post. May contain a bare URL;
+  // rendered with autoLink() in lib/format.ts, not pre-parsed here.
+  note: string;
+}
+
 export interface Song {
   id: string;
   name: string;
@@ -55,6 +68,9 @@ export interface Song {
   is_se: boolean;
   is_interlude: boolean;
   performances: Performance[];
+  // Hand-maintained (data/input/song_credits.csv); null for a song with no
+  // row yet.
+  credits: SongCredits | null;
 }
 
 export interface Venue {

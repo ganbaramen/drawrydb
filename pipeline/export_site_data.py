@@ -174,6 +174,28 @@ def load_slugs(name: str) -> dict[str, str]:
         }
 
 
+CREDIT_FIELDS = ["number", "lyrics", "composition", "arrangement", "choreography", "note"]
+
+
+def load_credits() -> dict[str, dict[str, str]]:
+    """name -> {number, lyrics, composition, arrangement, choreography,
+    note} from data/input/song_credits.csv (a track number, plus 作詞/作曲/
+    編曲/振付 and a free-form note — e.g. a link to the lyrics post).
+    Hand-maintained, optional per song; nothing else in the pipeline reads
+    or derives this, unlike everything else in song_stats.csv. Same
+    missing-file/missing-row tolerance as load_slugs() — a song with no row
+    just gets no credits section."""
+    path = os.path.join(INPUT_DIR, "song_credits.csv")
+    if not os.path.exists(path):
+        return {}
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        return {
+            row["name"].strip(): {field: row.get(field, "").strip() for field in CREDIT_FIELDS}
+            for row in csv.DictReader(fh)
+            if row.get("name")
+        }
+
+
 def sort_key(row: dict[str, str]) -> str:
     """Same fallback chain the pipeline uses elsewhere for same-day
     ordering: the band's own slot, then the event's showtime, then doors."""
@@ -266,6 +288,7 @@ def build_songs(events: list[dict]) -> list[dict]:
     stats = read_csv("song_stats.csv")
     setlists = read_csv("setlists.csv")
     slugs = load_slugs("song_slugs.csv")
+    credits = load_credits()
 
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
@@ -304,6 +327,7 @@ def build_songs(events: list[dict]) -> list[dict]:
                 "is_se": row["is_se"] == "yes",
                 "is_interlude": row["is_interlude"] == "yes",
                 "performances": performances,
+                "credits": credits.get(row["song"]),
             }
         )
     return songs

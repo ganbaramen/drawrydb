@@ -12313,7 +12313,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "luminous",
@@ -13425,7 +13426,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "dear-history",
@@ -14209,7 +14211,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "moving-lights",
@@ -14889,7 +14892,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "blooming",
@@ -15489,7 +15493,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "love-story-ga-hajimaranai",
@@ -16073,7 +16078,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "se",
@@ -16601,7 +16607,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "primary",
@@ -17089,7 +17096,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "begin-the-journey",
@@ -17497,7 +17505,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "stand-by-me",
@@ -17881,7 +17890,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "interlude",
@@ -18233,7 +18243,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "egakikake-no-sora",
@@ -18529,7 +18540,15 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": {
+        "number": "11",
+        "lyrics": "OverNote'",
+        "composition": "OverNote'",
+        "arrangement": "OverNote'",
+        "choreography": "ミミミユ",
+        "note": "https://x.com/Drawry0920/status/2036745128799539403"
+      }
     },
     {
       "id": "time-capsule",
@@ -18785,7 +18804,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "into-the-blue",
@@ -18993,7 +19013,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "se-moving-lights",
@@ -19161,7 +19182,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "se-draw-a-story",
@@ -19297,7 +19319,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "se-stand-by-me",
@@ -19401,7 +19424,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "draw-a-line",
@@ -19489,7 +19513,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "ginmaku",
@@ -19577,7 +19602,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "se-primary",
@@ -19641,7 +19667,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "fly-by",
@@ -19697,7 +19724,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     },
     {
       "id": "se-love-story-ga-hajimaranai",
@@ -19721,7 +19749,8 @@
           "is_encore": false,
           "note": ""
         }
-      ]
+      ],
+      "credits": null
     }
   ],
   "venues": [
@@ -20702,28 +20731,6 @@
         }
       },
       {
-        "id": "stand-by-me",
-        "name": "スタンドバイミー",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 3,
-            "eligible": 8
-          },
-          "25": {
-            "count": 24,
-            "eligible": 29
-          },
-          "30": {
-            "count": 14,
-            "eligible": 16
-          }
-        }
-      },
-      {
         "id": "begin-the-journey",
         "name": "Begin the Journey!",
         "rates": {
@@ -20742,6 +20749,28 @@
           "30": {
             "count": 12,
             "eligible": 21
+          }
+        }
+      },
+      {
+        "id": "stand-by-me",
+        "name": "スタンドバイミー",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 3,
+            "eligible": 8
+          },
+          "25": {
+            "count": 24,
+            "eligible": 29
+          },
+          "30": {
+            "count": 14,
+            "eligible": 16
           }
         }
       },
@@ -20922,28 +20951,6 @@
         }
       },
       {
-        "id": "ginmaku",
-        "name": "銀幕",
-        "rates": {
-          "10": {
-            "count": 0,
-            "eligible": 0
-          },
-          "20": {
-            "count": 0,
-            "eligible": 8
-          },
-          "25": {
-            "count": 2,
-            "eligible": 9
-          },
-          "30": {
-            "count": 3,
-            "eligible": 11
-          }
-        }
-      },
-      {
         "id": "se-primary",
         "name": "SE(プライマリ)",
         "rates": {
@@ -20962,6 +20969,28 @@
           "30": {
             "count": 1,
             "eligible": 23
+          }
+        }
+      },
+      {
+        "id": "ginmaku",
+        "name": "銀幕",
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "20": {
+            "count": 0,
+            "eligible": 8
+          },
+          "25": {
+            "count": 2,
+            "eligible": 9
+          },
+          "30": {
+            "count": 3,
+            "eligible": 11
           }
         }
       },

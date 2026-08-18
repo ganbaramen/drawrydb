@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { songs, events, type Song } from '../../../lib/data';
-import { formatDate, urlSafe } from '../../../lib/format';
+import { autoLink, formatDate, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -34,12 +34,69 @@ function eventFor(date: string) {
 }
 const debutEvent = eventFor(song.first_performed);
 const lastEvent = eventFor(song.last_performed);
+const credits = song.credits;
 ---
 
 <Layout title={song.name} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
   <p><a href="../">{t(lang, 'songs.back')}</a></p>
 
   <h1>{song.name}</h1>
+
+  {
+    credits && (
+      <>
+      <h2>{t(lang, 'songs.credits')}</h2>
+      <table class="meta-table">
+        {credits.number && (
+          <tr>
+            <th>{t(lang, 'songs.number')}</th>
+            <td>{credits.number}</td>
+          </tr>
+        )}
+        {credits.lyrics && (
+          <tr>
+            <th>{t(lang, 'songs.lyrics')}</th>
+            <td>{credits.lyrics}</td>
+          </tr>
+        )}
+        {credits.composition && (
+          <tr>
+            <th>{t(lang, 'songs.composition')}</th>
+            <td>{credits.composition}</td>
+          </tr>
+        )}
+        {credits.arrangement && (
+          <tr>
+            <th>{t(lang, 'songs.arrangement')}</th>
+            <td>{credits.arrangement}</td>
+          </tr>
+        )}
+        {credits.choreography && (
+          <tr>
+            <th>{t(lang, 'songs.choreography')}</th>
+            <td>{credits.choreography}</td>
+          </tr>
+        )}
+        {credits.note && (
+          <tr>
+            <th>{t(lang, 'songs.note')}</th>
+            <td>
+              {autoLink(credits.note).map((chunk) =>
+                chunk.url ? (
+                  <a href={chunk.url} target="_blank" rel="noopener noreferrer">
+                    {chunk.text}
+                  </a>
+                ) : (
+                  chunk.text
+                ),
+              )}
+            </td>
+          </tr>
+        )}
+      </table>
+      </>
+    )
+  }
 
   <table class="meta-table">
     <tr>

@@ -48,6 +48,31 @@ export function formatSetLength(lang: Lang, minutes: number): string {
   return lang === 'ja' ? `${minutes}分` : `${minutes} min`;
 }
 
+export interface TextChunk {
+  text: string;
+  // Present only on chunks that should render as a link.
+  url?: string;
+}
+
+const URL_RE = /https?:\/\/\S+/g;
+
+// Splits free-form text (e.g. a song's credits note) around any bare URLs
+// it contains, for a template to map over — <a> for a chunk with `url`,
+// plain text otherwise. Returns chunks rather than an HTML string so the
+// caller never has to set innerHTML on user-provided text.
+export function autoLink(text: string): TextChunk[] {
+  const chunks: TextChunk[] = [];
+  let lastIndex = 0;
+  for (const match of text.matchAll(URL_RE)) {
+    const start = match.index ?? 0;
+    if (start > lastIndex) chunks.push({ text: text.slice(lastIndex, start) });
+    chunks.push({ text: match[0], url: match[0] });
+    lastIndex = start + match[0].length;
+  }
+  if (lastIndex < text.length) chunks.push({ text: text.slice(lastIndex) });
+  return chunks;
+}
+
 // key is "YYYY-MM", e.g. from an event date's first 7 characters.
 export function formatMonth(lang: Lang, key: string): string {
   const [y, m] = key.split('-').map(Number);
