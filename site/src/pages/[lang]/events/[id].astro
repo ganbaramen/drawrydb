@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { events, getSong, getVenue, setLengthStats, type Event } from '../../../lib/data';
-import { formatDate, liveDurationMinutes, songDisplayName, urlSafe } from '../../../lib/format';
+import { formatDate, formatSetLength, liveDurationMinutes, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -72,9 +72,14 @@ const durationMinutes =
             (bucket ? (
               <>
                 {' '}
+                {lang === 'ja' ? '（' : '('}
+                {/* The parens stay outside the link — inside, the anchor's
+                    underline stretched under them too, which reads oddly
+                    wide especially with JA's full-width （）. */}
                 <a href={`${base}/${lang}/set-lengths/${bucket.minutes}/`}>
-                  {t(lang, 'events.liveDuration', { n: durationMinutes })}
+                  {formatSetLength(lang, durationMinutes)}
                 </a>
+                {lang === 'ja' ? '）' : ')'}
               </>
             ) : (
               ` ${t(lang, 'events.liveDuration', { n: durationMinutes })}`
