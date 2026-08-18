@@ -19,6 +19,11 @@ const base = import.meta.env.BASE_URL;
 // the calendar couldn't disambiguate (see CLAUDE.md's VENUE_AMBIGUOUS) — only
 // setlist-derived venues get their own page, so only link when one exists.
 const venue = event.venue ? getVenue(event.venue) : undefined;
+// Multiple encores need their own numbers to tell them apart (e.g.
+// 新衣装お披露目イベント Drawry.主催「New Scene」 has two) — the common
+// single-encore case stays plain "En" rather than an unnecessary "En1".
+const encoreCount = event.setlist.filter((s) => s.is_encore).length;
+let encoreIndex = 0;
 ---
 
 <Layout title={event.title} lang={lang} path={`events/${event.id}/`}>
@@ -82,15 +87,19 @@ const venue = event.venue ? getVenue(event.venue) : undefined;
   {
     event.has_setlist ? (
       <ol class="setlist">
-        {event.setlist.map((song) => (
-          <li>
-            <span class="position">{song.is_encore ? 'En' : song.position}</span>
-            <span>
-              <a href={`${base}/${lang}/songs/${urlSafe(song.song)}/`}>{song.song}</a>
-              {song.note && <span class="song-note"> ({song.note})</span>}
-            </span>
-          </li>
-        ))}
+        {event.setlist.map((song) => {
+          if (song.is_encore) encoreIndex++;
+          const position = song.is_encore ? (encoreCount > 1 ? `En${encoreIndex}` : 'En') : song.position;
+          return (
+            <li>
+              <span class="position">{position}</span>
+              <span>
+                <a href={`${base}/${lang}/songs/${urlSafe(song.song)}/`}>{song.song}</a>
+                {song.note && <span class="song-note"> ({song.note})</span>}
+              </span>
+            </li>
+          );
+        })}
       </ol>
     ) : (
       <p class="pending-notice">{t(lang, 'events.pending')}</p>
