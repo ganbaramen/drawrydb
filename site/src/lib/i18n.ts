@@ -71,7 +71,7 @@ const en: Dict = {
     'This is an unofficial fan site — not affiliated with Drawry. or their management. Made and run independently by ',
   'disclaimer.post': '.',
   'footer.disclaimer':
-    'This is an unofficial fan project, not affiliated with Drawry. or their management. Contact:',
+    'This is an unofficial fan project, not affiliated with Drawry. or their management. Contact: ',
   'footer.credit': ' (ramen)',
   'footer.source': 'Source on GitHub',
   'home.next': 'Next show',
