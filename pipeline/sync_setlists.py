@@ -680,6 +680,41 @@ OVERRIDE_TEMPLATE_FIELDS = [
 # resolve one. This is what actually closes the gap: an ambiguous venue is
 # treated the same as a blank one, falling back to the setlist post's venue.
 VENUE_AMBIGUOUS = re.compile(r".+[&/、].+")
+# Mirrors export_site_data.py's TITLE_BRACKETS/unwrap_quotes — same
+# independence reason (that script imports this module, not the other way
+# around, so this can't just import theirs). Strips the same presentational
+# noise ("【イベント】", wrapping 「」/『』) from a freshly auto-generated
+# `match` value, so event_overrides.csv reads like the title actually shown
+# on the site instead of the raw calendar summary. apply_overrides() only
+# ever needs `match in summary` (a substring test — see export_calendar.py),
+# and stripping a prefix/wrapper never removes anything from the *middle* of
+# the string, so a stripped value is still guaranteed to be found inside the
+# untouched raw summary it came from.
+MATCH_TITLE_BRACKETS = re.compile(r"^[(（][^()（）]*[)）]|^【[^【】]*】")
+MATCH_QUOTE_PAIRS = {"「": "」", "『": "』"}
+
+
+def clean_match_title(summary: str) -> str:
+    text = summary.strip()
+    while True:
+        stripped = MATCH_TITLE_BRACKETS.sub("", text).strip()
+        if stripped == text:
+            break
+        text = stripped
+    if not text:
+        return text
+    close = MATCH_QUOTE_PAIRS.get(text[0])
+    if not close or text[-1] != close:
+        return text
+    depth = 0
+    for ch in text[1:-1]:
+        if ch in MATCH_QUOTE_PAIRS:
+            depth += 1
+        elif ch in MATCH_QUOTE_PAIRS.values():
+            if depth == 0:
+                return text
+            depth -= 1
+    return text[1:-1] if depth == 0 else text
 
 
 def add_override_templates(
@@ -740,7 +775,7 @@ def add_override_templates(
             continue
 
         when = cal_row["start"][:10]
-        match = cal_row.get("summary", "")
+        match = clean_match_title(cal_row.get("summary", ""))
         if (when, match) in existing:
             continue
         existing.add((when, match))

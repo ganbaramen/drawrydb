@@ -674,10 +674,10 @@
       "date": "2025-10-12",
       "title": "雨模様のソラリス presents「Festival in the Rain 2025」",
       "venue": "下北沢MOSAiC",
-      "doors": null,
-      "showtime": null,
-      "live_start": null,
-      "live_end": null,
+      "doors": "11:30",
+      "showtime": "12:00",
+      "live_start": "18:15",
+      "live_end": "18:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -5737,10 +5737,88 @@
     },
     {
       "date": "2026-03-20",
+      "title": "1st EP「First Lines」リリースイベント",
+      "venue": "タワーレコード新宿店",
+      "doors": "12:30",
+      "showtime": "13:00",
+      "live_start": null,
+      "live_end": null,
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "SE",
+          "note": "",
+          "is_se": true,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "Blooming",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "ラブストーリーが始まらない",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "描きかけの空",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "Moving Lights!",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 6,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 7,
+          "song": "朝焼けと車窓",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 8,
+          "song": "Dear,History",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
+      "ticket_links": [],
+      "id": "2026-03-20-1"
+    },
+    {
+      "date": "2026-03-20",
       "title": "IDOLGROW vol.22",
       "venue": "銀座BASE GRANBELL",
-      "doors": null,
-      "showtime": null,
+      "doors": "13:30",
+      "showtime": "14:00",
       "live_start": "17:05",
       "live_end": "17:35",
       "has_setlist": true,
@@ -5824,92 +5902,14 @@
           "url": "https://livepocket.jp/e/j1-ac"
         }
       ],
-      "id": "2026-03-20-1"
-    },
-    {
-      "date": "2026-03-20",
-      "title": "1st EP「First Lines」リリースイベント",
-      "venue": "タワーレコード新宿店",
-      "doors": null,
-      "showtime": null,
-      "live_start": null,
-      "live_end": null,
-      "has_setlist": true,
-      "setlist": [
-        {
-          "position": 1,
-          "song": "SE",
-          "note": "",
-          "is_se": true,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 2,
-          "song": "Blooming",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 3,
-          "song": "ラブストーリーが始まらない",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 4,
-          "song": "描きかけの空",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 5,
-          "song": "Moving Lights!",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 6,
-          "song": "ルミナス",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 7,
-          "song": "朝焼けと車窓",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 8,
-          "song": "Dear,History",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        }
-      ],
-      "ticket_links": [],
       "id": "2026-03-20-2"
     },
     {
       "date": "2026-03-21",
       "title": "LEADING SPRING Circuit",
       "venue": "SHIBUYA RING",
-      "doors": null,
-      "showtime": null,
+      "doors": "10:30",
+      "showtime": "11:00",
       "live_start": "12:05",
       "live_end": "12:25",
       "has_setlist": true,
@@ -7651,8 +7651,8 @@
       "date": "2026-05-09",
       "title": "MAWA LOOP OSAKA 2026",
       "venue": "アメリカ村BEYOND",
-      "doors": null,
-      "showtime": null,
+      "doors": "11:30",
+      "showtime": "12:00",
       "live_start": "12:10",
       "live_end": "12:35",
       "has_setlist": true,
@@ -8431,8 +8431,8 @@
       "date": "2026-06-06",
       "title": "INFINITY LIVE presents『ASTRO CIRCLE 2026』",
       "venue": "下北沢シャングリラ",
-      "doors": null,
-      "showtime": null,
+      "doors": "10:30",
+      "showtime": "11:00",
       "live_start": "14:40",
       "live_end": "15:10",
       "has_setlist": true,
@@ -11820,16 +11820,16 @@
         {
           "event_id": "2026-03-20-1",
           "date": "2026-03-20",
-          "venue": "銀座BASE GRANBELL",
-          "position": 3,
+          "venue": "タワーレコード新宿店",
+          "position": 7,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2026-03-20-2",
           "date": "2026-03-20",
-          "venue": "タワーレコード新宿店",
-          "position": 7,
+          "venue": "銀座BASE GRANBELL",
+          "position": 3,
           "is_encore": false,
           "note": ""
         },
@@ -12932,16 +12932,16 @@
         {
           "event_id": "2026-03-20-1",
           "date": "2026-03-20",
-          "venue": "銀座BASE GRANBELL",
-          "position": 5,
+          "venue": "タワーレコード新宿店",
+          "position": 6,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2026-03-20-2",
           "date": "2026-03-20",
-          "venue": "タワーレコード新宿店",
-          "position": 6,
+          "venue": "銀座BASE GRANBELL",
+          "position": 5,
           "is_encore": false,
           "note": ""
         },
@@ -14036,16 +14036,16 @@
         {
           "event_id": "2026-03-20-1",
           "date": "2026-03-20",
-          "venue": "銀座BASE GRANBELL",
-          "position": 2,
+          "venue": "タワーレコード新宿店",
+          "position": 8,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2026-03-20-2",
           "date": "2026-03-20",
-          "venue": "タワーレコード新宿店",
-          "position": 8,
+          "venue": "銀座BASE GRANBELL",
+          "position": 2,
           "is_encore": false,
           "note": ""
         },
@@ -14642,7 +14642,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-03-20-2",
+          "event_id": "2026-03-20-1",
           "date": "2026-03-20",
           "venue": "タワーレコード新宿店",
           "position": 5,
@@ -15298,7 +15298,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-03-20-2",
+          "event_id": "2026-03-20-1",
           "date": "2026-03-20",
           "venue": "タワーレコード新宿店",
           "position": 2,
@@ -15820,16 +15820,16 @@
         {
           "event_id": "2026-03-20-1",
           "date": "2026-03-20",
-          "venue": "銀座BASE GRANBELL",
-          "position": 7,
+          "venue": "タワーレコード新宿店",
+          "position": 3,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2026-03-20-2",
           "date": "2026-03-20",
-          "venue": "タワーレコード新宿店",
-          "position": 3,
+          "venue": "銀座BASE GRANBELL",
+          "position": 7,
           "is_encore": false,
           "note": ""
         },
@@ -16580,7 +16580,7 @@
         {
           "event_id": "2026-03-20-1",
           "date": "2026-03-20",
-          "venue": "銀座BASE GRANBELL",
+          "venue": "タワーレコード新宿店",
           "position": 1,
           "is_encore": false,
           "note": ""
@@ -16588,7 +16588,7 @@
         {
           "event_id": "2026-03-20-2",
           "date": "2026-03-20",
-          "venue": "タワーレコード新宿店",
+          "venue": "銀座BASE GRANBELL",
           "position": 1,
           "is_encore": false,
           "note": ""
@@ -17018,7 +17018,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-03-20-1",
+          "event_id": "2026-03-20-2",
           "date": "2026-03-20",
           "venue": "銀座BASE GRANBELL",
           "position": 9,
@@ -17266,7 +17266,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-03-20-1",
+          "event_id": "2026-03-20-2",
           "date": "2026-03-20",
           "venue": "銀座BASE GRANBELL",
           "position": 4,
@@ -18002,7 +18002,7 @@
           "note": "初披露"
         },
         {
-          "event_id": "2026-03-20-1",
+          "event_id": "2026-03-20-2",
           "date": "2026-03-20",
           "venue": "銀座BASE GRANBELL",
           "position": 6,
@@ -18316,16 +18316,16 @@
         {
           "event_id": "2026-03-20-1",
           "date": "2026-03-20",
-          "venue": "銀座BASE GRANBELL",
-          "position": 8,
+          "venue": "タワーレコード新宿店",
+          "position": 4,
           "is_encore": false,
           "note": ""
         },
         {
           "event_id": "2026-03-20-2",
           "date": "2026-03-20",
-          "venue": "タワーレコード新宿店",
-          "position": 4,
+          "venue": "銀座BASE GRANBELL",
+          "position": 8,
           "is_encore": false,
           "note": ""
         },
@@ -19854,7 +19854,7 @@
       "last_played": "2026-07-26",
       "event_ids": [
         "2026-02-01-1",
-        "2026-03-20-1",
+        "2026-03-20-2",
         "2026-05-02-1",
         "2026-06-13-1",
         "2026-07-26-1"
@@ -20218,7 +20218,7 @@
       "first_played": "2026-03-20",
       "last_played": "2026-03-20",
       "event_ids": [
-        "2026-03-20-2"
+        "2026-03-20-1"
       ]
     },
     {
