@@ -9,7 +9,6 @@ export const DEFAULT_LOCALE: Lang = 'ja';
 type Dict = Record<string, string>;
 
 const ja: Dict = {
-  'site.tagline': 'Drawry. のライブスケジュールとセットリストのデータベース。',
   'nav.events': 'イベント',
   'nav.songs': '楽曲',
   'nav.venues': '会場',
@@ -62,7 +61,6 @@ const ja: Dict = {
 };
 
 const en: Dict = {
-  'site.tagline': "A database of Drawry.'s live schedule and setlists.",
   'nav.events': 'Events',
   'nav.songs': 'Songs',
   'nav.venues': 'Venues',
