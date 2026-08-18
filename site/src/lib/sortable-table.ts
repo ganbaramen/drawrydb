@@ -36,7 +36,25 @@ export function initSortableTable(table: HTMLTableElement): void {
       rows.sort((a, b) => {
         const va = a.cells[index]?.dataset.sortValue ?? '';
         const vb = b.cells[index]?.dataset.sortValue ?? '';
-        const cmp = type === 'number' ? parseFloat(va) - parseFloat(vb) : va < vb ? -1 : va > vb ? 1 : 0;
+
+        if (type === 'number') {
+          const na = parseFloat(va);
+          const nb = parseFloat(vb);
+          const aBlank = Number.isNaN(na);
+          const bBlank = Number.isNaN(nb);
+          // A blank cell (e.g. a song with no track number) always sorts
+          // to the bottom, regardless of direction — NaN - NaN style
+          // comparisons here previously returned NaN, which corrupts the
+          // *entire* sort (not just the blank rows), since NaN is neither
+          // <0, >0, nor 0.
+          if (aBlank || bBlank) {
+            if (aBlank && bBlank) return 0;
+            return aBlank ? 1 : -1;
+          }
+          return ascending ? na - nb : nb - na;
+        }
+
+        const cmp = va < vb ? -1 : va > vb ? 1 : 0;
         return ascending ? cmp : -cmp;
       });
       rows.forEach((row) => tbody.appendChild(row));
