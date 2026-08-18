@@ -123,6 +123,13 @@ SONG_NOTE = re.compile(
 # "SE(Moving Lights!) ※New" — an annotation appended with ※ rather than parens.
 # Anything after ※ is commentary, never part of the title.
 SONG_ASIDE = re.compile(r"^(.*?)\s*[※*]\s*(.+?)\s*$")
+# Bare section-header lines a few posts use to set off a pre-set segment (a
+# talk segment with a song played before the numbered main set). They stop
+# event-name accumulation and, for トークパート, label any song line that
+# follows until the next section header — that's how "トークパート" attaches
+# to the acoustic song beneath it instead of being read as part of the event
+# name (see 2026-04-04@下北沢MOSAiC).
+SECTION_LABELS = {"トークパート": "トークパート", "本編": None}
 # "SEなし" is a remark, not part of the event name; the absence of SE rows
 # already records it.
 NOISE_LINES = {
@@ -209,17 +216,31 @@ def parse_post(body: list[str], source: str) -> dict | None:
 
     songs: list[tuple[int, str, bool, str, bool]] = []
     name_parts: list[str] = []
+    section_note: str | None = None
     for line in body[header_index + 1 :]:
+        if line in SECTION_LABELS:
+            section_note = SECTION_LABELS[line]
+            continue
         match = SONG_LINE.match(line)
         encore = ENCORE_LINE.match(line) if not match else None
         if match or encore:
             raw = match.group(2) if match else encore.group(1)
             song, is_se, note = parse_song(raw)
             if song:
+                if section_note:
+                    note = "; ".join(n for n in (section_note, note) if n)
                 # Encores restart or omit numbering, so keep counting from the
                 # main set to preserve true running order.
                 position = int(match.group(1)) if match else len(songs) + 1
                 songs.append((position, song, is_se, note, bool(encore)))
+        elif section_note:
+            # An unnumbered song inside a labelled section (e.g. a talk-part
+            # performance) — treat it as a song rather than swallowing it
+            # into the event name.
+            song, is_se, note = parse_song(line)
+            if song:
+                note = "; ".join(n for n in (section_note, note) if n)
+                songs.append((len(songs) + 1, song, is_se, note, False))
         elif not songs:
             # Lines between the date line and the first song are the event name.
             name_parts.append(line)
