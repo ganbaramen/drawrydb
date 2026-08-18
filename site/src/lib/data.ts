@@ -83,6 +83,7 @@ export interface SongLengthRate {
 }
 
 export interface SongLengthCounts {
+  id: string;
   name: string;
   // Keyed by LengthBucket.minutes, stringified ("20", "25", ...).
   rates: Record<string, SongLengthRate>;
@@ -113,12 +114,19 @@ export function getEvent(id: string): Event | undefined {
   return events.find((event) => event.id === id);
 }
 
-export function getSong(id: string): Song | undefined {
-  return songs.find((song) => song.id === id);
+// By *name*, not id — every other place in the data (Event.venue,
+// SetlistEntry.song, Performance.venue, ...) carries the raw display name,
+// never the id, since only song/venue pages themselves need the id (to
+// link to). id is a separate, optionally hand-slugged field (see
+// pipeline/export_site_data.py's load_slugs()) precisely so it's free to
+// diverge from the name — looking these up by id here would silently break
+// the moment a slug did.
+export function getSong(name: string): Song | undefined {
+  return songs.find((song) => song.name === name);
 }
 
-export function getVenue(id: string): Venue | undefined {
-  return venues.find((venue) => venue.id === id);
+export function getVenue(name: string): Venue | undefined {
+  return venues.find((venue) => venue.name === name);
 }
 
 // Build-time "today" (JST, matching the calendar's own timezone) — this is a

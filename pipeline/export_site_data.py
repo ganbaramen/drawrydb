@@ -24,6 +24,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INPUT_DIR = os.path.join(ROOT, "data", "input")
 GENERATED_DIR = os.path.join(ROOT, "data", "generated")
 OUTPUT_JSON = os.path.join(GENERATED_DIR, "site_data.json")
 
@@ -153,6 +154,26 @@ def read_csv(name: str) -> list[dict[str, str]]:
         return list(csv.DictReader(fh))
 
 
+def load_slugs(name: str) -> dict[str, str]:
+    """name -> hand-typed URL slug (data/input/song_slugs.csv or
+    venue_slugs.csv, both `name,slug`). Per DRAWRYDB.md's slug section: a
+    missing file, or a name with no row yet, isn't an error — that name's id
+    just falls back to itself (raw Japanese, percent-encoded by the browser
+    same as it already is), so the site works before this table is filled
+    in. Filling one in is purely additive — it doesn't touch anything else
+    the id is used for (song/venue matching stays keyed by name throughout
+    the rest of this pipeline)."""
+    path = os.path.join(INPUT_DIR, name)
+    if not os.path.exists(path):
+        return {}
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        return {
+            row["name"].strip(): row["slug"].strip()
+            for row in csv.DictReader(fh)
+            if row.get("name") and row.get("slug")
+        }
+
+
 def sort_key(row: dict[str, str]) -> str:
     """Same fallback chain the pipeline uses elsewhere for same-day
     ordering: the band's own slot, then the event's showtime, then doors."""
@@ -244,6 +265,7 @@ def build_events() -> list[dict]:
 def build_songs(events: list[dict]) -> list[dict]:
     stats = read_csv("song_stats.csv")
     setlists = read_csv("setlists.csv")
+    slugs = load_slugs("song_slugs.csv")
 
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
@@ -269,7 +291,7 @@ def build_songs(events: list[dict]) -> list[dict]:
         )
         songs.append(
             {
-                "id": row["song"],
+                "id": slugs.get(row["song"], row["song"]),
                 "name": row["song"],
                 "plays": int(row["plays"]),
                 "shows": int(row["shows"]),
@@ -290,6 +312,7 @@ def build_songs(events: list[dict]) -> list[dict]:
 def build_venues(events: list[dict]) -> list[dict]:
     stats = read_csv("venue_stats.csv")
     shows = read_csv("shows.csv")
+    slugs = load_slugs("venue_slugs.csv")
 
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
@@ -305,7 +328,7 @@ def build_venues(events: list[dict]) -> list[dict]:
     for row in stats:
         venues.append(
             {
-                "id": row["venue"],
+                "id": slugs.get(row["venue"], row["venue"]),
                 "name": row["venue"],
                 "shows": int(row["shows"]),
                 "first_played": row["first_played"],
@@ -336,6 +359,7 @@ def build_set_length_stats(events: list[dict]) -> dict:
     # that length, the same reasoning song_stats.csv's own play_rate uses
     # (see CLAUDE.md's shows_since_debut/play_rate section).
     first_performed = {row["song"]: row["first_performed"] for row in read_csv("song_stats.csv")}
+    slugs = load_slugs("song_slugs.csv")
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
     }
@@ -406,7 +430,7 @@ def build_set_length_stats(events: list[dict]) -> dict:
                 "count": song_counts[b].get(name, 0),
                 "eligible": eligible,
             }
-        songs.append({"name": name, "rates": rates})
+        songs.append({"id": slugs.get(name, name), "name": name, "rates": rates})
 
     uncovered = len(shows) - sum(b["shows"] for b in buckets)
     return {"buckets": buckets, "songs": songs, "uncovered_shows": uncovered}
