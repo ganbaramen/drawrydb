@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { events, getVenue, type Event } from '../../../lib/data';
-import { formatDate, urlSafe } from '../../../lib/format';
+import { formatDate, liveDurationMinutes, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -63,6 +63,8 @@ let encoreIndex = 0;
         <td>
           {event.live_start}
           {event.live_end && `${t(lang, 'events.timeRangeSep')}${event.live_end}`}
+          {event.live_end &&
+            ` ${t(lang, 'events.liveDuration', { n: liveDurationMinutes(event.live_start, event.live_end) })}`}
         </td>
       </tr>
     )}

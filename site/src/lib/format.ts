@@ -31,6 +31,16 @@ export function formatDate(lang: Lang, iso: string): string {
   return `${y} ${month} ${d} (${weekday})`;
 }
 
+// Minutes between two "HH:MM" times, mirroring
+// pipeline/sync_setlists.py's show_duration() (same midnight-wraparound
+// handling — a show's live_end is occasionally past midnight).
+export function liveDurationMinutes(start: string, end: string): number {
+  const [startH, startM] = start.split(':').map(Number);
+  const [endH, endM] = end.split(':').map(Number);
+  const minutes = endH * 60 + endM - (startH * 60 + startM);
+  return minutes < 0 ? minutes + 24 * 60 : minutes;
+}
+
 // key is "YYYY-MM", e.g. from an event date's first 7 characters.
 export function formatMonth(lang: Lang, key: string): string {
   const [y, m] = key.split('-').map(Number);
