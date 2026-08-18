@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { events, type Event } from '../../../lib/data';
-import { formatDateJa } from '../../../lib/format';
+import { events, getVenue, type Event } from '../../../lib/data';
+import { formatDateJa, urlSafe } from '../../../lib/format';
 
 export function getStaticPaths() {
   return events.map((event) => ({
@@ -11,6 +11,11 @@ export function getStaticPaths() {
 }
 
 const { event } = Astro.props as { event: Event };
+const base = import.meta.env.BASE_URL;
+// A pending event's venue may be blank, or an unresolved multi-venue string
+// the calendar couldn't disambiguate (see CLAUDE.md's VENUE_AMBIGUOUS) — only
+// setlist-derived venues get their own page, so only link when one exists.
+const venue = event.venue ? getVenue(event.venue) : undefined;
 ---
 
 <Layout title={event.title}>
@@ -23,7 +28,13 @@ const { event } = Astro.props as { event: Event };
     {event.venue && (
       <tr>
         <th>会場</th>
-        <td>{event.venue}</td>
+        <td>
+          {venue ? (
+            <a href={`${base}/ja/venues/${urlSafe(venue.id)}/`}>{event.venue}</a>
+          ) : (
+            event.venue
+          )}
+        </td>
       </tr>
     )}
     {event.doors && (
@@ -56,7 +67,7 @@ const { event } = Astro.props as { event: Event };
           <li>
             <span class="position">{song.is_encore ? 'En' : song.position}</span>
             <span>
-              {song.song}
+              <a href={`${base}/ja/songs/${urlSafe(song.song)}/`}>{song.song}</a>
               {song.note && <span class="song-note"> ({song.note})</span>}
             </span>
           </li>

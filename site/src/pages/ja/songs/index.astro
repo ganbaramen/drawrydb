@@ -1,0 +1,40 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { songs } from '../../../lib/data';
+import { urlSafe } from '../../../lib/format';
+
+const base = import.meta.env.BASE_URL;
+// Most-played first — that's the ordering visitors browsing "the songs" of
+// a band actually want, unlike events (chronological) or venues (also by
+// play count, see venues/index.astro).
+const sorted = songs.slice().sort((a, b) => b.plays - a.plays);
+---
+
+<Layout title="楽曲一覧">
+  <h1>楽曲一覧</h1>
+  <p>{songs.length}曲</p>
+  <table class="stats-table">
+    <thead>
+      <tr>
+        <th>曲名</th>
+        <th>演奏回数</th>
+        <th>初披露</th>
+        <th>披露率</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        sorted.map((song) => (
+          <tr>
+            <td>
+              <a href={`${base}/ja/songs/${urlSafe(song.id)}/`}>{song.name}</a>
+            </td>
+            <td>{song.plays}</td>
+            <td>{song.first_performed}</td>
+            <td>{Math.round(song.play_rate * 100)}%</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</Layout>

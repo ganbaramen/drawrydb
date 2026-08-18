@@ -161,10 +161,88 @@ def build_events() -> list[dict]:
     return events
 
 
+def build_songs(events: list[dict]) -> list[dict]:
+    stats = read_csv("song_stats.csv")
+    setlists = read_csv("setlists.csv")
+
+    event_id_by_date_venue = {
+        (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
+    }
+
+    performances_by_song: dict[str, list[dict]] = {}
+    for row in setlists:
+        performances_by_song.setdefault(row["song"], []).append(
+            {
+                "event_id": event_id_by_date_venue[(row["event_date"], row["venue"])],
+                "date": row["event_date"],
+                "venue": row["venue"],
+                "position": int(row["position"]),
+                "is_encore": row["is_encore"] == "yes",
+                "note": row["note"],
+            }
+        )
+
+    songs = []
+    for row in stats:
+        performances = sorted(
+            performances_by_song.get(row["song"], []), key=lambda p: p["date"]
+        )
+        songs.append(
+            {
+                "id": row["song"],
+                "name": row["song"],
+                "plays": int(row["plays"]),
+                "shows": int(row["shows"]),
+                "shows_since_debut": int(row["shows_since_debut"]),
+                "play_rate": float(row["play_rate"]),
+                "first_performed": row["first_performed"],
+                "last_performed": row["last_performed"],
+                "debut_confirmed": row["debut_confirmed"] == "yes",
+                "encores": int(row["encores"]),
+                "is_se": row["is_se"] == "yes",
+                "is_interlude": row["is_interlude"] == "yes",
+                "performances": performances,
+            }
+        )
+    return songs
+
+
+def build_venues(events: list[dict]) -> list[dict]:
+    stats = read_csv("venue_stats.csv")
+    shows = read_csv("shows.csv")
+
+    event_id_by_date_venue = {
+        (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
+    }
+
+    event_ids_by_venue: dict[str, list[str]] = {}
+    for row in sorted(shows, key=lambda r: r["event_date"]):
+        event_ids_by_venue.setdefault(row["venue"], []).append(
+            event_id_by_date_venue[(row["event_date"], row["venue"])]
+        )
+
+    venues = []
+    for row in stats:
+        venues.append(
+            {
+                "id": row["venue"],
+                "name": row["venue"],
+                "shows": int(row["shows"]),
+                "first_played": row["first_played"],
+                "last_played": row["last_played"],
+                "event_ids": event_ids_by_venue.get(row["venue"], []),
+            }
+        )
+    return venues
+
+
 def main() -> None:
+    events = build_events()
     data = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "events": build_events(),
+        "events": events,
+        "songs": build_songs(events),
+        "venues": build_venues(events),
     }
     with open(OUTPUT_JSON, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=2)

@@ -1,0 +1,57 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { venues, getEvent, type Venue } from '../../../lib/data';
+import { formatDateJa } from '../../../lib/format';
+
+export function getStaticPaths() {
+  // See songs/[id].astro for why params.id stays the raw name.
+  return venues.map((venue) => ({
+    params: { id: venue.id },
+    props: { venue },
+  }));
+}
+
+const { venue } = Astro.props as { venue: Venue };
+const base = import.meta.env.BASE_URL;
+// Most recent first, matching the events list's ordering convention.
+const eventIds = venue.event_ids.slice().reverse();
+---
+
+<Layout title={venue.name}>
+  <p><a href="../">← 会場一覧に戻る</a></p>
+
+  <h1>{venue.name}</h1>
+
+  <table class="meta-table">
+    <tr>
+      <th>公演回数</th>
+      <td>{venue.shows}回</td>
+    </tr>
+    <tr>
+      <th>初出演</th>
+      <td>{venue.first_played}</td>
+    </tr>
+    <tr>
+      <th>最終出演</th>
+      <td>{venue.last_played}</td>
+    </tr>
+  </table>
+
+  <h2>公演一覧</h2>
+  <ul style="list-style:none; padding:0;">
+    {
+      eventIds.map((id) => {
+        const event = getEvent(id);
+        if (!event) return null;
+        return (
+          <li>
+            <a class="event-card" href={`${base}/ja/events/${id}/`}>
+              <div class="event-date">{formatDateJa(event.date)}</div>
+              <div class="event-title">{event.title}</div>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</Layout>

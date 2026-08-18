@@ -173,6 +173,40 @@ main {
   padding: 0.3rem 0;
 }
 
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.stats-table th,
+.stats-table td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-table th {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.performance-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.performance-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.event-title-inline {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 .pending-notice {
   background: var(--accent-bg);
   color: var(--accent);

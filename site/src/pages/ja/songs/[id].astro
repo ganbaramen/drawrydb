@@ -1,0 +1,75 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { songs, events, type Song } from '../../../lib/data';
+import { formatDateJa } from '../../../lib/format';
+
+export function getStaticPaths() {
+  // params.id must stay the raw name — Astro's route matcher compares
+  // against the *decoded* request path, so a pre-encoded param here 404s.
+  // Astro itself only percent-escapes structurally unsafe characters (like
+  // "#") in the output path, leaving Japanese text and most punctuation
+  // untouched; hrefs use the matching urlSafe() from lib/format.ts.
+  return songs.map((song) => ({
+    params: { id: song.id },
+    props: { song },
+  }));
+}
+
+const { song } = Astro.props as { song: Song };
+const base = import.meta.env.BASE_URL;
+// Most recent first, matching the events list's ordering convention.
+const performances = song.performances.slice().reverse();
+---
+
+<Layout title={song.name}>
+  <p><a href="../">← 楽曲一覧に戻る</a></p>
+
+  <h1>{song.name}</h1>
+
+  <table class="meta-table">
+    <tr>
+      <th>演奏回数</th>
+      <td>{song.plays}回</td>
+    </tr>
+    <tr>
+      <th>初披露</th>
+      <td>
+        {song.first_performed}
+        {!song.debut_confirmed && <span class="badge-pending">未確定</span>}
+      </td>
+    </tr>
+    <tr>
+      <th>最終披露</th>
+      <td>{song.last_performed}</td>
+    </tr>
+    <tr>
+      <th>披露率</th>
+      <td>{Math.round(song.play_rate * 100)}% ({song.shows}/{song.shows_since_debut}公演)</td>
+    </tr>
+    {song.encores > 0 && (
+      <tr>
+        <th>アンコール</th>
+        <td>{song.encores}回</td>
+      </tr>
+    )}
+  </table>
+
+  <h2>演奏履歴</h2>
+  <ul class="performance-list">
+    {
+      performances.map((p) => {
+        const event = events.find((e) => e.id === p.event_id);
+        return (
+          <li>
+            <a href={`${base}/ja/events/${p.event_id}/`}>
+              {formatDateJa(p.date)} @ {p.venue}
+            </a>
+            {event?.title && <span class="event-title-inline"> — {event.title}</span>}
+            {p.is_encore && <span class="badge-pending">アンコール</span>}
+            {p.note && <span class="song-note"> ({p.note})</span>}
+          </li>
+        );
+      })
+    }
+  </ul>
+</Layout>
