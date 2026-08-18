@@ -1,6 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { creators } from '../../../lib/data';
+import { creators, type Creator } from '../../../lib/data';
 import { urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
@@ -12,36 +12,37 @@ const { lang } = Astro.props as { lang: Lang };
 const base = import.meta.env.BASE_URL;
 // Already sorted by the exporter: most-credited first, name as a full
 // tiebreak (see export_site_data.py's build_creators()).
+
+// Fixed display order (matches songs/[id].astro's credits table), not
+// whatever order Set/flatMap happens to yield — every role this person
+// has across every song, deduped.
+const ROLE_ORDER = ['lyrics', 'composition', 'arrangement', 'choreography'];
+function creatorRoles(creator: Creator): string[] {
+  const present = new Set(creator.songs.flatMap((s) => s.roles));
+  return ROLE_ORDER.filter((role) => present.has(role));
+}
 ---
 
 <Layout title={t(lang, 'creators.title')} lang={lang} path="creators/">
   <h1>{t(lang, 'creators.title')}</h1>
   <p>{t(lang, 'creators.count', { n: creators.length })}</p>
-  <div class="table-scroll">
-    <table class="stats-table" id="creators-table">
-      <thead>
-        <tr>
-          <th>{t(lang, 'creators.name')}</th>
-          <th data-sort-type="number">{t(lang, 'creators.songs')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          creators.map((creator) => (
-            <tr>
-              <td>
-                <a href={`${base}/${lang}/creators/${urlSafe(creator.id)}/`}>{creator.name}</a>
-              </td>
-              <td data-sort-value={creator.songs.length}>{creator.songs.length}</td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
-  </div>
-
-  <script>
-    import { initSortableTable } from '../../../lib/sortable-table';
-    initSortableTable(document.getElementById('creators-table') as HTMLTableElement);
-  </script>
+  <ul style="list-style:none; padding:0;">
+    {
+      creators.map((creator) => (
+        <li>
+          <a class="event-card creator-card" href={`${base}/${lang}/creators/${urlSafe(creator.id)}/`}>
+            <div class="creator-card-info">
+              <div class="event-title">{creator.name}</div>
+              <div>
+                {creatorRoles(creator).map((role) => (
+                  <span class="badge">{t(lang, `songs.${role}`)}</span>
+                ))}
+              </div>
+            </div>
+            <div class="creator-song-count">{t(lang, 'songs.count', { n: creator.songs.length })}</div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
