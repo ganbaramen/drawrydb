@@ -1,6 +1,6 @@
 ﻿event_date,venue,event_uid,calendar_summary,post_event_name,songs,se,interludes,encores,doors,showtime,live_start,live_end,length_bucket,source_file
 2025-09-13,Veats SHIBUYA,1cd5nd8bicv5rt12h9no8andke@google.com,【プレデビューイベント】airattic presents 「ATTIC PARADE」,airattic presents 「ATTIC PARADE」,2,0,0,0,11:30,12:00,12:30,12:40,10 min,2025-09-13_manual.txt
-2025-09-20,Spotify O-Crest,44jp1sjrk0rpp74k6s09o7d4n9@google.com,【イベント】Drawry.デビューライブ「first impression」@渋谷Spotify O-Crest,Drawry.デビューライブ「first impression」,8,1,0,1,11:40,12:15,,,,2026-08-17.txt
+2025-09-20,Spotify O-Crest,44jp1sjrk0rpp74k6s09o7d4n9@google.com,【イベント】Drawry.デビューライブ「first impression」@渋谷Spotify O-Crest,Drawry.デビューライブ「first impression」,8,1,0,1,11:40,12:15,12:15,,,2026-08-17.txt
 2025-09-21,恵比寿CreAto,6p7tm36bkf877r894mbdlfsf49@google.com,【イベント】「ソノウチ」,「ソノウチ」,6,1,0,0,10:15,10:30,11:45,12:10,25 min,2026-08-17.txt
 2025-09-23,SHIBUYA RING,19rdbf410ch4jvefjqe0err42o@google.com,【イベント】「LEADING SUNNY」,「LEADING SUNNY」,7,1,0,0,15:00,15:30,16:30,17:00,30 min,2026-08-17.txt
 2025-09-23,新宿LOFT,79fu26uj83psaoi0uphnqhakql@google.com,【イベント】会心ノ一撃 pre.「DE•DE•DE•DE•DAY LIVE !!」 supported by NEW AGE,会心ノ一撃 pre.「DE•DE•DE•DE•DAY LIVE !!」supported by NEW AGE,6,1,0,0,11:30,12:00,12:50,13:15,25 min,2026-08-17.txt
@@ -34,7 +34,7 @@
 2025-11-29,ベルサール渋谷,03o9pqn7mrmkdp50651te81p9h@google.com,【イベント】TIF学園 「学園祭」秋,TIF学園 「学園祭」秋,5,1,0,0,09:30,10:00,16:00,16:20,20 min,2026-08-17.txt
 2025-11-30,SUPERNOVA KAWASAKI,06ots1h65f2k9qs9i12riqtrsg@google.com,【イベント】『BUNFES Vol.3』,『BUNFES Vol.3』,6,1,0,0,11:30,11:45,12:10,12:30,20 min,2026-08-17.txt
 2025-11-30,四谷LOTUS,7mb51mgsr5jaumf25bkgbdhjes@google.com,【イベント】INFINITY LIVE presents『Princeism』,INFINITY LIVE presents『Princeism』,6,1,0,0,17:00,17:15,18:05,18:30,25 min,2026-08-17.txt
-2025-12-01,渋谷WOMB,74lgh1lr5flp7tvc7maj49238q@google.com,"【イベント】『AFTERS PRESENTS. 「Hey, nuts buddy!」』","AFTERS PRESENTS. 「Hey, nuts buddy!」",7,1,0,0,17:00,17:30,17:30,18:05,35 min,2026-08-17.txt
+2025-12-01,渋谷WOMB,74lgh1lr5flp7tvc7maj49238q@google.com,"【イベント】『AFTERS PRESENTS. 「Hey, nuts buddy!」』","AFTERS PRESENTS. 「Hey, nuts buddy!」",7,1,0,0,17:00,17:30,17:40,18:05,25 min,2026-08-17.txt
 2025-12-06,SHIBUYA RING,5q145r1lknr22695ok9snsls7p@google.com,【イベント】『澀谷環狀空間』,『澀谷環狀空間』,6,1,0,0,15:40,16:00,18:40,19:05,25 min,2026-08-17.txt
 2025-12-08,新宿MARZ,1ldlruj85luujlqjfimsl84qv4@google.com,【イベント】SHINJUKUMARZ 24th Anniversary UNIVERSE企画『NEW ORDER #無銭NIGHT』,SHINJUKUMARZ 24th Anniversary UNIVERSE企画『NEW ORDER #無銭NIGHT』,8,1,0,0,18:30,19:00,19:30,20:00,30 min,2026-08-17.txt
 2025-12-13,下北沢MOSAiC,19t30atdobhrjs68q5j7idngrk@google.com,【イベント】INFINITY LIVE presents 『WHITEDAYS』,INFINITY LIVE presents 『WHITEDAYS』,6,1,0,0,16:45,17:00,18:15,18:40,25 min,2026-08-17.txt
@@ -76,11 +76,11 @@
 2026-03-10,渋谷近未来会館,59tdldskrp5gmf77h9vo8efu7m@google.com,【イベント】#ﾆｷﾌﾟﾚ『シキサイ。』,#ﾆｷﾌﾟﾚ『シキサイ。』,8,1,0,0,18:40,19:00,19:30,20:00,30 min,2026-08-17.txt
 2026-03-14,Flowers Loft,03o6a2s7dfuvl7sc216ibji69b@google.com,【イベント】『IDOL FILE CITY CULTURE CIRCUIT 2026』,『IDOL FILE CITY CULTURE CIRCUIT 2026』,8,1,1,0,11:00,12:00,12:30,12:55,25 min,2026-08-17.txt
 2026-03-15,下北沢SHELTER,4gnk8ortbamu12bf9dvm6vimvc@google.com,【イベント】Drawry.主催イベント「小宵めみ生誕」,Drawry.主催イベント「小宵めみ生誕」,12,1,2,1,11:30,12:00,,,,2026-08-17.txt
-2026-03-20,タワーレコード新宿店,1glmsbf0fvl02rc01sph283snh@google.com,【リリースイベント】タワーレコード新宿店,1st EP「First Lines」リリースイベント,8,1,0,0,12:30,13:00,,,,2026-08-17.txt
+2026-03-20,タワーレコード新宿店,1glmsbf0fvl02rc01sph283snh@google.com,【リリースイベント】タワーレコード新宿店,1st EP「First Lines」リリースイベント,8,1,0,0,12:30,13:00,13:00,,,2026-08-17.txt
 2026-03-20,銀座BASE GRANBELL,4p8jnmpuv4254ki49a3jcsjq5m@google.com,【イベント】「IDOLGROW vol.22」,「IDOLGROW vol.22」,9,1,1,0,13:30,14:00,17:05,17:35,30 min,2026-08-17.txt
 2026-03-21,SHIBUYA RING,63q4t383k4k3it2ichhckg90ha@google.com,【イベント】「LEADING SPRING Circuit」,「LEADING SPRING Circuit」,7,1,1,0,10:30,11:00,12:05,12:25,20 min,2026-08-17.txt
 2026-03-22,Flowers Loft,30j5uccf4prpk1abiqju6u11oi@google.com,【イベント】『脱却FES 2026』,『脱却FES 2026』,7,1,0,0,11:00,11:30,13:20,13:45,25 min,2026-08-17.txt
-2026-03-28,Spotify O-Crest,6b04264e877dvp9qqft2849ra3@google.com,(Sold out)【1st ONEMAN LIVE】「I Believe」,Drawry.1st ONEMAN LIVE「I Believe」,13,0,1,1,11:20,11:55,,,,2026-08-17.txt
+2026-03-28,Spotify O-Crest,6b04264e877dvp9qqft2849ra3@google.com,(Sold out)【1st ONEMAN LIVE】「I Believe」,Drawry.1st ONEMAN LIVE「I Believe」,13,0,1,1,11:20,11:55,11:55,,,2026-08-17.txt
 2026-03-29,Flowers Loft,1049cqce66b9j6aes9qr80dbh9@google.com,【イベント】『脱却』,『脱却』,7,1,0,0,11:00,11:30,18:45,19:10,25 min,2026-08-17.txt
 2026-04-04,下北沢MOSAiC,39u2voll41gsharfn8iqkn2gfk@google.com,【イベント】Drawry.主催イベント「I Believe -After party-」,Drawry.主催イベント「I Believe -After party-」,13,1,1,1,11:00,11:30,,,,2026-08-17.txt
 2026-04-05,Flowers Loft,0nlfb9uouk3m75rvigvkkfd9cj@google.com,【イベント】INFINITY LIVE presents『ASTROPUFF』,INFINITY LIVE presents『ASTROPUFF』,7,0,1,0,10:30,10:45,13:15,13:40,25 min,2026-08-17.txt
@@ -134,7 +134,7 @@
 2026-07-27,下北沢シャングリラ,4r5dniim2g6uceepq41qovoup3@google.com,【イベント】SOVA 10th Anniversary After Party「Owl Party」,SOVA 10th Anniversary After Party「Owl Party」,8,1,0,0,18:30,19:00,19:30,20:00,30 min,2026-08-17.txt
 2026-07-28,Shibuya Milkyway,0one27n8djloc2sv601fp9du5l@google.com,【イベント】Drawry.主催3カ月連続フリーライブ「描きかけの夏」,Drawry.主催3カ月連続フリーライブ「描きかけの夏」,9,1,0,0,18:45,19:10,20:10,,,2026-08-17.txt
 2026-08-02,下北沢MOSAiC,6e0c3vqsvdf5t6a7ageh41dn3v@google.com,【イベント】INFINITY LIVE presents『ASTROPUFF』,INFINITY LIVE presents『ASTROPUFF』,7,0,0,0,10:40,11:00,12:40,13:05,25 min,2026-08-17.txt
-2026-08-09,下北沢MOSAiC,1peojo7bfnge0l4gcadrldajcg@google.com,【イベント】新衣装お披露目イベント Drawry.主催 「New Scene」,新衣装お披露目イベント Drawry.主催 「New Scene」,12,1,0,2,11:15,11:45,,,,2026-08-17.txt
+2026-08-09,下北沢MOSAiC,1peojo7bfnge0l4gcadrldajcg@google.com,【イベント】新衣装お披露目イベント Drawry.主催 「New Scene」,新衣装お披露目イベント Drawry.主催 「New Scene」,12,1,0,2,11:15,11:45,11:45,,,2026-08-17.txt
 2026-08-10,渋谷GRIT,1833fhi9j9epc6biehjmp8ompa@google.com,【イベント】NEO JAPONISM主催フェス「NEO KASSEN2026」,NEO JAPONISM主催フェス「NEO KASSEN2026」,6,0,1,0,11:00,11:30,16:35,16:55,20 min,2026-08-17.txt
 2026-08-13,恵比寿CreAto,6atmotaglpcvbu0g140cm64v2r@google.com,【イベント】「エンジョイナス!!」,「エンジョイナス!!」,8,1,1,0,18:20,18:40,20:20,20:45,25 min,2026-08-17.txt
 2026-08-15,お台場R地区,0qn8kfq99c8cbfg36qp3thgkh4@google.com,【イベント】「POPGALAXY2026」,「POPGALAXY2026」,6,1,0,0,09:00,10:00,18:20,18:40,20 min,2026-08-17.txt
