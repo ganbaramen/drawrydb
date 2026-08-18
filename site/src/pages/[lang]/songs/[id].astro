@@ -36,10 +36,7 @@ const performances = song.performances.slice().reverse();
     </tr>
     <tr>
       <th>{t(lang, 'songs.debut')}</th>
-      <td>
-        {song.first_performed}
-        {!song.debut_confirmed && <span class="badge">{t(lang, 'badge.unconfirmed')}</span>}
-      </td>
+      <td>{song.first_performed}</td>
     </tr>
     <tr>
       <th>{t(lang, 'songs.lastPerformed')}</th>
