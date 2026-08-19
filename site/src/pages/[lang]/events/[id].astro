@@ -29,6 +29,10 @@ let encoreIndex = 0;
 const bucket = setLengthStats.buckets.find((b) => b.event_ids.includes(event.id));
 const durationMinutes =
   event.live_start && event.live_end ? liveDurationMinutes(event.live_start, event.live_end) : null;
+// 特典会 (meet & greet) duration — no set-length bucket/page for this one
+// (unlike the live set), just the plain "(N分)"/"(N min)" text.
+const meetDurationMinutes =
+  event.meet_start && event.meet_end ? liveDurationMinutes(event.meet_start, event.meet_end) : null;
 ---
 
 <Layout title={event.title} lang={lang} path={`events/${event.id}/`}>
@@ -84,6 +88,16 @@ const durationMinutes =
             ) : (
               ` ${t(lang, 'events.liveDuration', { n: durationMinutes })}`
             ))}
+        </td>
+      </tr>
+    )}
+    {event.meet_start && (
+      <tr>
+        <th>{t(lang, 'events.meet')}</th>
+        <td>
+          {event.meet_start}
+          {event.meet_end && `${t(lang, 'events.timeRangeSep')}${event.meet_end}`}
+          {meetDurationMinutes !== null && ` ${t(lang, 'events.liveDuration', { n: meetDurationMinutes })}`}
         </td>
       </tr>
     )}

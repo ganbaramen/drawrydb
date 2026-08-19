@@ -27,6 +27,10 @@ export interface Event {
   showtime: string | null;
   live_start: string | null;
   live_end: string | null;
+  // 特典会 (meet & greet) — same per-calendar-event granularity gap as the
+  // other time fields (see CLAUDE.md's shows.csv section).
+  meet_start: string | null;
+  meet_end: string | null;
   has_setlist: boolean;
   setlist: SetlistEntry[];
   ticket_links: TicketLink[];

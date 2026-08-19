@@ -267,15 +267,18 @@ def build_events() -> list[dict]:
         songs_by_uid_date.setdefault(key, []).append(row)
 
     linked_uids = {row["event_uid"] for row in shows if row["event_uid"]}
-    # shows.csv has no description column (see CLAUDE.md's shows.csv section
-    # — it only carries what building the show list itself needed), so a
-    # show's ticket links come from the calendar row via event_uid instead.
+    # shows.csv has no description or meet_start/meet_end columns (see
+    # CLAUDE.md's shows.csv section — it only carries what building the show
+    # list itself needed), so a show's ticket links and 特典会 (meet & greet)
+    # times come from the calendar row via event_uid instead.
     description_by_uid = {row["uid"]: row["description"] for row in calendar}
+    calendar_by_uid = {row["uid"]: row for row in calendar}
 
     # One entry per real show, plus one per calendar event that should have a
     # setlist but doesn't have one linked yet (past gap or future show).
     by_date: dict[str, list[dict]] = {}
     for row in shows:
+        cal_row = calendar_by_uid.get(row["event_uid"], {})
         by_date.setdefault(row["event_date"], []).append(
             {
                 "date": row["event_date"],
@@ -286,6 +289,8 @@ def build_events() -> list[dict]:
                 "showtime": row["showtime"] or None,
                 "live_start": row["live_start"] or None,
                 "live_end": row["live_end"] or None,
+                "meet_start": cal_row.get("meet_start") or None,
+                "meet_end": cal_row.get("meet_end") or None,
                 "has_setlist": True,
                 "setlist": [
                     {
@@ -319,6 +324,8 @@ def build_events() -> list[dict]:
                 "showtime": row["showtime"] or None,
                 "live_start": row["live_start"] or None,
                 "live_end": row["live_end"] or None,
+                "meet_start": row["meet_start"] or None,
+                "meet_end": row["meet_end"] or None,
                 "has_setlist": False,
                 "setlist": [],
                 "ticket_links": parse_ticket_links(row["description"]),

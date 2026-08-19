@@ -8,6 +8,8 @@
       "showtime": "12:00",
       "live_start": "12:30",
       "live_end": "12:40",
+      "meet_start": "13:00",
+      "meet_end": "14:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -44,6 +46,8 @@
       "showtime": "12:15",
       "live_start": "12:15",
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": true,
       "setlist": [
         {
@@ -128,6 +132,8 @@
       "showtime": "10:30",
       "live_start": "11:45",
       "live_end": "12:10",
+      "meet_start": "13:55",
+      "meet_end": "14:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -196,6 +202,8 @@
       "showtime": "12:00",
       "live_start": "12:50",
       "live_end": "13:15",
+      "meet_start": "13:40",
+      "meet_end": "14:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -264,6 +272,8 @@
       "showtime": "15:30",
       "live_start": "16:30",
       "live_end": "17:00",
+      "meet_start": "17:30",
+      "meet_end": "18:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -340,6 +350,8 @@
       "showtime": "12:00",
       "live_start": "12:00",
       "live_end": "12:25",
+      "meet_start": "13:15",
+      "meet_end": "14:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -408,6 +420,8 @@
       "showtime": "11:00",
       "live_start": "12:00",
       "live_end": "12:25",
+      "meet_start": "13:45",
+      "meet_end": "14:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -476,6 +490,8 @@
       "showtime": "19:00",
       "live_start": "20:00",
       "live_end": "20:30",
+      "meet_start": "21:00",
+      "meet_end": "22:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -552,6 +568,8 @@
       "showtime": "17:00",
       "live_start": "19:20",
       "live_end": "19:45",
+      "meet_start": "21:10",
+      "meet_end": "22:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -620,6 +638,8 @@
       "showtime": "12:00",
       "live_start": "12:50",
       "live_end": "13:15",
+      "meet_start": "14:15",
+      "meet_end": "15:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -688,6 +708,8 @@
       "showtime": "12:00",
       "live_start": "18:15",
       "live_end": "18:40",
+      "meet_start": "20:25",
+      "meet_end": "21:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -756,6 +778,8 @@
       "showtime": "17:00",
       "live_start": "19:15",
       "live_end": "19:40",
+      "meet_start": "20:50",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -824,6 +848,8 @@
       "showtime": "10:30",
       "live_start": "12:15",
       "live_end": "12:40",
+      "meet_start": "13:55",
+      "meet_end": "14:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -892,6 +918,8 @@
       "showtime": "17:00",
       "live_start": "18:30",
       "live_end": "19:00",
+      "meet_start": "19:45",
+      "meet_end": "20:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -968,6 +996,8 @@
       "showtime": "12:00",
       "live_start": "13:15",
       "live_end": "13:40",
+      "meet_start": "14:10",
+      "meet_end": "15:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -1036,6 +1066,8 @@
       "showtime": "19:00",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "21:10",
+      "meet_end": "22:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -1112,6 +1144,8 @@
       "showtime": "18:30",
       "live_start": "20:00",
       "live_end": "20:30",
+      "meet_start": "20:40",
+      "meet_end": "21:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -1188,6 +1222,8 @@
       "showtime": "09:20",
       "live_start": "10:40",
       "live_end": "11:00",
+      "meet_start": "11:15",
+      "meet_end": "12:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -1248,6 +1284,8 @@
       "showtime": "18:30",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "20:30",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -1324,6 +1362,8 @@
       "showtime": "19:10",
       "live_start": "19:35",
       "live_end": "20:00",
+      "meet_start": "21:00",
+      "meet_end": "21:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -1392,6 +1432,8 @@
       "showtime": "16:45",
       "live_start": "20:15",
       "live_end": "20:40",
+      "meet_start": "20:45",
+      "meet_end": "21:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -1460,6 +1502,8 @@
       "showtime": "11:00",
       "live_start": "16:00",
       "live_end": "16:30",
+      "meet_start": "16:30",
+      "meet_end": "17:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -1540,6 +1584,8 @@
       "showtime": "11:30",
       "live_start": "12:10",
       "live_end": "12:30",
+      "meet_start": "13:00",
+      "meet_end": "14:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -1600,6 +1646,8 @@
       "showtime": "11:30",
       "live_start": "14:10",
       "live_end": "14:40",
+      "meet_start": "14:50",
+      "meet_end": "15:50",
       "has_setlist": true,
       "setlist": [
         {
@@ -1676,6 +1724,8 @@
       "showtime": "11:30",
       "live_start": "11:30",
       "live_end": "11:55",
+      "meet_start": "12:00",
+      "meet_end": "13:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -1744,6 +1794,8 @@
       "showtime": "18:30",
       "live_start": "18:30",
       "live_end": "18:55",
+      "meet_start": "19:05",
+      "meet_end": "20:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -1812,6 +1864,8 @@
       "showtime": "18:45",
       "live_start": "19:15",
       "live_end": "19:45",
+      "meet_start": "21:00",
+      "meet_end": "22:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -1888,6 +1942,8 @@
       "showtime": "19:00",
       "live_start": "20:30",
       "live_end": "21:00",
+      "meet_start": "21:00",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -1964,6 +2020,8 @@
       "showtime": "11:30",
       "live_start": "13:00",
       "live_end": "13:30",
+      "meet_start": "14:10",
+      "meet_end": "15:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -2040,6 +2098,8 @@
       "showtime": "09:10",
       "live_start": "11:45",
       "live_end": "12:10",
+      "meet_start": "12:40",
+      "meet_end": "13:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -2108,6 +2168,8 @@
       "showtime": "11:00",
       "live_start": "10:30",
       "live_end": "10:55",
+      "meet_start": "11:30",
+      "meet_end": "12:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -2176,6 +2238,8 @@
       "showtime": "11:20",
       "live_start": "12:10",
       "live_end": null,
+      "meet_start": "12:55",
+      "meet_end": "14:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -2252,6 +2316,8 @@
       "showtime": "10:00",
       "live_start": "16:00",
       "live_end": "16:20",
+      "meet_start": "10:50",
+      "meet_end": "12:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -2312,6 +2378,8 @@
       "showtime": "11:45",
       "live_start": "12:10",
       "live_end": "12:30",
+      "meet_start": "12:40",
+      "meet_end": "13:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -2380,6 +2448,8 @@
       "showtime": "17:15",
       "live_start": "18:05",
       "live_end": "18:30",
+      "meet_start": "19:15",
+      "meet_end": "20:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -2448,6 +2518,8 @@
       "showtime": "17:30",
       "live_start": "17:40",
       "live_end": "18:05",
+      "meet_start": "18:15",
+      "meet_end": "19:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -2524,6 +2596,8 @@
       "showtime": "16:00",
       "live_start": "18:40",
       "live_end": "19:05",
+      "meet_start": "19:20",
+      "meet_end": "20:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -2592,6 +2666,8 @@
       "showtime": "19:00",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "21:00",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -2676,6 +2752,8 @@
       "showtime": "17:00",
       "live_start": "18:15",
       "live_end": "18:40",
+      "meet_start": "19:25",
+      "meet_end": "20:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -2744,6 +2822,8 @@
       "showtime": "12:00",
       "live_start": "12:30",
       "live_end": "13:00",
+      "meet_start": "14:00",
+      "meet_end": "15:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -2828,6 +2908,8 @@
       "showtime": "11:30",
       "live_start": "12:20",
       "live_end": "12:45",
+      "meet_start": "13:20",
+      "meet_end": "14:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -2904,6 +2986,8 @@
       "showtime": "11:30",
       "live_start": "16:45",
       "live_end": "17:10",
+      "meet_start": "18:00",
+      "meet_end": "19:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -2980,6 +3064,8 @@
       "showtime": "12:00",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": true,
       "setlist": [
         {
@@ -3064,6 +3150,8 @@
       "showtime": "16:45",
       "live_start": "18:45",
       "live_end": "19:10",
+      "meet_start": "19:35",
+      "meet_end": "20:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -3140,6 +3228,8 @@
       "showtime": "11:15",
       "live_start": "20:00",
       "live_end": "20:20",
+      "meet_start": "21:00",
+      "meet_end": "22:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -3200,6 +3290,8 @@
       "showtime": "11:45",
       "live_start": "16:05",
       "live_end": "16:30",
+      "meet_start": "17:30",
+      "meet_end": "18:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -3276,6 +3368,8 @@
       "showtime": "17:00",
       "live_start": "17:00",
       "live_end": "17:25",
+      "meet_start": "17:35",
+      "meet_end": "18:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -3344,6 +3438,8 @@
       "showtime": "11:30",
       "live_start": "14:35",
       "live_end": "15:00",
+      "meet_start": "15:00",
+      "meet_end": "16:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -3420,6 +3516,8 @@
       "showtime": "09:30",
       "live_start": "09:55",
       "live_end": "10:20",
+      "meet_start": "10:40",
+      "meet_end": "12:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -3488,6 +3586,8 @@
       "showtime": "09:30",
       "live_start": "13:00",
       "live_end": "13:25",
+      "meet_start": "13:55",
+      "meet_end": "15:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -3564,6 +3664,8 @@
       "showtime": "19:00",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "21:10",
+      "meet_end": "22:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -3648,6 +3750,8 @@
       "showtime": "19:00",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "21:00",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -3732,6 +3836,8 @@
       "showtime": "11:30",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": true,
       "setlist": [
         {
@@ -3824,6 +3930,8 @@
       "showtime": "16:55",
       "live_start": "18:35",
       "live_end": "19:00",
+      "meet_start": "19:40",
+      "meet_end": "20:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -3908,6 +4016,8 @@
       "showtime": "19:00",
       "live_start": "19:00",
       "live_end": "19:25",
+      "meet_start": "20:30",
+      "meet_end": "21:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -3984,6 +4094,8 @@
       "showtime": "11:00",
       "live_start": "11:55",
       "live_end": "12:20",
+      "meet_start": "12:25",
+      "meet_end": "13:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -4068,6 +4180,8 @@
       "showtime": "11:00",
       "live_start": "11:50",
       "live_end": "12:15",
+      "meet_start": "13:35",
+      "meet_end": "14:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -4144,6 +4258,8 @@
       "showtime": "18:20",
       "live_start": "18:45",
       "live_end": "19:10",
+      "meet_start": "21:05",
+      "meet_end": "22:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -4212,6 +4328,8 @@
       "showtime": "12:30",
       "live_start": "13:00",
       "live_end": "13:28",
+      "meet_start": "15:40",
+      "meet_end": "16:40",
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -4231,6 +4349,8 @@
       "showtime": "11:00",
       "live_start": "13:05",
       "live_end": "13:28",
+      "meet_start": "14:55",
+      "meet_end": "16:05",
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -4250,6 +4370,8 @@
       "showtime": "10:30",
       "live_start": "11:40",
       "live_end": "12:00",
+      "meet_start": "12:15",
+      "meet_end": "13:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -4318,6 +4440,8 @@
       "showtime": "12:00",
       "live_start": "13:40",
       "live_end": "14:05",
+      "meet_start": "14:20",
+      "meet_end": "15:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -4394,6 +4518,8 @@
       "showtime": "19:00",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "21:00",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -4478,6 +4604,8 @@
       "showtime": "17:00",
       "live_start": "18:15",
       "live_end": "18:40",
+      "meet_start": "20:25",
+      "meet_end": "21:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -4562,6 +4690,8 @@
       "showtime": "11:15",
       "live_start": "13:05",
       "live_end": "13:30",
+      "meet_start": "14:50",
+      "meet_end": "15:50",
       "has_setlist": true,
       "setlist": [
         {
@@ -4638,6 +4768,8 @@
       "showtime": "10:15",
       "live_start": "19:15",
       "live_end": "19:40",
+      "meet_start": "21:00",
+      "meet_end": "22:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -4714,6 +4846,8 @@
       "showtime": "10:30",
       "live_start": "11:45",
       "live_end": "12:10",
+      "meet_start": "13:55",
+      "meet_end": "14:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -4798,6 +4932,8 @@
       "showtime": "18:30",
       "live_start": "18:30",
       "live_end": "18:55",
+      "meet_start": "19:00",
+      "meet_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -4874,6 +5010,8 @@
       "showtime": "16:30",
       "live_start": "17:55",
       "live_end": "18:20",
+      "meet_start": "18:55",
+      "meet_end": "19:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -4950,6 +5088,8 @@
       "showtime": "11:00",
       "live_start": "13:10",
       "live_end": "13:35",
+      "meet_start": "13:40",
+      "meet_end": "14:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -5034,6 +5174,8 @@
       "showtime": "11:50",
       "live_start": "12:40",
       "live_end": null,
+      "meet_start": "13:25",
+      "meet_end": "14:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -5126,6 +5268,8 @@
       "showtime": "11:25",
       "live_start": "11:35",
       "live_end": "12:00",
+      "meet_start": "12:20",
+      "meet_end": "13:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -5202,6 +5346,8 @@
       "showtime": "17:00",
       "live_start": "17:50",
       "live_end": "18:15",
+      "meet_start": "19:00",
+      "meet_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -5278,6 +5424,8 @@
       "showtime": "19:20",
       "live_start": "19:50",
       "live_end": "20:20",
+      "meet_start": "21:20",
+      "meet_end": "22:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -5370,6 +5518,8 @@
       "showtime": "11:15",
       "live_start": "12:50",
       "live_end": "13:15",
+      "meet_start": "13:20",
+      "meet_end": "14:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -5446,6 +5596,8 @@
       "showtime": "15:00",
       "live_start": "15:00",
       "live_end": "15:30",
+      "meet_start": "17:00",
+      "meet_end": "18:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -5538,6 +5690,8 @@
       "showtime": "19:00",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "21:10",
+      "meet_end": "22:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -5622,6 +5776,8 @@
       "showtime": "12:00",
       "live_start": "12:30",
       "live_end": "12:55",
+      "meet_start": "13:20",
+      "meet_end": "14:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -5706,6 +5862,8 @@
       "showtime": "12:00",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": true,
       "setlist": [
         {
@@ -5822,6 +5980,8 @@
       "showtime": "13:00",
       "live_start": "13:00",
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": true,
       "setlist": [
         {
@@ -5901,6 +6061,8 @@
       "showtime": "14:00",
       "live_start": "17:05",
       "live_end": "17:35",
+      "meet_start": "18:35",
+      "meet_end": "19:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -5993,6 +6155,8 @@
       "showtime": "11:00",
       "live_start": "12:05",
       "live_end": "12:25",
+      "meet_start": "12:35",
+      "meet_end": "13:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -6069,6 +6233,8 @@
       "showtime": "11:30",
       "live_start": "13:20",
       "live_end": "13:45",
+      "meet_start": "14:05",
+      "meet_end": "15:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -6145,6 +6311,8 @@
       "showtime": "11:55",
       "live_start": "11:55",
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": true,
       "setlist": [
         {
@@ -6269,6 +6437,8 @@
       "showtime": "11:30",
       "live_start": "18:45",
       "live_end": "19:10",
+      "meet_start": "19:20",
+      "meet_end": "20:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -6345,6 +6515,8 @@
       "showtime": "11:30",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": true,
       "setlist": [
         {
@@ -6461,6 +6633,8 @@
       "showtime": "10:45",
       "live_start": "13:15",
       "live_end": "13:40",
+      "meet_start": "13:40",
+      "meet_end": "14:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -6537,6 +6711,8 @@
       "showtime": "10:50",
       "live_start": "13:20",
       "live_end": "13:45",
+      "meet_start": "14:00",
+      "meet_end": "15:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -6613,6 +6789,8 @@
       "showtime": "18:50",
       "live_start": "20:20",
       "live_end": "20:50",
+      "meet_start": "20:50",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -6705,6 +6883,8 @@
       "showtime": "12:00",
       "live_start": "12:00",
       "live_end": "12:25",
+      "meet_start": "12:35",
+      "meet_end": "13:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -6789,6 +6969,8 @@
       "showtime": "12:00",
       "live_start": "12:00",
       "live_end": "12:25",
+      "meet_start": "12:35",
+      "meet_end": "13:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -6865,6 +7047,8 @@
       "showtime": "13:00",
       "live_start": "16:05",
       "live_end": "16:30",
+      "meet_start": "16:55",
+      "meet_end": "18:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -6941,6 +7125,8 @@
       "showtime": "19:00",
       "live_start": "20:30",
       "live_end": "21:00",
+      "meet_start": "21:00",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -7033,6 +7219,8 @@
       "showtime": "15:30",
       "live_start": "16:20",
       "live_end": "16:45",
+      "meet_start": "17:40",
+      "meet_end": "18:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -7109,6 +7297,8 @@
       "showtime": "11:00",
       "live_start": "11:25",
       "live_end": "11:50",
+      "meet_start": "13:35",
+      "meet_end": "14:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -7193,6 +7383,8 @@
       "showtime": "10:40",
       "live_start": "16:40",
       "live_end": "17:05",
+      "meet_start": "17:05",
+      "meet_end": "18:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -7277,6 +7469,8 @@
       "showtime": "18:30",
       "live_start": "18:55",
       "live_end": "19:20",
+      "meet_start": "20:30",
+      "meet_end": "21:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -7345,6 +7539,8 @@
       "showtime": "13:00",
       "live_start": "13:00",
       "live_end": "13:25",
+      "meet_start": "13:30",
+      "meet_end": "14:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -7429,6 +7625,8 @@
       "showtime": "10:30",
       "live_start": "17:40",
       "live_end": "18:10",
+      "meet_start": "18:10",
+      "meet_end": "19:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -7513,6 +7711,8 @@
       "showtime": "13:00",
       "live_start": "15:45",
       "live_end": "16:10",
+      "meet_start": "16:40",
+      "meet_end": "17:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -7597,6 +7797,8 @@
       "showtime": "13:30",
       "live_start": "15:30",
       "live_end": "15:55",
+      "meet_start": "17:35",
+      "meet_end": "18:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -7673,6 +7875,8 @@
       "showtime": "18:30",
       "live_start": "18:30",
       "live_end": "19:00",
+      "meet_start": "20:45",
+      "meet_end": "21:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -7749,6 +7953,8 @@
       "showtime": "12:00",
       "live_start": "12:10",
       "live_end": "12:35",
+      "meet_start": "12:55",
+      "meet_end": "14:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -7817,6 +8023,8 @@
       "showtime": "15:50",
       "live_start": "15:50",
       "live_end": "16:15",
+      "meet_start": "16:25",
+      "meet_end": "17:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -7901,6 +8109,8 @@
       "showtime": "19:10",
       "live_start": "20:25",
       "live_end": "20:50",
+      "meet_start": "21:00",
+      "meet_end": "22:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -7977,6 +8187,8 @@
       "showtime": "11:10",
       "live_start": "13:45",
       "live_end": "14:10",
+      "meet_start": "14:35",
+      "meet_end": "15:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -8053,6 +8265,8 @@
       "showtime": "13:15",
       "live_start": "15:40",
       "live_end": "16:05",
+      "meet_start": "16:25",
+      "meet_end": "17:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -8129,6 +8343,8 @@
       "showtime": "11:30",
       "live_start": "11:30",
       "live_end": "11:55",
+      "meet_start": "12:05",
+      "meet_end": "13:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -8208,6 +8424,8 @@
       "showtime": "11:30",
       "live_start": "11:30",
       "live_end": "11:55",
+      "meet_start": "12:05",
+      "meet_end": "13:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -8271,6 +8489,8 @@
       "showtime": "19:00",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "21:10",
+      "meet_end": "22:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -8363,6 +8583,8 @@
       "showtime": "11:50",
       "live_start": "12:40",
       "live_end": null,
+      "meet_start": "13:20",
+      "meet_end": "14:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -8455,6 +8677,8 @@
       "showtime": "19:00",
       "live_start": "19:00",
       "live_end": "19:30",
+      "meet_start": "21:00",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -8539,6 +8763,8 @@
       "showtime": "11:00",
       "live_start": "14:40",
       "live_end": "15:10",
+      "meet_start": "15:25",
+      "meet_end": "16:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -8631,6 +8857,8 @@
       "showtime": "11:30",
       "live_start": "18:20",
       "live_end": "18:50",
+      "meet_start": "19:00",
+      "meet_end": "20:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -8715,6 +8943,8 @@
       "showtime": "17:00",
       "live_start": "20:05",
       "live_end": "20:35",
+      "meet_start": "20:40",
+      "meet_end": "21:50",
       "has_setlist": true,
       "setlist": [
         {
@@ -8791,6 +9021,8 @@
       "showtime": "11:00",
       "live_start": "14:35",
       "live_end": "15:05",
+      "meet_start": "15:20",
+      "meet_end": "16:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -8875,6 +9107,8 @@
       "showtime": "12:00",
       "live_start": "15:45",
       "live_end": "16:15",
+      "meet_start": "16:25",
+      "meet_end": "17:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -8967,6 +9201,8 @@
       "showtime": "11:30",
       "live_start": "18:50",
       "live_end": "19:13",
+      "meet_start": "21:05",
+      "meet_end": "22:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -9035,6 +9271,8 @@
       "showtime": "19:15",
       "live_start": "20:15",
       "live_end": null,
+      "meet_start": "20:50",
+      "meet_end": "22:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -9119,6 +9357,8 @@
       "showtime": "19:00",
       "live_start": "19:00",
       "live_end": "19:30",
+      "meet_start": "21:10",
+      "meet_end": "22:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -9198,6 +9438,8 @@
       "showtime": "10:00",
       "live_start": "13:35",
       "live_end": "13:55",
+      "meet_start": "14:15",
+      "meet_end": "15:35",
       "has_setlist": true,
       "setlist": [
         {
@@ -9266,6 +9508,8 @@
       "showtime": "11:10",
       "live_start": "12:10",
       "live_end": null,
+      "meet_start": "12:50",
+      "meet_end": "14:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -9366,6 +9610,8 @@
       "showtime": "16:00",
       "live_start": "19:00",
       "live_end": "19:25",
+      "meet_start": "19:45",
+      "meet_end": "20:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -9442,6 +9688,8 @@
       "showtime": "11:30",
       "live_start": "12:00",
       "live_end": "12:25",
+      "meet_start": "12:35",
+      "meet_end": "13:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -9522,6 +9770,8 @@
       "showtime": "10:15",
       "live_start": "15:10",
       "live_end": "15:30",
+      "meet_start": "15:40",
+      "meet_end": "16:40",
       "has_setlist": true,
       "setlist": [
         {
@@ -9606,6 +9856,8 @@
       "showtime": "19:15",
       "live_start": "19:40",
       "live_end": "20:05",
+      "meet_start": "21:25",
+      "meet_end": "22:25",
       "has_setlist": true,
       "setlist": [
         {
@@ -9674,6 +9926,8 @@
       "showtime": "09:30",
       "live_start": "17:45",
       "live_end": "18:05",
+      "meet_start": "18:20",
+      "meet_end": "19:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -9742,6 +9996,8 @@
       "showtime": "09:30",
       "live_start": "12:55",
       "live_end": "13:15",
+      "meet_start": "13:30",
+      "meet_end": "14:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -9810,6 +10066,8 @@
       "showtime": "17:00",
       "live_start": "19:40",
       "live_end": "20:10",
+      "meet_start": "20:50",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -9894,6 +10152,8 @@
       "showtime": "11:30",
       "live_start": "11:55",
       "live_end": "12:18",
+      "meet_start": "15:00",
+      "meet_end": "16:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -9978,6 +10238,8 @@
       "showtime": "11:30",
       "live_start": "16:15",
       "live_end": "16:38",
+      "meet_start": "17:15",
+      "meet_end": "18:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -10054,6 +10316,8 @@
       "showtime": "10:30",
       "live_start": "12:45",
       "live_end": "13:05",
+      "meet_start": "13:20",
+      "meet_end": "14:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -10114,6 +10378,8 @@
       "showtime": "10:15",
       "live_start": "16:55",
       "live_end": "17:15",
+      "meet_start": "17:55",
+      "meet_end": "19:15",
       "has_setlist": true,
       "setlist": [
         {
@@ -10185,6 +10451,8 @@
       "showtime": "12:30",
       "live_start": "14:15",
       "live_end": "14:40",
+      "meet_start": "14:50",
+      "meet_end": "16:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -10261,6 +10529,8 @@
       "showtime": "19:00",
       "live_start": "19:30",
       "live_end": "20:00",
+      "meet_start": "21:15",
+      "meet_end": "22:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -10345,6 +10615,8 @@
       "showtime": "19:10",
       "live_start": "20:10",
       "live_end": null,
+      "meet_start": "20:50",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -10437,6 +10709,8 @@
       "showtime": "11:00",
       "live_start": "12:40",
       "live_end": "13:05",
+      "meet_start": "13:10",
+      "meet_end": "14:10",
       "has_setlist": true,
       "setlist": [
         {
@@ -10513,6 +10787,8 @@
       "showtime": "11:45",
       "live_start": "11:45",
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": true,
       "setlist": [
         {
@@ -10629,6 +10905,8 @@
       "showtime": "11:30",
       "live_start": "16:35",
       "live_end": "16:55",
+      "meet_start": "17:05",
+      "meet_end": "18:05",
       "has_setlist": true,
       "setlist": [
         {
@@ -10697,6 +10975,8 @@
       "showtime": "13:15",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -10716,6 +10996,8 @@
       "showtime": "18:40",
       "live_start": "20:20",
       "live_end": "20:45",
+      "meet_start": "20:55",
+      "meet_end": "21:55",
       "has_setlist": true,
       "setlist": [
         {
@@ -10800,6 +11082,8 @@
       "showtime": "10:00",
       "live_start": "18:20",
       "live_end": "18:40",
+      "meet_start": "19:00",
+      "meet_end": "20:20",
       "has_setlist": true,
       "setlist": [
         {
@@ -10872,6 +11156,8 @@
       "showtime": "11:30",
       "live_start": "11:30",
       "live_end": "11:58",
+      "meet_start": "14:40",
+      "meet_end": "15:50",
       "has_setlist": true,
       "setlist": [
         {
@@ -10956,6 +11242,8 @@
       "showtime": "19:20",
       "live_start": "19:50",
       "live_end": "20:20",
+      "meet_start": "21:20",
+      "meet_end": "22:30",
       "has_setlist": true,
       "setlist": [
         {
@@ -11040,6 +11328,8 @@
       "showtime": "11:15",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11059,6 +11349,8 @@
       "showtime": "18:50",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11078,6 +11370,8 @@
       "showtime": "19:10",
       "live_start": "20:10",
       "live_end": null,
+      "meet_start": "20:50",
+      "meet_end": "22:00",
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11097,6 +11391,8 @@
       "showtime": "11:00",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11116,6 +11412,8 @@
       "showtime": "17:20",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11135,6 +11433,8 @@
       "showtime": "18:00",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11154,6 +11454,8 @@
       "showtime": "09:55",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11173,6 +11475,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11187,6 +11491,8 @@
       "showtime": "10:45",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11206,6 +11512,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11220,6 +11528,8 @@
       "showtime": "17:30",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11239,6 +11549,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11253,6 +11565,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11267,6 +11581,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11281,6 +11597,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11295,6 +11613,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11309,6 +11629,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11323,6 +11645,8 @@
       "showtime": null,
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [],
@@ -11337,6 +11661,8 @@
       "showtime": "19:00",
       "live_start": null,
       "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
