@@ -621,6 +621,11 @@ def build_set_length_stats(events: list[dict]) -> dict:
         {name for counts in song_counts.values() for name in counts},
         key=song_sort_key,
     )
+    # A given song name is consistently one or the other, so any row for it
+    # in setlists.csv answers both flags — same source songs/index.astro's
+    # own SE/Interlude filter uses.
+    is_se_by_name = {row["song"]: row["is_se"] == "yes" for row in setlists}
+    is_interlude_by_name = {row["song"]: row["is_interlude"] == "yes" for row in setlists}
     songs = []
     for name in all_song_names:
         debut = first_performed.get(name, "")
@@ -636,6 +641,8 @@ def build_set_length_stats(events: list[dict]) -> dict:
                 "id": details.get(name, {}).get("slug") or name,
                 "name": name,
                 "translation": details.get(name, {}).get("translation") or None,
+                "is_se": is_se_by_name.get(name, False),
+                "is_interlude": is_interlude_by_name.get(name, False),
                 "rates": rates,
             }
         )

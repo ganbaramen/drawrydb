@@ -130,6 +130,8 @@ export interface SongLengthCounts {
   id: string;
   name: string;
   translation: string | null;
+  is_se: boolean;
+  is_interlude: boolean;
   // Keyed by LengthBucket.minutes, stringified ("20", "25", ...).
   rates: Record<string, SongLengthRate>;
 }

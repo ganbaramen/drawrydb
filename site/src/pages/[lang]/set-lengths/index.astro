@@ -53,6 +53,10 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
   {uncovered_shows > 0 && <p class="uncovered-note">{t(lang, 'setLength.uncovered', { n: uncovered_shows })}</p>}
 
   <h2>{t(lang, 'setLength.songDistribution')}</h2>
+  <label class="include-special">
+    <input type="checkbox" id="include-special" checked />
+    {t(lang, 'songs.includeSpecial')}
+  </label>
   <div class="table-scroll">
     <table class="stats-table" id="song-distribution-table">
       <thead>
@@ -64,7 +68,7 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
       <tbody>
         {
           songs.map((song) => (
-            <tr>
+            <tr data-special={song.is_se || song.is_interlude ? '1' : '0'}>
               <td>
                 <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{songDisplayName(lang, song)}</a>
               </td>
@@ -94,5 +98,16 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
     import { initSortableTable } from '../../../lib/sortable-table';
     initSortableTable(document.getElementById('bucket-table') as HTMLTableElement);
     initSortableTable(document.getElementById('song-distribution-table') as HTMLTableElement);
+
+    const checkbox = document.getElementById('include-special') as HTMLInputElement;
+    const rows = document.querySelectorAll<HTMLTableRowElement>('#song-distribution-table tbody tr');
+
+    function apply() {
+      rows.forEach((row) => {
+        row.hidden = !checkbox.checked && row.dataset.special === '1';
+      });
+    }
+
+    checkbox.addEventListener('change', apply);
   </script>
 </Layout>

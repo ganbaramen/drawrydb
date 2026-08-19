@@ -21566,6 +21566,8 @@
         "id": "dear-history",
         "name": "Dear,History",
         "translation": null,
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 1,
@@ -21589,6 +21591,8 @@
         "id": "luminous",
         "name": "ルミナス",
         "translation": "Luminous",
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 1,
@@ -21612,6 +21616,8 @@
         "id": "primary",
         "name": "プライマリ",
         "translation": "primary",
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21635,6 +21641,8 @@
         "id": "moving-lights",
         "name": "Moving Lights!",
         "translation": null,
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21658,6 +21666,8 @@
         "id": "asayake-to-shasou",
         "name": "朝焼けと車窓",
         "translation": "Morning Glow and the Train Window",
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21681,6 +21691,8 @@
         "id": "blooming",
         "name": "Blooming",
         "translation": null,
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21704,6 +21716,8 @@
         "id": "se",
         "name": "SE",
         "translation": null,
+        "is_se": true,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21727,6 +21741,8 @@
         "id": "se-moving-lights",
         "name": "SE(Moving Lights!)",
         "translation": null,
+        "is_se": true,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21750,6 +21766,8 @@
         "id": "love-story-ga-hajimaranai",
         "name": "ラブストーリーが始まらない",
         "translation": "A Love Story That Never Begins",
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21773,6 +21791,8 @@
         "id": "se-primary",
         "name": "SE(プライマリ)",
         "translation": "SE(primary)",
+        "is_se": true,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21796,6 +21816,8 @@
         "id": "begin-the-journey",
         "name": "Begin the Journey!",
         "translation": null,
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21819,6 +21841,8 @@
         "id": "interlude",
         "name": "Interlude",
         "translation": null,
+        "is_se": false,
+        "is_interlude": true,
         "rates": {
           "10": {
             "count": 0,
@@ -21842,6 +21866,8 @@
         "id": "egakikake-no-sora",
         "name": "描きかけの空",
         "translation": "Egakikake no Sora",
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21865,6 +21891,8 @@
         "id": "stand-by-me",
         "name": "スタンドバイミー",
         "translation": "Stand by Me",
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21888,6 +21916,8 @@
         "id": "draw-a-line",
         "name": "Draw a line",
         "translation": null,
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21911,6 +21941,8 @@
         "id": "time-capsule",
         "name": "タイムカプセル",
         "translation": "Time Capsule",
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21934,6 +21966,8 @@
         "id": "se-draw-a-story",
         "name": "SE(Draw a Story)",
         "translation": null,
+        "is_se": true,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21957,6 +21991,8 @@
         "id": "se-stand-by-me",
         "name": "SE(スタンドバイミー)",
         "translation": "SE(Stand by Me)",
+        "is_se": true,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -21980,6 +22016,8 @@
         "id": "se-love-story-ga-hajimaranai",
         "name": "SE(ラブストーリーが始まらない)",
         "translation": "SE(A Love Story That Never Begins)",
+        "is_se": true,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -22003,6 +22041,8 @@
         "id": "ginmaku",
         "name": "銀幕",
         "translation": "Ginmaku",
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -22026,6 +22066,8 @@
         "id": "into-the-blue",
         "name": "Into the Blue",
         "translation": null,
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,
@@ -22049,6 +22091,8 @@
         "id": "fly-by",
         "name": "Fly By",
         "translation": null,
+        "is_se": false,
+        "is_interlude": false,
         "rates": {
           "10": {
             "count": 0,

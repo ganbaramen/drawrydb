@@ -302,6 +302,17 @@ main {
   margin-left: 0.5rem;
 }
 
+/* SE/Interlude filter checkbox — songs/index.astro and set-lengths/
+   index.astro's song-distribution table both use this. */
+.include-special {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
 .setlist {
   list-style: none;
   padding: 0;
