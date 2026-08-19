@@ -3062,10 +3062,10 @@
       "venue": "SHIBUYA CYCLONE",
       "doors": "11:30",
       "showtime": "12:00",
-      "live_start": null,
+      "live_start": "12:40",
       "live_end": null,
-      "meet_start": null,
-      "meet_end": null,
+      "meet_start": "13:25",
+      "meet_end": "14:30",
       "has_setlist": true,
       "setlist": [
         {
