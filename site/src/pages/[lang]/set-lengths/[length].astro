@@ -58,7 +58,10 @@ const eventIds = bucket.event_ids.slice().reverse();
           <li>
             <a class="event-card" href={`${base}/${lang}/events/${id}/`}>
               <div class="event-date">{formatDate(lang, event.date)}</div>
-              <div class="event-title">{event.title}</div>
+              <div class="event-title">
+                {event.title}
+                {event.setlist.some((s) => s.is_se) && <span class="badge">{t(lang, 'setLength.withSe')}</span>}
+              </div>
               {event.venue && <div class="event-venue">{event.venue}</div>}
             </a>
           </li>
