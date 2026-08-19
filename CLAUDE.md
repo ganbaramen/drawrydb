@@ -564,18 +564,38 @@ place — unlike every other field, which is frozen once prefilled (see
 above) — because an unrenewed `match` doesn't just go stale, it breaks
 matching entirely (`apply_overrides()` reports "matched no event — stale?"
 and skips the row, silently dropping the venue/times it was carrying too).
-Detected by pairing an existing row whose `match` no longer appears in any
-of that date's current show titles (an "orphan") with a show on that date
-not yet covered by any row (an "unmatched" show) — only when there's
-exactly one of each on that date. `event_overrides.csv` has no uid column
-(kept hand-typed and human-readable on purpose), so this date-scoped 1:1
-pairing is the strongest same-event signal available without one; a
-double-header day, or more than one orphan, falls through to the ordinary
-new-row path rather than guessing which orphan matches which show. Venue
-and every time field on the renamed row are left exactly as they were — a
-title change says nothing about whether those also changed, and this
-doesn't try to guess at that too. Reported unconditionally (not gated by
-`--quiet`) as `override renamed {date}: {old!r} -> {new!r}`.
+
+First implemented as a heuristic (pairing an "orphaned" row — its `match` no
+longer found in any of that date's current show titles — with an
+"unmatched" show on that date, only when there was exactly one of each,
+since `event_overrides.csv` had no uid to match on directly). The user then
+pointed out a uid column was fine to add for exactly this bookkeeping, so
+it's now an exact lookup instead: a trailing `uid` column (`OVERRIDE_
+TEMPLATE_FIELDS`) that `export_calendar.py` never reads and the two scripts
+therefore don't need to keep in sync on. A row's uid never changes across a
+rename, so once known, matching is exact — no more guessing which orphan
+pairs with which unmatched show. A row written before this column existed
+gets one backfilled the first time it's seen, the same way `apply_
+overrides()` itself matches an override: a unique (date, match-is-a-
+substring-of-summary) pair; ambiguous or no match just leaves it uid-less,
+same as before the column existed.
+
+**Deliberately keyed by (uid, date), not uid alone** — this was the other
+half of the user's guidance. A two-day event is one calendar row/uid but can
+need two override rows, one per day: `apply_overrides()` itself still only
+matches an override to a calendar row by that row's own start date (a real,
+separate, deliberately-not-fixed-here gap — see the shows.csv section
+above), so a day-2 override has to be hand-added today, dated for day 2,
+sharing the same uid as day 1's row. Keying the live-show lookup on uid
+alone would treat that legitimate one-uid/two-rows case as a conflict
+instead of two independent, both-valid entries; keying on (uid, date), built
+from `event_days()` rather than just the calendar row's own `start`, keeps
+them properly independent.
+
+Venue and every time field on a renamed row are left exactly as they
+were — a title change says nothing about whether those also changed, and
+this doesn't try to guess at that too. Reported unconditionally (not gated
+by `--quiet`) as `override renamed {date}: {old!r} -> {new!r}`.
 
 ## Coverage reporting
 

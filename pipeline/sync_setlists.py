@@ -682,8 +682,12 @@ def length_bucket(minutes: int) -> str:
     return f"{round(minutes / 5) * 5} min"
 
 
-# Mirrors export_calendar.py's event_overrides.csv header. Not imported from
-# there — the two scripts are deliberately independent (see CLAUDE.md).
+# Mirrors export_calendar.py's event_overrides.csv header, plus a trailing
+# `uid` column that script doesn't know about and never touches (it isn't in
+# OVERRIDE_FIELDS there, so apply_overrides() just ignores it) — pure
+# bookkeeping for this script's own rename-detection, not a field a human
+# ever needs to read or edit, hence tucked at the end rather than up front
+# with the columns a person actually fills in.
 OVERRIDE_TEMPLATE_FIELDS = [
     "date",
     "match",
@@ -694,6 +698,7 @@ OVERRIDE_TEMPLATE_FIELDS = [
     "live_end",
     "meet_start",
     "meet_end",
+    "uid",
 ]
 # Mirrors export_calendar.py's VENUE_AMBIGUOUS — same reason, not imported.
 # That script only detects and warns about an ambiguous venue; it doesn't
@@ -780,46 +785,71 @@ def add_override_templates(
     other field on that row, including venue/times, is left exactly as it
     was: a rename says nothing about whether the venue or times also
     changed, so this doesn't try to guess at those.
+
+    Renames are detected via a trailing `uid` column (bookkeeping only — see
+    OVERRIDE_TEMPLATE_FIELDS — export_calendar.py never reads it, so this is
+    the one column the two scripts *don't* need to keep in sync). A row's
+    uid never changes across a rename, so once one is known this is an exact
+    lookup, not a heuristic. A row written before this column existed has no
+    uid yet; one gets backfilled the same way apply_overrides() itself
+    matches an override — a unique (date, match-is-a-substring-of-summary)
+    pair — the first time it's seen here, after which it's exact from then
+    on. Deliberately keyed by (uid, date), not uid alone: a two-day event is
+    one calendar row/uid but can need two override rows, one per day (see
+    the live_by_uid_date comment below) — keying on uid alone would make
+    that legitimate one-uid/two-rows case look like a conflict.
     """
     existing_rows: list[dict[str, str]] = []
     existing: set[tuple[str, str]] = set()
-    existing_by_date: dict[str, list[int]] = {}
     if os.path.exists(path):
         with open(path, newline="", encoding="utf-8-sig") as fh:
             for row in csv.DictReader(fh):
-                when = (row.get("date") or "").strip()
-                existing_by_date.setdefault(when, []).append(len(existing_rows))
                 existing_rows.append(row)
-                existing.add((when, (row.get("match") or "").strip()))
+                existing.add(((row.get("date") or "").strip(), (row.get("match") or "").strip()))
 
-    # event_overrides.csv has no uid column (kept as a hand-typed, human-
-    # readable file — see the constraints section), so there's no direct way
-    # to tell "this show got renamed" from "the old show vanished and an
-    # unrelated new one appeared the same day." Restricting to exactly one
-    # orphaned row and exactly one freshly-unmatched show on that date is
-    # the safest signal available: an existing row's match text no longer
-    # found in any of today's shows on its date, paired with exactly one
-    # show on that date not yet covered by any row, is about as strong a
-    # same-event signal as this file format allows. Ambiguous cases (a
-    # double-header day, or more than one orphan) fall through to the
-    # ordinary new-row path below rather than guessing.
-    live_by_date: dict[str, list[dict]] = {}
+    # (uid, date) -> live summary, for every day a show currently spans.
+    # event_days() (not just the calendar row's own `start`) matters here:
+    # a two-day event is one calendar row/uid but can need two override
+    # rows, one per day — apply_overrides() itself still only matches an
+    # override to a calendar row by that row's own start date (a real,
+    # separate, deliberately-not-fixed-here gap; see CLAUDE.md's shows.csv
+    # section), so a day-2 row has to be hand-added today, keyed by its own
+    # date. Keying this lookup by (uid, date) rather than uid alone is what
+    # keeps that legitimate one-uid/two-rows case from being mistaken for a
+    # conflict below.
+    live_by_uid_date: dict[tuple[str, str], str] = {}
     for cal_row in calendar:
-        if is_show(cal_row.get("summary", "")):
-            live_by_date.setdefault(cal_row["start"][:10], []).append(cal_row)
+        if not cal_row["uid"] or not is_show(cal_row.get("summary", "")):
+            continue
+        for day in event_days(cal_row):
+            live_by_uid_date[(cal_row["uid"], day.isoformat())] = cal_row.get("summary", "")
 
     renamed: list[str] = []
-    for when, indices in existing_by_date.items():
-        live_summaries = [c.get("summary", "") for c in live_by_date.get(when, [])]
-        live_matches = {clean_match_title(s) for s in live_summaries}
-        orphans = [i for i in indices if (existing_rows[i].get("match") or "") not in live_matches]
-        unmatched_live = [m for m in live_matches if (when, m) not in existing]
-        if len(orphans) == 1 and len(unmatched_live) == 1:
-            idx = orphans[0]
-            old_match, new_match = existing_rows[idx].get("match") or "", unmatched_live[0]
+    for row in existing_rows:
+        when = (row.get("date") or "").strip()
+        old_match = (row.get("match") or "").strip()
+        uid = (row.get("uid") or "").strip()
+        if not uid:
+            # Backfill a legacy row (predates the uid column) the same way
+            # apply_overrides() itself matches an override: a unique
+            # (date, match-is-a-substring-of-summary) pair. Ambiguous or no
+            # match at all just leaves it uid-less, same as before this
+            # column existed — nothing regresses for those.
+            candidates = {
+                u for (u, day), summary in live_by_uid_date.items() if day == when and old_match in summary
+            }
+            if len(candidates) == 1:
+                uid = row["uid"] = candidates.pop()
+        if not uid:
+            continue
+        current_summary = live_by_uid_date.get((uid, when))
+        if current_summary is None:
+            continue  # orphaned — apply_overrides() already reports this as stale
+        new_match = clean_match_title(current_summary)
+        if new_match and new_match != old_match:
             existing.discard((when, old_match))
             existing.add((when, new_match))
-            existing_rows[idx]["match"] = new_match
+            row["match"] = new_match
             renamed.append(f"{when}: {old_match!r} -> {new_match!r} (venue/times kept as-is)")
 
     # A setlisted show's own venue (setlists.csv, i.e. `rows`) is the
@@ -868,6 +898,7 @@ def add_override_templates(
                 # the calendar already answered.
                 "venue": (venue_by_uid.get(uid, "") if needs_venue else cal_venue),
                 **{field: cal_row.get(field, "") for field in time_fields},
+                "uid": uid,
             }
         )
 
