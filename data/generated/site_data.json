@@ -20370,7 +20370,7 @@
         "2026-06-28-1"
       ],
       "address": "〒160-0021 新宿区歌舞伎町2-45-1 第1トキワビルB1F",
-      "capacity": null
+      "capacity": "250名"
     },
     {
       "id": "flowers-loft",
@@ -20393,7 +20393,7 @@
         "2026-04-26-1"
       ],
       "address": "〒155-0031 世田谷区北沢2丁目24-5 SHIMOKITA FRONT B1",
-      "capacity": null
+      "capacity": "250名"
     },
     {
       "id": "shimokitazawa-mosaic",
@@ -20415,7 +20415,7 @@
         "2026-08-09-1"
       ],
       "address": "〒155-0031 世田谷区北沢2-2-14 モアイ茶沢1F・B1",
-      "capacity": null
+      "capacity": "170名（公式）／200名（他サイト）"
     },
     {
       "id": "spotify-o-crest",
@@ -20432,7 +20432,7 @@
         "2026-05-30-1"
       ],
       "address": "〒150-0043 渋谷区道玄坂2-14-8 5F",
-      "capacity": null
+      "capacity": "250名"
     },
     {
       "id": "shibuya-ring",
@@ -20448,7 +20448,7 @@
         "2026-07-25-1"
       ],
       "address": "〒150-0043 渋谷区道玄坂2-21-7 第8矢澤ビル 2F 3F",
-      "capacity": null
+      "capacity": "200名（4F含め300名）"
     },
     {
       "id": "otsuka-hearts-plus",
@@ -20464,7 +20464,7 @@
         "2026-02-28-1"
       ],
       "address": "〒170-0004 豊島区北大塚2-16-7 セイコーガーデン11大塚 B1",
-      "capacity": null
+      "capacity": "200名"
     },
     {
       "id": "shibuya-kinmirai-kaikan",
@@ -20480,7 +20480,7 @@
         "2026-08-17-1"
       ],
       "address": "〒150-0002 渋谷区渋谷1-11-1 ヒューリック渋谷美竹通りビルB1",
-      "capacity": null
+      "capacity": "300名"
     },
     {
       "id": "ginza-base-granbell",
@@ -20496,7 +20496,7 @@
         "2026-07-26-1"
       ],
       "address": "〒104-0061 中央区銀座7丁目2番18号 グランベルスクエアB2F",
-      "capacity": null
+      "capacity": "400〜600名（レイアウトにより変動）"
     },
     {
       "id": "deseo-mini-with-village-vanguard",
@@ -20511,7 +20511,7 @@
         "2026-02-21-1"
       ],
       "address": "〒150-0043 渋谷区道玄坂2-13-5 ハーベストビルディング2F",
-      "capacity": null
+      "capacity": "170名（立見）／70席（着席）"
     },
     {
       "id": "shimokitazawa-shangri-la",
@@ -20526,7 +20526,7 @@
         "2026-07-27-1"
       ],
       "address": "〒155-0031 世田谷区北沢2丁目4-5 mosia B1",
-      "capacity": null
+      "capacity": "約600名"
     },
     {
       "id": "ebisu-creato",
@@ -20541,7 +20541,7 @@
         "2026-08-13-1"
       ],
       "address": "〒150-0011 渋谷区東3丁目14-19 オークヒルズ B1F",
-      "capacity": null
+      "capacity": "300名"
     },
     {
       "id": "shinjuku-loft",
@@ -20556,7 +20556,7 @@
         "2026-06-14-1"
       ],
       "address": "〒160-0021 新宿区歌舞伎町1-12-9 タテハナビルB2",
-      "capacity": null
+      "capacity": "500〜550名"
     },
     {
       "id": "shimokitazawa-shelter",
@@ -20570,7 +20570,7 @@
         "2026-06-22-1"
       ],
       "address": "〒155-0031 世田谷区北沢2-6-10 仙田ビルB1",
-      "capacity": null
+      "capacity": "250名"
     },
     {
       "id": "yotsuya-lotus",
@@ -20584,7 +20584,7 @@
         "2026-03-01-1"
       ],
       "address": "〒160-0004 新宿区四谷3-4-3 SCビルB1",
-      "capacity": null
+      "capacity": "130名"
     },
     {
       "id": "shibuya-womb",
@@ -20598,7 +20598,7 @@
         "2026-07-04-1"
       ],
       "address": "〒150-0044 渋谷区円山町2-16",
-      "capacity": null
+      "capacity": "約1000名"
     },
     {
       "id": "shibuya-chelsea-hotel",
@@ -20612,7 +20612,7 @@
         "2026-07-11-1"
       ],
       "address": "〒150-0042 渋谷区宇田川町4-7 トウセン宇田川ビルB1",
-      "capacity": null
+      "capacity": "300名"
     },
     {
       "id": "aoyama-rizm",
@@ -20626,7 +20626,7 @@
         "2026-05-17-1"
       ],
       "address": "〒107-0061 港区北青山1-4-5 VORT青山1丁目Dual's B1F",
-      "capacity": null
+      "capacity": "約250名"
     },
     {
       "id": "shibuya-club-quattro",
@@ -20639,7 +20639,7 @@
         "2026-05-20-1"
       ],
       "address": "〒150-0042 渋谷区宇田川町32-13 4・5F",
-      "capacity": null
+      "capacity": "800名"
     },
     {
       "id": "shibuya-cyclone",
@@ -20652,7 +20652,7 @@
         "2025-12-21-1"
       ],
       "address": "〒150-0042 渋谷区宇田川町13-16 国際ビルA館B2",
-      "capacity": null
+      "capacity": "300名"
     },
     {
       "id": "shibuya-milkyway",
@@ -20665,7 +20665,7 @@
         "2026-07-28-1"
       ],
       "address": "〒150-0042 渋谷区宇田川町4-7 トウセン宇田川ビル3F",
-      "capacity": null
+      "capacity": "250名"
     },
     {
       "id": "twinbox-garage",
@@ -20678,7 +20678,7 @@
         "2025-11-03-1"
       ],
       "address": "〒101-0021 千代田区外神田3-2-12 Box'R AKIBAビル1F",
-      "capacity": null
+      "capacity": "200名"
     },
     {
       "id": "iwaki-yumoto-onsen-ryokan-koito",
@@ -20704,7 +20704,7 @@
         "2026-07-19-1"
       ],
       "address": "〒542-0086 大阪府大阪市中央区西心斎橋2-18-9 リアライズ西心斎橋 B2F",
-      "capacity": null
+      "capacity": "220名"
     },
     {
       "id": "misaki-koen-yagai-ongakudo",
@@ -20717,7 +20717,7 @@
         "2026-05-24-1"
       ],
       "address": "〒970-0316 福島県いわき市小名浜下神白字大作33",
-      "capacity": null
+      "capacity": "椅子席約900名／芝生席約1,500名"
     },
     {
       "id": "kyoto-roka",
@@ -20730,7 +20730,7 @@
         "2026-05-08-1"
       ],
       "address": "〒604-8416 京都府京都市中京区西ノ京星池町214",
-      "capacity": null
+      "capacity": "最大500名"
     },
     {
       "id": "otsuka-hearts-next",
@@ -20743,7 +20743,7 @@
         "2026-01-18-1"
       ],
       "address": "〒170-0004 豊島区北大塚2-16-8 バロックコート大塚B1F",
-      "capacity": null
+      "capacity": "200名"
     },
     {
       "id": "kanda-square-hall",
@@ -20755,7 +20755,7 @@
         "2026-07-05-1"
       ],
       "address": "〒101-0054 千代田区神田錦町2-2-1",
-      "capacity": null
+      "capacity": "約450名（シアター形式）／約1,000名（立見）"
     },
     {
       "id": "livliv-shizuoka-artie",
@@ -20779,7 +20779,7 @@
         "2026-02-23-1"
       ],
       "address": "〒150-0043 渋谷区道玄坂2-13-5 ハーベストビルディングB1F",
-      "capacity": null
+      "capacity": "250名（立見）／100名（着席）"
     },
     {
       "id": "shibuya-pleasure-pleasure",
@@ -20791,7 +20791,7 @@
         "2026-07-02-1"
       ],
       "address": "〒150-0043 渋谷区道玄坂2-29-5 渋谷プライム6F",
-      "capacity": null
+      "capacity": "352名（着席時）"
     },
     {
       "id": "supernova-kawasaki",
@@ -20803,7 +20803,7 @@
         "2025-11-30-1"
       ],
       "address": "〒212-0014 神奈川県川崎市幸区大宮町1-13",
-      "capacity": null
+      "capacity": "立見500名／着席約200名"
     },
     {
       "id": "spotify-o-west",
@@ -20815,7 +20815,7 @@
         "2026-01-03-1"
       ],
       "address": "〒150-0044 渋谷区円山町2-3 2F",
-      "capacity": null
+      "capacity": "600名"
     },
     {
       "id": "spotify-o-nest",
@@ -20827,7 +20827,7 @@
         "2026-01-04-1"
       ],
       "address": "〒150-0044 渋谷区円山町2-3 WESTビル6F",
-      "capacity": null
+      "capacity": "250名"
     },
     {
       "id": "studio-freedom",
@@ -20839,7 +20839,7 @@
         "2026-07-12-1"
       ],
       "address": "〒150-0043 渋谷区道玄坂2-23-12 フォンティスビル2F",
-      "capacity": null
+      "capacity": "300名"
     },
     {
       "id": "tft-hall-300",
@@ -20851,7 +20851,7 @@
         "2026-06-27-1"
       ],
       "address": "〒135-0063 江東区有明3-4-10 TFTビル西館2F",
-      "capacity": null
+      "capacity": "250席（シアター形式）／180名（パーティー形式）"
     },
     {
       "id": "veats-shibuya",
@@ -20863,7 +20863,7 @@
         "2025-09-13-1"
       ],
       "address": "〒150-0042 渋谷区宇田川町33-1 グランド東京渋谷ビルB1・B2",
-      "capacity": null
+      "capacity": "立見700名／着席200名"
     },
     {
       "id": "yoani-live-station",
@@ -20875,7 +20875,7 @@
         "2025-12-29-1"
       ],
       "address": "〒169-0072 新宿区大久保1-11-3 大東ビルB1F",
-      "capacity": null
+      "capacity": "着席200名／立見約300名"
     },
     {
       "id": "zirco-tokyo",
@@ -20887,7 +20887,7 @@
         "2026-07-22-1"
       ],
       "address": "〒160-0021 新宿区歌舞伎町1-2-5 東陽ビルB2F",
-      "capacity": null
+      "capacity": "立見250名"
     },
     {
       "id": "odaiba-r-chiku",
@@ -20911,7 +20911,7 @@
         "2026-07-17-1"
       ],
       "address": "〒542-0086 大阪市中央区西心斎橋2-18-9 リアライズ西心斎橋B1F",
-      "capacity": null
+      "capacity": "立見約350名"
     },
     {
       "id": "tower-records-shinjuku",
@@ -20947,7 +20947,7 @@
         "2025-12-20-2"
       ],
       "address": "〒155-0031 世田谷区北沢3-9-23",
-      "capacity": null
+      "capacity": "300名"
     },
     {
       "id": "otsuka-future",
@@ -20959,7 +20959,7 @@
         "2026-04-11-1"
       ],
       "address": "〒170-0004 豊島区北大塚2-13-1 ba07 B1F",
-      "capacity": null
+      "capacity": "350名"
     },
     {
       "id": "shinsaibashi-sunhall",
@@ -20971,7 +20971,7 @@
         "2026-07-18-1"
       ],
       "address": "〒542-0086 大阪市中央区西心斎橋2-9-28 ビッグステップサウスB2",
-      "capacity": null
+      "capacity": "500名"
     },
     {
       "id": "shindaita-fever",
@@ -20983,7 +20983,7 @@
         "2026-07-09-1"
       ],
       "address": "〒156-0042 世田谷区羽根木1-1-14 新代田ビル1F",
-      "capacity": null
+      "capacity": "約300名"
     },
     {
       "id": "shinjuku-marble",
@@ -21007,7 +21007,7 @@
         "2026-02-22-1"
       ],
       "address": "〒171-0014 豊島区池袋2-12-9 広瀬ビルB1",
-      "capacity": null
+      "capacity": "160名"
     },
     {
       "id": "shibuya-club-crawl",
@@ -21019,7 +21019,7 @@
         "2026-03-07-1"
       ],
       "address": "〒150-0011 渋谷区東1-25-2 マルハシビルB1",
-      "capacity": null
+      "capacity": "200名（立見）／80名（着席）"
     },
     {
       "id": "shibuya-grit",
@@ -21031,7 +21031,7 @@
         "2026-08-10-1"
       ],
       "address": "〒150-0043 渋谷区道玄坂2-23-12 フォンティスビルB1F",
-      "capacity": null
+      "capacity": "350名（立見）／150席（着席）"
     },
     {
       "id": "shibuya-ongakudo",
@@ -21043,7 +21043,7 @@
         "2026-06-21-1"
       ],
       "address": "〒150-0042 渋谷区宇田川町4-3 lyf Shibuya Tokyo B1",
-      "capacity": null
+      "capacity": "430名"
     },
     {
       "id": "shirokanetakanawa-selene-b2",
@@ -21055,7 +21055,7 @@
         "2026-02-14-1"
       ],
       "address": "〒108-0073 港区三田5-2-30 SELENE STUDIO",
-      "capacity": null
+      "capacity": "約700名（立見）／171席（着席）"
     },
     {
       "id": "kanda-club-f-sharp",
@@ -21079,7 +21079,7 @@
         "2025-12-14-1"
       ],
       "address": "〒150-0001 渋谷区神宮前4-2-12 WES B1F",
-      "capacity": null
+      "capacity": "約300名（立見）／158席（着席）"
     },
     {
       "id": "koenji-high",
@@ -21091,7 +21091,7 @@
         "2025-11-11-1"
       ],
       "address": "〒166-0003 杉並区高円寺南4-30-1",
-      "capacity": null
+      "capacity": "300名"
     }
   ],
   "creators": [
