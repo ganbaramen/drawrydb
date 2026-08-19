@@ -2311,7 +2311,7 @@
     {
       "date": "2025-11-29",
       "title": "TIF学園 「学園祭」秋",
-      "venue": "ベルサール渋谷",
+      "venue": "ベルサール渋谷ガーデン",
       "doors": "09:30",
       "showtime": "10:00",
       "live_start": "16:00",
@@ -11950,7 +11950,7 @@
         {
           "event_id": "2025-11-29-1",
           "date": "2025-11-29",
-          "venue": "ベルサール渋谷",
+          "venue": "ベルサール渋谷ガーデン",
           "position": 5,
           "is_encore": false,
           "note": ""
@@ -12743,7 +12743,7 @@
         {
           "event_id": "2025-11-29-1",
           "date": "2025-11-29",
-          "venue": "ベルサール渋谷",
+          "venue": "ベルサール渋谷ガーデン",
           "position": 3,
           "is_encore": false,
           "note": ""
@@ -15130,7 +15130,7 @@
         {
           "event_id": "2025-11-29-1",
           "date": "2025-11-29",
-          "venue": "ベルサール渋谷",
+          "venue": "ベルサール渋谷ガーデン",
           "position": 1,
           "is_encore": false,
           "note": ""
@@ -16181,7 +16181,7 @@
         {
           "event_id": "2025-11-29-1",
           "date": "2025-11-29",
-          "venue": "ベルサール渋谷",
+          "venue": "ベルサール渋谷ガーデン",
           "position": 4,
           "is_encore": false,
           "note": ""
@@ -17240,7 +17240,7 @@
         {
           "event_id": "2025-11-29-1",
           "date": "2025-11-29",
-          "venue": "ベルサール渋谷",
+          "venue": "ベルサール渋谷ガーデン",
           "position": 2,
           "is_encore": false,
           "note": ""
@@ -20927,7 +20927,7 @@
     },
     {
       "id": "bellesalle-shibuya",
-      "name": "ベルサール渋谷",
+      "name": "ベルサール渋谷ガーデン",
       "shows": 1,
       "first_played": "2025-11-29",
       "last_played": "2025-11-29",
