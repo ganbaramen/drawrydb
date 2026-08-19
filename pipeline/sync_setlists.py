@@ -771,14 +771,56 @@ def add_override_templates(
     edited or removed, only reordered. Anything already filled in, by hand or
     by an earlier run, survives byte-for-byte; the rewrite only changes row
     order and adds genuinely new rows.
+
+    One exception: `match` itself gets updated in place when a show's
+    calendar title changes — see the rename-detection block below — because
+    an unrenewed `match` would otherwise stop matching anything and the row's
+    prefilled venue/times would silently stop being applied (apply_overrides()
+    reports it as "matched no event — stale?" and skips it entirely). Every
+    other field on that row, including venue/times, is left exactly as it
+    was: a rename says nothing about whether the venue or times also
+    changed, so this doesn't try to guess at those.
     """
     existing_rows: list[dict[str, str]] = []
     existing: set[tuple[str, str]] = set()
+    existing_by_date: dict[str, list[int]] = {}
     if os.path.exists(path):
         with open(path, newline="", encoding="utf-8-sig") as fh:
             for row in csv.DictReader(fh):
+                when = (row.get("date") or "").strip()
+                existing_by_date.setdefault(when, []).append(len(existing_rows))
                 existing_rows.append(row)
-                existing.add(((row.get("date") or "").strip(), (row.get("match") or "").strip()))
+                existing.add((when, (row.get("match") or "").strip()))
+
+    # event_overrides.csv has no uid column (kept as a hand-typed, human-
+    # readable file — see the constraints section), so there's no direct way
+    # to tell "this show got renamed" from "the old show vanished and an
+    # unrelated new one appeared the same day." Restricting to exactly one
+    # orphaned row and exactly one freshly-unmatched show on that date is
+    # the safest signal available: an existing row's match text no longer
+    # found in any of today's shows on its date, paired with exactly one
+    # show on that date not yet covered by any row, is about as strong a
+    # same-event signal as this file format allows. Ambiguous cases (a
+    # double-header day, or more than one orphan) fall through to the
+    # ordinary new-row path below rather than guessing.
+    live_by_date: dict[str, list[dict]] = {}
+    for cal_row in calendar:
+        if is_show(cal_row.get("summary", "")):
+            live_by_date.setdefault(cal_row["start"][:10], []).append(cal_row)
+
+    renamed: list[str] = []
+    for when, indices in existing_by_date.items():
+        live_summaries = [c.get("summary", "") for c in live_by_date.get(when, [])]
+        live_matches = {clean_match_title(s) for s in live_summaries}
+        orphans = [i for i in indices if (existing_rows[i].get("match") or "") not in live_matches]
+        unmatched_live = [m for m in live_matches if (when, m) not in existing]
+        if len(orphans) == 1 and len(unmatched_live) == 1:
+            idx = orphans[0]
+            old_match, new_match = existing_rows[idx].get("match") or "", unmatched_live[0]
+            existing.discard((when, old_match))
+            existing.add((when, new_match))
+            existing_rows[idx]["match"] = new_match
+            renamed.append(f"{when}: {old_match!r} -> {new_match!r} (venue/times kept as-is)")
 
     # A setlisted show's own venue (setlists.csv, i.e. `rows`) is the
     # fallback when the calendar's venue is blank/ambiguous — the most
@@ -850,6 +892,8 @@ def add_override_templates(
         writer.writerows(all_rows)
 
     incomplete = sum(1 for r in all_rows if needs_anything(r))
+    for msg in renamed:
+        print(f"  override renamed {msg}")
     if new_rows:
         breakdown = ", ".join(
             f"{field}={count}" for field, count in missing_counts.items() if count

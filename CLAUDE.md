@@ -558,6 +558,25 @@ losing the at-a-glance prefilled preview) — if a pending show's info looks
 wrong on the site despite the calendar itself being correct, check here
 first before re-debugging the parser.
 
+**A show's *title* changing is handled differently from its venue/times
+changing, on the user's explicit instruction:** `match` gets updated in
+place — unlike every other field, which is frozen once prefilled (see
+above) — because an unrenewed `match` doesn't just go stale, it breaks
+matching entirely (`apply_overrides()` reports "matched no event — stale?"
+and skips the row, silently dropping the venue/times it was carrying too).
+Detected by pairing an existing row whose `match` no longer appears in any
+of that date's current show titles (an "orphan") with a show on that date
+not yet covered by any row (an "unmatched" show) — only when there's
+exactly one of each on that date. `event_overrides.csv` has no uid column
+(kept hand-typed and human-readable on purpose), so this date-scoped 1:1
+pairing is the strongest same-event signal available without one; a
+double-header day, or more than one orphan, falls through to the ordinary
+new-row path rather than guessing which orphan matches which show. Venue
+and every time field on the renamed row are left exactly as they were — a
+title change says nothing about whether those also changed, and this
+doesn't try to guess at that too. Reported unconditionally (not gated by
+`--quiet`) as `override renamed {date}: {old!r} -> {new!r}`.
+
 ## Coverage reporting
 
 `--missing` answers "which shows lack a setlist". Two things make it useful
