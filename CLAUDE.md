@@ -527,9 +527,19 @@ order rather than importing it — the two scripts are deliberately independent
 (see the constraints section above). Keep them in sync by hand if
 `OVERRIDE_FIELDS` there ever changes.
 
-Scope is intentionally "shows with a pasted setlist," not all 199 calendar
-events — a show with no setlist isn't in `set_length_stats.csv`'s population
-either, so a row for it wouldn't unblock anything.
+Scope was originally "shows with a pasted setlist" only — a show with no
+setlist isn't in `set_length_stats.csv`'s population, so a row for it didn't
+unblock anything *there*. Widened on request to every `is_show()` calendar
+event regardless of setlist status: the user wanted to fix up pending/
+no-setlist shows' venue and times too, not just ones that already have a
+paste. The only behavioral difference between the two: a setlisted show
+falls back to its setlist-derived venue when the calendar's is blank/
+ambiguous (`venue_by_uid`, built from `rows`/setlists.csv); a setlist-less
+show has no such fallback and that field is just left blank for the user to
+type in. The loop itself now walks `calendar` directly (filtered by
+`is_show()`) rather than deriving which UIDs exist from `rows` first — a
+setlist-less show never appears in `rows` at all, so that was the actual
+blocker before.
 
 ## Coverage reporting
 

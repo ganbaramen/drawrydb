@@ -740,12 +740,14 @@ def clean_match_title(summary: str) -> str:
 def add_override_templates(
     rows: list[dict[str, str]], calendar: list[dict[str, str]], path: str
 ) -> None:
-    """Append event_overrides.csv rows for shows missing a usable calendar
-    venue (blank *or* an unresolved multi-venue string) or any of the six time
-    fields (doors/showtime/live_start/live_end/meet_start/meet_end) — so
-    `event_overrides.csv` is the complete list of "things worth filling in,"
-    and filling one in is a matter of typing into an existing cell rather than
-    first figuring out which dates need one at all.
+    """Append event_overrides.csv rows for any *show* (is_show() — a real
+    live, not a stream/特典会/availability placeholder/etc.) missing a usable
+    calendar venue (blank *or* an unresolved multi-venue string) or any of
+    the six time fields (doors/showtime/live_start/live_end/meet_start/
+    meet_end) — so `event_overrides.csv` is the complete list of "things
+    worth filling in," and filling one in is a matter of typing into an
+    existing cell rather than first figuring out which dates need one at
+    all.
 
     A row is generated if the calendar is missing *any single* field, not just
     if it's missing every time field — a show can have doors/showtime known
@@ -754,9 +756,15 @@ def add_override_templates(
     live_start/live_end when those specifically aren't the reason the row
     exists (e.g. a venue-only gap on a show whose times are fully known).
 
-    Only touches shows that have a pasted setlist — a calendar event with no
-    setlist yet isn't part of set_length_stats.csv either, so there's nothing
-    to unblock by giving it a row.
+    Covers a show whether or not it has a pasted setlist yet — a pending
+    show's info is just as worth correcting/filling in as a past one's, the
+    setlist and the calendar-derived fields are independent. (This used to
+    be pasted-setlist-only; extended on request once the user pointed out
+    they wanted to fix up pending/no-setlist shows too, not just ones
+    set_length_stats.csv already covers.) The one difference: a setlisted
+    show falls back to its setlist-derived venue when the calendar doesn't
+    know one (see the venue param below); a setlist-less show has no such
+    fallback and is left blank for the user to type in by hand.
 
     The file is rewritten (not appended to) every run, sorted so rows still
     needing something come first — but no *existing row's fields* are ever
@@ -764,7 +772,6 @@ def add_override_templates(
     by an earlier run, survives byte-for-byte; the rewrite only changes row
     order and adds genuinely new rows.
     """
-    calendar_by_uid = {row["uid"]: row for row in calendar}
     existing_rows: list[dict[str, str]] = []
     existing: set[tuple[str, str]] = set()
     if os.path.exists(path):
@@ -773,18 +780,24 @@ def add_override_templates(
                 existing_rows.append(row)
                 existing.add(((row.get("date") or "").strip(), (row.get("match") or "").strip()))
 
+    # A setlisted show's own venue (setlists.csv, i.e. `rows`) is the
+    # fallback when the calendar's venue is blank/ambiguous — the most
+    # reliable source per the venue-ambiguity notes. A show with no setlist
+    # yet has no entry here, hence no fallback.
+    venue_by_uid: dict[str, str] = {}
+    for row in rows:
+        if row["event_uid"]:
+            venue_by_uid.setdefault(row["event_uid"], row["venue"])
+
     time_fields = ("doors", "showtime", "live_start", "live_end", "meet_start", "meet_end")
     seen_uids: set[str] = set()
     new_rows = []
     missing_counts = {field: 0 for field in ("venue", *time_fields)}
-    for row in sorted(rows, key=lambda r: (r["event_date"], r["venue"])):
-        uid = row["event_uid"]
-        if not uid or uid in seen_uids:
+    for cal_row in sorted(calendar, key=lambda r: r["start"]):
+        uid = cal_row["uid"]
+        if not uid or uid in seen_uids or not is_show(cal_row.get("summary", "")):
             continue
         seen_uids.add(uid)
-        cal_row = calendar_by_uid.get(uid)
-        if not cal_row:
-            continue
 
         missing_fields = [f for f in time_fields if not cal_row.get(f, "").strip()]
         cal_venue = cal_row.get("venue", "").strip()
@@ -806,16 +819,12 @@ def add_override_templates(
             {
                 "date": when,
                 "match": match,
-                # If the calendar has no venue at all, prefill from the
-                # setlist post instead — it's the more reliable source anyway
-                # (see the venue-ambiguity notes) and often already knows the
-                # answer the calendar never parsed. Every time field is
-                # prefilled from the calendar whenever it has one, whether or
-                # not that specific field is why this row exists — a no-op if
-                # left as-is (re-asserting the same value shows no change),
-                # and one less thing to retype for fields the calendar
-                # already answered.
-                "venue": row["venue"] if needs_venue else cal_venue,
+                # Every time field is prefilled from the calendar whenever it
+                # has one, whether or not that specific field is why this row
+                # exists — a no-op if left as-is (re-asserting the same value
+                # shows no change), and one less thing to retype for fields
+                # the calendar already answered.
+                "venue": (venue_by_uid.get(uid, "") if needs_venue else cal_venue),
                 **{field: cal_row.get(field, "") for field in time_fields},
             }
         )
