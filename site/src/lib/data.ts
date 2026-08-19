@@ -108,6 +108,12 @@ export interface Venue {
   first_played: string;
   last_played: string;
   event_ids: string[];
+  // Hand-maintained (data/input/venue_details.csv); null for a venue with
+  // no row yet. capacity is free-form text, not a number — some venues are
+  // stated as a range or with a note (e.g. "約300名"), which a number
+  // couldn't hold.
+  address: string | null;
+  capacity: string | null;
 }
 
 export interface LengthBucket {

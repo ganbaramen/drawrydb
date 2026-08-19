@@ -154,24 +154,29 @@ def read_csv(name: str) -> list[dict[str, str]]:
         return list(csv.DictReader(fh))
 
 
-def load_slugs(name: str) -> dict[str, str]:
-    """name -> hand-typed URL slug (data/input/venue_slugs.csv, `name,slug`
-    — songs' own slug lives in song_details.csv alongside their credits, see
-    load_song_details()). Per DRAWRYDB.md's slug section: a missing file, or
-    a name with no row yet, isn't an error — that name's id just falls back
-    to itself (raw Japanese, percent-encoded by the browser same as it
-    already is), so the site works before this table is filled in. Filling
-    one in is purely additive — it doesn't touch anything else the id is
-    used for (venue matching stays keyed by name throughout the rest of
-    this pipeline)."""
-    path = os.path.join(INPUT_DIR, name)
+VENUE_DETAIL_FIELDS = ["address", "capacity"]
+
+
+def load_venue_details() -> dict[str, dict[str, str]]:
+    """name -> {slug, address, capacity} from data/input/venue_details.csv.
+    Same one-file-per-thing reasoning as load_song_details()/
+    load_creator_details(): a venue's slug, address, and capacity are all
+    exactly one hand-curated row per venue. Per DRAWRYDB.md's slug section,
+    a missing file or a name with no row yet isn't an error — that name's id
+    just falls back to itself (raw Japanese, percent-encoded by the browser
+    same as it already is), address/capacity just don't render, and venue
+    matching elsewhere in this pipeline stays keyed by name regardless."""
+    path = os.path.join(INPUT_DIR, "venue_details.csv")
     if not os.path.exists(path):
         return {}
     with open(path, newline="", encoding="utf-8-sig") as fh:
         return {
-            row["name"].strip(): row["slug"].strip()
+            row["name"].strip(): {
+                "slug": row.get("slug", "").strip(),
+                **{field: row.get(field, "").strip() for field in VENUE_DETAIL_FIELDS},
+            }
             for row in csv.DictReader(fh)
-            if row.get("name") and row.get("slug")
+            if row.get("name")
         }
 
 
@@ -499,7 +504,7 @@ def build_creators(songs: list[dict]) -> list[dict]:
 def build_venues(events: list[dict]) -> list[dict]:
     stats = read_csv("venue_stats.csv")
     shows = read_csv("shows.csv")
-    slugs = load_slugs("venue_slugs.csv")
+    details = load_venue_details()
 
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
@@ -513,14 +518,17 @@ def build_venues(events: list[dict]) -> list[dict]:
 
     venues = []
     for row in stats:
+        venue_details = details.get(row["venue"], {})
         venues.append(
             {
-                "id": slugs.get(row["venue"], row["venue"]),
+                "id": venue_details.get("slug") or row["venue"],
                 "name": row["venue"],
                 "shows": int(row["shows"]),
                 "first_played": row["first_played"],
                 "last_played": row["last_played"],
                 "event_ids": event_ids_by_venue.get(row["venue"], []),
+                "address": venue_details.get("address") or None,
+                "capacity": venue_details.get("capacity") or None,
             }
         )
     return venues

@@ -37,6 +37,18 @@ const lastEvent = eventFor(venue.last_played);
   <h1>{venue.name}</h1>
 
   <table class="meta-table">
+    {venue.address && (
+      <tr>
+        <th>{t(lang, 'venues.address')}</th>
+        <td>{venue.address}</td>
+      </tr>
+    )}
+    {venue.capacity && (
+      <tr>
+        <th>{t(lang, 'venues.capacity')}</th>
+        <td>{venue.capacity}</td>
+      </tr>
+    )}
     <tr>
       <th>{t(lang, 'venues.shows')}</th>
       <td>{t(lang, 'venues.showsCount', { n: venue.shows })}</td>
