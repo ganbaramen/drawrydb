@@ -541,6 +541,23 @@ type in. The loop itself now walks `calendar` directly (filtered by
 setlist-less show never appears in `rows` at all, so that was the actual
 blocker before.
 
+**Known, accepted risk from this widening:** a pending show's calendar entry
+is still being actively edited by the band right up until the show happens —
+literally observed the same day this was widened, when a pending event's
+description gained its live/meet times between two fetches. `export_
+calendar.py`'s `apply_overrides()` only treats a *blank* override cell as
+"keep whatever the calendar currently says"; any cell this function prefilled
+non-blank (venue, doors, showtime — whatever the calendar already knew at
+generation time) is frozen from then on and will keep silently overriding a
+later calendar correction to that same field, with no warning. This risk
+technically existed before too, but only mattered for past/setlisted shows,
+whose calendar data is essentially frozen once the show has happened;
+widening scope to pending shows makes it real rather than theoretical.
+Raised with the user and deliberately left as-is (accepted the risk over
+losing the at-a-glance prefilled preview) — if a pending show's info looks
+wrong on the site despite the calendar itself being correct, check here
+first before re-debugging the parser.
+
 ## Coverage reporting
 
 `--missing` answers "which shows lack a setlist". Two things make it useful
