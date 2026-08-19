@@ -252,14 +252,16 @@ main {
   border-color: var(--accent);
 }
 
-.creator-card {
+/* An .event-card laid out as name(+detail) on the left, one right-aligned
+   stat on the right — the creators and venues lists both use this. */
+.stat-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.creator-song-count {
+.stat-card-count {
   color: var(--text-muted);
   font-size: 0.9rem;
   white-space: nowrap;

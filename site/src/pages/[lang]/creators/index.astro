@@ -30,8 +30,8 @@ function creatorRoles(creator: Creator): string[] {
     {
       creators.map((creator) => (
         <li>
-          <a class="event-card creator-card" href={`${base}/${lang}/creators/${urlSafe(creator.id)}/`}>
-            <div class="creator-card-info">
+          <a class="event-card stat-card" href={`${base}/${lang}/creators/${urlSafe(creator.id)}/`}>
+            <div>
               <div class="event-title">{creator.name}</div>
               <div>
                 {creatorRoles(creator).map((role) => (
@@ -39,7 +39,7 @@ function creatorRoles(creator: Creator): string[] {
                 ))}
               </div>
             </div>
-            <div class="creator-song-count">{t(lang, 'songs.count', { n: creator.songs.length })}</div>
+            <div class="stat-card-count">{t(lang, 'songs.count', { n: creator.songs.length })}</div>
           </a>
         </li>
       ))
