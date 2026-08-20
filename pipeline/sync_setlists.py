@@ -58,8 +58,8 @@ INPUT_DIR = os.path.join(ROOT, "data", "input")
 GENERATED_DIR = os.path.join(ROOT, "data", "generated")
 
 POSTS_DIR = os.path.join(INPUT_DIR, "setlist_posts")
-CORRECTIONS_CSV = os.path.join(INPUT_DIR, "song_corrections.csv")
-VENUE_CORRECTIONS_CSV = os.path.join(INPUT_DIR, "venue_corrections.csv")
+SONG_RENAMES_CSV = os.path.join(INPUT_DIR, "song_renames.csv")
+VENUE_RENAMES_CSV = os.path.join(INPUT_DIR, "venue_renames.csv")
 EVENT_OVERRIDES_CSV = os.path.join(INPUT_DIR, "event_overrides.csv")
 
 CALENDAR_CSV = os.path.join(GENERATED_DIR, "drawry_schedule.csv")
@@ -279,8 +279,13 @@ def is_interlude(song: str) -> bool:
     return song.lower().startswith("interlude")
 
 
-def load_corrections(path: str) -> dict[str, str]:
-    """Read the wrong -> correct song name map, if the file exists."""
+def load_renames(path: str) -> dict[str, str]:
+    """Read a wrong -> correct name map, if the file exists.
+
+    Generic on purpose — song_renames.csv and venue_renames.csv are the same
+    shape ("this string should be read as that string"), so both go through
+    here. Distinct from event_overrides.csv, which replaces a named *field*
+    on one event rather than rewriting a name wherever it appears."""
     if not os.path.exists(path):
         return {}
     with open(path, newline="", encoding="utf-8-sig") as fh:
@@ -386,8 +391,8 @@ def build_rows(
     posts_dir: str,
     calendar: list[dict[str, str]],
     today: date,
-    corrections: dict[str, str],
-    venue_corrections: dict[str, str],
+    song_renames: dict[str, str],
+    venue_renames: dict[str, str],
 ):
     rows: list[dict[str, str]] = []
     applied: Counter[str] = Counter()
@@ -427,7 +432,7 @@ def build_rows(
             # Corrected for display/stats only — matching above already ran on
             # the raw text, which is more likely to appear verbatim in the
             # calendar description than a canonicalized name would be.
-            venue = venue_corrections.get(post["venue"], post["venue"])
+            venue = venue_renames.get(post["venue"], post["venue"])
             if venue != post["venue"]:
                 venues_applied[post["venue"]] += 1
             if post["posted_numbering"]:
@@ -440,7 +445,7 @@ def build_rows(
                 # Correct known typos, but keep what was posted in its own
                 # column so the CSV never loses the original.
                 original = song
-                song = corrections.get(song, song)
+                song = song_renames.get(song, song)
                 if song != original:
                     applied[original] += 1
                 rows.append(
@@ -1236,7 +1241,7 @@ def cluster_venues(venue_counts: dict[str, int]) -> dict[str, int]:
 
 def report_venue_review(rows: list[dict[str, str]], path: str) -> None:
     """Write a worksheet of venues that might be the same place, grouped for
-    review. Purely informational — merging only happens via venue_corrections
+    review. Purely informational — merging only happens via venue_renames
     .csv, which this never writes to. Safe to regenerate any time; it has no
     memory of past decisions, so a venue merged last week just won't reappear
     once its rows share one corrected name.
@@ -1284,7 +1289,7 @@ def report_venue_review(rows: list[dict[str, str]], path: str) -> None:
         print(
             f"wrote {rel(path)}: {clusters_found} possible-duplicate venue groups "
             f"({len(review_rows)} venues) — nothing is merged until you add "
-            f"confirmed ones to {rel(VENUE_CORRECTIONS_CSV)}"
+            f"confirmed ones to {rel(VENUE_RENAMES_CSV)}"
         )
     else:
         print(f"wrote {rel(path)}: no possible-duplicate venues found")
@@ -1302,8 +1307,8 @@ def main() -> None:
     parser.add_argument("--posts-dir", default=POSTS_DIR)
     parser.add_argument("--calendar", default=CALENDAR_CSV)
     parser.add_argument("-o", "--output", default=OUTPUT_CSV)
-    parser.add_argument("--corrections", default=CORRECTIONS_CSV)
-    parser.add_argument("--venue-corrections", default=VENUE_CORRECTIONS_CSV)
+    parser.add_argument("--song-renames", default=SONG_RENAMES_CSV)
+    parser.add_argument("--venue-renames", default=VENUE_RENAMES_CSV)
     parser.add_argument("--stats-output", default=STATS_CSV)
     parser.add_argument("--venue-stats-output", default=VENUE_STATS_CSV)
     parser.add_argument("--venue-review-output", default=VENUE_REVIEW_CSV)
@@ -1327,10 +1332,10 @@ def main() -> None:
     if not calendar:
         print(f"warning: {args.calendar} not found; dates fall back to nearest past year", file=sys.stderr)
 
-    corrections = load_corrections(args.corrections)
-    venue_corrections = load_corrections(args.venue_corrections)
+    song_renames = load_renames(args.song_renames)
+    venue_renames = load_renames(args.venue_renames)
     rows, report = build_rows(
-        args.posts_dir, calendar, date.today(), corrections, venue_corrections
+        args.posts_dir, calendar, date.today(), song_renames, venue_renames
     )
     shows = group_shows(rows)
     unmatched = sorted({show_key(row) for row in rows if not row["event_uid"]})
@@ -1350,13 +1355,13 @@ def main() -> None:
     for event_date, venue in unmatched:
         print(f"  no calendar event for {event_date} @ {venue or '?'}")
     for wrong, count in sorted(report["applied"].items()):
-        print(f"  corrected {wrong!r} → {corrections[wrong]!r} ({count}x)")
-    for wrong in sorted(set(corrections) - set(report["applied"])):
-        print(f"  note: correction for {wrong!r} matched nothing — stale entry?")
+        print(f"  renamed {wrong!r} → {song_renames[wrong]!r} ({count}x)")
+    for wrong in sorted(set(song_renames) - set(report["applied"])):
+        print(f"  note: rename for {wrong!r} matched nothing — stale entry?")
     for wrong, count in sorted(report["venues_applied"].items()):
-        print(f"  corrected venue {wrong!r} → {venue_corrections[wrong]!r} ({count}x)")
-    for wrong in sorted(set(venue_corrections) - set(report["venues_applied"])):
-        print(f"  note: venue correction for {wrong!r} matched nothing — stale entry?")
+        print(f"  renamed venue {wrong!r} → {venue_renames[wrong]!r} ({count}x)")
+    for wrong in sorted(set(venue_renames) - set(report["venues_applied"])):
+        print(f"  note: venue rename for {wrong!r} matched nothing — stale entry?")
     report_typos(rows)
 
     if args.missing or args.missing_all:

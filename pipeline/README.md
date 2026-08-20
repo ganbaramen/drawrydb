@@ -23,8 +23,8 @@ STEP 2   python3 pipeline/sync_setlists.py
 
     data/input/setlist_posts/*.txt   ·  YOURS — posts you paste from X
   + drawry_schedule.csv            ·  supplies year, event_uid, venue, times
-  + song_corrections.csv           ·  YOURS — name merges you confirmed
-  + venue_corrections.csv          ·  YOURS
+  + song_renames.csv               ·  YOURS — name merges you confirmed
+  + venue_renames.csv              ·  YOURS
   ─────────────────────────
   → setlists.csv                one row per SONG PLAYED
       │
@@ -34,7 +34,7 @@ STEP 2   python3 pipeline/sync_setlists.py
       ├→ set_length_stats.csv   per set-length bucket  (+ calendar times)
       │
       ├→ venue_review.csv  ─────→  you read it, then add confirmed
-      │                            merges to venue_corrections.csv ⤴
+      │                            merges to venue_renames.csv ⤴
       └→ event_overrides.csv ───→  blank rows added for every gap,
                                    for you to fill in ⤴
 ```
@@ -54,7 +54,7 @@ change disappears on the next run. Fix a source or a correction file instead.
 
 The two arrows curving back up are the loops worth knowing:
 `venue_review.csv` exists to be *read* (you decide, then write merges into
-`venue_corrections.csv`), and `event_overrides.csv` gets blank rows added for
+`venue_renames.csv`), and `event_overrides.csv` gets blank rows added for
 you automatically, so you never have to hunt for which shows are missing data.
 
 ---
@@ -65,11 +65,12 @@ you automatically, so you never have to hunt for which shows are missing data.
 | --- | --- | --- |
 | `data/input/setlist_posts/*.txt` | **source** | Post text you paste from X |
 | `data/input/event_overrides.csv` | **yours** | Venue/times the calendar didn't state (rows auto-added) |
-| `data/input/song_corrections.csv` | **yours** | Song-name typo merges, `wrong,correct,reason` |
-| `data/input/venue_corrections.csv` | **yours** | Venue-name merges, `wrong,correct` |
+| `data/input/song_renames.csv` | **yours** | Song-name typo merges, `wrong,correct,reason` |
+| `data/input/venue_renames.csv` | **yours** | Venue-name merges, `wrong,correct` |
 | `data/input/song_details.csv` | **yours, optional** | Song slug + translation + credits, `name,slug,translation,number,lyrics,composition,arrangement,choreography,note` |
 | `data/input/venue_details.csv` | **yours, optional** | Venue slug + address + capacity, `name,slug,address,capacity` |
 | `data/input/creator_details.csv` | **yours, optional** | Creator slug + X handle, `name,slug,x` |
+| `data/input/event_notes.csv` | **yours, optional** | Freeform note shown on an event's page, `date,match,note` |
 | `data/generated/drawry_schedule.csv` | generated | One row per **calendar event** (199) |
 | `data/generated/setlists.csv` | generated | One row per **song played** (1021) |
 | `data/generated/shows.csv` | generated | One row per **actual performance** (141) |
@@ -81,6 +82,26 @@ you automatically, so you never have to hunt for which shows are missing data.
 Note that **calendar event ≠ show**: a 2-day event is one calendar row but two
 shows, and one day can hold two events. `shows.csv` is the canonical show list;
 join it to the calendar on `event_uid` ↔ `uid`.
+
+### Which hand-maintained file do I want?
+
+The six of them vary along two axes — what a row is keyed by, and whether it
+replaces something the source said or adds something it never had:
+
+| | **replaces what the source says** | **adds what the source never had** |
+| --- | --- | --- |
+| **keyed by a name** | `song_renames.csv`, `venue_renames.csv` | `song_details.csv`, `venue_details.csv`, `creator_details.csv` |
+| **keyed by an event** (`date` + optional `match`) | `event_overrides.csv` | `event_notes.csv` |
+
+So: a **rename** rewrites one string wherever it appears (a typo in a post, or
+two spellings of one venue). An **override** replaces a named field on one
+specific event (a venue or time the calendar description didn't state
+readably). **Details** are per-name facts nothing derives — a slug, an address,
+a credit. A **note** is freeform prose for one event's page.
+
+Rows in `*_renames.csv` and `*_details.csv` are keyed by the real (Japanese)
+name, never by slug. Rows in `event_overrides.csv` and `event_notes.csv` are
+keyed the same way as each other, so the `match` rules carry over between them.
 
 ---
 
@@ -241,9 +262,9 @@ length,shows,avg_songs,avg_se,most_common_songs
 Coverage is partial — only shows whose calendar entry has both `live_start` and
 `live_end`, and the run reports how many were excluded.
 
-### `song_corrections.csv` and `venue_corrections.csv`
+### `song_renames.csv` and `venue_renames.csv`
 
-`song_corrections.csv` is `wrong,correct,reason`; `venue_corrections.csv` is
+`song_renames.csv` is `wrong,correct,reason`; `venue_renames.csv` is
 `wrong,correct` (no reason column — a venue rename doesn't need one the way a
 song typo's source-post citation does). Every run flags candidates; **nothing
 merges until you say so.**
@@ -257,8 +278,8 @@ wrong,correct,reason
 "Dear,Hisoty","Dear,History",typo in the source post (2026-04-25)
 ```
 
-Corrections apply at parse time — your paste files are never modified, and
-`corrected_from` preserves what was actually posted. A correction that stops
+Renames apply at parse time — your paste files are never modified, and
+`corrected_from` preserves what was actually posted. A rename that stops
 matching anything is reported rather than failing quietly.
 
 For venues, read **`venue_review.csv`** first — it groups names that might be

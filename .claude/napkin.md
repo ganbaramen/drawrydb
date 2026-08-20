@@ -65,3 +65,9 @@ this is about *how to work here without repeating mistakes*.
 - Show grouping lives in `show_key()`/`group_shows()` (sync_setlists.py); the
   three `*_details.csv` files are read by one `load_details()`
   (export_site_data.py). Don't re-add per-kind loaders.
+- Input-file vocabulary (settled 2026-08-19, see CLAUDE.md's table): **rename**
+  = rewrite a string everywhere (`song_renames.csv`, `venue_renames.csv`, was
+  `*_corrections.csv`); **override** = replace a field on one event
+  (`event_overrides.csv`); **details** = per-name facts (`*_details.csv`);
+  **note** = freeform per-event prose (`event_notes.csv`). The generated
+  `corrected_from` column keeps its name on purpose.

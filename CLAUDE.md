@@ -18,6 +18,29 @@ repo root (`ROOT` in each), so they run correctly from any working directory
   them; fix the script or the input file and regenerate. Hand-maintained files
   live only in `data/input/`.
 
+## Hand-maintained input files: renames vs overrides vs details vs notes
+
+Six files in `data/input/`, varying along two axes — what a row is keyed by,
+and whether it replaces something the source said or adds something it never
+had. `pipeline/README.md` has the same table for the user-facing version:
+
+| | replaces what the source says | adds what the source never had |
+| --- | --- | --- |
+| keyed by a name | `song_renames.csv`, `venue_renames.csv` | `song_details.csv`, `venue_details.csv`, `creator_details.csv` |
+| keyed by an event (`date` + optional `match`) | `event_overrides.csv` | `event_notes.csv` |
+
+The `*_renames.csv` pair were called `*_corrections.csv` until 2026-08-19 —
+renamed because "corrections" and "overrides" read as synonyms while sitting
+in the *same* column of that table, which is exactly the distinction the
+names needed to carry. A **rename** rewrites one string wherever it appears;
+an **override** replaces a named field on one event. `load_renames()` (was
+`load_corrections()`) stays generic across both rename files.
+
+The generated `setlists.csv` column is still **`corrected_from`**, not
+`renamed_from` — it records what the post actually said, and renaming a
+column in a generated artifact churns the file for no reader's benefit
+(nothing outside the docs consumes it). Don't "finish" the rename there.
+
 ## Calendar (`export_calendar.py`)
 
 - Source is the **public iCal feed**, not the API:
@@ -81,8 +104,8 @@ repo root (`ROOT` in each), so they run correctly from any working directory
   - Ambiguous and stale rows are reported rather than silently skipped, and
     those warnings print even under `--quiet` (the "applied" lines don't, so
     cron stays silent).
-  - Same principle as `song_corrections.csv`: the generated CSV is never
-    hand-edited, the correction lives in its own tracked input file.
+  - Same principle as `song_renames.csv`: the generated CSV is never
+    hand-edited, the fix lives in its own tracked input file.
 - All-day `DTEND` is exclusive in iCal; the script subtracts a day so `end` is
   the last day the event actually covers.
 - `DESCRIPTION` contains **HTML** (`<br>`, entities) — flattened to plain text.
@@ -259,19 +282,19 @@ when the rarer name occurs ≤2 times) so they surface on every run. It compares
 SE names only against other SE names, since `SE(ラブストーリーが始まらない)` vs
 `ラブストーリーが始まらない` is a real distinction, not a typo.
 
-Corrections live in **`song_corrections.csv`** (`wrong,correct,reason`), applied
+Renames live in **`song_renames.csv`** (`wrong,correct,reason`), applied
 at parse time. Two rules, both deliberate:
 
 - **Never edit the paste files.** They are the raw record of what was posted.
 - **The original survives** in the `corrected_from` column, so the CSV can still
   answer "what did the post actually say".
 
-Only add a correction the user has confirmed — flagging is automatic, merging is
-not. A correction that matches nothing is reported as possibly stale rather than
+Only add a rename the user has confirmed — flagging is automatic, merging is
+not. A rename that matches nothing is reported as possibly stale rather than
 ignored.
 
-**Venue names get the identical treatment via `venue_corrections.csv`**
-(`load_corrections()` is reused as-is — the function is generic, "wrong ->
+**Venue names get the identical treatment via `venue_renames.csv`**
+(`load_renames()` is reused as-is — the function is generic, "wrong ->
 correct" doesn't care whether the strings are song or venue names). Applied in
 `build_rows()` only to the row's output `venue` field, *not* to the value used
 by `match_score()`/`resolve_date()` for finding the calendar event — the raw
@@ -329,7 +352,7 @@ a sign the approach is wrong.
 Even after all three fixes, a clean cluster isn't a merge order — `渋谷WOMB`
 and `渋谷WOMBLIVE` cluster correctly (real name relationship) but may be a main
 room and a sister room, not the same room under two names. **Never
-auto-populate `venue_corrections.csv`** — the worksheet's job is to make the
+auto-populate `venue_renames.csv`** — the worksheet's job is to make the
 candidates cheap to review, not to substitute for the user's local knowledge
 of which venues are actually the same place.
 
