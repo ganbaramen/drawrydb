@@ -486,6 +486,29 @@ def build_rows(
     }
 
 
+def show_key(row: dict[str, str]) -> tuple[str, str]:
+    """What identifies one performance in setlists.csv: (event_date, venue).
+
+    A show exists only implicitly there — setlists.csv is one row per *song*,
+    and a show is the group of rows sharing this key. Several functions here
+    need that grouping, and each used to spell the tuple out itself; they now
+    all go through this, so "what counts as one show" is defined in exactly
+    one place. Date alone is not enough — the band plays two events on a day
+    regularly (see CLAUDE.md's year-inference section).
+    """
+    return (row["event_date"], row["venue"])
+
+
+def group_shows(rows: list[dict[str, str]]) -> dict[tuple[str, str], list[dict[str, str]]]:
+    """setlists.csv rows grouped into one list per show, insertion-ordered
+    (so the first row of each group is that set's opener, which callers rely
+    on for the show's event_uid/calendar_summary)."""
+    by_show: dict[tuple[str, str], list[dict[str, str]]] = {}
+    for row in rows:
+        by_show.setdefault(show_key(row), []).append(row)
+    return by_show
+
+
 def build_stats(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[str]]:
     """One row per track: play counts and the dates it was first/last performed."""
     plays: Counter[str] = Counter()
@@ -499,7 +522,7 @@ def build_stats(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[
 
     for row in rows:
         song, when = row["song"], row["event_date"]
-        show = (when, row["venue"])
+        show = show_key(row)
         all_shows.add(show)
         plays[song] += 1
         shows.setdefault(song, set()).add(show)
@@ -577,9 +600,7 @@ def build_shows(
     specific place, even when the calendar description named several.
     """
     calendar_by_uid = {row["uid"]: row for row in calendar}
-    by_show: dict[tuple[str, str], list[dict[str, str]]] = {}
-    for row in rows:
-        by_show.setdefault((row["event_date"], row["venue"]), []).append(row)
+    by_show = group_shows(rows)
 
     shows = []
     for (when, venue), songs in sorted(by_show.items()):
@@ -946,9 +967,7 @@ def build_set_length_stats(
     Coverage is partial — only shows whose calendar entry states both times.
     """
     calendar_by_uid = {row["uid"]: row for row in calendar}
-    by_show: dict[tuple[str, str], list[dict[str, str]]] = {}
-    for row in rows:
-        by_show.setdefault((row["event_date"], row["venue"]), []).append(row)
+    by_show = group_shows(rows)
 
     buckets: dict[str, dict] = {}
     unmatched = 0
@@ -1313,10 +1332,8 @@ def main() -> None:
     rows, report = build_rows(
         args.posts_dir, calendar, date.today(), corrections, venue_corrections
     )
-    shows = {(row["event_date"], row["venue"]) for row in rows}
-    unmatched = sorted(
-        {(row["event_date"], row["venue"]) for row in rows if not row["event_uid"]}
-    )
+    shows = group_shows(rows)
+    unmatched = sorted({show_key(row) for row in rows if not row["event_uid"]})
 
     print(
         f"{report['parsed']} posts parsed → {len(shows)} shows, {len(rows)} songs"

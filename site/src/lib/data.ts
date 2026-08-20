@@ -165,30 +165,41 @@ export const venues: Venue[] = data.venues;
 export const creators: Creator[] = data.creators;
 export const setLengthStats: SetLengthStats = data.set_length_stats;
 
+// Index once at module scope rather than scanning per call. These
+// accessors are called from inside template loops (venues/[id].astro maps
+// getEvent over a venue's shows; events/[id].astro calls getSong per
+// setlist row), so a linear find made page rendering quadratic in the data
+// size. It's imperceptible at today's ~200 events, which is exactly why it
+// would go unnoticed until it wasn't.
+const eventById = new Map(events.map((event) => [event.id, event]));
+const songByName = new Map(songs.map((song) => [song.name, song]));
+const venueByName = new Map(venues.map((venue) => [venue.name, venue]));
+const creatorByName = new Map(creators.map((creator) => [creator.name, creator]));
+
 export function getEvent(id: string): Event | undefined {
-  return events.find((event) => event.id === id);
+  return eventById.get(id);
 }
 
 // By *name*, not id — every other place in the data (Event.venue,
 // SetlistEntry.song, Performance.venue, ...) carries the raw display name,
 // never the id, since only song/venue pages themselves need the id (to
 // link to). id is a separate, optionally hand-slugged field (see
-// pipeline/export_site_data.py's load_slugs()) precisely so it's free to
+// pipeline/export_site_data.py's load_details()) precisely so it's free to
 // diverge from the name — looking these up by id here would silently break
 // the moment a slug did.
 export function getSong(name: string): Song | undefined {
-  return songs.find((song) => song.name === name);
+  return songByName.get(name);
 }
 
 export function getVenue(name: string): Venue | undefined {
-  return venues.find((venue) => venue.name === name);
+  return venueByName.get(name);
 }
 
 // By name, same reasoning as getSong/getVenue — a credit field (e.g.
 // "nenene, & Yoshimura") stores creators' raw display names, split on
 // " & " at render time, never an id.
 export function getCreator(name: string): Creator | undefined {
-  return creators.find((creator) => creator.name === name);
+  return creatorByName.get(name);
 }
 
 // Build-time "today" (JST, matching the calendar's own timezone) — this is a

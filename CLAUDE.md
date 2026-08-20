@@ -369,15 +369,24 @@ raw count, so buckets with different show counts stay comparable.
 ## `shows.csv` — the canonical show list
 
 Every stats function that needs "which shows exist" was independently
-re-grouping `setlists.csv` by `(event_date, venue)` — `build_venue_stats()`,
-`build_set_length_stats()`, `main()`'s own `shows = {...}` set. `build_shows()`
-materializes that grouping once into `shows.csv`, one row per real
-performance. It does **not** yet replace those other call sites' own grouping
-— this was added to directly answer "which show was at which venue" as a
-user-facing question, not (yet) as an internal refactor. Consolidating the
-other functions to consume `build_shows()`'s output instead of re-deriving it
-is a reasonable follow-up, but wasn't done here to keep this change additive
-and low-risk rather than touching several already-working functions at once.
+re-grouping `setlists.csv` by `(event_date, venue)` — `build_stats()`,
+`build_set_length_stats()`, `build_shows()`, `main()`'s own `shows = {...}`
+set. `build_shows()` materializes that grouping into `shows.csv`, one row per
+real performance, to directly answer "which show was at which venue" as a
+user-facing question.
+
+**The grouping itself is now `show_key()` / `group_shows()`**, and all four
+call sites go through them, so "what counts as one show" is defined once.
+Note what this deliberately does *not* do: the other functions don't consume
+`build_shows()`'s *output*, only the same grouping primitive.
+`build_stats()` and `main()` take `rows` alone and have no `calendar` to hand
+it, and threading one through purely to reuse a richer return value would
+couple song stats to calendar availability for no gain. Sharing the key, not
+the row shape, is the part that was actually duplicated.
+
+(`build_venue_stats()` is *not* one of these call sites, despite an earlier
+version of this section listing it — it groups by venue with a set of dates,
+never by `(event_date, venue)`.)
 
 `venue` in `shows.csv` comes from `setlists.csv`, not `drawry_schedule.csv` —
 deliberately. The venue-ambiguity investigation (see above) established that

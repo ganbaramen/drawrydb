@@ -18,6 +18,7 @@ both of their outputs, so it isn't part of that constraint.
 from __future__ import annotations
 
 import csv
+import functools
 import json
 import os
 import re
@@ -148,65 +149,73 @@ def parse_ticket_links(description: str) -> list[dict]:
     return links
 
 
-def read_csv(name: str) -> list[dict[str, str]]:
+@functools.lru_cache(maxsize=None)
+def _read_csv_cached(name: str) -> tuple[dict[str, str], ...]:
     path = os.path.join(GENERATED_DIR, name)
     with open(path, newline="", encoding="utf-8-sig") as fh:
-        return list(csv.DictReader(fh))
+        return tuple(csv.DictReader(fh))
+
+
+def read_csv(name: str) -> list[dict[str, str]]:
+    """Rows of a generated CSV, cached per filename for the life of the run.
+
+    Several builders want the same file (setlists.csv is wanted by three of
+    them, shows.csv by three, song_stats.csv by two), and re-reading it each
+    time left open the question of whether they were all looking at the same
+    snapshot. They now provably are. Each call still gets its own list of its
+    own dicts, so a builder that mutates rows in place (build_events() does)
+    can't leak that into the next caller's copy — the cache holds the parsed
+    result, not the objects handed out.
+    """
+    return [dict(row) for row in _read_csv_cached(name)]
+
+
+@functools.lru_cache(maxsize=None)
+def _load_details_cached(
+    filename: str, fields: tuple[str, ...]
+) -> dict[str, dict[str, str]]:
+    """name -> {slug, **fields} from a hand-maintained data/input CSV.
+
+    The "details" files (venue_details.csv, song_details.csv,
+    creator_details.csv) are all the same shape: one hand-curated row per
+    named thing, a `slug` column, and however many extra columns that kind
+    of thing needs. One file per kind rather than one file per *field*,
+    because a venue's slug/address/capacity (or a song's slug/translation/
+    credits) are all "everything about this thing that isn't derived" —
+    splitting them meant editing several places for one conceptual row.
+
+    Per DRAWRYDB.md's slug section, a missing file, a name with no row yet,
+    or a blank cell is never an error: that name's id just falls back to
+    itself (raw Japanese, percent-encoded by the browser same as it already
+    is), and whatever the blank field fed just doesn't render. Matching
+    elsewhere in this pipeline stays keyed by name regardless.
+    """
+    path = os.path.join(INPUT_DIR, filename)
+    if not os.path.exists(path):
+        return {}
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        return {
+            row["name"].strip(): {
+                field: row.get(field, "").strip() for field in ["slug", *fields]
+            }
+            for row in csv.DictReader(fh)
+            if row.get("name")
+        }
+
+
+def load_details(filename: str, fields: list[str]) -> dict[str, dict[str, str]]:
+    """Cached per (file, fields) — song_details.csv is wanted by two
+    builders, same reasoning as read_csv()'s cache. Callers only read from
+    the result, so the mapping itself is shared rather than copied."""
+    return _load_details_cached(filename, tuple(fields))
 
 
 VENUE_DETAIL_FIELDS = ["address", "capacity"]
-
-
-def load_venue_details() -> dict[str, dict[str, str]]:
-    """name -> {slug, address, capacity} from data/input/venue_details.csv.
-    Same one-file-per-thing reasoning as load_song_details()/
-    load_creator_details(): a venue's slug, address, and capacity are all
-    exactly one hand-curated row per venue. Per DRAWRYDB.md's slug section,
-    a missing file or a name with no row yet isn't an error — that name's id
-    just falls back to itself (raw Japanese, percent-encoded by the browser
-    same as it already is), address/capacity just don't render, and venue
-    matching elsewhere in this pipeline stays keyed by name regardless."""
-    path = os.path.join(INPUT_DIR, "venue_details.csv")
-    if not os.path.exists(path):
-        return {}
-    with open(path, newline="", encoding="utf-8-sig") as fh:
-        return {
-            row["name"].strip(): {
-                "slug": row.get("slug", "").strip(),
-                **{field: row.get(field, "").strip() for field in VENUE_DETAIL_FIELDS},
-            }
-            for row in csv.DictReader(fh)
-            if row.get("name")
-        }
-
-
 CREDIT_FIELDS = ["number", "lyrics", "composition", "arrangement", "choreography", "note"]
-
-
-def load_song_details() -> dict[str, dict[str, str]]:
-    """name -> {slug, translation, number, lyrics, composition,
-    arrangement, choreography, note} from data/input/song_details.csv. One
-    file, not several — a song's slug, English translation, and credits
-    (作詞/作曲/編曲/振付, a track number, a free-form note e.g. a
-    lyrics-post link) are all exactly one hand-curated row per song, so
-    splitting them across separate files just meant editing several places
-    for what's conceptually one "everything about this song that isn't
-    derived" row. Same missing-file/missing-row tolerance as before: a song
-    with no row here just gets no slug (id falls back to its raw name), no
-    translation subtitle, and no credits section."""
-    path = os.path.join(INPUT_DIR, "song_details.csv")
-    if not os.path.exists(path):
-        return {}
-    with open(path, newline="", encoding="utf-8-sig") as fh:
-        return {
-            row["name"].strip(): {
-                "slug": row.get("slug", "").strip(),
-                "translation": row.get("translation", "").strip(),
-                **{field: row.get(field, "").strip() for field in CREDIT_FIELDS},
-            }
-            for row in csv.DictReader(fh)
-            if row.get("name")
-        }
+SONG_DETAIL_FIELDS = ["translation", *CREDIT_FIELDS]
+# `x` is a bare handle (no "@", no URL) — build_creators() turns it into a
+# full profile URL.
+CREATOR_DETAIL_FIELDS = ["x"]
 
 
 def load_event_notes() -> list[dict[str, str]]:
@@ -363,7 +372,7 @@ def song_credits(details: dict[str, str] | None) -> dict[str, str] | None:
 def build_songs(events: list[dict]) -> list[dict]:
     stats = read_csv("song_stats.csv")
     setlists = read_csv("setlists.csv")
-    details = load_song_details()
+    details = load_details("song_details.csv", SONG_DETAIL_FIELDS)
 
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
@@ -412,29 +421,6 @@ def build_songs(events: list[dict]) -> list[dict]:
 ROLE_FIELDS = ["lyrics", "composition", "arrangement", "choreography"]
 
 
-def load_creator_details() -> dict[str, dict[str, str]]:
-    """name -> {slug, x} from data/input/creator_details.csv. Same
-    one-file-per-thing reasoning as load_song_details(): a creator's slug
-    and X/Twitter handle are both exactly one hand-curated fact per person,
-    so one row covers both instead of splitting them across files. `x` is
-    a bare handle (no "@", no URL) — build_creators() below turns it into
-    a full profile URL; same missing-file/missing-row/blank-value
-    tolerance as load_song_details() (no row, or a blank `x` cell, just
-    means no link renders)."""
-    path = os.path.join(INPUT_DIR, "creator_details.csv")
-    if not os.path.exists(path):
-        return {}
-    with open(path, newline="", encoding="utf-8-sig") as fh:
-        return {
-            row["name"].strip(): {
-                "slug": row.get("slug", "").strip(),
-                "x": row.get("x", "").strip(),
-            }
-            for row in csv.DictReader(fh)
-            if row.get("name")
-        }
-
-
 def split_creators(value: str) -> list[str]:
     """"nenene, & Yoshimura" -> ["nenene,", "Yoshimura"] — " & " (with the
     surrounding spaces) is the only separator real data uses for a
@@ -452,7 +438,7 @@ def build_creators(songs: list[dict]) -> list[dict]:
     split_creators() into separate entries, same person merged across every
     song and field they appear in.
     """
-    details = load_creator_details()
+    details = load_details("creator_details.csv", CREATOR_DETAIL_FIELDS)
     song_by_id = {song["id"]: song for song in songs if song.get("credits")}
 
     # name -> song_id -> roles (in ROLE_FIELDS order, since that's the
@@ -504,7 +490,7 @@ def build_creators(songs: list[dict]) -> list[dict]:
 def build_venues(events: list[dict]) -> list[dict]:
     stats = read_csv("venue_stats.csv")
     shows = read_csv("shows.csv")
-    details = load_venue_details()
+    details = load_details("venue_details.csv", VENUE_DETAIL_FIELDS)
 
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
@@ -554,7 +540,7 @@ def build_set_length_stats(events: list[dict]) -> dict:
     # that length, the same reasoning song_stats.csv's own play_rate uses
     # (see CLAUDE.md's shows_since_debut/play_rate section).
     first_performed = {row["song"]: row["first_performed"] for row in read_csv("song_stats.csv")}
-    details = load_song_details()
+    details = load_details("song_details.csv", SONG_DETAIL_FIELDS)
     event_id_by_date_venue = {
         (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
     }

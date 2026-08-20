@@ -67,8 +67,9 @@ you automatically, so you never have to hunt for which shows are missing data.
 | `data/input/event_overrides.csv` | **yours** | Venue/times the calendar didn't state (rows auto-added) |
 | `data/input/song_corrections.csv` | **yours** | Song-name typo merges, `wrong,correct,reason` |
 | `data/input/venue_corrections.csv` | **yours** | Venue-name merges, `wrong,correct` |
-| `data/input/song_details.csv` | **yours, optional** | Song slug + credits, `name,slug,number,lyrics,composition,arrangement,choreography,note` |
-| `data/input/venue_slugs.csv` | **yours, optional** | Hand-typed URL slugs, `name,slug` |
+| `data/input/song_details.csv` | **yours, optional** | Song slug + translation + credits, `name,slug,translation,number,lyrics,composition,arrangement,choreography,note` |
+| `data/input/venue_details.csv` | **yours, optional** | Venue slug + address + capacity, `name,slug,address,capacity` |
+| `data/input/creator_details.csv` | **yours, optional** | Creator slug + X handle, `name,slug,x` |
 | `data/generated/drawry_schedule.csv` | generated | One row per **calendar event** (199) |
 | `data/generated/setlists.csv` | generated | One row per **song played** (1021) |
 | `data/generated/shows.csv` | generated | One row per **actual performance** (141) |
@@ -280,17 +281,31 @@ recommendation, and `suggested_canonical` is just the most-played spelling.
 Venue merges only affect display and venue stats — never which calendar event a
 post matches — so they're safe to get wrong and fix later.
 
-### `song_details.csv` and `venue_slugs.csv`
+### The `*_details.csv` files
 
-`venue_slugs.csv` is `name,slug`; `song_details.csv` is
-`name,slug,number,lyrics,composition,arrangement,choreography,note`. The
-site (`pipeline/export_site_data.py`) uses `slug` to build a song/venue's
-page URL — a row here turns `/songs/%E3%83%AB%E3%83%9F%E3%83%8A%E3%82%B9/`
-into `/songs/luminous/`. Both optional and purely additive: a name with no
-row yet just falls back to percent-encoded Japanese, which already works,
-so there's no rush to fill either in and no risk in leaving them empty.
-Nothing outside URL generation reads `slug` — song/venue matching
+There are three, one per kind of thing the site has a page for, and they
+all share a shape — `name`, `slug`, then whatever extra columns that kind
+needs (`export_site_data.py` reads all three through one `load_details()`):
+
+| File | Columns |
+| --- | --- |
+| `song_details.csv` | `name,slug,translation,number,lyrics,composition,arrangement,choreography,note` |
+| `venue_details.csv` | `name,slug,address,capacity` |
+| `creator_details.csv` | `name,slug,x` |
+
+The site (`pipeline/export_site_data.py`) uses `slug` to build the page URL
+— a row here turns `/songs/%E3%83%AB%E3%83%9F%E3%83%8A%E3%82%B9/` into
+`/songs/luminous/`. All three are optional and purely additive: a name with
+no row yet just falls back to percent-encoded Japanese, which already works,
+so there's no rush to fill them in and no risk in leaving them empty.
+Nothing outside URL generation reads `slug` — song/venue/creator matching
 everywhere else in the pipeline stays keyed by the real (Japanese) name.
+
+`venue_details.csv`'s `address` and `capacity` are free-form text shown on
+the venue's own page (`capacity` deliberately isn't a number — some venues
+are only known as a range or with a qualifier). `creator_details.csv`'s `x`
+is a **bare handle**, no `@` and no URL; the profile link is built at render
+time.
 
 `song_details.csv`'s other columns (only shown on a song's own page, not
 in any list) are a track number the band assigns (unrelated to a

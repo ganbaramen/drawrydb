@@ -18,15 +18,20 @@ interface Props {
 
 const { value, lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const names = value.split(' & ').map((name) => name.trim());
+// Resolved here rather than in the template so each name is looked up once
+// and the non-null assertion the double-lookup needed goes away.
+const credited = value
+  .split(' & ')
+  .map((name) => name.trim())
+  .map((name) => ({ name, creator: getCreator(name) }));
 ---
 
 {
-  names.map((name, i) => (
+  credited.map(({ name, creator }, i) => (
     <>
       {i > 0 && ' & '}
-      {getCreator(name) ? (
-        <a href={`${base}/${lang}/creators/${urlSafe(getCreator(name)!.id)}/`}>{name}</a>
+      {creator ? (
+        <a href={`${base}/${lang}/creators/${urlSafe(creator.id)}/`}>{name}</a>
       ) : (
         name
       )}

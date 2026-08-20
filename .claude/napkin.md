@@ -40,9 +40,28 @@ this is about *how to work here without repeating mistakes*.
   (songs, venues); worksheets (CSV) over console listings for decisions;
   everything regenerated on every run rather than behind flags.
 
+- **Proposed "optimizations" without measuring first.** Before the 2026-08-19
+  cleanup, the instinct was to chase payload size (the events index looked
+  like 81KB of repeated `data-astro-cid` attributes). Gzip takes it to 11KB;
+  the pipeline runs in 0.3s and the site builds in 1.2s. Nothing here is
+  slow. Measure, then say plainly that speed isn't the problem, rather than
+  optimizing something that isn't costing anything.
+
+## Patterns that keep working (cont.)
+
+- **Refactor verification that actually proves something:** snapshot every
+  generated CSV + `site_data.json` to scratch, refactor, regenerate, `cmp`
+  each one. For site code, build → copy dist → `git stash` → rebuild from
+  original source → `diff -rq` the two dists. 0 differences across 533 pages
+  is the claim worth making; "the build passed" isn't.
+
 ## Current state anchors (update when they change)
 
 - Layout since 2026-08-17: `pipeline/` scripts, `data/input/`, `data/generated/`.
   Scripts resolve paths from repo root — runnable from anywhere.
 - Healthy run: 141 shows, 1021 setlist rows, 0 unlinked, 0 dropped lines.
-- Not a git repo yet. DrawryDB site plan in DRAWRYDB.md.
+- Git repo on `main`; user pushes, I commit locally. DrawryDB site plan in
+  DRAWRYDB.md (gitignored).
+- Show grouping lives in `show_key()`/`group_shows()` (sync_setlists.py); the
+  three `*_details.csv` files are read by one `load_details()`
+  (export_site_data.py). Don't re-add per-kind loaders.
