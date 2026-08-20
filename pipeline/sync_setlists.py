@@ -87,7 +87,6 @@ COLUMNS = [
     "event_uid",
     "position",
     "song",
-    "corrected_from",
     "is_se",
     "is_interlude",
     "is_encore",
@@ -442,8 +441,11 @@ def build_rows(
                 )
 
             for position, song, is_se, note, is_encore in post["songs"]:
-                # Correct known typos, but keep what was posted in its own
-                # column so the CSV never loses the original.
+                # Apply confirmed renames (song_renames.csv). The posted
+                # spelling isn't kept in a column — data/input/setlist_posts/
+                # is the raw record and is never edited, so it's still
+                # recoverable there; `original` here only feeds the run's
+                # "renamed X -> Y (Nx)" report and its stale-entry check.
                 original = song
                 song = song_renames.get(song, song)
                 if song != original:
@@ -456,7 +458,6 @@ def build_rows(
                         "event_uid": uid,
                         "position": str(position),
                         "song": song,
-                        "corrected_from": original if song != original else "",
                         "is_se": "yes" if is_se else "no",
                         "is_interlude": "yes" if is_interlude(song) else "no",
                         "is_encore": "yes" if is_encore else "no",

@@ -69,5 +69,7 @@ this is about *how to work here without repeating mistakes*.
   = rewrite a string everywhere (`song_renames.csv`, `venue_renames.csv`, was
   `*_corrections.csv`); **override** = replace a field on one event
   (`event_overrides.csv`); **details** = per-name facts (`*_details.csv`);
-  **note** = freeform per-event prose (`event_notes.csv`). The generated
-  `corrected_from` column keeps its name on purpose.
+  **note** = freeform per-event prose (`event_notes.csv`).
+- `setlists.csv` has no `corrected_from` column (removed 2026-08-19 — unread,
+  4/1021 rows populated). The raw posted spelling lives in
+  `data/input/setlist_posts/`, which is never edited.

@@ -201,8 +201,8 @@ resolved automatically from the setlist post once it's pasted (via an
 ### `setlists.csv`
 
 One row per song: `event_date`, `live_start`, `showtime`, `event_uid`,
-`position`, `song`, `corrected_from`, `is_se`, `is_interlude`, `is_encore`,
-`note`, `venue`, `post_event_name`, `calendar_summary`, `source_file`.
+`position`, `song`, `is_se`, `is_interlude`, `is_encore`, `note`, `venue`,
+`post_event_name`, `calendar_summary`, `source_file`.
 
 - **`position`** is true running order counted from the top of the post, not the
   number printed beside it — posts occasionally misnumber (`01, 02, 02, 03…`),
@@ -278,9 +278,10 @@ wrong,correct,reason
 "Dear,Hisoty","Dear,History",typo in the source post (2026-04-25)
 ```
 
-Renames apply at parse time — your paste files are never modified, and
-`corrected_from` preserves what was actually posted. A rename that stops
-matching anything is reported rather than failing quietly.
+Renames apply at parse time — your paste files are never modified, so
+`data/input/setlist_posts/` stays the raw record of what was actually
+posted. A rename that stops matching anything is reported rather than
+failing quietly.
 
 For venues, read **`venue_review.csv`** first — it groups names that might be
 the same place, with a `suggested_canonical` guess:

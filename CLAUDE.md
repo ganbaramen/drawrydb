@@ -36,10 +36,10 @@ names needed to carry. A **rename** rewrites one string wherever it appears;
 an **override** replaces a named field on one event. `load_renames()` (was
 `load_corrections()`) stays generic across both rename files.
 
-The generated `setlists.csv` column is still **`corrected_from`**, not
-`renamed_from` — it records what the post actually said, and renaming a
-column in a generated artifact churns the file for no reader's benefit
-(nothing outside the docs consumes it). Don't "finish" the rename there.
+`setlists.csv` briefly kept a `corrected_from` column recording the posted
+spelling; it was dropped rather than renamed to `renamed_from` (see the data
+quality section) — nothing consumed it and the paste files already hold the
+original verbatim.
 
 ## Calendar (`export_calendar.py`)
 
@@ -285,9 +285,14 @@ SE names only against other SE names, since `SE(ラブストーリーが始ま�
 Renames live in **`song_renames.csv`** (`wrong,correct,reason`), applied
 at parse time. Two rules, both deliberate:
 
-- **Never edit the paste files.** They are the raw record of what was posted.
-- **The original survives** in the `corrected_from` column, so the CSV can still
-  answer "what did the post actually say".
+- **Never edit the paste files.** They are the raw record of what was posted,
+  and the only place the original spelling survives — `setlists.csv` used to
+  carry a `corrected_from` column for that, removed 2026-08-19 because
+  nothing read it and it was populated on 4 of 1021 rows. "What did the post
+  actually say" is still answerable: `data/input/setlist_posts/` has the
+  verbatim text, and `song_renames.csv` maps every rewrite. If a consumer
+  ever genuinely needs it in the CSV, re-adding the column is two lines in
+  `build_rows()` — but don't re-add it speculatively.
 
 Only add a rename the user has confirmed — flagging is automatic, merging is
 not. A rename that matches nothing is reported as possibly stale rather than
