@@ -11385,7 +11385,7 @@
     },
     {
       "date": "2026-08-28",
-      "title": "ライブ予定あり",
+      "title": "ライブ予定あり@渋谷(夜帯)",
       "venue": null,
       "doors": null,
       "showtime": null,
@@ -11426,10 +11426,10 @@
       "venue": "SHIBUYA RING",
       "doors": "17:00",
       "showtime": "17:20",
-      "live_start": null,
-      "live_end": null,
-      "meet_start": null,
-      "meet_end": null,
+      "live_start": "19:30",
+      "live_end": "19:55",
+      "meet_start": "20:05",
+      "meet_end": "21:05",
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
