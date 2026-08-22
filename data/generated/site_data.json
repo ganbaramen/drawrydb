@@ -11490,17 +11490,22 @@
     },
     {
       "date": "2026-09-05",
-      "title": "くさのね前後にもう1本ライブあり＠千葉",
-      "venue": null,
-      "doors": null,
-      "showtime": null,
+      "title": "くさのねアイドルフェスティバル前夜祭",
+      "venue": "flagship FUNABASHI",
+      "doors": "18:30",
+      "showtime": "19:00",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://t-dv.com/0905kusanone"
+        }
+      ],
       "id": "2026-09-05-2",
       "note": null
     },
