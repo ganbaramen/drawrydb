@@ -11622,6 +11622,38 @@
       "note": null
     },
     {
+      "date": "2026-10-03",
+      "title": "ライブ予定あり＠昼帯",
+      "venue": null,
+      "doors": null,
+      "showtime": null,
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [],
+      "id": "2026-10-03-1",
+      "note": null
+    },
+    {
+      "date": "2026-10-05",
+      "title": "ライブ予定あり",
+      "venue": null,
+      "doors": null,
+      "showtime": null,
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [],
+      "id": "2026-10-05-1",
+      "note": null
+    },
+    {
       "date": "2026-10-11",
       "title": "ライブ予定あり＠時間未定",
       "venue": null,
@@ -11635,6 +11667,22 @@
       "setlist": [],
       "ticket_links": [],
       "id": "2026-10-11-1",
+      "note": null
+    },
+    {
+      "date": "2026-10-12",
+      "title": "ライブ予定あり＠時間未定",
+      "venue": null,
+      "doors": null,
+      "showtime": null,
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [],
+      "id": "2026-10-12-1",
       "note": null
     },
     {
