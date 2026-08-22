@@ -11385,17 +11385,22 @@
     },
     {
       "date": "2026-08-28",
-      "title": "ライブ予定あり@渋谷(夜帯)",
-      "venue": null,
-      "doors": null,
-      "showtime": null,
+      "title": "INFINITY LIVE presents『ASTROPUFF - EMERGENCY -』",
+      "venue": "渋谷近未来会館",
+      "doors": "18:40",
+      "showtime": "19:00",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20260828_2"
+        }
+      ],
       "id": "2026-08-28-1",
       "note": null
     },
@@ -11505,10 +11510,10 @@
       "venue": "草ぶえの丘(千葉 佐倉)",
       "doors": "10:00",
       "showtime": "10:45",
-      "live_start": null,
-      "live_end": null,
-      "meet_start": null,
-      "meet_end": null,
+      "live_start": "18:10",
+      "live_end": "18:35",
+      "meet_start": "15:50",
+      "meet_end": "16:50",
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
@@ -11522,17 +11527,22 @@
     },
     {
       "date": "2026-09-12",
-      "title": "ライブ予定あり",
-      "venue": null,
-      "doors": null,
-      "showtime": null,
+      "title": "「SELENE PRINCESS」#81",
+      "venue": "白金高輪SELENEb2",
+      "doors": "09:45",
+      "showtime": "10:00",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/selepri_0912"
+        }
+      ],
       "id": "2026-09-12-1",
       "note": null
     },
