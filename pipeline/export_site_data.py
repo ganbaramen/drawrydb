@@ -149,6 +149,94 @@ def parse_ticket_links(description: str) -> list[dict]:
     return links
 
 
+def parse_ticket_sales(description: str, event_date: str) -> list[dict]:
+    """Pull ticket on-sale (発売) times out of the description prose.
+
+    Returns one entry per 発売 line — events can list several phases (先行
+    then 一般), and the two real multi-line events stack three 発売日時
+    lines for three tiers with no tier word at all, so entries are a list,
+    never merged. Shape: {"label": "先行"|"一般"|None, "start": iso-or-None,
+    "end": iso-or-None} ("YYYY-MM-DD HH:MM", JST implied by the calendar).
+
+    Every real shape found by auditing all 124 発売 lines in the current
+    calendar (see CLAUDE.md's test-against-real-data approach):
+
+      ※チケット発売：9/9(火) 21:00先着            — the dominant form
+      ※チケット発売日：5/3(日)22:00先着           — 発売日 variant
+      ※先行チケット発売：10/11(土)18:00~10/19(日)23:59   — start~end window
+      ※超先行チケット発売期間：4/30(木)23:59まで   — end-only ("until")
+      一般発売(10/16 22:00〜) / 一般発売 3/10(火) 21:00 - 3/20(金) 23:59
+      発売日時:3/20(金祝) 12:00先着                — no チケット, no ※
+      発売_6/11木 22:00~6/16火 17:00               — bare weekday, _ separator
+
+    Variance handled without special cases: full/half-width colon and
+    parens, optional spaces, weekday present or absent, 先着 (first-come)
+    suffix ignored as decoration. One description uses U+2028 LINE
+    SEPARATOR instead of newlines, so splitting covers both.
+    """
+    # Tier word before チケット/発売; longest-first so 先行早割 isn't eaten
+    # by 先行. 超先行早割 is accepted defensively — only 超先行 alone has
+    # appeared so far. Groups: (1) advance tier, (2) 一般.
+    tier = r"(?:(超先行早割|超先行|先行早割|先行)|(一般))?"
+    header = re.compile(
+        r"^[※\[\s]*" + tier + r"(?:チケット)?発売(?:日時|日期間|日|期間)?\s*[:：_]?\s*(.*)$"
+    )
+    # M/D + optional (W) or W weekday + HH:MM. Weekday and 祝 are redundant
+    # with the date itself, so they're parsed only to be discarded.
+    # Bracket-placement trap that cost real debugging time: the weekday
+    # clause must end "[）)]?)?" — ? on the CLASS, then ) closes the group.
+    # Writing "[）)])?" instead makes that ) close the (?: group early, the
+    # ? quantifies the *group*, and the closing bracket becomes mandatory
+    # within it — "(火)" still matched but the bare "木" in "発売_6/11木"
+    # silently didn't.
+    datetime_re = re.compile(
+        r"(\d{1,2})/(\d{1,2})(?:\s*[（(]?\s*([月火水木金土日]{1,2})(?:祝)?\s*[）)]?)?\s*(\d{1,2}):(\d{2})"
+    )
+
+    def with_year(month: int, day: int, hour: int, minute: int) -> str:
+        """Sale dates are posted as M/D with no year. The show's own year
+        is right except when a January–March show sells tickets the
+        previous December — resolved by "a sale can't happen after the
+        show" (same-day is allowed). If even year-1 lands after the event
+        the source is wrong somewhere; keeping it beats hiding it."""
+        year = int(event_date[:4])
+        candidate = f"{year:04d}-{month:02d}-{day:02d} {hour:02d}:{minute:02d}"
+        if candidate[:10] > event_date:
+            candidate = f"{year - 1:04d}-{month:02d}-{day:02d} {hour:02d}:{minute:02d}"
+        return candidate
+
+    def moment(match: re.Match) -> str:
+        month, day, hour, minute = match.group(1, 2, 4, 5)
+        return with_year(int(month), int(day), int(hour), int(minute))
+
+    entries = []
+    for line in re.split(r"[\n\u2028\u2029]", description):
+        line = line.strip()
+        if "発売" not in line:
+            continue
+        match = header.match(line)
+        if not match:
+            print(f"  unrecognized ticket-sale line: {line!r}")
+            continue
+        tier_word, general_word, rest = match.group(1), match.group(2), match.group(3).strip()
+        label = {"超先行早割": "超先行", "先行早割": "先行"}.get(tier_word, tier_word) or (
+            "一般" if general_word else None
+        )
+        times = list(datetime_re.finditer(rest))
+        if not times:
+            # "[一般発売]"-style bare headers carry the phase but no time;
+            # nothing renderable, same skip-blank rule as load_details().
+            continue
+        if len(times) >= 2:
+            start, end = moment(times[0]), moment(times[-1])
+        elif rest.endswith("まで"):
+            start, end = None, moment(times[0])
+        else:
+            start, end = moment(times[0]), None
+        entries.append({"label": label, "start": start, "end": end})
+    return entries
+
+
 @functools.lru_cache(maxsize=None)
 def _read_csv_cached(name: str) -> tuple[dict[str, str], ...]:
     path = os.path.join(GENERATED_DIR, name)
@@ -321,6 +409,9 @@ def build_events() -> list[dict]:
                     )
                 ],
                 "ticket_links": parse_ticket_links(description_by_uid.get(row["event_uid"], "")),
+                "ticket_sales": parse_ticket_sales(
+                    description_by_uid.get(row["event_uid"], ""), row["event_date"]
+                ),
                 "sort_key": sort_key(row),
             }
         )
@@ -343,6 +434,7 @@ def build_events() -> list[dict]:
                 "has_setlist": False,
                 "setlist": [],
                 "ticket_links": parse_ticket_links(row["description"]),
+                "ticket_sales": parse_ticket_sales(row["description"], date),
                 "sort_key": sort_key(row),
             }
         )
@@ -392,10 +484,34 @@ def build_songs(events: list[dict]) -> list[dict]:
         )
 
     songs = []
+    # Streaks are counted per *show date*, not per performance — a
+    # double-header day is one unit, since the question "have they played it
+    # lately?" doesn't care that it happened twice that day. Only shows with
+    # a posted setlist count: pending/future events would otherwise look
+    # like a show the song missed. The denominator starts at the song's own
+    # debut, same reasoning as song_stats.csv's play_rate.
+    show_dates = sorted({e["date"] for e in events if e["has_setlist"]})
+
+    def streaks(name: str, debut: str) -> tuple[int, int]:
+        """(current_streak, longest_streak) for one song."""
+        played = {p["date"] for p in performances_by_song.get(name, [])}
+        flags = [d in played for d in show_dates if d >= debut]
+        longest = run = 0
+        for hit in flags:
+            run = run + 1 if hit else 0
+            longest = max(longest, run)
+        current = 0
+        for hit in reversed(flags):
+            if not hit:
+                break
+            current += 1
+        return current, longest
+
     for row in stats:
         performances = sorted(
             performances_by_song.get(row["song"], []), key=lambda p: p["date"]
         )
+        current_streak, longest_streak = streaks(row["song"], row["first_performed"])
         songs.append(
             {
                 "id": details.get(row["song"], {}).get("slug") or row["song"],
@@ -407,6 +523,8 @@ def build_songs(events: list[dict]) -> list[dict]:
                 "play_rate": float(row["play_rate"]),
                 "first_performed": row["first_performed"],
                 "last_performed": row["last_performed"],
+                "current_streak": current_streak,
+                "longest_streak": longest_streak,
                 "debut_confirmed": row["debut_confirmed"] == "yes",
                 "encores": int(row["encores"]),
                 "is_se": row["is_se"] == "yes",

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import CreditNames from '../../../components/CreditNames.astro';
-import { songs, events, type Song } from '../../../lib/data';
+import { songs, events, today, type Song } from '../../../lib/data';
 import { autoLink, formatDate, formatTrackNumber, songDisplayName, songSubtitle, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
@@ -36,6 +36,12 @@ function eventFor(date: string) {
 const debutEvent = eventFor(song.first_performed);
 const lastEvent = eventFor(song.last_performed);
 const credits = song.credits;
+
+// Build-time "today" (see data.ts) — same static-site caveat as
+// upcomingEvents(): accurate as of the last deploy, not the visit.
+const daysSinceLast = Math.floor(
+  (Date.parse(today) - Date.parse(song.last_performed)) / 86_400_000,
+);
 
 ---
 
@@ -137,6 +143,7 @@ const credits = song.credits;
             <a href={`${base}/${lang}/events/${lastEvent.id}/`}>{lastEvent.title}</a>
           </>
         )}
+        {daysSinceLast > 0 && <span>（{t(lang, 'songs.daysAgo', { n: daysSinceLast })}）</span>}
       </td>
     </tr>
     <tr>
@@ -146,6 +153,15 @@ const credits = song.credits;
           pct: Math.round(song.play_rate * 100),
           shows: song.shows,
           total: song.shows_since_debut,
+        })}
+      </td>
+    </tr>
+    <tr>
+      <th>{t(lang, 'songs.streak')}</th>
+      <td>
+        {t(lang, 'songs.streakDetail', {
+          n: song.current_streak,
+          longest: song.longest_streak,
         })}
       </td>
     </tr>

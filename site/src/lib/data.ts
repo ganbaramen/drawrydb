@@ -18,6 +18,16 @@ export interface TicketLink {
   url: string;
 }
 
+// One ticket on-sale (発売) phase — events can list several (先行 then
+// 一般). Parsed from the calendar description by parse_ticket_sales() in
+// export_site_data.py; "YYYY-MM-DD HH:MM" in JST, or null when that phase
+// has no such boundary (e.g. a "〜4/30 23:59まで" end-only window).
+export interface TicketSale {
+  label: string | null;
+  start: string | null;
+  end: string | null;
+}
+
 export interface Event {
   id: string;
   date: string;
@@ -34,6 +44,7 @@ export interface Event {
   has_setlist: boolean;
   setlist: SetlistEntry[];
   ticket_links: TicketLink[];
+  ticket_sales: TicketSale[];
   note: string | null;
 }
 
@@ -73,6 +84,13 @@ export interface Song {
   play_rate: number;
   first_performed: string;
   last_performed: string;
+  // Consecutive-show counts, per show *date* (a double-header day is one
+  // unit) and counting only shows on/after the song's own debut — see
+  // build_songs() in pipeline/export_site_data.py. current_streak runs back
+  // from the most recent show and is 0 if the latest show didn't include
+  // the song.
+  current_streak: number;
+  longest_streak: number;
   debut_confirmed: boolean;
   encores: number;
   is_se: boolean;
@@ -207,7 +225,7 @@ export function getCreator(name: string): Creator | undefined {
 // not the visitor's clock. The deploy workflow rebuilds often enough
 // (triggered by every push, including the scheduled calendar refresh) that
 // this stays close to accurate.
-const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Tokyo' }).format(new Date());
+export const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Tokyo' }).format(new Date());
 
 export function upcomingEvents(limit?: number): Event[] {
   const upcoming = events.filter((e) => e.date >= today);

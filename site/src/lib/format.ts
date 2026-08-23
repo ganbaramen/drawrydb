@@ -112,3 +112,12 @@ export function formatMonth(lang: Lang, key: string): string {
   const month = new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'UTC' }).format(date);
   return `${y} ${month}`;
 }
+
+// Ticket-sale datetimes ship as "YYYY-MM-DD HH:MM" (JST implied by the
+// calendar); the date half gets the same formatting as every other date on
+// the site, the time stays as-is — times elsewhere (doors/showtime) are
+// also unpadded raw "H:MM" strings, so no new convention is introduced.
+export function formatDateTime(lang: Lang, iso: string): string {
+  const [date, time] = iso.split(' ');
+  return `${formatDate(lang, date)} ${time}`;
+}

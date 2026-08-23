@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { events, getSong, getVenue, setLengthStats, type Event } from '../../../lib/data';
-import { formatDate, formatSetLength, liveDurationMinutes, songDisplayName, urlSafe } from '../../../lib/format';
+import { formatDate, formatDateTime, formatSetLength, liveDurationMinutes, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -113,6 +113,35 @@ const meetDurationMinutes =
                 </a>
               </li>
             ))}
+          </ul>
+        </td>
+      </tr>
+    )}
+    {event.ticket_sales.length > 0 && (
+      <tr>
+        <th>{t(lang, 'events.sale')}</th>
+        <td>
+          <ul class="ticket-links">
+            {event.ticket_sales.map((sale) => {
+              // Label words (先行/一般/超先行) come straight from the
+              // poster prose; the common no-tier case renders just the time.
+              const start = sale.start ? formatDateTime(lang, sale.start) : null;
+              const end = sale.end ? formatDateTime(lang, sale.end) : null;
+              const when = start && end
+                ? t(lang, 'events.saleRange', { start, end })
+                : start ?? (end ? `${t(lang, 'events.timeRangeSep')}${end}` : '');
+              // Label words (先行/一般/超先行) are Japanese either way; 一般
+              // gets a translated word since it's the one generic term.
+              const rawLabel = sale.label === '一般' ? t(lang, 'events.saleGeneral') : sale.label;
+              const open = lang === 'ja' ? '（' : '(';
+              const close = lang === 'ja' ? '）' : ')';
+              return (
+                <li>
+                  {when}
+                  {rawLabel && `${open}${rawLabel}${close}`}
+                </li>
+              );
+            })}
           </ul>
         </td>
       </tr>

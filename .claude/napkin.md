@@ -25,6 +25,18 @@ this is about *how to work here without repeating mistakes*.
 - **Wrote a doc claim without checking current data** ("O-Crest/O-nest/O-WEST
   would never cluster together" — they were clustered at that very moment).
   Re-run and look before asserting behavior in docs.
+- **Referenced `first_performed` as if it were module-level** in
+  export_site_data.py's build_songs() — it's a local of
+  build_set_length_stats(). Per-song debut comes from the song_stats row;
+  pass it explicitly.
+- **Regex bracket trap that ate ~an hour**: writing `[）)])?` inside an
+  open `(?:` group — the ) closes the GROUP early, ? quantifies the group,
+  and the close-bracket class becomes mandatory within it. Symptom: pattern
+  matched the parenthesized variant "(火)" but silently failed on bare "木",
+  looking like a Python re bug. Fix/shape to remember:
+  `[）)]?)?` — ? on the class, THEN close the group. When a regex
+  "impossibly" fails, print `_parser.parse(pat)` and check where groups
+  actually close before suspecting the engine.
 
 ## Patterns that keep working
 
@@ -55,6 +67,15 @@ this is about *how to work here without repeating mistakes*.
   original source → `diff -rq` the two dists. 0 differences across 533 pages
   is the claim worth making; "the build passed" isn't.
 
+## Domain notes
+
+- Generated CSVs have a UTF-8 BOM — read with `encoding='utf-8-sig'` or the
+  first column name comes back `\ufeffevent_date`.
+- Group setlist rows by `event_date|event_uid`, sort by int(position).
+- Signature sequence: ルミナス → 朝焼けと車窓 appears in ~half of all shows
+  (71/141 as a pair); encore-crossing pairs are essentially never repeated
+  (all 1x), so encores are where variation lives.
+
 ## Current state anchors (update when they change)
 
 - Layout since 2026-08-17: `pipeline/` scripts, `data/input/`, `data/generated/`.
@@ -73,3 +94,15 @@ this is about *how to work here without repeating mistakes*.
 - `setlists.csv` has no `corrected_from` column (removed 2026-08-19 — unread,
   4/1021 rows populated). The raw posted spelling lives in
   `data/input/setlist_posts/`, which is never edited.
+- Streak fields (added 2026-08-21): songs carry `current_streak`/
+  `longest_streak`, computed in build_songs() per show *date* (double-header
+  day = one unit), denominator starts at the song's debut, only shows with a
+  posted setlist count. Rendered on song pages with build-time days-since.
+- Site slugs: song/venue ids are hand-maintained slugs (e.g. `luminous`,
+  `asayake-to-shasou`), not raw Japanese — dist paths use them.
+- Ticket sales (added 2026-08-22): `parse_ticket_sales()` in
+  export_site_data.py extracts 発売 phases from calendar descriptions into
+  events[].ticket_sales ({label, start, end}, "YYYY-MM-DD HH:MM", year
+  resolved against the event date). Rendered on event pages below ticket
+  links. One description uses U+2028 line separators, not \n. The bare
+  "[一般発売]" header (no time) is intentionally skipped.
