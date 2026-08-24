@@ -106,3 +106,12 @@ this is about *how to work here without repeating mistakes*.
   resolved against the event date). Rendered on event pages below ticket
   links. One description uses U+2028 line separators, not \n. The bare
   "[一般発売]" header (no time) is intentionally skipped.
+- "Next live" bug (fixed 2026-08-24): homepage used `date >= today` only,
+  so a same-JST-day show with its setlist already posted still showed as
+  next live. Rule now: upcoming = no setlist yet AND date >= today.
+  has_setlist is the authoritative "this show is over" flag — setlists are
+  only entered post-show. Then (same day) made the pick view-time instead
+  of build-time: homepage embeds all pending events as JSON + inline script
+  re-picks on the visitor's JST clock; build-time choice stays as no-JS
+  fallback. Static files unchanged; only setlist-entry staleness still
+  needs a deploy.

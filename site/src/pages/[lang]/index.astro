@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { upcomingEvents, recentSetlists } from '../../lib/data';
+import { events, upcomingEvents, recentSetlists } from '../../lib/data';
 import { formatDate } from '../../lib/format';
 import { LOCALES, t, type Lang } from '../../lib/i18n';
 
@@ -12,6 +12,24 @@ const { lang } = Astro.props as { lang: Lang };
 const base = import.meta.env.BASE_URL;
 const next = upcomingEvents(1)[0];
 const recent = recentSetlists(5);
+
+// "Next live" is picked at view time, not build time: the site is still
+// fully static, but every event that could still become the next live
+// (i.e. has no setlist yet) ships as JSON below, and a few lines of inline
+// JS re-pick using the visitor's JST clock. Without JS the build-time pick
+// below renders unchanged; with JS the card survives day rollovers and
+// slow deploys instead of showing a show that already happened.
+// Pre-formatted dates keep all formatting server-side; the script only
+// chooses between ready-made strings.
+const candidates = events
+  .filter((e) => !e.has_setlist)
+  .map((e) => ({
+    id: e.id,
+    date: e.date,
+    dateFormatted: formatDate(lang, e.date),
+    title: e.title,
+    venue: e.venue,
+  }));
 ---
 
 <Layout title="DrawryDB." lang={lang} path="">
@@ -19,17 +37,55 @@ const recent = recentSetlists(5);
     next && (
       <section>
         <h2>{t(lang, 'home.next')}</h2>
-        <a class="event-card" href={`${base}/${lang}/events/${next.id}/`}>
+        <a
+          class="event-card"
+          id="next-live-link"
+          href={`${base}/${lang}/events/${next.id}/`}
+          data-base={`${base}/${lang}/events/`}
+        >
           <div class="event-date">{formatDate(lang, next.date)}</div>
           <div class="event-title">
             {next.title}
-            {!next.has_setlist && <span class="badge">{t(lang, 'badge.pending')}</span>}
           </div>
           {next.venue && <div class="event-venue">{next.venue}</div>}
         </a>
       </section>
     )
   }
+
+  <script
+    is:inline
+    type="application/json"
+    id="next-live-data"
+    set:html={JSON.stringify(candidates)}
+  />
+  <script is:inline>
+    (() => {
+      const payload = document.getElementById('next-live-data');
+      const link = document.getElementById('next-live-link');
+      if (!payload || !link) return;
+      const today = new Intl.DateTimeFormat('sv-SE', {
+        timeZone: 'Asia/Tokyo',
+      }).format(new Date());
+      // Candidates are chronological (events are sorted by id == date);
+      // first one still on/after today wins. has_setlist filtering already
+      // happened at build time — a setlist entered after this page was
+      // built still needs the next deploy to disappear from here.
+      const next = JSON.parse(payload.textContent).find((e) => e.date >= today);
+      if (!next || link.href.endsWith(`/${next.id}/`)) return;
+      link.href = `${link.dataset.base}${next.id}/`;
+      link.querySelector('.event-date').textContent = next.dateFormatted;
+      link.querySelector('.event-title').textContent = next.title;
+      const venue = link.querySelector('.event-venue');
+      if (venue) venue.textContent = next.venue ?? '';
+      if (!venue && next.venue) {
+        const div = document.createElement('div');
+        div.className = 'event-venue';
+        div.textContent = next.venue;
+        link.appendChild(div);
+      }
+    })();
+  </script>
 
   <section>
     <h2>{t(lang, 'home.recent')}</h2>

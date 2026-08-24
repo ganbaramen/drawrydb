@@ -228,7 +228,12 @@ export function getCreator(name: string): Creator | undefined {
 export const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Tokyo' }).format(new Date());
 
 export function upcomingEvents(limit?: number): Event[] {
-  const upcoming = events.filter((e) => e.date >= today);
+  // A posted setlist means the show already happened — setlists are only
+  // entered from posts after the fact, so that's the decisive "is over"
+  // signal, immune to any skew between build time and JST event dates (a
+  // same-JST-day show used to linger here until midnight JST). The date
+  // check stays as the first cut; has_setlist does the real filtering.
+  const upcoming = events.filter((e) => !e.has_setlist && e.date >= today);
   return typeof limit === 'number' ? upcoming.slice(0, limit) : upcoming;
 }
 
