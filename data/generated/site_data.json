@@ -12566,7 +12566,7 @@
     },
     {
       "date": "2026-09-20",
-      "title": "ライブ入る可能性あり",
+      "title": "ライブ予定あり＠渋谷(昼帯)",
       "venue": null,
       "doors": null,
       "showtime": null,
@@ -12579,6 +12579,23 @@
       "ticket_links": [],
       "ticket_sales": [],
       "id": "2026-09-20-1",
+      "note": null
+    },
+    {
+      "date": "2026-09-21",
+      "title": "ライブ入る可能性あり (21日か23日にライブ入る可能性あり)",
+      "venue": null,
+      "doors": null,
+      "showtime": null,
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [],
+      "ticket_sales": [],
+      "id": "2026-09-21-1",
       "note": null
     },
     {
@@ -12600,7 +12617,7 @@
     },
     {
       "date": "2026-09-23",
-      "title": "ライブ入る可能性あり",
+      "title": "ライブ入る可能性あり (21日か23日にライブ入る可能性あり)",
       "venue": null,
       "doors": null,
       "showtime": null,
