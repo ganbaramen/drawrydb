@@ -222,6 +222,20 @@ a {
   border-color: var(--accent);
 }
 
+/*
+ * Theme-toggle reveal (see Layout.astro's click handler): the UA's default
+ * view-transition animation is a cross-fade of old and new snapshots —
+ * disabled here so the clip-path rectangle sweeping up over the new
+ * snapshot is the only motion. mix-blend-mode: normal keeps the two
+ * snapshots opaque, so the old theme stays fully painted underneath until
+ * the reveal covers it instead of bleeding through.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 main {
   max-width: 720px;
   margin: 0 auto;

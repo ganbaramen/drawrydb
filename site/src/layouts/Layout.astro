@@ -154,9 +154,39 @@ const base = import.meta.env.BASE_URL;
 
       button.addEventListener('click', () => {
         const next = effectiveTheme() === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
-        localStorage.setItem('theme', next);
-        syncIcon();
+        // Repaint the page through the View Transitions API: the new theme
+        // is revealed by a rectangle sweeping up from the bottom edge
+        // ("rectangle" variant, "bottom-up" origin — same defaults as
+        // beui.dev's ThemeToggle, which this replaces; that one needs
+        // React/shadcn, this is the same clip-path idea in vanilla JS).
+        // Browsers without the API, and reduced-motion users, get the
+        // instant switch we always had.
+        const apply = () => {
+          root.dataset.theme = next;
+          localStorage.setItem('theme', next);
+          syncIcon();
+        };
+        if (
+          !document.startViewTransition ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ) {
+          apply();
+          return;
+        }
+        const transition = document.startViewTransition(apply);
+        // ready rejects only if the transition gets skipped (e.g. a second
+        // toggle before this one starts animating) — nothing to animate then.
+        transition.ready
+          .then(() => {
+            // Default UA animation would cross-fade; disable it so only our
+            // clip-path on the new snapshot runs. The old snapshot stays
+            // painted underneath until the reveal covers it.
+            root.animate(
+              { clipPath: ['inset(100% 0 0 0)', 'inset(0 0 0 0)'] },
+              { duration: 450, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' },
+            );
+          })
+          .catch(() => {});
       });
 
       // No stored preference means the OS setting still governs — keep the

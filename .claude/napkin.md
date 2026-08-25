@@ -100,6 +100,11 @@ this is about *how to work here without repeating mistakes*.
   posted setlist count. Rendered on song pages with build-time days-since.
 - Site slugs: song/venue ids are hand-maintained slugs (e.g. `luminous`,
   `asayake-to-shasou`), not raw Japanese — dist paths use them.
+- Theme toggle (2026-08-25): rectangle View Transition reveal on theme
+  switch (beui.dev's ThemeToggle look, re-implemented as vanilla JS in
+  Layout.astro — the original needs React/shadcn). No-API and
+  reduced-motion fall back to instant swap. global.css disables the UA
+  cross-fade via ::view-transition-* rules; keep those if touching themes.
 - Ticket sales (added 2026-08-22): `parse_ticket_sales()` in
   export_site_data.py extracts 発売 phases from calendar descriptions into
   events[].ticket_sales ({label, start, end}, "YYYY-MM-DD HH:MM", year
