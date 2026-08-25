@@ -76,6 +76,11 @@ const setlistFilters = [
         Radios styled as a segmented control: the input itself is visually
         hidden (not display:none, which would drop it out of the tab order)
         and the label paints the selected state off :has(:checked).
+
+        Selected uses accent (the same pale-purple/lavender pair the header
+        nav's current section gets), not a raised bg-card pill: --card is
+        *darker* than --muted in the dark palette, so a card-colored pill on
+        a muted track read as recessed rather than selected.
       -->
       <div
         class="bg-muted inline-flex rounded-lg p-0.5"
@@ -84,7 +89,7 @@ const setlistFilters = [
       >
         {
           setlistFilters.map((filter) => (
-            <label class="has-[:checked]:bg-card has-[:checked]:text-foreground has-[:focus-visible]:ring-ring/50 text-muted-foreground cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors has-[:checked]:shadow-xs has-[:focus-visible]:ring-3">
+            <label class="has-[:checked]:bg-accent has-[:checked]:text-accent-foreground has-[:focus-visible]:ring-ring/50 text-muted-foreground hover:text-foreground cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors has-[:focus-visible]:ring-3">
               <input
                 type="radio"
                 name="setlist-filter"
