@@ -1,0 +1,24 @@
+---
+// One label/value pair inside <MetaTable>. The label column is a row-scoped
+// <th> (it names the row, not a column), fixed narrow so values line up
+// across rows; on a phone the labels would eat the row, so it shrinks.
+import { TableCell, TableHead, TableRow } from '@/components/ui/table';
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<TableRow>
+  <TableHead
+    scope="row"
+    class="text-muted-foreground w-28 align-top text-xs font-medium whitespace-normal sm:w-36 sm:text-sm"
+  >
+    {label}
+  </TableHead>
+  <TableCell class="align-top whitespace-normal">
+    <slot />
+  </TableCell>
+</TableRow>

@@ -1,5 +1,13 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import MetaRow from '../../../components/MetaRow.astro';
+import MetaTable from '../../../components/MetaTable.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { Icon } from '@/components/ui/icon';
 import { events, getSong, getVenue, setLengthStats, type Event } from '../../../lib/data';
 import { formatDate, formatDateTime, formatSetLength, liveDurationMinutes, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -36,152 +44,146 @@ const meetDurationMinutes =
 ---
 
 <Layout title={event.title} lang={lang} path={`events/${event.id}/`}>
-  <p><a href="../">{t(lang, 'events.back')}</a></p>
+  <PageHeader title={event.title} backHref="../" backLabel={t(lang, 'events.back')}>
+    <p slot="subtitle" class="text-muted-foreground text-sm">{formatDate(lang, event.date)}</p>
+  </PageHeader>
 
-  <h1>{event.title}</h1>
-  <p class="event-date">{formatDate(lang, event.date)}</p>
-
-  <table class="meta-table">
+  <MetaTable>
     {event.venue && (
-      <tr>
-        <th>{t(lang, 'events.venue')}</th>
-        <td>
-          {venue ? (
-            <a href={`${base}/${lang}/venues/${urlSafe(venue.id)}/`}>{event.venue}</a>
-          ) : (
-            event.venue
-          )}
-        </td>
-      </tr>
+      <MetaRow label={t(lang, 'events.venue')}>
+        {venue ? (
+          <a href={`${base}/${lang}/venues/${urlSafe(venue.id)}/`}>{event.venue}</a>
+        ) : (
+          event.venue
+        )}
+      </MetaRow>
     )}
-    {event.doors && (
-      <tr>
-        <th>{t(lang, 'events.doors')}</th>
-        <td>{event.doors}</td>
-      </tr>
-    )}
-    {event.showtime && (
-      <tr>
-        <th>{t(lang, 'events.showtime')}</th>
-        <td>{event.showtime}</td>
-      </tr>
-    )}
+    {event.doors && <MetaRow label={t(lang, 'events.doors')}>{event.doors}</MetaRow>}
+    {event.showtime && <MetaRow label={t(lang, 'events.showtime')}>{event.showtime}</MetaRow>}
     {event.live_start && (
-      <tr>
-        <th>{t(lang, 'events.live')}</th>
-        <td>
-          {event.live_start}
-          {event.live_end && `${t(lang, 'events.timeRangeSep')}${event.live_end}`}
-          {durationMinutes !== null &&
-            (bucket ? (
-              <>
-                {' '}
-                {lang === 'ja' ? '（' : '('}
-                {/* The parens stay outside the link — inside, the anchor's
-                    underline stretched under them too, which reads oddly
-                    wide especially with JA's full-width （）. */}
-                <a href={`${base}/${lang}/set-lengths/${bucket.minutes}/`}>
-                  {formatSetLength(lang, durationMinutes)}
-                </a>
-                {lang === 'ja' ? '）' : ')'}
-              </>
-            ) : (
-              ` ${t(lang, 'events.liveDuration', { n: durationMinutes })}`
-            ))}
-        </td>
-      </tr>
+      <MetaRow label={t(lang, 'events.live')}>
+        {event.live_start}
+        {event.live_end && `${t(lang, 'events.timeRangeSep')}${event.live_end}`}
+        {durationMinutes !== null &&
+          (bucket ? (
+            <>
+              {' '}
+              {lang === 'ja' ? '（' : '('}
+              {/* The parens stay outside the link — inside, the anchor's
+                  underline stretched under them too, which reads oddly
+                  wide especially with JA's full-width （）. */}
+              <a href={`${base}/${lang}/set-lengths/${bucket.minutes}/`}>
+                {formatSetLength(lang, durationMinutes)}
+              </a>
+              {lang === 'ja' ? '）' : ')'}
+            </>
+          ) : (
+            ` ${t(lang, 'events.liveDuration', { n: durationMinutes })}`
+          ))}
+      </MetaRow>
     )}
     {event.meet_start && (
-      <tr>
-        <th>{t(lang, 'events.meet')}</th>
-        <td>
-          {event.meet_start}
-          {event.meet_end && `${t(lang, 'events.timeRangeSep')}${event.meet_end}`}
-          {meetDurationMinutes !== null && ` ${t(lang, 'events.liveDuration', { n: meetDurationMinutes })}`}
-        </td>
-      </tr>
+      <MetaRow label={t(lang, 'events.meet')}>
+        {event.meet_start}
+        {event.meet_end && `${t(lang, 'events.timeRangeSep')}${event.meet_end}`}
+        {meetDurationMinutes !== null && ` ${t(lang, 'events.liveDuration', { n: meetDurationMinutes })}`}
+      </MetaRow>
     )}
     {event.ticket_links.length > 0 && (
-      <tr>
-        <th>{t(lang, 'events.tickets')}</th>
-        <td>
-          <ul class="ticket-links">
-            {event.ticket_links.map((link) => (
-              <li>
-                <a href={link.url} target="_blank" rel="noopener noreferrer">
-                  {link.label ?? link.url}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </td>
-      </tr>
+      <MetaRow label={t(lang, 'events.tickets')}>
+        <ul class="flex flex-col gap-1">
+          {event.ticket_links.map((link) => (
+            <li>
+              <a
+                class="inline-flex items-center gap-1"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label ?? link.url}
+                <Icon name="external-link" class="size-3 opacity-60" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </MetaRow>
     )}
     {event.ticket_sales.length > 0 && (
-      <tr>
-        <th>{t(lang, 'events.sale')}</th>
-        <td>
-          <ul class="ticket-links">
-            {event.ticket_sales.map((sale) => {
-              // Label words (先行/一般/超先行) come straight from the
-              // poster prose; the common no-tier case renders just the time.
-              const start = sale.start ? formatDateTime(lang, sale.start) : null;
-              const end = sale.end ? formatDateTime(lang, sale.end) : null;
-              const when = start && end
-                ? t(lang, 'events.saleRange', { start, end })
-                : start ?? (end ? `${t(lang, 'events.timeRangeSep')}${end}` : '');
-              // Label words (先行/一般/超先行) are Japanese either way; 一般
-              // gets a translated word since it's the one generic term.
-              const rawLabel = sale.label === '一般' ? t(lang, 'events.saleGeneral') : sale.label;
-              const open = lang === 'ja' ? '（' : '(';
-              const close = lang === 'ja' ? '）' : ')';
-              return (
-                <li>
-                  {when}
-                  {rawLabel && `${open}${rawLabel}${close}`}
-                </li>
-              );
-            })}
-          </ul>
-        </td>
-      </tr>
+      <MetaRow label={t(lang, 'events.sale')}>
+        <ul class="flex flex-col gap-1">
+          {event.ticket_sales.map((sale) => {
+            // Label words (先行/一般/超先行) come straight from the
+            // poster prose; the common no-tier case renders just the time.
+            const start = sale.start ? formatDateTime(lang, sale.start) : null;
+            const end = sale.end ? formatDateTime(lang, sale.end) : null;
+            const when = start && end
+              ? t(lang, 'events.saleRange', { start, end })
+              : start ?? (end ? `${t(lang, 'events.timeRangeSep')}${end}` : '');
+            // Label words (先行/一般/超先行) are Japanese either way; 一般
+            // gets a translated word since it's the one generic term.
+            const rawLabel = sale.label === '一般' ? t(lang, 'events.saleGeneral') : sale.label;
+            const open = lang === 'ja' ? '（' : '(';
+            const close = lang === 'ja' ? '）' : ')';
+            return (
+              <li>
+                {when}
+                {rawLabel && `${open}${rawLabel}${close}`}
+              </li>
+            );
+          })}
+        </ul>
+      </MetaRow>
     )}
-  </table>
+  </MetaTable>
 
   {
     event.has_setlist ? (
-      <ol class="setlist">
-        {event.setlist.map((song) => {
-          if (song.is_encore) encoreIndex++;
-          const position = song.is_encore ? (encoreCount > 1 ? `En${encoreIndex}` : 'En') : song.position;
-          // Fall back to the raw name if a setlist entry somehow doesn't
-          // match a song_stats.csv row — shouldn't happen, but a dead link
-          // beats a build failure.
-          const matchedSong = getSong(song.song);
-          const songId = matchedSong?.id ?? song.song;
-          const songName = matchedSong ? songDisplayName(lang, matchedSong) : song.song;
-          return (
-            <li>
-              <span class="position">{position}</span>
-              <span>
-                <a href={`${base}/${lang}/songs/${urlSafe(songId)}/`}>{songName}</a>
-                {song.note && <span class="song-note"> ({song.note})</span>}
-              </span>
-            </li>
-          );
-        })}
-      </ol>
+      <Card size="sm">
+        <CardContent class="px-0">
+          <ol class="flex flex-col">
+            {event.setlist.map((song) => {
+              if (song.is_encore) encoreIndex++;
+              const position = song.is_encore ? (encoreCount > 1 ? `En${encoreIndex}` : 'En') : song.position;
+              // Fall back to the raw name if a setlist entry somehow doesn't
+              // match a song_stats.csv row — shouldn't happen, but a dead link
+              // beats a build failure.
+              const matchedSong = getSong(song.song);
+              const songId = matchedSong?.id ?? song.song;
+              const songName = matchedSong ? songDisplayName(lang, matchedSong) : song.song;
+              return (
+                <li class="hover:bg-muted/50 flex items-baseline gap-3 border-b px-4 py-2 transition-colors last:border-b-0">
+                  <span class="text-muted-foreground min-w-[2.5ch] text-xs tabular-nums">{position}</span>
+                  <span>
+                    <a href={`${base}/${lang}/songs/${urlSafe(songId)}/`}>{songName}</a>
+                    {song.note && <span class="text-muted-foreground text-xs"> ({song.note})</span>}
+                  </span>
+                  {song.is_encore && (
+                    <Badge variant="outline" class="ml-auto self-center">
+                      {t(lang, 'badge.encore')}
+                    </Badge>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+        </CardContent>
+      </Card>
     ) : (
-      <p class="pending-notice">{t(lang, 'events.pending')}</p>
+      <Alert>
+        <Icon name="clock" />
+        <AlertDescription>{t(lang, 'events.pending')}</AlertDescription>
+      </Alert>
     )
   }
 
   {
     event.note && (
-      <>
-        <h2>{t(lang, 'events.note')}</h2>
-        <p class="event-note">{event.note}</p>
-      </>
+      <section class="flex flex-col gap-2">
+        <SectionHeading>{t(lang, 'events.note')}</SectionHeading>
+        <Card size="sm">
+          <CardContent class="event-note text-sm">{event.note}</CardContent>
+        </Card>
+      </section>
     )
   }
 </Layout>

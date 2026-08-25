@@ -1,5 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import EventCard from '../../../components/EventCard.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { ItemGroup } from '@/components/ui/item';
 import { venues } from '../../../lib/data';
 import { urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -18,18 +21,22 @@ const sorted = venues.slice().sort((a, b) => {
 ---
 
 <Layout title={t(lang, 'venues.title')} lang={lang} path="venues/">
-  <h1>{t(lang, 'venues.title')}</h1>
-  <p>{t(lang, 'venues.count', { n: venues.length })}</p>
-  <ul style="list-style:none; padding:0;">
+  <PageHeader title={t(lang, 'venues.title')} />
+  <p class="text-muted-foreground -mt-2 text-sm">{t(lang, 'venues.count', { n: venues.length })}</p>
+
+  <ItemGroup class="gap-2">
     {
       sorted.map((venue) => (
-        <li>
-          <a class="event-card stat-card" href={`${base}/${lang}/venues/${urlSafe(venue.id)}/`}>
-            <div class="event-title">{venue.name}</div>
-            <div class="stat-card-count">{t(lang, 'venues.showsCount', { n: venue.shows })}</div>
-          </a>
-        </li>
+        <EventCard
+          href={`${base}/${lang}/venues/${urlSafe(venue.id)}/`}
+          title={venue.name}
+          class="items-center"
+        >
+          <span slot="trailing" class="text-muted-foreground shrink-0 text-sm whitespace-nowrap">
+            {t(lang, 'venues.showsCount', { n: venue.shows })}
+          </span>
+        </EventCard>
       ))
     }
-  </ul>
+  </ItemGroup>
 </Layout>

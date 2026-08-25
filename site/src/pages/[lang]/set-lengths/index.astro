@@ -1,5 +1,10 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import SpecialFilter from '../../../components/SpecialFilter.astro';
+import { Card } from '@/components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { setLengthStats } from '../../../lib/data';
 import { formatSetLength, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -14,85 +19,91 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
 ---
 
 <Layout title={t(lang, 'setLength.title')} lang={lang} path="set-lengths/">
-  <h1>{t(lang, 'setLength.title')}</h1>
+  <PageHeader title={t(lang, 'setLength.title')} />
 
-  <div class="table-scroll">
-    <table class="stats-table" id="bucket-table">
-      <thead>
-        <tr>
-          <th>{t(lang, 'setLength.length')}</th>
-          <th data-sort-type="number">{t(lang, 'setLength.shows')}</th>
-          <th data-sort-type="number">{t(lang, 'setLength.avgSongs')}</th>
-          <th data-sort-type="number">{t(lang, 'setLength.withSe')}</th>
-        </tr>
-      </thead>
-      <tbody>
+  <Card size="sm" class="gap-0 py-0">
+    <Table id="bucket-table">
+      <TableHeader>
+        <TableRow class="bg-muted/50">
+          <TableHead>{t(lang, 'setLength.length')}</TableHead>
+          <TableHead data-sort-type="number">{t(lang, 'setLength.shows')}</TableHead>
+          <TableHead data-sort-type="number">{t(lang, 'setLength.avgSongs')}</TableHead>
+          <TableHead data-sort-type="number">{t(lang, 'setLength.withSe')}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {
           buckets.map((b) => (
-            <tr>
-              <td>
+            <TableRow>
+              <TableCell class="font-medium">
                 <a href={`${base}/${lang}/set-lengths/${b.minutes}/`}>{formatSetLength(lang, b.minutes)}</a>
-              </td>
-              <td data-sort-value={b.shows}>{b.shows}</td>
-              <td data-sort-value={b.avg_songs}>{b.avg_songs}</td>
-              <td data-sort-value={b.shows_with_se / b.shows}>
+              </TableCell>
+              <TableCell class="tabular-nums" data-sort-value={b.shows}>{b.shows}</TableCell>
+              <TableCell class="tabular-nums" data-sort-value={b.avg_songs}>{b.avg_songs}</TableCell>
+              <TableCell class="text-muted-foreground tabular-nums" data-sort-value={b.shows_with_se / b.shows}>
                 {t(lang, 'setLength.withSeDetail', {
                   count: b.shows_with_se,
                   shows: b.shows,
                   pct: Math.round((b.shows_with_se / b.shows) * 100),
                 })}
-              </td>
-            </tr>
+              </TableCell>
+            </TableRow>
           ))
         }
-      </tbody>
-    </table>
-  </div>
-  <p class="uncovered-note">{t(lang, 'setLength.avgSongsNote')}</p>
+      </TableBody>
+    </Table>
+  </Card>
 
-  {uncovered_shows > 0 && <p class="uncovered-note">{t(lang, 'setLength.uncovered', { n: uncovered_shows })}</p>}
-
-  <h2>{t(lang, 'setLength.songDistribution')}</h2>
-  <label class="include-special">
-    <input type="checkbox" id="include-special" checked />
-    {t(lang, 'songs.includeSpecial')}
-  </label>
-  <div class="table-scroll">
-    <table class="stats-table" id="song-distribution-table">
-      <thead>
-        <tr>
-          <th>{t(lang, 'setLength.songName')}</th>
-          {buckets.map((b) => <th data-sort-type="number">{formatSetLength(lang, b.minutes)}</th>)}
-        </tr>
-      </thead>
-      <tbody>
-        {
-          songs.map((song) => (
-            <tr data-special={song.is_se || song.is_interlude ? '1' : '0'}>
-              <td>
-                <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{songDisplayName(lang, song)}</a>
-              </td>
-              {buckets.map((b) => {
-                const rate = song.rates[String(b.minutes)] ?? { count: 0, eligible: 0 };
-                if (rate.eligible === 0) {
-                  return <td data-sort-value={-1}>—</td>;
-                }
-                return (
-                  <td data-sort-value={rate.count / rate.eligible}>
-                    {t(lang, 'setLength.rateDetail', {
-                      pct: Math.round((rate.count / rate.eligible) * 100),
-                      count: rate.count,
-                      shows: rate.eligible,
-                    })}
-                  </td>
-                );
-              })}
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
+  <div class="text-muted-foreground -mt-2 space-y-1 text-xs">
+    <p>{t(lang, 'setLength.avgSongsNote')}</p>
+    {uncovered_shows > 0 && <p>{t(lang, 'setLength.uncovered', { n: uncovered_shows })}</p>}
   </div>
+
+  <section class="flex flex-col gap-3">
+    <SectionHeading>{t(lang, 'setLength.songDistribution')}</SectionHeading>
+    <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
+
+    <Card size="sm" class="gap-0 py-0">
+      <Table id="song-distribution-table">
+        <TableHeader>
+          <TableRow class="bg-muted/50">
+            <TableHead>{t(lang, 'setLength.songName')}</TableHead>
+            {buckets.map((b) => <TableHead data-sort-type="number">{formatSetLength(lang, b.minutes)}</TableHead>)}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {
+            songs.map((song) => (
+              <TableRow data-special={song.is_se || song.is_interlude ? '1' : '0'}>
+                <TableCell class="font-medium">
+                  <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{songDisplayName(lang, song)}</a>
+                </TableCell>
+                {buckets.map((b) => {
+                  const rate = song.rates[String(b.minutes)] ?? { count: 0, eligible: 0 };
+                  if (rate.eligible === 0) {
+                    return (
+                      <TableCell class="text-muted-foreground/50" data-sort-value={-1}>
+                        —
+                      </TableCell>
+                    );
+                  }
+                  return (
+                    <TableCell class="tabular-nums" data-sort-value={rate.count / rate.eligible}>
+                      {t(lang, 'setLength.rateDetail', {
+                        pct: Math.round((rate.count / rate.eligible) * 100),
+                        count: rate.count,
+                        shows: rate.eligible,
+                      })}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))
+          }
+        </TableBody>
+      </Table>
+    </Card>
+  </section>
 
   <script>
     import { initSortableTable } from '../../../lib/sortable-table';

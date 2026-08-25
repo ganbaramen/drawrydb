@@ -1,5 +1,10 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import EventCard from '../../../components/EventCard.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { Badge } from '@/components/ui/badge';
+import { Icon } from '@/components/ui/icon';
+import { ItemGroup } from '@/components/ui/item';
 import { creators, type Creator } from '../../../lib/data';
 import { songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -19,36 +24,41 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={creator.name} lang={lang} path={`creators/${urlSafe(creator.id)}/`}>
-  <p><a href="../">{t(lang, 'creators.back')}</a></p>
+  <PageHeader title={creator.name} backHref="../" backLabel={t(lang, 'creators.back')}>
+    {
+      creator.x && (
+        <p slot="subtitle">
+          <a
+            class="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm no-underline transition-colors"
+            href={`https://x.com/${creator.x}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="x.com" class="size-3.5" />@{creator.x}
+          </a>
+        </p>
+      )
+    }
+  </PageHeader>
 
-  <h1>{creator.name}</h1>
-  {
-    creator.x && (
-      <p class="creator-x">
-        <a href={`https://x.com/${creator.x}`} target="_blank" rel="noopener noreferrer">
-          @{creator.x}
-        </a>
-      </p>
-    )
-  }
-  <p>{t(lang, 'creators.songCount', { n: creator.songs.length })}</p>
+  <p class="text-muted-foreground -mt-2 text-sm">
+    {t(lang, 'creators.songCount', { n: creator.songs.length })}
+  </p>
 
-  <ul style="list-style:none; padding:0;">
+  <ItemGroup class="gap-2">
     {
       creator.songs.map((credit) => (
-        <li>
-          <a class="event-card" href={`${base}/${lang}/songs/${urlSafe(credit.song_id)}/`}>
-            <div class="event-title">
-              {songDisplayName(lang, { name: credit.song_name, translation: credit.translation })}
-            </div>
-            <div>
-              {credit.roles.map((role) => (
-                <span class="badge">{t(lang, `songs.${role}`)}</span>
-              ))}
-            </div>
-          </a>
-        </li>
+        <EventCard
+          href={`${base}/${lang}/songs/${urlSafe(credit.song_id)}/`}
+          title={songDisplayName(lang, { name: credit.song_name, translation: credit.translation })}
+        >
+          <div class="mt-1 flex flex-wrap gap-1">
+            {credit.roles.map((role) => (
+              <Badge variant="outline">{t(lang, `songs.${role}`)}</Badge>
+            ))}
+          </div>
+        </EventCard>
       ))
     }
-  </ul>
+  </ItemGroup>
 </Layout>

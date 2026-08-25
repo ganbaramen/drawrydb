@@ -1,5 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import EventCard from '../../components/EventCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
+import { ItemGroup } from '@/components/ui/item';
 import { events, upcomingEvents, recentSetlists } from '../../lib/data';
 import { formatDate } from '../../lib/format';
 import { LOCALES, t, type Lang } from '../../lib/i18n';
@@ -35,20 +40,17 @@ const candidates = events
 <Layout title="DrawryDB." lang={lang} path="">
   {
     next && (
-      <section>
-        <h2>{t(lang, 'home.next')}</h2>
-        <a
-          class="event-card"
+      <section class="flex flex-col gap-3">
+        <SectionHeading class="mt-0">{t(lang, 'home.next')}</SectionHeading>
+        <EventCard
           id="next-live-link"
           href={`${base}/${lang}/events/${next.id}/`}
           data-base={`${base}/${lang}/events/`}
-        >
-          <div class="event-date">{formatDate(lang, next.date)}</div>
-          <div class="event-title">
-            {next.title}
-          </div>
-          {next.venue && <div class="event-venue">{next.venue}</div>}
-        </a>
+          date={formatDate(lang, next.date)}
+          title={next.title}
+          venue={next.venue}
+          class="border-primary/40 bg-accent/40 hover:bg-accent/60"
+        />
       </section>
     )
   }
@@ -80,28 +82,31 @@ const candidates = events
       if (venue) venue.textContent = next.venue ?? '';
       if (!venue && next.venue) {
         const div = document.createElement('div');
-        div.className = 'event-venue';
+        // Same classes EventCard.astro renders for a venue line.
+        div.className = 'event-venue text-muted-foreground text-sm';
         div.textContent = next.venue;
-        link.appendChild(div);
+        link.querySelector('.event-card-content').appendChild(div);
       }
     })();
   </script>
 
-  <section>
-    <h2>{t(lang, 'home.recent')}</h2>
-    <ul style="list-style:none; padding:0;">
+  <section class="flex flex-col gap-3">
+    <SectionHeading class="mt-0">{t(lang, 'home.recent')}</SectionHeading>
+    <ItemGroup class="gap-2">
       {
         recent.map((event) => (
-          <li>
-            <a class="event-card" href={`${base}/${lang}/events/${event.id}/`}>
-              <div class="event-date">{formatDate(lang, event.date)}</div>
-              <div class="event-title">{event.title}</div>
-              {event.venue && <div class="event-venue">{event.venue}</div>}
-            </a>
-          </li>
+          <EventCard
+            href={`${base}/${lang}/events/${event.id}/`}
+            date={formatDate(lang, event.date)}
+            title={event.title}
+            venue={event.venue}
+          />
         ))
       }
-    </ul>
-    <p><a href={`${base}/${lang}/events/`}>{t(lang, 'home.viewAll')}</a></p>
+    </ItemGroup>
+    <Button as="a" href={`${base}/${lang}/events/`} variant="outline" size="sm" class="w-fit">
+      {t(lang, 'home.viewAll')}
+      <Icon name="arrow-right" />
+    </Button>
   </section>
 </Layout>

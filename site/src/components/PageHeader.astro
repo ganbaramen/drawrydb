@@ -1,0 +1,29 @@
+---
+// Every page's top block: an optional back link, the h1, and an optional
+// subtitle line (a song's translated title, a creator's handle, an event's
+// date). Kept as one component so the vertical rhythm between those three
+// is defined once instead of per page.
+import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
+
+interface Props {
+  title: string;
+  backHref?: string;
+  backLabel?: string;
+}
+
+const { title, backHref, backLabel } = Astro.props;
+---
+
+<div class="flex flex-col gap-2">
+  {
+    backHref && (
+      <Button as="a" href={backHref} variant="ghost" size="sm" class="text-muted-foreground -ml-2 w-fit">
+        <Icon name="chevron-left" />
+        {backLabel}
+      </Button>
+    )
+  }
+  <h1 class="text-2xl font-bold tracking-tight text-balance sm:text-3xl">{title}</h1>
+  <slot name="subtitle" />
+</div>

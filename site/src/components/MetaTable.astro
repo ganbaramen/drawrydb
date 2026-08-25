@@ -1,0 +1,20 @@
+---
+// The label/value tables on every detail page (event, song, venue, set
+// length). A <table> rather than a <dl> because that's what these have
+// always been and the two-column alignment is the point; the Fulldev Table
+// primitives supply the row borders and hover treatment.
+import { Table, TableBody } from '@/components/ui/table';
+import { cn } from '@/lib/utils';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<Table class={cn('table-fixed', className)}>
+  <TableBody>
+    <slot />
+  </TableBody>
+</Table>

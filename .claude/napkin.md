@@ -38,6 +38,12 @@ this is about *how to work here without repeating mistakes*.
   "impossibly" fails, print `_parser.parse(pat)` and check where groups
   actually close before suspecting the engine.
 
+- **An `import.meta.glob(..., {eager: true})` wildcard emits every matched
+  file.** Fulldev's stock `ui/icon` globs all of lucide-static and
+  simple-icons; installing it grew `dist/` from ~15MB to 38MB (23MB of
+  unused SVGs) with no build error and no warning. `du -sh dist` after
+  adding any dependency that globs node_modules.
+
 ## Patterns that keep working
 
 - After changing `parse_post`/regexes: run the dropped-line audit in
@@ -94,6 +100,12 @@ this is about *how to work here without repeating mistakes*.
 - `setlists.csv` has no `corrected_from` column (removed 2026-08-19 — unread,
   4/1021 rows populated). The raw posted spelling lives in
   `data/input/setlist_posts/`, which is never edited.
+- UI stack since 2026-08-25: Astro + Tailwind v4 + **Fulldev UI**
+  (`npx shadcn@latest add @fulldev/<name>`, source lands in
+  `site/src/components/ui/`). Palette unchanged, retokenized to shadcn names
+  in `site/src/styles/global.css` — see `site/CLAUDE.md` for the two
+  non-stock bits (`--link`, the three-state `dark` variant) that
+  `@fulldev/init --overwrite` would destroy.
 - Streak fields (added 2026-08-21): songs carry `current_streak`/
   `longest_streak`, computed in build_songs() per show *date* (double-header
   day = one unit), denominator starts at the song's debut, only shows with a

@@ -1,5 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import EventCard from '../../../components/EventCard.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { Badge } from '@/components/ui/badge';
+import { Icon } from '@/components/ui/icon';
+import { Input } from '@/components/ui/input';
+import { ItemGroup } from '@/components/ui/item';
 import { events } from '../../../lib/data';
 import { formatDate, formatMonth } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -32,84 +38,127 @@ for (const event of sorted) {
   eventsByMonth.get(key)!.push(event);
 }
 
+const setlistFilters = [
+  { value: 'has', label: t(lang, 'events.filter.has') },
+  { value: 'none', label: t(lang, 'events.filter.none') },
+  { value: 'all', label: t(lang, 'events.filter.all') },
+];
 ---
 
 <Layout title={t(lang, 'events.title')} lang={lang} path="events/">
-  <h1>{t(lang, 'events.title')}</h1>
+  <PageHeader title={t(lang, 'events.title')} />
 
   <!--
     Default view (セトリあり, すべての月) works with CSS alone before the
     script below runs / if JS is disabled: the setlist radios' default
-    hides via the ul's data-filter attribute, and the month select's
+    hides via the list's data-filter attribute, and the month select's
     default ("all") needs no hiding at all. The script only adds the other
     setlist views and the month filter itself. Keep the initial
     data-filter/checked/selected state and the CSS rules below in sync if
     a filter value is ever added.
   -->
-  <div class="search-box">
-    <input
-      type="search"
-      id="event-search"
-      class="event-search"
-      placeholder={t(lang, 'events.search.placeholder')}
-    />
-    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2" />
-      <line x1="20" y1="20" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-    </svg>
-  </div>
-  <div class="filter-bar" role="group" aria-label={t(lang, 'events.title')}>
-    <label><input type="radio" name="setlist-filter" value="has" checked /> {t(lang, 'events.filter.has')}</label>
-    <label><input type="radio" name="setlist-filter" value="none" /> {t(lang, 'events.filter.none')}</label>
-    <label><input type="radio" name="setlist-filter" value="all" /> {t(lang, 'events.filter.all')}</label>
-    <label class="month-filter-label">
-      {t(lang, 'events.month.label')}
-      <select id="month-filter">
-        <option value="all" data-label={t(lang, 'events.month.all')}>
-          {t(lang, 'events.month.all')} ({hasSetlistCount})
-        </option>
+  <div class="flex flex-col gap-3">
+    <div class="relative">
+      <Input
+        type="search"
+        id="event-search"
+        class="pr-9 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
+        placeholder={t(lang, 'events.search.placeholder')}
+      />
+      <Icon
+        name="search"
+        class="text-muted-foreground pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2"
+      />
+    </div>
+
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-2 text-sm">
+      <!--
+        Radios styled as a segmented control: the input itself is visually
+        hidden (not display:none, which would drop it out of the tab order)
+        and the label paints the selected state off :has(:checked).
+      -->
+      <div
+        class="bg-muted inline-flex rounded-lg p-0.5"
+        role="group"
+        aria-label={t(lang, 'events.title')}
+      >
         {
-          monthKeys.map((key) => {
-            const label = formatMonth(lang, key);
-            const has = eventsByMonth.get(key)!.filter((e) => e.has_setlist).length;
-            return (
-              <option value={key} data-label={label}>
-                {label} ({has})
-              </option>
-            );
-          })
+          setlistFilters.map((filter) => (
+            <label class="has-[:checked]:bg-card has-[:checked]:text-foreground has-[:focus-visible]:ring-ring/50 text-muted-foreground cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors has-[:checked]:shadow-xs has-[:focus-visible]:ring-3">
+              <input
+                type="radio"
+                name="setlist-filter"
+                value={filter.value}
+                checked={filter.value === 'has'}
+                class="sr-only"
+              />
+              {filter.label}
+            </label>
+          ))
         }
-      </select>
-    </label>
+      </div>
+
+      <label class="text-muted-foreground ml-auto inline-flex items-center gap-1.5 text-xs">
+        {t(lang, 'events.month.label')}
+        <select
+          id="month-filter"
+          class="border-input bg-card text-foreground focus-visible:border-ring focus-visible:ring-ring/50 h-8 rounded-md border px-2 text-xs shadow-xs outline-none focus-visible:ring-3"
+        >
+          <option value="all" data-label={t(lang, 'events.month.all')}>
+            {t(lang, 'events.month.all')} ({hasSetlistCount})
+          </option>
+          {
+            monthKeys.map((key) => {
+              const label = formatMonth(lang, key);
+              const has = eventsByMonth.get(key)!.filter((e) => e.has_setlist).length;
+              return (
+                <option value={key} data-label={label}>
+                  {label} ({has})
+                </option>
+              );
+            })
+          }
+        </select>
+      </label>
+    </div>
+
+    <p id="event-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
+      {t(lang, 'events.count', { n: hasSetlistCount })}
+    </p>
   </div>
-  <p id="event-count" data-template={countTemplate}>{t(lang, 'events.count', { n: hasSetlistCount })}</p>
-  <ul id="event-list" data-filter="has" style="list-style:none; padding:0;">
+
+  <ItemGroup id="event-list" data-filter="has" class="gap-2">
     {
       monthKeys.map((key) => (
         <>
-          <li class="month-heading" id={`m-${key}`} data-month={key}>
+          <h2
+            class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold first:pt-0"
+            id={`m-${key}`}
+            data-month={key}
+          >
             {formatMonth(lang, key)}
-          </li>
+          </h2>
           {eventsByMonth.get(key)!.map((event) => (
-            <li
+            <EventCard
+              href={`${base}/${lang}/events/${event.id}/`}
+              date={formatDate(lang, event.date)}
+              title={event.title}
+              venue={event.venue}
               data-has-setlist={event.has_setlist ? '1' : '0'}
               data-month={key}
               data-search={`${event.title} ${event.venue ?? ''}`}
             >
-              <a class="event-card" href={`${base}/${lang}/events/${event.id}/`}>
-                <div class="event-date">{formatDate(lang, event.date)}</div>
-                <div class="event-title">
-                  {event.title}
-                  {!event.has_setlist && <span class="badge">{t(lang, 'badge.pending')}</span>}
-                </div>
-                {event.venue && <div class="event-venue">{event.venue}</div>}
-              </a>
-            </li>
+              {!event.has_setlist && (
+                <Badge slot="badge" variant="secondary">
+                  {t(lang, 'badge.pending')}
+                </Badge>
+              )}
+            </EventCard>
           ))}
         </>
       ))
     }
-  </ul>
+  </ItemGroup>
 
   <script>
     import { fuzzyMatch } from '../../../lib/fuzzy';
@@ -117,8 +166,8 @@ for (const event of sorted) {
     const list = document.getElementById('event-list')!;
     const countEl = document.getElementById('event-count')!;
     const template = countEl.dataset.template!;
-    const items = list.querySelectorAll<HTMLLIElement>('li[data-has-setlist]');
-    const headings = list.querySelectorAll<HTMLLIElement>('li.month-heading');
+    const items = list.querySelectorAll<HTMLElement>('[data-has-setlist]');
+    const headings = list.querySelectorAll<HTMLElement>('.month-heading');
     const radios = document.querySelectorAll<HTMLInputElement>(
       'input[name="setlist-filter"]',
     );
@@ -143,18 +192,18 @@ for (const event of sorted) {
       const monthCounts = new Map<string, number>();
       const monthHasVisible = new Map<string, boolean>();
 
-      items.forEach((li) => {
-        const has = li.dataset.hasSetlist === '1';
-        const month = li.dataset.month!;
+      items.forEach((item) => {
+        const has = item.dataset.hasSetlist === '1';
+        const month = item.dataset.month!;
         const matchesSetlist = setlistFilter === 'all' || (setlistFilter === 'has') === has;
-        const matchesSearch = fuzzyMatch(query, li.dataset.search ?? '');
+        const matchesSearch = fuzzyMatch(query, item.dataset.search ?? '');
         if (matchesSetlist && matchesSearch) {
           monthCounts.set(month, (monthCounts.get(month) ?? 0) + 1);
         }
 
         const matchesMonth = monthFilter === 'all' || monthFilter === month;
         const show = matchesSetlist && matchesSearch && matchesMonth;
-        li.hidden = !show;
+        item.hidden = !show;
         if (show) {
           visible++;
           monthHasVisible.set(month, true);
@@ -183,90 +232,9 @@ for (const event of sorted) {
     searchInput.addEventListener('input', apply);
 
     // The default view (セトリあり, すべての月) works from CSS/markup alone
-    // before this script runs (see the comment above the filter-bar), but
+    // before this script runs (see the comment above the filters), but
     // heading visibility has no CSS equivalent — sync it once up front.
     apply();
   </script>
 </Layout>
 
-<style>
-  .month-heading {
-    margin: 1.5rem 0 0.5rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    scroll-margin-top: 0.5rem;
-  }
-
-  .month-heading:first-child {
-    margin-top: 0;
-  }
-
-  .search-box {
-    position: relative;
-    margin-bottom: 0.75rem;
-  }
-
-  .event-search {
-    width: 100%;
-    padding: 0.6rem 2.5rem 0.6rem 0.9rem;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    background: var(--surface);
-    color: var(--text);
-    font-size: 0.95rem;
-  }
-
-  /* Safari/WebKit adds its own cancel/search decorations to
-     type="search" inputs, which would double up with .search-icon. */
-  .event-search::-webkit-search-cancel-button,
-  .event-search::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
-
-  .search-icon {
-    position: absolute;
-    top: 50%;
-    right: 0.8rem;
-    transform: translateY(-50%);
-    width: 1.1rem;
-    height: 1.1rem;
-    color: var(--text-muted);
-    pointer-events: none;
-  }
-
-  .filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem 1rem;
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
-  }
-
-  .filter-bar label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    cursor: pointer;
-  }
-
-  .month-filter-label {
-    margin-left: auto;
-  }
-
-  #month-filter {
-    margin-left: 0.4rem;
-    padding: 0.2rem 0.4rem;
-    border: 1px solid var(--border);
-    border-radius: 0.3rem;
-    background: var(--surface);
-    color: var(--text);
-    font-size: 0.85rem;
-  }
-
-  #event-list[data-filter='has'] li[data-has-setlist='0'],
-  #event-list[data-filter='none'] li[data-has-setlist='1'] {
-    display: none;
-  }
-</style>

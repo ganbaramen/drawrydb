@@ -1,0 +1,20 @@
+---
+// The "include SE/Interlude" checkbox — songs/index.astro and
+// set-lengths/index.astro both use it, and both find it by the fixed
+// #include-special id (only ever one per page).
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<label class="text-muted-foreground hover:text-foreground inline-flex cursor-pointer items-center gap-2 text-sm transition-colors">
+  <input
+    type="checkbox"
+    id="include-special"
+    checked
+    class="border-input text-primary focus-visible:ring-ring/50 accent-primary size-4 rounded-sm border focus-visible:ring-3"
+  />
+  {label}
+</label>

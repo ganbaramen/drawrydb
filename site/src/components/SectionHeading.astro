@@ -1,0 +1,12 @@
+---
+// h2 for the sub-sections of a detail page (credits, stats, history…).
+interface Props {
+  class?: string;
+}
+import { cn } from '@/lib/utils';
+const { class: className } = Astro.props;
+---
+
+<h2 class={cn('mt-2 text-lg font-semibold tracking-tight', className)}>
+  <slot />
+</h2>

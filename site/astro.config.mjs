@@ -1,11 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import tailwindcss from '@tailwindcss/vite';
+
 // https://astro.build/config
 export default defineConfig({
   // GitHub Pages serves this project at github.com/ganbaramen/drawrydb, so
   // the site lives under /drawrydb/, not at the domain root.
   site: 'https://ganbaramen.github.io',
+
   base: '/drawrydb',
 
   i18n: {
@@ -17,5 +20,9 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: true,
     },
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });

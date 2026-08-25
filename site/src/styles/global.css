@@ -1,234 +1,226 @@
+@import "tailwindcss";
+
+/*
+ * Fulldev UI (shadcn-format registry, @fulldev namespace) supplies the
+ * component layer; everything below is *our* theme mapped onto its token
+ * names. Component classes are never edited — retheming happens here, per
+ * https://ui.full.dev/docs/theming.md.
+ */
+
+/*
+ * Fulldev/shadcn ships `dark` as a `.dark` class variant. This site has
+ * three theme states instead (see the head script in Layout.astro): no
+ * stored choice follows the OS, an explicit choice sets data-theme and
+ * wins either direction. The block form re-declares the variant against
+ * both, so `dark:` utilities inside components track the same three
+ * states the tokens below do.
+ */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
 /*
  * Palette inspired by Drawry.'s own colors: navy/pale blue (the neck-ribbon
  * blue) for the base UI, purple (the outfit's main lavender) reserved for
- * attention/alert accents — pending badges, notices.
+ * attention/alert accents — pending badges, notices. Unchanged from the
+ * hand-written stylesheet this replaced; only the token *names* moved to
+ * shadcn's vocabulary so the installed components pick them up:
+ *
+ *   --bg          -> --background      --border  -> --border / --input
+ *   --surface     -> --card / --popover
+ *   --text        -> --foreground      --accent  -> --primary
+ *   --text-muted  -> --muted-foreground  --accent-bg -> --accent
+ *
+ * --link has no shadcn equivalent (its `primary` doubles as the link color)
+ * and is kept as its own token: links here are navy, deliberately *not* the
+ * purple, which stays reserved for attention.
  */
 :root {
-  --bg: #f2f5fb;
-  --surface: #ffffff;
-  --text: #16233f;
-  --text-muted: #5b6b8c;
+  --background: #f2f5fb;
+  --foreground: #16233f;
+  --card: #ffffff;
+  --card-foreground: #16233f;
+  --popover: #ffffff;
+  --popover-foreground: #16233f;
+  --primary: #674694;
+  --primary-foreground: #ffffff;
+  /* No hand-written equivalent — shadcn splits "quiet surface" out of what
+     used to be one --bg. Sits between --background and --border so a
+     secondary button/muted row reads as recessed against a card. */
+  --secondary: #e6edf9;
+  --secondary-foreground: #16233f;
+  --muted: #e6edf9;
+  --muted-foreground: #5b6b8c;
+  --accent: #f1ecfa;
+  --accent-foreground: #674694;
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
   --border: #d9e1f0;
-  --accent: #674694;
-  --accent-bg: #f1ecfa;
+  --input: #d9e1f0;
+  --ring: #674694;
   --link: #2f4d85;
+  --radius: 0.625rem;
+  --shadow-2xs: 0 1px 3px 0px oklch(0.35 0.06 265 / 0.04);
+  --shadow-xs: 0 1px 3px 0px oklch(0.35 0.06 265 / 0.05);
+  --shadow-sm:
+    0 1px 3px 0px oklch(0.35 0.06 265 / 0.08), 0 1px 2px -1px oklch(0.35 0.06 265 / 0.08);
+  --shadow:
+    0 1px 3px 0px oklch(0.35 0.06 265 / 0.08), 0 1px 2px -1px oklch(0.35 0.06 265 / 0.08);
+  --shadow-md:
+    0 1px 3px 0px oklch(0.35 0.06 265 / 0.08), 0 2px 4px -1px oklch(0.35 0.06 265 / 0.08);
+  --shadow-lg:
+    0 1px 3px 0px oklch(0.35 0.06 265 / 0.08), 0 4px 6px -1px oklch(0.35 0.06 265 / 0.08);
+  --shadow-xl:
+    0 1px 3px 0px oklch(0.35 0.06 265 / 0.08), 0 8px 10px -1px oklch(0.35 0.06 265 / 0.08);
+  --shadow-2xl: 0 1px 3px 0px oklch(0.35 0.06 265 / 0.2);
+}
+
+/* Dark values live in one place; both selectors below pull them in. */
+@layer theme {
+  :root {
+    --drawry-dark-background: #0e1729;
+    --drawry-dark-foreground: #eaf0fb;
+    --drawry-dark-surface: #182338;
+    --drawry-dark-primary: #b79cec;
+    --drawry-dark-quiet: #202c45;
+    --drawry-dark-muted-foreground: #96a6c4;
+    --drawry-dark-accent: #2b2545;
+    --drawry-dark-border: #2c3b58;
+    --drawry-dark-link: #93b4e8;
+  }
 }
 
 /*
- * Three states: no explicit choice follows the OS (prefers-color-scheme);
- * an explicit choice (data-theme, set by the toggle in Layout.astro) wins
- * either direction, so the dark block is guarded to not fight a manual
- * "light" pick, and the manual "dark" block is repeated outside the media
- * query so it applies regardless of OS setting.
+ * Three states, same structure the hand-written stylesheet used: no
+ * explicit choice follows prefers-color-scheme; an explicit choice
+ * (data-theme, set by the toggle in Layout.astro) wins either direction,
+ * so the media block is guarded against a manual "light" pick and the
+ * manual "dark" block repeats outside the query.
  */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #0e1729;
-    --surface: #182338;
-    --text: #eaf0fb;
-    --text-muted: #96a6c4;
-    --border: #2c3b58;
-    --accent: #b79cec;
-    --accent-bg: #2b2545;
-    --link: #93b4e8;
+  :root:not([data-theme="light"]) {
+    --background: var(--drawry-dark-background);
+    --foreground: var(--drawry-dark-foreground);
+    --card: var(--drawry-dark-surface);
+    --card-foreground: var(--drawry-dark-foreground);
+    --popover: var(--drawry-dark-surface);
+    --popover-foreground: var(--drawry-dark-foreground);
+    --primary: var(--drawry-dark-primary);
+    --primary-foreground: #1b1430;
+    --secondary: var(--drawry-dark-quiet);
+    --secondary-foreground: var(--drawry-dark-foreground);
+    --muted: var(--drawry-dark-quiet);
+    --muted-foreground: var(--drawry-dark-muted-foreground);
+    --accent: var(--drawry-dark-accent);
+    --accent-foreground: var(--drawry-dark-primary);
+    --destructive: #f2b8b5;
+    --destructive-foreground: #0e1729;
+    --border: var(--drawry-dark-border);
+    --input: var(--drawry-dark-border);
+    --ring: var(--drawry-dark-primary);
+    --link: var(--drawry-dark-link);
   }
 }
 
-:root[data-theme='dark'] {
-  --bg: #0e1729;
-  --surface: #182338;
-  --text: #eaf0fb;
-  --text-muted: #96a6c4;
-  --border: #2c3b58;
-  --accent: #b79cec;
-  --accent-bg: #2b2545;
-  --link: #93b4e8;
+:root[data-theme="dark"] {
+  --background: var(--drawry-dark-background);
+  --foreground: var(--drawry-dark-foreground);
+  --card: var(--drawry-dark-surface);
+  --card-foreground: var(--drawry-dark-foreground);
+  --popover: var(--drawry-dark-surface);
+  --popover-foreground: var(--drawry-dark-foreground);
+  --primary: var(--drawry-dark-primary);
+  --primary-foreground: #1b1430;
+  --secondary: var(--drawry-dark-quiet);
+  --secondary-foreground: var(--drawry-dark-foreground);
+  --muted: var(--drawry-dark-quiet);
+  --muted-foreground: var(--drawry-dark-muted-foreground);
+  --accent: var(--drawry-dark-accent);
+  --accent-foreground: var(--drawry-dark-primary);
+  --destructive: #f2b8b5;
+  --destructive-foreground: #0e1729;
+  --border: var(--drawry-dark-border);
+  --input: var(--drawry-dark-border);
+  --ring: var(--drawry-dark-primary);
+  --link: var(--drawry-dark-link);
 }
 
-* {
-  box-sizing: border-box;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-link: var(--link);
+
+  /* CJK-first stack: the site's content is mostly Japanese, and the
+     system-ui default renders it with whatever the browser picks rather
+     than the Hiragino/Yu Gothic pair the design was set in. */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic",
+    "Segoe UI", sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
 }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-    "Yu Gothic", "Segoe UI", sans-serif;
-  line-height: 1.6;
-}
-
-a {
-  color: var(--link);
-}
-
-.site-header {
-  position: relative; /* anchors .site-nav's dropdown on mobile */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  row-gap: 0.5rem;
-  padding: 1rem;
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.site-title {
-  font-weight: 700;
-  font-size: 1.25rem;
-  text-decoration: none;
-  color: var(--text);
-}
-
-/* Wraps site-nav and header-controls as two independent units — on a
-   narrow viewport the whole controls group (language switch + theme
-   toggle) drops to its own line below the page links, rather than the
-   two groups' items interleaving mid-wrap depending on exactly how much
-   width happens to be left on the page-links' last row. */
-.header-right {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  row-gap: 0.4rem;
-  column-gap: 1rem;
-}
-
-.site-nav {
-  display: flex;
-  align-items: center;
-  /* One source of truth for spacing between nav links — measured
-     identical (16px) in both ja and en before this change too, so the
-     uneven *look* was CJK glyphs' own right-side bearing (e.g. "ト"
-     trails more whitespace inside its own character cell than "場"/"曲"
-     do), not an actual spacing bug. Giving each link a visible padded
-     box normalizes that instead of relying on bare text edges. */
-  gap: 0.25rem;
-  /* Fallback for a viewport too narrow even for the four links alone —
-     lets whole links drop to a second line instead of shrinking a
-     single link's box below its text's width, which for CJK labels (no
-     spaces to break on) wraps one character per line instead of
-     wrapping the whole label. */
-  flex-wrap: wrap;
-  row-gap: 0.25rem;
-  justify-content: flex-end;
-}
-
-.site-nav a {
-  text-decoration: none;
-  color: var(--link);
-  padding: 0.35rem 0.6rem;
-  border-radius: 0.4rem;
-  white-space: nowrap;
-}
-
-.site-nav a:hover {
-  background: var(--accent-bg);
-  color: var(--accent);
-}
-
-.header-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.nav-toggle {
-  display: none; /* shown only below the breakpoint, see the media query */
-  padding: 0.3rem 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 0.4rem;
-  background: var(--surface);
-  color: var(--text);
-  font-size: 1rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-/* Below this width the four nav links plus the lang/theme controls no
-   longer comfortably fit as a couple of wrapped rows (see the git log
-   for the character-wrap bug that motivated the wrapping fix first) —
-   collapsing the page links into a hamburger dropdown keeps the header
-   to its two intended rows (title, controls) instead of growing a third
-   for nav overflow on every phone-width visit. */
-@media (max-width: 640px) {
-  .nav-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
 
-  .site-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    /* Without an explicit value here, whether this dropdown paints above
-       or below page content with its own position:relative (e.g.
-       .search-box, positioned only to anchor its icon) isn't guaranteed
-       by z-index:auto stacking alone — observed rendering above/below
-       .search-box inconsistently. An explicit value forces it. */
-    z-index: 100;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    row-gap: 0;
-    padding: 0.5rem 1rem 1rem;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 10px rgb(0 0 0 / 15%);
+  html {
+    @apply font-sans;
   }
 
-  .site-nav[data-open='true'] {
-    display: flex;
+  body {
+    @apply bg-background text-foreground font-sans leading-relaxed;
   }
 
-  .site-nav a {
-    padding: 0.7rem 0.4rem;
+  /* Body copy links. Component-owned anchors (Button as="a", breadcrumbs,
+     card links) set their own color, so this only catches prose. */
+  main a:not([class]) {
+    @apply text-link underline-offset-2 hover:underline;
   }
-}
-
-.lang-switch {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.8rem;
-}
-
-.lang-switch a,
-.lang-switch .lang-current {
-  color: var(--text-muted);
-}
-
-.lang-switch .lang-current {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.theme-toggle {
-  padding: 0.3rem 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 0.4rem;
-  background: var(--surface);
-  color: var(--text);
-  font-size: 1rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-  border-color: var(--accent);
 }
 
 /*
- * Theme-toggle reveal (see Layout.astro's click handler): the UA's default
- * view-transition animation is a cross-fade of old and new snapshots —
- * disabled here so the clip-path rectangle sweeping up over the new
- * snapshot is the only motion. mix-blend-mode: normal keeps the two
- * snapshots opaque, so the old theme stays fully painted underneath until
- * the reveal covers it instead of bleeding through.
+ * The theme toggle repaints through the View Transitions API (see
+ * Layout.astro): the new snapshot is revealed by a rectangle sweeping up
+ * from the bottom edge. Disabling the UA's default cross-fade here is what
+ * leaves only that clip-path animation running.
  */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -236,299 +228,91 @@ a {
   mix-blend-mode: normal;
 }
 
-main {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 1rem 3rem;
-}
-
-.site-footer {
-  max-width: 720px;
-  margin: 3rem auto 0;
-  padding: 1rem;
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.event-card {
-  display: block;
-  padding: 0.9rem 1rem;
-  margin-bottom: 0.6rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  text-decoration: none;
-  color: var(--text);
-}
-
-.event-card:hover {
-  border-color: var(--accent);
-}
-
-/* An .event-card laid out as name(+detail) on the left, one right-aligned
-   stat on the right — the creators and venues lists both use this. */
-.stat-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.stat-card-count {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
-.event-date {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.song-translation {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  margin: -0.75rem 0 1rem;
-}
-
-.creator-x {
-  margin: -0.75rem 0 1rem;
-}
-
-.event-title {
-  font-weight: 600;
-  margin: 0.15rem 0;
-}
-
-.event-venue {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.badge {
-  display: inline-block;
-  font-size: 0.75rem;
-  padding: 0.1rem 0.5rem;
-  border-radius: 999px;
-  background: var(--accent-bg);
-  color: var(--accent);
-  margin-left: 0.5rem;
-}
-
-/* SE/Interlude filter checkbox — songs/index.astro and set-lengths/
-   index.astro's song-distribution table both use this. */
-.include-special {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.setlist {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
-}
-
-.setlist li {
-  display: flex;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.setlist .position {
-  color: var(--text-muted);
-  min-width: 2ch;
-}
-
-.song-note {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.meta-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-  table-layout: fixed;
-}
-
-.meta-table th {
-  text-align: left;
-  color: var(--text-muted);
-  font-weight: 400;
-  padding: 0.3rem 1rem 0.3rem 0;
-  width: 30%;
-  /* Not nowrap: a long value in the matching td (a credits name, a venue
-     name) needs to wrap rather than force this two-column table wider
-     than the viewport — a short label wrapping to two lines sometimes is
-     the acceptable trade, an overflowing page isn't. table-layout:fixed
-     (above) is what makes this th width actually stick instead of the
-     auto layout algorithm still sizing columns off unwrapped content. */
-  overflow-wrap: break-word;
-}
-
-.meta-table td {
-  padding: 0.3rem 0;
-  overflow-wrap: break-word;
-}
-
-.ticket-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1rem;
-}
-
-.ticket-links li {
-  /* A ticket link with no label falls back to the raw URL as its text
-     (see events/[id].astro) — a flex item's default min-width:auto
-     refuses to shrink below that unbroken string's width, so on a
-     narrow viewport it pushed the page wider instead of wrapping. */
-  min-width: 0;
-}
-
-.ticket-links a {
-  overflow-wrap: break-word;
-}
-
-.stats-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-}
-
-/* A data table with several columns doesn't fit a narrow phone at any
-   readable font size — rather than shrinking text or dropping columns,
-   let the table itself scroll horizontally so the rest of the page
-   doesn't (a table growing past its container otherwise drags the whole
-   page's scrollWidth with it, per every .stats-table found doing this
-   during a mobile-viewport pass: songs, venues, and set-length pages). */
-/* lib/table-scroll.ts wraps every .table-scroll element in one of these
-   at runtime and adds the two .scroll-shadow divs — kept out of the
-   .astro markup itself so every table-scroll page gets it for free from
-   the single init call in Layout.astro, rather than each page needing
-   to remember it. */
+/*
+ * Horizontal-scroll affordance for the wide stats tables. The shadows are
+ * absolutely positioned over the scroller's edges and toggled by
+ * lib/table-scroll.ts via data-can-scroll-left/right; they start hidden so
+ * a table that fits shows nothing.
+ */
 .table-scroll-wrap {
-  position: relative;
-  margin: 1rem 0;
+  @apply relative;
 }
 
-.table-scroll {
-  overflow-x: auto;
-}
-
-/* A table wide enough to need the wrapper above often crops its last
-   column mid-cell at the viewport edge — with no cue that it's
-   scrollable rather than broken, that reads as a rendering bug. Unlike
-   a pure-CSS background trick (tried first — painted a shadow at both
-   edges unconditionally, including on a table that fit its container
-   fine, e.g. on desktop, which looked like a stray vignette), these
-   fade in only when lib/table-scroll.ts's scroll listener finds actual
-   remaining scroll distance on that side. */
 .scroll-shadow {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 16px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.scroll-shadow--left {
-  left: 0;
-  background: linear-gradient(to right, rgb(0 0 0 / 25%), transparent);
-}
-
-.scroll-shadow--right {
-  right: 0;
-  background: linear-gradient(to left, rgb(0 0 0 / 25%), transparent);
+  @apply pointer-events-none absolute inset-y-0 w-6 opacity-0 transition-opacity duration-150;
 }
 
 .table-scroll-wrap[data-can-scroll-left] .scroll-shadow--left,
 .table-scroll-wrap[data-can-scroll-right] .scroll-shadow--right {
-  opacity: 1;
+  @apply opacity-100;
 }
 
-.table-scroll .stats-table {
-  margin: 0;
-  /* width:100% (the bare .stats-table rule) would let auto table layout
-     cram every column into the viewport's full width no matter how
-     little room that leaves each one — the same look this is meant to
-     fix, just without the scrollbar to show it's happening. min-width
-     instead means it still fills the container when content is narrow,
-     but is free to grow past 100% (and let this wrapper scroll) when
-     it isn't. */
-  width: auto;
-  min-width: 100%;
+.scroll-shadow--left {
+  @apply left-0;
+  background: linear-gradient(to right, var(--background), transparent);
 }
 
-.stats-table th,
-.stats-table td {
-  text-align: left;
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--border);
-  /* Without this, a header/cell too narrow to fit its own text wraps —
-     for CJK labels (no spaces to break on) that's one character per
-     line, which reads far worse than the horizontal scrollbar this
-     table already gets from .table-scroll once nowrap makes it wider
-     than the viewport. */
-  white-space: nowrap;
+.scroll-shadow--right {
+  @apply right-0;
+  background: linear-gradient(to left, var(--background), transparent);
 }
 
-.stats-table th {
-  color: var(--text);
-  font-weight: 600;
+/*
+ * Sort indicator for lib/sortable-table.ts. The arrow is a pseudo-element
+ * so it doesn't affect the header cell's text layout, and the neutral
+ * state keeps its space reserved so sorting doesn't shift columns.
+ */
+.sortable {
+  @apply cursor-pointer select-none;
 }
 
-.stats-table th.sortable {
-  cursor: pointer;
-  user-select: none;
+.sortable::after {
+  content: "↕";
+  @apply text-muted-foreground/50 ml-1 inline-block text-xs;
 }
 
-.stats-table th.sortable:hover {
-  color: var(--accent);
+.sortable[data-sort-dir="asc"]::after {
+  content: "↑";
+  @apply text-primary opacity-100;
 }
 
-.stats-table th.sortable::after {
-  content: '⇅';
-  margin-left: 0.3rem;
-  font-size: 0.75rem;
-  opacity: 0.6;
+.sortable[data-sort-dir="desc"]::after {
+  content: "↓";
+  @apply text-primary opacity-100;
 }
 
-.stats-table th.sortable[data-sort-dir='asc']::after {
-  content: '↑';
-  color: var(--accent);
-  opacity: 1;
-}
-
-.stats-table th.sortable[data-sort-dir='desc']::after {
-  content: '↓';
-  color: var(--accent);
-  opacity: 1;
-}
-
+/*
+ * event_notes.csv values are freeform and may be multi-line (a quoted CSV
+ * field carries embedded newlines); rendering them with pre-line keeps the
+ * author's line breaks without the page having to split into paragraphs.
+ */
 .event-note {
-  white-space: pre-line;
+  @apply whitespace-pre-line;
 }
 
-.uncovered-note {
-  color: var(--text-muted);
-  font-size: 0.85rem;
+/*
+ * Current-section highlight on the header nav. Set as a data attribute in
+ * Layout.astro rather than an extra class so the Button component's own
+ * variant classes stay the only thing in its `class`.
+ */
+[data-slot="button"][data-active] {
+  @apply bg-accent text-accent-foreground;
 }
 
-.pending-notice {
-  background: var(--accent-bg);
-  color: var(--accent);
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin: 1.5rem 0;
+/*
+ * Events index filtering. Global rather than page-scoped because the rows
+ * are <EventCard> components — an Astro scoped style would only match
+ * elements written in the page's own template, and the card's root (the
+ * element carrying data-has-setlist) is written in the component's.
+ *
+ * `!hidden` rather than plain [hidden]: the card root is display:flex from
+ * a utility class, which outranks the UA sheet's [hidden] { display: none }.
+ */
+#event-list [hidden] {
+  @apply !hidden;
+}
+
+#event-list[data-filter="has"] [data-has-setlist="0"],
+#event-list[data-filter="none"] [data-has-setlist="1"] {
+  @apply !hidden;
 }

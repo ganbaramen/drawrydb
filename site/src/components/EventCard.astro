@@ -1,0 +1,48 @@
+---
+// One row in any of the site's event-ish lists: the home page's next/recent
+// lives, the events index, a song's or venue's performance history, a set
+// length's shows. Built on Fulldev's Item (which renders an <a> when given
+// href), so all of those share one hover/focus treatment.
+//
+// The .event-date / .event-title / .event-venue class hooks are load-bearing,
+// not styling: the home page's inline script re-picks the next live on the
+// visitor's clock and rewrites those three nodes' text. Keep them if this
+// markup changes.
+import { Item, ItemContent, ItemTitle } from '@/components/ui/item';
+import { cn } from '@/lib/utils';
+
+interface Props {
+  href: string;
+  title: string;
+  date?: string;
+  // Nullable, not just optional: site_data.json writes null for an event
+  // with no venue and for a performance with no note.
+  venue?: string | null;
+  note?: string | null;
+  id?: string;
+  class?: string;
+  [key: `data-${string}`]: string | undefined;
+}
+
+const { href, title, date, venue, note, class: className, ...rest } = Astro.props;
+---
+
+<Item
+  href={href}
+  variant="outline"
+  size="sm"
+  class={cn('bg-card hover:bg-card hover:border-primary/60 items-start gap-x-3', className)}
+  {...rest}
+>
+  <ItemContent class="event-card-content gap-0.5">
+    {date && <div class="event-date text-muted-foreground text-xs tabular-nums">{date}</div>}
+    <ItemTitle class="line-clamp-none flex-wrap font-semibold">
+      <span class="event-title">{title}</span>
+      <slot name="badge" />
+    </ItemTitle>
+    {venue && <div class="event-venue text-muted-foreground text-sm">{venue}</div>}
+    {note && <div class="text-muted-foreground text-xs">{note}</div>}
+    <slot />
+  </ItemContent>
+  <slot name="trailing" />
+</Item>

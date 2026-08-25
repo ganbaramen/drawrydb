@@ -1,5 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import EventCard from '../../../components/EventCard.astro';
+import MetaRow from '../../../components/MetaRow.astro';
+import MetaTable from '../../../components/MetaTable.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import { ItemGroup } from '@/components/ui/item';
 import { venues, getEvent, type Venue } from '../../../lib/data';
 import { formatDate, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -32,68 +38,48 @@ const lastEvent = eventFor(venue.last_played);
 ---
 
 <Layout title={venue.name} lang={lang} path={`venues/${urlSafe(venue.id)}/`}>
-  <p><a href="../">{t(lang, 'venues.back')}</a></p>
+  <PageHeader title={venue.name} backHref="../" backLabel={t(lang, 'venues.back')} />
 
-  <h1>{venue.name}</h1>
+  <MetaTable>
+    {venue.address && <MetaRow label={t(lang, 'venues.address')}>{venue.address}</MetaRow>}
+    {venue.capacity && <MetaRow label={t(lang, 'venues.capacity')}>{venue.capacity}</MetaRow>}
+    <MetaRow label={t(lang, 'venues.shows')}>{t(lang, 'venues.showsCount', { n: venue.shows })}</MetaRow>
+    <MetaRow label={t(lang, 'venues.firstPlayed')}>
+      {venue.first_played}
+      {firstEvent && (
+        <>
+          {' — '}
+          <a href={`${base}/${lang}/events/${firstEvent.id}/`}>{firstEvent.title}</a>
+        </>
+      )}
+    </MetaRow>
+    <MetaRow label={t(lang, 'venues.lastPlayed')}>
+      {venue.last_played}
+      {lastEvent && (
+        <>
+          {' — '}
+          <a href={`${base}/${lang}/events/${lastEvent.id}/`}>{lastEvent.title}</a>
+        </>
+      )}
+    </MetaRow>
+  </MetaTable>
 
-  <table class="meta-table">
-    {venue.address && (
-      <tr>
-        <th>{t(lang, 'venues.address')}</th>
-        <td>{venue.address}</td>
-      </tr>
-    )}
-    {venue.capacity && (
-      <tr>
-        <th>{t(lang, 'venues.capacity')}</th>
-        <td>{venue.capacity}</td>
-      </tr>
-    )}
-    <tr>
-      <th>{t(lang, 'venues.shows')}</th>
-      <td>{t(lang, 'venues.showsCount', { n: venue.shows })}</td>
-    </tr>
-    <tr>
-      <th>{t(lang, 'venues.firstPlayed')}</th>
-      <td>
-        {venue.first_played}
-        {firstEvent && (
-          <>
-            {' — '}
-            <a href={`${base}/${lang}/events/${firstEvent.id}/`}>{firstEvent.title}</a>
-          </>
-        )}
-      </td>
-    </tr>
-    <tr>
-      <th>{t(lang, 'venues.lastPlayed')}</th>
-      <td>
-        {venue.last_played}
-        {lastEvent && (
-          <>
-            {' — '}
-            <a href={`${base}/${lang}/events/${lastEvent.id}/`}>{lastEvent.title}</a>
-          </>
-        )}
-      </td>
-    </tr>
-  </table>
-
-  <h2>{t(lang, 'venues.history')}</h2>
-  <ul style="list-style:none; padding:0;">
-    {
-      eventIds.map((id) => {
-        const event = getEvent(id);
-        if (!event) return null;
-        return (
-          <li>
-            <a class="event-card" href={`${base}/${lang}/events/${id}/`}>
-              <div class="event-date">{formatDate(lang, event.date)}</div>
-              <div class="event-title">{event.title}</div>
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
+  <section class="flex flex-col gap-3">
+    <SectionHeading>{t(lang, 'venues.history')}</SectionHeading>
+    <ItemGroup class="gap-2">
+      {
+        eventIds.map((id) => {
+          const event = getEvent(id);
+          if (!event) return null;
+          return (
+            <EventCard
+              href={`${base}/${lang}/events/${id}/`}
+              date={formatDate(lang, event.date)}
+              title={event.title}
+            />
+          );
+        })
+      }
+    </ItemGroup>
+  </section>
 </Layout>

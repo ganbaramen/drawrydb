@@ -1,6 +1,13 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import CreditNames from '../../../components/CreditNames.astro';
+import EventCard from '../../../components/EventCard.astro';
+import MetaRow from '../../../components/MetaRow.astro';
+import MetaTable from '../../../components/MetaTable.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import { Badge } from '@/components/ui/badge';
+import { ItemGroup } from '@/components/ui/item';
 import { songs, events, today, type Song } from '../../../lib/data';
 import { autoLink, formatDate, formatTrackNumber, songDisplayName, songSubtitle, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -42,62 +49,49 @@ const credits = song.credits;
 const daysSinceLast = Math.floor(
   (Date.parse(today) - Date.parse(song.last_performed)) / 86_400_000,
 );
-
 ---
 
 <Layout title={songDisplayName(lang, song)} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
-  <p><a href="../">{t(lang, 'songs.back')}</a></p>
-
-  <h1>{songDisplayName(lang, song)}</h1>
-  {songSubtitle(lang, song) && <p class="song-translation">{songSubtitle(lang, song)}</p>}
+  <PageHeader title={songDisplayName(lang, song)} backHref="../" backLabel={t(lang, 'songs.back')}>
+    {
+      songSubtitle(lang, song) && (
+        <p slot="subtitle" class="text-muted-foreground text-base">
+          {songSubtitle(lang, song)}
+        </p>
+      )
+    }
+  </PageHeader>
 
   {
     credits && (
-      <>
-      <h2>{t(lang, 'songs.credits')}</h2>
-      <table class="meta-table">
-        {credits.number && (
-          <tr>
-            <th>{t(lang, 'songs.number')}</th>
-            <td>{formatTrackNumber(credits.number)}</td>
-          </tr>
-        )}
-        {credits.lyrics && (
-          <tr>
-            <th>{t(lang, 'songs.lyrics')}</th>
-            <td>
+      <section class="flex flex-col gap-2">
+        <SectionHeading>{t(lang, 'songs.credits')}</SectionHeading>
+        <MetaTable>
+          {credits.number && (
+            <MetaRow label={t(lang, 'songs.number')}>{formatTrackNumber(credits.number)}</MetaRow>
+          )}
+          {credits.lyrics && (
+            <MetaRow label={t(lang, 'songs.lyrics')}>
               <CreditNames value={credits.lyrics} lang={lang} />
-            </td>
-          </tr>
-        )}
-        {credits.composition && (
-          <tr>
-            <th>{t(lang, 'songs.composition')}</th>
-            <td>
+            </MetaRow>
+          )}
+          {credits.composition && (
+            <MetaRow label={t(lang, 'songs.composition')}>
               <CreditNames value={credits.composition} lang={lang} />
-            </td>
-          </tr>
-        )}
-        {credits.arrangement && (
-          <tr>
-            <th>{t(lang, 'songs.arrangement')}</th>
-            <td>
+            </MetaRow>
+          )}
+          {credits.arrangement && (
+            <MetaRow label={t(lang, 'songs.arrangement')}>
               <CreditNames value={credits.arrangement} lang={lang} />
-            </td>
-          </tr>
-        )}
-        {credits.choreography && (
-          <tr>
-            <th>{t(lang, 'songs.choreography')}</th>
-            <td>
+            </MetaRow>
+          )}
+          {credits.choreography && (
+            <MetaRow label={t(lang, 'songs.choreography')}>
               <CreditNames value={credits.choreography} lang={lang} />
-            </td>
-          </tr>
-        )}
-        {credits.note && (
-          <tr>
-            <th>{t(lang, 'songs.note')}</th>
-            <td>
+            </MetaRow>
+          )}
+          {credits.note && (
+            <MetaRow label={t(lang, 'songs.note')}>
               {autoLink(credits.note).map((chunk) =>
                 chunk.url ? (
                   <a href={chunk.url} target="_blank" rel="noopener noreferrer">
@@ -107,23 +101,18 @@ const daysSinceLast = Math.floor(
                   chunk.text
                 ),
               )}
-            </td>
-          </tr>
-        )}
-      </table>
-      </>
+            </MetaRow>
+          )}
+        </MetaTable>
+      </section>
     )
   }
 
-  <h2>{t(lang, 'songs.stats')}</h2>
-  <table class="meta-table">
-    <tr>
-      <th>{t(lang, 'songs.plays')}</th>
-      <td>{t(lang, 'songs.playsCount', { n: song.plays })}</td>
-    </tr>
-    <tr>
-      <th>{t(lang, 'songs.debut')}</th>
-      <td>
+  <section class="flex flex-col gap-2">
+    <SectionHeading>{t(lang, 'songs.stats')}</SectionHeading>
+    <MetaTable>
+      <MetaRow label={t(lang, 'songs.plays')}>{t(lang, 'songs.playsCount', { n: song.plays })}</MetaRow>
+      <MetaRow label={t(lang, 'songs.debut')}>
         {song.first_performed}
         {debutEvent && (
           <>
@@ -131,11 +120,8 @@ const daysSinceLast = Math.floor(
             <a href={`${base}/${lang}/events/${debutEvent.id}/`}>{debutEvent.title}</a>
           </>
         )}
-      </td>
-    </tr>
-    <tr>
-      <th>{t(lang, 'songs.lastPerformed')}</th>
-      <td>
+      </MetaRow>
+      <MetaRow label={t(lang, 'songs.lastPerformed')}>
         {song.last_performed}
         {lastEvent && (
           <>
@@ -143,55 +129,54 @@ const daysSinceLast = Math.floor(
             <a href={`${base}/${lang}/events/${lastEvent.id}/`}>{lastEvent.title}</a>
           </>
         )}
-        {daysSinceLast > 0 && <span>（{t(lang, 'songs.daysAgo', { n: daysSinceLast })}）</span>}
-      </td>
-    </tr>
-    <tr>
-      <th>{t(lang, 'songs.playRate')}</th>
-      <td>
+        {daysSinceLast > 0 && (
+          <span class="text-muted-foreground">（{t(lang, 'songs.daysAgo', { n: daysSinceLast })}）</span>
+        )}
+      </MetaRow>
+      <MetaRow label={t(lang, 'songs.playRate')}>
         {t(lang, 'songs.playRateDetail', {
           pct: Math.round(song.play_rate * 100),
           shows: song.shows,
           total: song.shows_since_debut,
         })}
-      </td>
-    </tr>
-    <tr>
-      <th>{t(lang, 'songs.streak')}</th>
-      <td>
+      </MetaRow>
+      <MetaRow label={t(lang, 'songs.streak')}>
         {t(lang, 'songs.streakDetail', {
           n: song.current_streak,
           longest: song.longest_streak,
         })}
-      </td>
-    </tr>
-    {song.encores > 0 && (
-      <tr>
-        <th>{t(lang, 'songs.encores')}</th>
-        <td>{t(lang, 'songs.playsCount', { n: song.encores })}</td>
-      </tr>
-    )}
-  </table>
+      </MetaRow>
+      {song.encores > 0 && (
+        <MetaRow label={t(lang, 'songs.encores')}>
+          {t(lang, 'songs.playsCount', { n: song.encores })}
+        </MetaRow>
+      )}
+    </MetaTable>
+  </section>
 
-  <h2>{t(lang, 'songs.history')}</h2>
-  <ul style="list-style:none; padding:0;">
-    {
-      performances.map((p) => {
-        const event = events.find((e) => e.id === p.event_id);
-        return (
-          <li>
-            <a class="event-card" href={`${base}/${lang}/events/${p.event_id}/`}>
-              <div class="event-date">{formatDate(lang, p.date)}</div>
-              <div class="event-title">
-                {event?.title ?? p.venue}
-                {p.is_encore && <span class="badge">{t(lang, 'badge.encore')}</span>}
-              </div>
-              {event?.title && <div class="event-venue">{p.venue}</div>}
-              {p.note && <div class="song-note">{p.note}</div>}
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
+  <section class="flex flex-col gap-3">
+    <SectionHeading>{t(lang, 'songs.history')}</SectionHeading>
+    <ItemGroup class="gap-2">
+      {
+        performances.map((p) => {
+          const event = events.find((e) => e.id === p.event_id);
+          return (
+            <EventCard
+              href={`${base}/${lang}/events/${p.event_id}/`}
+              date={formatDate(lang, p.date)}
+              title={event?.title ?? p.venue}
+              venue={event?.title ? p.venue : undefined}
+              note={p.note}
+            >
+              {p.is_encore && (
+                <Badge slot="badge" variant="outline">
+                  {t(lang, 'badge.encore')}
+                </Badge>
+              )}
+            </EventCard>
+          );
+        })
+      }
+    </ItemGroup>
+  </section>
 </Layout>

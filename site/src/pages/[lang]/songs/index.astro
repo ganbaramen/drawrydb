@@ -1,5 +1,9 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import SpecialFilter from '../../../components/SpecialFilter.astro';
+import { Card } from '@/components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { songs } from '../../../lib/data';
 import { formatTrackNumber, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -33,43 +37,49 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
 ---
 
 <Layout title={t(lang, 'songs.title')} lang={lang} path="songs/">
-  <h1>{t(lang, 'songs.title')}</h1>
+  <PageHeader title={t(lang, 'songs.title')} />
 
-  <label class="include-special">
-    <input type="checkbox" id="include-special" checked />
-    {t(lang, 'songs.includeSpecial')}
-  </label>
-  <p id="songs-count" data-template={countTemplate}>{t(lang, 'songs.count', { n: songs.length })}</p>
-  <div class="table-scroll">
-    <table class="stats-table" id="songs-table">
-      <thead>
-        <tr>
-          <th data-sort-type="number">{t(lang, 'songs.numberShort')}</th>
-          <th>{t(lang, 'songs.name')}</th>
-          <th data-sort-type="date">{t(lang, 'songs.debut')}</th>
-          <th data-sort-type="number">{t(lang, 'songs.plays')}</th>
-          <th data-sort-type="number">{t(lang, 'songs.playRate')}</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
+    <p id="songs-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
+      {t(lang, 'songs.count', { n: songs.length })}
+    </p>
+  </div>
+
+  <Card size="sm" class="gap-0 py-0">
+    <Table id="songs-table">
+      <TableHeader>
+        <TableRow class="bg-muted/50">
+          <TableHead data-sort-type="number">{t(lang, 'songs.numberShort')}</TableHead>
+          <TableHead>{t(lang, 'songs.name')}</TableHead>
+          <TableHead data-sort-type="date">{t(lang, 'songs.debut')}</TableHead>
+          <TableHead data-sort-type="number">{t(lang, 'songs.plays')}</TableHead>
+          <TableHead data-sort-type="number">{t(lang, 'songs.playRate')}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {
           sorted.map((song) => (
-            <tr data-special={song.is_se || song.is_interlude ? '1' : '0'}>
-              <td data-sort-value={song.credits?.number ?? ''}>
+            <TableRow data-special={song.is_se || song.is_interlude ? '1' : '0'}>
+              <TableCell class="text-muted-foreground tabular-nums" data-sort-value={song.credits?.number ?? ''}>
                 {song.credits?.number ? formatTrackNumber(song.credits.number) : ''}
-              </td>
-              <td>
+              </TableCell>
+              <TableCell class="font-medium">
                 <a href={`${base}/${lang}/songs/${urlSafe(song.id)}/`}>{songDisplayName(lang, song)}</a>
-              </td>
-              <td data-sort-value={song.first_performed}>{song.first_performed}</td>
-              <td data-sort-value={song.plays}>{song.plays}</td>
-              <td data-sort-value={song.play_rate}>{Math.round(song.play_rate * 100)}%</td>
-            </tr>
+              </TableCell>
+              <TableCell class="text-muted-foreground tabular-nums" data-sort-value={song.first_performed}>
+                {song.first_performed}
+              </TableCell>
+              <TableCell class="tabular-nums" data-sort-value={song.plays}>{song.plays}</TableCell>
+              <TableCell class="tabular-nums" data-sort-value={song.play_rate}>
+                {Math.round(song.play_rate * 100)}%
+              </TableCell>
+            </TableRow>
           ))
         }
-      </tbody>
-    </table>
-  </div>
+      </TableBody>
+    </Table>
+  </Card>
 
   <script>
     import { initSortableTable } from '../../../lib/sortable-table';

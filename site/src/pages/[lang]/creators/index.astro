@@ -1,5 +1,9 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import EventCard from '../../../components/EventCard.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { Badge } from '@/components/ui/badge';
+import { ItemGroup } from '@/components/ui/item';
 import { creators, type Creator } from '../../../lib/data';
 import { urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
@@ -24,25 +28,27 @@ function creatorRoles(creator: Creator): string[] {
 ---
 
 <Layout title={t(lang, 'creators.title')} lang={lang} path="creators/">
-  <h1>{t(lang, 'creators.title')}</h1>
-  <p>{t(lang, 'creators.count', { n: creators.length })}</p>
-  <ul style="list-style:none; padding:0;">
+  <PageHeader title={t(lang, 'creators.title')} />
+  <p class="text-muted-foreground -mt-2 text-sm">{t(lang, 'creators.count', { n: creators.length })}</p>
+
+  <ItemGroup class="gap-2">
     {
       creators.map((creator) => (
-        <li>
-          <a class="event-card stat-card" href={`${base}/${lang}/creators/${urlSafe(creator.id)}/`}>
-            <div>
-              <div class="event-title">{creator.name}</div>
-              <div>
-                {creatorRoles(creator).map((role) => (
-                  <span class="badge">{t(lang, `songs.${role}`)}</span>
-                ))}
-              </div>
-            </div>
-            <div class="stat-card-count">{t(lang, 'songs.count', { n: creator.songs.length })}</div>
-          </a>
-        </li>
+        <EventCard
+          href={`${base}/${lang}/creators/${urlSafe(creator.id)}/`}
+          title={creator.name}
+          class="items-center"
+        >
+          <div class="mt-1 flex flex-wrap gap-1">
+            {creatorRoles(creator).map((role) => (
+              <Badge variant="outline">{t(lang, `songs.${role}`)}</Badge>
+            ))}
+          </div>
+          <span slot="trailing" class="text-muted-foreground shrink-0 text-sm whitespace-nowrap">
+            {t(lang, 'songs.count', { n: creator.songs.length })}
+          </span>
+        </EventCard>
       ))
     }
-  </ul>
+  </ItemGroup>
 </Layout>
