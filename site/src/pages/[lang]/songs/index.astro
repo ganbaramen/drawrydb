@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import PageHeader from '../../../components/PageHeader.astro';
 import SpecialFilter from '../../../components/SpecialFilter.astro';
-import { Card } from '@/components/ui/card';
+import StatsTable from '../../../components/StatsTable.astro';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { songs } from '../../../lib/data';
 import { formatTrackNumber, songDisplayName, urlSafe } from '../../../lib/format';
@@ -46,8 +46,8 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
     </p>
   </div>
 
-  <Card size="sm" class="gap-0 py-0">
-    <Table id="songs-table">
+  <StatsTable>
+    <Table id="songs-table" class="[&_td:first-child]:pl-4 [&_th:first-child]:pl-4 [&_td:last-child]:pr-4 [&_th:last-child]:pr-4">
       <TableHeader>
         <TableRow class="bg-muted/50">
           <TableHead data-sort-type="number">{t(lang, 'songs.numberShort')}</TableHead>
@@ -79,7 +79,7 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
         }
       </TableBody>
     </Table>
-  </Card>
+  </StatsTable>
 
   <script>
     import { initSortableTable } from '../../../lib/sortable-table';

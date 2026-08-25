@@ -3,7 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import PageHeader from '../../../components/PageHeader.astro';
 import SectionHeading from '../../../components/SectionHeading.astro';
 import SpecialFilter from '../../../components/SpecialFilter.astro';
-import { Card } from '@/components/ui/card';
+import StatsTable from '../../../components/StatsTable.astro';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { setLengthStats } from '../../../lib/data';
 import { formatSetLength, songDisplayName, urlSafe } from '../../../lib/format';
@@ -21,8 +21,8 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
 <Layout title={t(lang, 'setLength.title')} lang={lang} path="set-lengths/">
   <PageHeader title={t(lang, 'setLength.title')} />
 
-  <Card size="sm" class="gap-0 py-0">
-    <Table id="bucket-table">
+  <StatsTable>
+    <Table id="bucket-table" class="[&_td:first-child]:pl-4 [&_th:first-child]:pl-4 [&_td:last-child]:pr-4 [&_th:last-child]:pr-4">
       <TableHeader>
         <TableRow class="bg-muted/50">
           <TableHead>{t(lang, 'setLength.length')}</TableHead>
@@ -52,7 +52,7 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
         }
       </TableBody>
     </Table>
-  </Card>
+  </StatsTable>
 
   <div class="text-muted-foreground -mt-2 space-y-1 text-xs">
     <p>{t(lang, 'setLength.avgSongsNote')}</p>
@@ -63,8 +63,8 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
     <SectionHeading>{t(lang, 'setLength.songDistribution')}</SectionHeading>
     <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
 
-    <Card size="sm" class="gap-0 py-0">
-      <Table id="song-distribution-table">
+    <StatsTable>
+      <Table id="song-distribution-table" class="[&_td:first-child]:pl-4 [&_th:first-child]:pl-4 [&_td:last-child]:pr-4 [&_th:last-child]:pr-4">
         <TableHeader>
           <TableRow class="bg-muted/50">
             <TableHead>{t(lang, 'setLength.songName')}</TableHead>
@@ -102,7 +102,7 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
           }
         </TableBody>
       </Table>
-    </Card>
+    </StatsTable>
   </section>
 
   <script>

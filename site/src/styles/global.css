@@ -233,6 +233,10 @@
  * absolutely positioned over the scroller's edges and toggled by
  * lib/table-scroll.ts via data-can-scroll-left/right; they start hidden so
  * a table that fits shows nothing.
+ *
+ * They fade to --card, not --background: the tables sit inside StatsTable's
+ * card frame, so a gradient in the page's background color faded toward a
+ * color that isn't there and the shadow was invisible.
  */
 .table-scroll-wrap {
   @apply relative;
@@ -249,12 +253,12 @@
 
 .scroll-shadow--left {
   @apply left-0;
-  background: linear-gradient(to right, var(--background), transparent);
+  background: linear-gradient(to right, var(--card), transparent);
 }
 
 .scroll-shadow--right {
   @apply right-0;
-  background: linear-gradient(to left, var(--background), transparent);
+  background: linear-gradient(to left, var(--card), transparent);
 }
 
 /*

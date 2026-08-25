@@ -1,0 +1,26 @@
+---
+// Frame around the sortable stats tables (songs index, set lengths).
+//
+// Deliberately not <Card>: Card's vertical padding is declared as
+// `data-[size=sm]:py-4`, and an attribute-selector variant outranks a plain
+// `py-0` in the cascade, so the padding can't be overridden from the call
+// site by tailwind-merge. That left a strip of card background above the
+// header row and around the rounded corners, with the header's tint
+// floating in the middle instead of sitting flush.
+//
+// overflow-hidden is what lets the header row's background reach the
+// rounded corners; the scroll container Fulldev's <Table> renders inside
+// still scrolls horizontally, and lib/table-scroll.ts finds it by
+// data-slot="table-container" to hang its edge shadows on.
+import { cn } from '@/lib/utils';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class={cn('bg-card overflow-hidden rounded-xl border shadow-xs', className)}>
+  <slot />
+</div>
