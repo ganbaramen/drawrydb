@@ -22,13 +22,13 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
   <PageHeader title={t(lang, 'setLength.title')} />
 
   <StatsTable>
-    <Table id="bucket-table" class="[&_td:first-child]:pl-4 [&_th:first-child]:pl-4 [&_td:last-child]:pr-4 [&_th:last-child]:pr-4">
+    <Table id="bucket-table">
       <TableHeader>
-        <TableRow class="bg-muted/50">
+        <TableRow>
           <TableHead>{t(lang, 'setLength.length')}</TableHead>
-          <TableHead data-sort-type="number">{t(lang, 'setLength.shows')}</TableHead>
-          <TableHead data-sort-type="number">{t(lang, 'setLength.avgSongs')}</TableHead>
-          <TableHead data-sort-type="number">{t(lang, 'setLength.withSe')}</TableHead>
+          <TableHead class="text-right" data-sort-type="number">{t(lang, 'setLength.shows')}</TableHead>
+          <TableHead class="text-right" data-sort-type="number">{t(lang, 'setLength.avgSongs')}</TableHead>
+          <TableHead class="text-right" data-sort-type="number">{t(lang, 'setLength.withSe')}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -38,9 +38,12 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
               <TableCell class="font-medium">
                 <a href={`${base}/${lang}/set-lengths/${b.minutes}/`}>{formatSetLength(lang, b.minutes)}</a>
               </TableCell>
-              <TableCell class="tabular-nums" data-sort-value={b.shows}>{b.shows}</TableCell>
-              <TableCell class="tabular-nums" data-sort-value={b.avg_songs}>{b.avg_songs}</TableCell>
-              <TableCell class="text-muted-foreground tabular-nums" data-sort-value={b.shows_with_se / b.shows}>
+              <TableCell class="text-right tabular-nums" data-sort-value={b.shows}>{b.shows}</TableCell>
+              <TableCell class="text-right tabular-nums" data-sort-value={b.avg_songs}>{b.avg_songs}</TableCell>
+              <TableCell
+                class="text-muted-foreground text-right tabular-nums"
+                data-sort-value={b.shows_with_se / b.shows}
+              >
                 {t(lang, 'setLength.withSeDetail', {
                   count: b.shows_with_se,
                   shows: b.shows,
@@ -64,11 +67,15 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
     <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
 
     <StatsTable>
-      <Table id="song-distribution-table" class="[&_td:first-child]:pl-4 [&_th:first-child]:pl-4 [&_td:last-child]:pr-4 [&_th:last-child]:pr-4">
+      <Table id="song-distribution-table">
         <TableHeader>
-          <TableRow class="bg-muted/50">
+          <TableRow>
             <TableHead>{t(lang, 'setLength.songName')}</TableHead>
-            {buckets.map((b) => <TableHead data-sort-type="number">{formatSetLength(lang, b.minutes)}</TableHead>)}
+            {buckets.map((b) => (
+              <TableHead class="text-right" data-sort-type="number">
+                {formatSetLength(lang, b.minutes)}
+              </TableHead>
+            ))}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -82,13 +89,13 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
                   const rate = song.rates[String(b.minutes)] ?? { count: 0, eligible: 0 };
                   if (rate.eligible === 0) {
                     return (
-                      <TableCell class="text-muted-foreground/50" data-sort-value={-1}>
+                      <TableCell class="text-muted-foreground/50 text-right" data-sort-value={-1}>
                         —
                       </TableCell>
                     );
                   }
                   return (
-                    <TableCell class="tabular-nums" data-sort-value={rate.count / rate.eligible}>
+                    <TableCell class="text-right tabular-nums" data-sort-value={rate.count / rate.eligible}>
                       {t(lang, 'setLength.rateDetail', {
                         pct: Math.round((rate.count / rate.eligible) * 100),
                         count: rate.count,

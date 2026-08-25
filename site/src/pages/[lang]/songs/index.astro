@@ -47,14 +47,14 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
   </div>
 
   <StatsTable>
-    <Table id="songs-table" class="[&_td:first-child]:pl-4 [&_th:first-child]:pl-4 [&_td:last-child]:pr-4 [&_th:last-child]:pr-4">
+    <Table id="songs-table">
       <TableHeader>
-        <TableRow class="bg-muted/50">
+        <TableRow>
           <TableHead data-sort-type="number">{t(lang, 'songs.numberShort')}</TableHead>
           <TableHead>{t(lang, 'songs.name')}</TableHead>
           <TableHead data-sort-type="date">{t(lang, 'songs.debut')}</TableHead>
-          <TableHead data-sort-type="number">{t(lang, 'songs.plays')}</TableHead>
-          <TableHead data-sort-type="number">{t(lang, 'songs.playRate')}</TableHead>
+          <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.plays')}</TableHead>
+          <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.playRate')}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -70,8 +70,8 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
               <TableCell class="text-muted-foreground tabular-nums" data-sort-value={song.first_performed}>
                 {song.first_performed}
               </TableCell>
-              <TableCell class="tabular-nums" data-sort-value={song.plays}>{song.plays}</TableCell>
-              <TableCell class="tabular-nums" data-sort-value={song.play_rate}>
+              <TableCell class="text-right tabular-nums" data-sort-value={song.plays}>{song.plays}</TableCell>
+              <TableCell class="text-right tabular-nums" data-sort-value={song.play_rate}>
                 {Math.round(song.play_rate * 100)}%
               </TableCell>
             </TableRow>

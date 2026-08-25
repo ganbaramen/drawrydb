@@ -1,17 +1,25 @@
 ---
-// Frame around the sortable stats tables (songs index, set lengths).
+// Wrapper for the sortable stats tables (songs index, set lengths).
 //
-// Deliberately not <Card>: Card's vertical padding is declared as
-// `data-[size=sm]:py-4`, and an attribute-selector variant outranks a plain
-// `py-0` in the cascade, so the padding can't be overridden from the call
-// site by tailwind-merge. That left a strip of card background above the
-// header row and around the rounded corners, with the header's tint
-// floating in the middle instead of sitting flush.
+// Deliberately *bare*, which is how Fulldev presents a table: rows separated
+// by their own bottom borders, no outer frame and no header fill, sitting
+// directly on the page background. The only things added here are two
+// corrections to how it meets this page:
 //
-// overflow-hidden is what lets the header row's background reach the
-// rounded corners; the scroll container Fulldev's <Table> renders inside
-// still scrolls horizontally, and lib/table-scroll.ts finds it by
-// data-slot="table-container" to hang its edge shadows on.
+//   - Column sizing. Fulldev's <Table> is w-full, which stretches whichever
+//     column has the most slack (the song-name one) and leaves a gap
+//     mid-row. w-auto/min-w-full sizes columns to their own content and
+//     lets the container scroll once they outgrow the page, which is what
+//     the pre-Fulldev stylesheet did.
+//   - Edge alignment. The stock px-2 on cells would inset the first column
+//     from the page's text column, so the table's left edge wouldn't line up
+//     with the h1 above it. The outermost cell on each side loses its
+//     padding instead.
+//
+// Fulldev's <Table> already renders its own overflow-x-auto container, so
+// there's nothing to add for horizontal scrolling — lib/table-scroll.ts
+// finds that container by data-slot="table-container" and hangs the edge
+// shadows on it.
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -23,13 +31,10 @@ const { class: className } = Astro.props;
 
 <div
   class={cn(
-    'bg-card overflow-hidden rounded-xl border shadow-xs',
-    // w-full would stretch whichever column has the most slack (the song
-    // name one) and leave a gap mid-row; w-auto/min-w-full sizes columns to
-    // their own content and lets the container scroll once that exceeds the
-    // frame, which is what the pre-Fulldev stylesheet did.
     '[&_table]:w-auto [&_table]:min-w-full',
-    className
+    '[&_th:first-child]:pl-0 [&_td:first-child]:pl-0',
+    '[&_th:last-child]:pr-0 [&_td:last-child]:pr-0',
+    className,
   )}
 >
   <slot />
