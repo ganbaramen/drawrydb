@@ -46,9 +46,15 @@ const credits = song.credits;
 
 // Build-time "today" (see data.ts) — same static-site caveat as
 // upcomingEvents(): accurate as of the last deploy, not the visit.
-const daysSinceLast = Math.floor(
-  (Date.parse(today) - Date.parse(song.last_performed)) / 86_400_000,
-);
+function daysSince(date: string): number {
+  return Math.floor((Date.parse(today) - Date.parse(date)) / 86_400_000);
+}
+const daysSinceFirst = daysSince(song.first_performed);
+const daysSinceLast = daysSince(song.last_performed);
+// Full-width parens in Japanese, ASCII in English — same rule the event
+// page's set-length aside uses.
+const open = lang === 'ja' ? '（' : '(';
+const close = lang === 'ja' ? '）' : ')';
 ---
 
 <Layout title={songDisplayName(lang, song)} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
@@ -120,6 +126,13 @@ const daysSinceLast = Math.floor(
             <a href={`${base}/${lang}/events/${debutEvent.id}/`}>{debutEvent.title}</a>
           </>
         )}
+        {daysSinceFirst > 0 && (
+          <span class="text-muted-foreground">
+            {open}
+            {t(lang, 'songs.daysAgo', { n: daysSinceFirst })}
+            {close}
+          </span>
+        )}
       </MetaRow>
       <MetaRow label={t(lang, 'songs.lastPerformed')}>
         {song.last_performed}
@@ -130,7 +143,11 @@ const daysSinceLast = Math.floor(
           </>
         )}
         {daysSinceLast > 0 && (
-          <span class="text-muted-foreground">（{t(lang, 'songs.daysAgo', { n: daysSinceLast })}）</span>
+          <span class="text-muted-foreground">
+            {open}
+            {t(lang, 'songs.daysAgo', { n: daysSinceLast })}
+            {close}
+          </span>
         )}
       </MetaRow>
       <MetaRow label={t(lang, 'songs.playRate')}>
