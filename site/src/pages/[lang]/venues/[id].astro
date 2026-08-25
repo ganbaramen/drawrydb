@@ -6,8 +6,8 @@ import MetaTable from '../../../components/MetaTable.astro';
 import PageHeader from '../../../components/PageHeader.astro';
 import SectionHeading from '../../../components/SectionHeading.astro';
 import { ItemGroup } from '@/components/ui/item';
-import { venues, getEvent, type Venue } from '../../../lib/data';
-import { formatDate, urlSafe } from '../../../lib/format';
+import { venues, getEvent, today, type Venue } from '../../../lib/data';
+import { daysSince, formatDate, parenthesize, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -35,6 +35,11 @@ function eventFor(date: string) {
 }
 const firstEvent = eventFor(venue.first_played);
 const lastEvent = eventFor(venue.last_played);
+
+// Build-time "today" (see data.ts) — the count is accurate as of the last
+// deploy, not the visit. Same asides the song page's debut/last rows carry.
+const daysSinceFirst = daysSince(today, venue.first_played);
+const daysSinceLast = daysSince(today, venue.last_played);
 ---
 
 <Layout title={venue.name} lang={lang} path={`venues/${urlSafe(venue.id)}/`}>
@@ -52,6 +57,11 @@ const lastEvent = eventFor(venue.last_played);
           <a href={`${base}/${lang}/events/${firstEvent.id}/`}>{firstEvent.title}</a>
         </>
       )}
+      {daysSinceFirst > 0 && (
+        <span class="text-muted-foreground">
+          {parenthesize(lang, t(lang, 'common.daysAgo', { n: daysSinceFirst }))}
+        </span>
+      )}
     </MetaRow>
     <MetaRow label={t(lang, 'venues.lastPlayed')}>
       {venue.last_played}
@@ -60,6 +70,11 @@ const lastEvent = eventFor(venue.last_played);
           {' — '}
           <a href={`${base}/${lang}/events/${lastEvent.id}/`}>{lastEvent.title}</a>
         </>
+      )}
+      {daysSinceLast > 0 && (
+        <span class="text-muted-foreground">
+          {parenthesize(lang, t(lang, 'common.daysAgo', { n: daysSinceLast }))}
+        </span>
       )}
     </MetaRow>
   </MetaTable>

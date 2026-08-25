@@ -34,6 +34,21 @@ export function formatDate(lang: Lang, iso: string): string {
 // Minutes between two "HH:MM" times, mirroring
 // pipeline/sync_setlists.py's show_duration() (same midnight-wraparound
 // handling — a show's live_end is occasionally past midnight).
+// Whole days between two ISO dates, floored. Callers pass data.ts's build-time
+// `today` as `from`, which carries that value's caveat with it: the count is
+// accurate as of the last deploy, not the visitor's clock.
+export function daysSince(from: string, date: string): number {
+  return Math.floor((Date.parse(from) - Date.parse(date)) / 86_400_000);
+}
+
+// Wraps a trailing aside in the locale's own parentheses, separator included:
+// full-width in Japanese, ASCII behind a space in English. The full-width pair
+// carries its own side bearing, so a space in front of it reads as a gap —
+// which is why the separator belongs here rather than at the call site.
+export function parenthesize(lang: Lang, text: string): string {
+  return lang === 'ja' ? `（${text}）` : ` (${text})`;
+}
+
 export function liveDurationMinutes(start: string, end: string): number {
   const [startH, startM] = start.split(':').map(Number);
   const [endH, endM] = end.split(':').map(Number);

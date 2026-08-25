@@ -9,7 +9,7 @@ import SectionHeading from '../../../components/SectionHeading.astro';
 import { Badge } from '@/components/ui/badge';
 import { ItemGroup } from '@/components/ui/item';
 import { songs, events, today, type Song } from '../../../lib/data';
-import { autoLink, formatDate, formatTrackNumber, songDisplayName, songSubtitle, urlSafe } from '../../../lib/format';
+import { autoLink, daysSince, formatDate, formatTrackNumber, parenthesize, songDisplayName, songSubtitle, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
 export function getStaticPaths() {
@@ -46,15 +46,8 @@ const credits = song.credits;
 
 // Build-time "today" (see data.ts) — same static-site caveat as
 // upcomingEvents(): accurate as of the last deploy, not the visit.
-function daysSince(date: string): number {
-  return Math.floor((Date.parse(today) - Date.parse(date)) / 86_400_000);
-}
-const daysSinceFirst = daysSince(song.first_performed);
-const daysSinceLast = daysSince(song.last_performed);
-// Full-width parens in Japanese, ASCII in English — same rule the event
-// page's set-length aside uses.
-const open = lang === 'ja' ? '（' : '(';
-const close = lang === 'ja' ? '）' : ')';
+const daysSinceFirst = daysSince(today, song.first_performed);
+const daysSinceLast = daysSince(today, song.last_performed);
 ---
 
 <Layout title={songDisplayName(lang, song)} lang={lang} path={`songs/${urlSafe(song.id)}/`}>
@@ -128,9 +121,7 @@ const close = lang === 'ja' ? '）' : ')';
         )}
         {daysSinceFirst > 0 && (
           <span class="text-muted-foreground">
-            {open}
-            {t(lang, 'songs.daysAgo', { n: daysSinceFirst })}
-            {close}
+            {parenthesize(lang, t(lang, 'common.daysAgo', { n: daysSinceFirst }))}
           </span>
         )}
       </MetaRow>
@@ -144,9 +135,7 @@ const close = lang === 'ja' ? '）' : ')';
         )}
         {daysSinceLast > 0 && (
           <span class="text-muted-foreground">
-            {open}
-            {t(lang, 'songs.daysAgo', { n: daysSinceLast })}
-            {close}
+            {parenthesize(lang, t(lang, 'common.daysAgo', { n: daysSinceLast }))}
           </span>
         )}
       </MetaRow>

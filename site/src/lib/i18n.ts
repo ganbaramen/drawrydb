@@ -19,6 +19,8 @@ const ja: Dict = {
   'nav.creators': 'クリエイター',
   'nav.setLength': 'セット尺',
   'nav.toggle': 'メニュー',
+  // Shared by the song and venue pages' first/last date rows.
+  'common.daysAgo': '{n}日前',
   'theme.toggle': 'テーマを切り替える',
   'footer.disclaimer':
     'これは非公式のファンサイトです。Drawry. 本人・関係者・公式とは一切関係ありません。',
@@ -65,7 +67,6 @@ const ja: Dict = {
   'songs.playRateDetail': '{pct}% ({shows}/{total}回)',
   'songs.streak': '連続披露',
   'songs.streakDetail': '現在{n}回連続（最長{longest}回）',
-  'songs.daysAgo': '{n}日前',
   'songs.encores': 'アンコール',
   'songs.credits': '楽曲情報',
   'songs.number': '番号',
@@ -111,6 +112,7 @@ const en: Dict = {
   'nav.creators': 'Creators',
   'nav.setLength': 'Set Length',
   'nav.toggle': 'Menu',
+  'common.daysAgo': '{n} days ago',
   'theme.toggle': 'Toggle theme',
   'footer.disclaimer':
     'This is an unofficial fan project, not affiliated with Drawry. or their management.',
@@ -157,7 +159,6 @@ const en: Dict = {
   'songs.playRateDetail': '{pct}% ({shows}/{total} shows)',
   'songs.streak': 'Streak',
   'songs.streakDetail': '{n} shows in a row now (longest: {longest})',
-  'songs.daysAgo': '{n} days ago',
   'songs.encores': 'Encores',
   'songs.credits': 'Song Information',
   'songs.number': 'Number',
