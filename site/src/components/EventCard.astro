@@ -40,10 +40,15 @@ const { href, title, date, venue, note, class: className, ...rest } = Astro.prop
 >
   <ItemContent class="event-card-content gap-1">
     {date && <div class="event-date text-muted-foreground text-xs tabular-nums">{date}</div>}
-    <!-- gap-3, not ItemTitle's own gap-2: the badge sits against a bold
-         Japanese title whose glyphs run to the edge of their box, so 8px
-         reads tighter here than it does after Latin text. -->
-    <ItemTitle class="line-clamp-none flex-wrap gap-3 leading-normal font-semibold">
+    <!-- gap-x-4, not ItemTitle's own gap-2: the badge sits against a bold
+         Japanese title whose glyphs run to the edge of their box with none
+         of the side bearing a Latin word ends on, so the same measure reads
+         tighter here. Worst case is a title ending in a CJK character
+         ("...時間未定"); titles closing on 」 look roomier at any value, so
+         tune against the former. Row gap stays small — it only applies when
+         a long title wraps the badge onto its own line, where 16px would
+         detach it from the title it belongs to. -->
+    <ItemTitle class="line-clamp-none flex-wrap gap-x-4 gap-y-1.5 leading-normal font-semibold">
       <span class="event-title">{title}</span>
       <slot name="badge" />
     </ItemTitle>
