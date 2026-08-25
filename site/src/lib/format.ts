@@ -31,9 +31,6 @@ export function formatDate(lang: Lang, iso: string): string {
   return `${y} ${month} ${d} (${weekday})`;
 }
 
-// Minutes between two "HH:MM" times, mirroring
-// pipeline/sync_setlists.py's show_duration() (same midnight-wraparound
-// handling — a show's live_end is occasionally past midnight).
 // Whole days between two ISO dates, floored. Callers pass data.ts's build-time
 // `today` as `from`, which carries that value's caveat with it: the count is
 // accurate as of the last deploy, not the visitor's clock.
@@ -49,6 +46,9 @@ export function parenthesize(lang: Lang, text: string): string {
   return lang === 'ja' ? `（${text}）` : ` (${text})`;
 }
 
+// Minutes between two "HH:MM" times, mirroring
+// pipeline/sync_setlists.py's show_duration() (same midnight-wraparound
+// handling — a show's live_end is occasionally past midnight).
 export function liveDurationMinutes(start: string, end: string): number {
   const [startH, startM] = start.split(':').map(Number);
   const [endH, endM] = end.split(':').map(Number);
