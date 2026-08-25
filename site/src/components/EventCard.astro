@@ -40,7 +40,10 @@ const { href, title, date, venue, note, class: className, ...rest } = Astro.prop
 >
   <ItemContent class="event-card-content gap-1">
     {date && <div class="event-date text-muted-foreground text-xs tabular-nums">{date}</div>}
-    <ItemTitle class="line-clamp-none flex-wrap leading-normal font-semibold">
+    <!-- gap-3, not ItemTitle's own gap-2: the badge sits against a bold
+         Japanese title whose glyphs run to the edge of their box, so 8px
+         reads tighter here than it does after Latin text. -->
+    <ItemTitle class="line-clamp-none flex-wrap gap-3 leading-normal font-semibold">
       <span class="event-title">{title}</span>
       <slot name="badge" />
     </ItemTitle>
