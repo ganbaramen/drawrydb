@@ -21,6 +21,16 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class={cn('bg-card overflow-hidden rounded-xl border shadow-xs', className)}>
+<div
+  class={cn(
+    'bg-card overflow-hidden rounded-xl border shadow-xs',
+    // w-full would stretch whichever column has the most slack (the song
+    // name one) and leave a gap mid-row; w-auto/min-w-full sizes columns to
+    // their own content and lets the container scroll once that exceeds the
+    // frame, which is what the pre-Fulldev stylesheet did.
+    '[&_table]:w-auto [&_table]:min-w-full',
+    className
+  )}
+>
   <slot />
 </div>

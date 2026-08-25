@@ -151,7 +151,7 @@ const meetDurationMinutes =
               const songId = matchedSong?.id ?? song.song;
               const songName = matchedSong ? songDisplayName(lang, matchedSong) : song.song;
               return (
-                <li class="hover:bg-muted/50 flex items-baseline gap-3 border-b px-4 py-2 transition-colors last:border-b-0">
+                <li class="hover:bg-muted/50 flex items-baseline gap-3 border-b px-4 py-2.5 transition-colors last:border-b-0">
                   <span class="text-muted-foreground min-w-[2.5ch] text-xs tabular-nums">{position}</span>
                   <span>
                     <a href={`${base}/${lang}/songs/${urlSafe(songId)}/`}>{songName}</a>

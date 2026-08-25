@@ -66,7 +66,7 @@ const lastEvent = eventFor(venue.last_played);
 
   <section class="flex flex-col gap-3">
     <SectionHeading>{t(lang, 'venues.history')}</SectionHeading>
-    <ItemGroup class="gap-2">
+    <ItemGroup class="gap-2.5">
       {
         eventIds.map((id) => {
           const event = getEvent(id);

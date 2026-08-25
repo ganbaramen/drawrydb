@@ -31,7 +31,7 @@ function creatorRoles(creator: Creator): string[] {
   <PageHeader title={t(lang, 'creators.title')} />
   <p class="text-muted-foreground -mt-2 text-sm">{t(lang, 'creators.count', { n: creators.length })}</p>
 
-  <ItemGroup class="gap-2">
+  <ItemGroup class="gap-2.5">
     {
       creators.map((creator) => (
         <EventCard

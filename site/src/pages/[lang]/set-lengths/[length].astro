@@ -48,7 +48,7 @@ const eventIds = bucket.event_ids.slice().reverse();
   </MetaTable>
   <p class="text-muted-foreground -mt-2 text-xs">{t(lang, 'setLength.avgSongsNote')}</p>
 
-  <ItemGroup class="gap-2">
+  <ItemGroup class="gap-2.5">
     {
       eventIds.map((id) => {
         const event = getEvent(id);

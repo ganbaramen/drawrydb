@@ -4,6 +4,10 @@
 // length's shows. Built on Fulldev's Item (which renders an <a> when given
 // href), so all of those share one hover/focus treatment.
 //
+// Item's `default` size (px-4 py-3.5), not `sm`: these cards stack three
+// lines of mostly-Japanese text, and sm's px-3 py-2.5 with a 2px inner gap
+// read as cramped against the border.
+//
 // The .event-date / .event-title / .event-venue class hooks are load-bearing,
 // not styling: the home page's inline script re-picks the next live on the
 // visitor's clock and rewrites those three nodes' text. Keep them if this
@@ -30,18 +34,18 @@ const { href, title, date, venue, note, class: className, ...rest } = Astro.prop
 <Item
   href={href}
   variant="outline"
-  size="sm"
+  size="default"
   class={cn('bg-card hover:bg-card hover:border-primary/60 items-start gap-x-3', className)}
   {...rest}
 >
-  <ItemContent class="event-card-content gap-0.5">
+  <ItemContent class="event-card-content gap-1">
     {date && <div class="event-date text-muted-foreground text-xs tabular-nums">{date}</div>}
-    <ItemTitle class="line-clamp-none flex-wrap font-semibold">
+    <ItemTitle class="line-clamp-none flex-wrap leading-normal font-semibold">
       <span class="event-title">{title}</span>
       <slot name="badge" />
     </ItemTitle>
-    {venue && <div class="event-venue text-muted-foreground text-sm">{venue}</div>}
-    {note && <div class="text-muted-foreground text-xs">{note}</div>}
+    {venue && <div class="event-venue text-muted-foreground text-sm leading-normal">{venue}</div>}
+    {note && <div class="text-muted-foreground text-xs leading-normal">{note}</div>}
     <slot />
   </ItemContent>
   <slot name="trailing" />

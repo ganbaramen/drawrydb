@@ -156,7 +156,7 @@ const daysSinceLast = Math.floor(
 
   <section class="flex flex-col gap-3">
     <SectionHeading>{t(lang, 'songs.history')}</SectionHeading>
-    <ItemGroup class="gap-2">
+    <ItemGroup class="gap-2.5">
       {
         performances.map((p) => {
           const event = events.find((e) => e.id === p.event_id);
