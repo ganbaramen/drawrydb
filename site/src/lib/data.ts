@@ -91,7 +91,6 @@ export interface Song {
   // the song.
   current_streak: number;
   longest_streak: number;
-  debut_confirmed: boolean;
   encores: number;
   is_se: boolean;
   is_interlude: boolean;

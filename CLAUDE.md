@@ -371,6 +371,10 @@ multiple useful orderings. Stays in the same CSV pipeline as everything else.
 tags, because the tags are unreliable (see the Interlude note above).
 `debut_confirmed` records whether a tag corroborates it; when `no`, the date is
 only a lower bound on the real debut, limited by how far back the pastes reach.
+It is a **maintainer-facing column only** — it stays in `song_stats.csv` and in
+`report_stats()`'s summary, and is deliberately not exported to the site.
+`export_site_data.py` shipped it to the browser until 2026-08-25, where no page
+ever read it; don't re-add it without a page that actually shows something.
 
 `shows_since_debut` / `play_rate` (song_stats) exist because raw `plays` isn't
 a fair comparison across songs with different debut dates — a song that's been
