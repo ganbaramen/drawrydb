@@ -101,5 +101,11 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
     }
 
     checkbox.addEventListener('change', apply);
+
+    // Run once on load, not only on change: a browser restoring the
+    // checkbox's state (reload, back-forward cache) can hand us a page whose
+    // control and rows disagree. The events index does the same for the same
+    // reason.
+    apply();
   </script>
 </Layout>

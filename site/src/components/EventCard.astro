@@ -23,12 +23,19 @@ interface Props {
   // with no venue and for a performance with no note.
   venue?: string | null;
   note?: string | null;
+  // Render the venue line even when there is no venue, hidden. Only the home
+  // page's next-live card needs this: its script re-picks the event in the
+  // browser and may land on one that has a venue where the build-time pick
+  // had none. Reserving the element means that script only ever sets text
+  // and flips `hidden` — it never builds markup, so there is no copy of this
+  // component's classes anywhere else to fall out of sync.
+  reserveVenue?: boolean;
   id?: string;
   class?: string;
   [key: `data-${string}`]: string | undefined;
 }
 
-const { href, title, date, venue, note, class: className, ...rest } = Astro.props;
+const { href, title, date, venue, note, reserveVenue, class: className, ...rest } = Astro.props;
 ---
 
 <Item
@@ -52,7 +59,11 @@ const { href, title, date, venue, note, class: className, ...rest } = Astro.prop
       <span class="event-title">{title}</span>
       <slot name="badge" />
     </ItemTitle>
-    {venue && <div class="event-venue text-muted-foreground text-sm leading-normal">{venue}</div>}
+    {(venue || reserveVenue) && (
+      <div class="event-venue text-muted-foreground text-sm leading-normal" hidden={!venue}>
+        {venue}
+      </div>
+    )}
     {note && <div class="text-muted-foreground text-xs leading-normal">{note}</div>}
     <slot />
   </ItemContent>

@@ -18,6 +18,11 @@ interface Props {
 const { title, lang, path } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
+// The home page passes the site's own name as its title, so appending the
+// suffix unconditionally rendered "DrawryDB. | DrawryDB.".
+const SITE_NAME = 'DrawryDB.';
+const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+
 const navLinks = [
   { href: 'events/', label: t(lang, 'nav.events') },
   { href: 'songs/', label: t(lang, 'nav.songs') },
@@ -37,7 +42,7 @@ const section = path.split('/')[0];
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
-    <title>{title} | DrawryDB.</title>
+    <title>{fullTitle}</title>
     <script is:inline>
       // Runs synchronously, before first paint, so a stored preference
       // applies immediately instead of flashing the OS-default theme first.

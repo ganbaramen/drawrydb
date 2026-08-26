@@ -67,8 +67,11 @@ const meetDurationMinutes =
         {durationMinutes !== null &&
           (bucket ? (
             <>
-              {' '}
-              {lang === 'ja' ? '（' : '('}
+              {/* Space only in English: the full-width pair carries its own
+                  side bearing, so a space before （ reads as a gap. Same rule
+                  parenthesize() applies everywhere the aside is plain text —
+                  it cannot be used here because a link sits inside. */}
+              {lang === 'ja' ? '（' : ' ('}
               {/* The parens stay outside the link — inside, the anchor's
                   underline stretched under them too, which reads oddly
                   wide especially with JA's full-width （）. */}

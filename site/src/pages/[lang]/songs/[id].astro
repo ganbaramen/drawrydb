@@ -112,7 +112,7 @@ const daysSinceLast = daysSince(today, song.last_performed);
     <MetaTable>
       <MetaRow label={t(lang, 'songs.plays')}>{t(lang, 'songs.playsCount', { n: song.plays })}</MetaRow>
       <MetaRow label={t(lang, 'songs.debut')}>
-        {song.first_performed}
+        {formatDate(lang, song.first_performed)}
         {debutEvent && (
           <>
             {' — '}
@@ -126,7 +126,7 @@ const daysSinceLast = daysSince(today, song.last_performed);
         )}
       </MetaRow>
       <MetaRow label={t(lang, 'songs.lastPerformed')}>
-        {song.last_performed}
+        {formatDate(lang, song.last_performed)}
         {lastEvent && (
           <>
             {' — '}

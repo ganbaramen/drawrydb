@@ -49,6 +49,7 @@ const candidates = events
           date={formatDate(lang, next.date)}
           title={next.title}
           venue={next.venue}
+          reserveVenue
           class="border-primary/40 bg-accent/40 hover:bg-accent/60"
         />
       </section>
@@ -78,15 +79,13 @@ const candidates = events
       link.href = `${link.dataset.base}${next.id}/`;
       link.querySelector('.event-date').textContent = next.dateFormatted;
       link.querySelector('.event-title').textContent = next.title;
+      // The venue line is always in the markup (EventCard's reserveVenue),
+      // hidden when the build-time pick had no venue — so this only ever
+      // sets text and flips visibility, and never has to reproduce the
+      // card's classes.
       const venue = link.querySelector('.event-venue');
-      if (venue) venue.textContent = next.venue ?? '';
-      if (!venue && next.venue) {
-        const div = document.createElement('div');
-        // Same classes EventCard.astro renders for a venue line.
-        div.className = 'event-venue text-muted-foreground text-sm';
-        div.textContent = next.venue;
-        link.querySelector('.event-card-content').appendChild(div);
-      }
+      venue.textContent = next.venue ?? '';
+      venue.hidden = !next.venue;
     })();
   </script>
 

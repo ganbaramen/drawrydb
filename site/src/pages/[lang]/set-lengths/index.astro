@@ -87,9 +87,13 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
                 </TableCell>
                 {buckets.map((b) => {
                   const rate = song.rates[String(b.minutes)] ?? { count: 0, eligible: 0 };
+                  // Empty sort value, not -1: sortable-table.ts sinks a cell
+                  // it cannot parse as a number to the bottom in BOTH
+                  // directions, which is the site's blanks-last rule. A real
+                  // -1 sorts as a number, so it led ascending instead.
                   if (rate.eligible === 0) {
                     return (
-                      <TableCell class="text-muted-foreground/50 text-right" data-sort-value={-1}>
+                      <TableCell class="text-muted-foreground/50 text-right" data-sort-value="">
                         —
                       </TableCell>
                     );
@@ -127,5 +131,11 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
     }
 
     checkbox.addEventListener('change', apply);
+
+    // Run once on load, not only on change: a browser restoring the
+    // checkbox's state (reload, back-forward cache) can hand us a page whose
+    // control and rows disagree. The events index does the same for the same
+    // reason.
+    apply();
   </script>
 </Layout>

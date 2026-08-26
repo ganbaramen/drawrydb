@@ -50,7 +50,7 @@ const daysSinceLast = daysSince(today, venue.last_played);
     {venue.capacity && <MetaRow label={t(lang, 'venues.capacity')}>{venue.capacity}</MetaRow>}
     <MetaRow label={t(lang, 'venues.shows')}>{t(lang, 'venues.showsCount', { n: venue.shows })}</MetaRow>
     <MetaRow label={t(lang, 'venues.firstPlayed')}>
-      {venue.first_played}
+      {formatDate(lang, venue.first_played)}
       {firstEvent && (
         <>
           {' — '}
@@ -64,7 +64,7 @@ const daysSinceLast = daysSince(today, venue.last_played);
       )}
     </MetaRow>
     <MetaRow label={t(lang, 'venues.lastPlayed')}>
-      {venue.last_played}
+      {formatDate(lang, venue.last_played)}
       {lastEvent && (
         <>
           {' — '}
