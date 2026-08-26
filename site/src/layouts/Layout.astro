@@ -49,10 +49,16 @@ const section = path.split('/')[0];
       // No preference stored -> no attribute set -> global.css's
       // prefers-color-scheme media query decides, same as before this
       // toggle existed.
-      const stored = localStorage.getItem('theme');
-      if (stored === 'light' || stored === 'dark') {
-        document.documentElement.dataset.theme = stored;
-      }
+      // Reading can throw for the same reasons writing can; no stored choice
+      // is the correct fallback either way, and it is what an exception here
+      // produces anyway — but only if it does not take the rest of the script
+      // with it.
+      try {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.dataset.theme = stored;
+        }
+      } catch {}
     </script>
   </head>
   <body class="min-h-dvh">
@@ -241,8 +247,15 @@ const section = path.split('/')[0];
         // instant switch we always had.
         const apply = () => {
           root.dataset.theme = next;
-          localStorage.setItem('theme', next);
+          // Icon before the write: storing can throw (site data blocked, quota
+          // exhausted) and the palette has already changed by then, so syncing
+          // afterwards left the button showing the old state on a page that
+          // had already switched. Wrapped too, so a failed write costs the
+          // preference and nothing else.
           syncIcon();
+          try {
+            localStorage.setItem('theme', next);
+          } catch {}
         };
         if (
           !document.startViewTransition ||
