@@ -263,9 +263,31 @@
 }
 
 /*
+ * Skip link. Off-screen rather than display:none, so it stays in the tab
+ * order and is the first thing focused on every page; it pulls itself into
+ * the top-left corner once focused. Sits above the sticky header's z-40.
+ */
+.skip-link {
+  @apply bg-background text-foreground ring-ring absolute left-4 z-50 -translate-y-full rounded-md border px-4 py-2 text-sm font-medium shadow-lg transition-transform;
+  top: 0.5rem;
+}
+
+/*
+ * :focus, not :focus-visible — the link is off-screen and unreachable by
+ * pointer, so any focus it gets is a keyboard user who needs to see it.
+ */
+.skip-link:focus {
+  @apply translate-y-0 ring-[3px] outline-none;
+}
+
+/*
  * Sort indicator for lib/sortable-table.ts. The arrow is a pseudo-element
- * so it doesn't affect the header cell's text layout, and the neutral
- * state keeps its space reserved so sorting doesn't shift columns.
+ * so it doesn't affect the button's text layout, and the neutral state
+ * keeps its space reserved so sorting doesn't shift columns.
+ *
+ * The class sits on a <button> inside the <th>, not on the <th> itself:
+ * role="button" on the header cell overrode its columnheader role, which
+ * made the aria-sort on the same element meaningless.
  */
 .sortable {
   @apply cursor-pointer select-none;
@@ -276,12 +298,12 @@
   @apply text-muted-foreground/50 ml-1 inline-block text-xs;
 }
 
-.sortable[data-sort-dir="asc"]::after {
+th[aria-sort="ascending"] .sortable::after {
   content: "↑";
   @apply text-primary opacity-100;
 }
 
-.sortable[data-sort-dir="desc"]::after {
+th[aria-sort="descending"] .sortable::after {
   content: "↓";
   @apply text-primary opacity-100;
 }
@@ -313,11 +335,22 @@
  * `!hidden` rather than plain [hidden]: the card root is display:flex from
  * a utility class, which outranks the UA sheet's [hidden] { display: none }.
  */
-#event-list [hidden] {
+/*
+ * These hide the <li> rather than the card inside it. ItemGroup is a real
+ * <ul> and the <li> is the flex child, so hiding only the card would leave
+ * an empty row holding the group's gap open. The script still sets `hidden`
+ * on the card itself — that is the hook, `:has()` turns it into the row.
+ *
+ * The second rule is the events index's engineered no-JavaScript default:
+ * the list ships data-filter="has" and the matching radio ships checked, so
+ * CSS alone produces the same view the script would. Adding a fourth filter
+ * value means adding a rule here too.
+ */
+#event-list li:has(> [hidden]) {
   @apply !hidden;
 }
 
-#event-list[data-filter="has"] [data-has-setlist="0"],
-#event-list[data-filter="none"] [data-has-setlist="1"] {
+#event-list[data-filter="has"] li:has(> [data-has-setlist="0"]),
+#event-list[data-filter="none"] li:has(> [data-has-setlist="1"]) {
   @apply !hidden;
 }

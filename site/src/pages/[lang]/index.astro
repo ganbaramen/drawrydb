@@ -38,11 +38,13 @@ const candidates = events
 ---
 
 <Layout title="DrawryDB." lang={lang} path="">
+  <h1 class="sr-only">{t(lang, 'home.heading')}</h1>
   {
     next && (
       <section class="flex flex-col gap-3">
         <SectionHeading class="mt-0">{t(lang, 'home.next')}</SectionHeading>
         <EventCard
+          listItem={false}
           id="next-live-link"
           href={`${base}/${lang}/events/${next.id}/`}
           data-base={`${base}/${lang}/events/`}

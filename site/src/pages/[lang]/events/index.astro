@@ -127,7 +127,20 @@ const setlistFilters = [
       </label>
     </div>
 
-    <p id="event-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
+    <!--
+      The site's only search. Typing rewrites this count and hides rows;
+      without a live region a screen-reader user gets silence and no way to
+      know whether anything matched. Polite so it waits for a pause in
+      typing rather than interrupting every keystroke.
+    -->
+    <p
+      id="event-count"
+      class="text-muted-foreground text-sm"
+      data-template={countTemplate}
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       {t(lang, 'events.count', { n: hasSetlistCount })}
     </p>
   </div>
@@ -136,13 +149,21 @@ const setlistFilters = [
     {
       monthKeys.map((key) => (
         <>
-          <h2
-            class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold first:pt-0"
-            id={`m-${key}`}
-            data-month={key}
-          >
-            {formatMonth(lang, key)}
-          </h2>
+          {/*
+            The group is a <ul>, so a bare <h2> here would be invalid — only
+            <li> may be a child. role="presentation" keeps the wrapper out
+            of the list's item count (so "1 of 143" counts cards, not
+            headings) while the heading inside stays a real heading.
+          */}
+          <li role="presentation">
+            <h2
+              class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold first:pt-0"
+              id={`m-${key}`}
+              data-month={key}
+            >
+              {formatMonth(lang, key)}
+            </h2>
+          </li>
           {eventsByMonth.get(key)!.map((event) => (
             <EventCard
               href={`${base}/${lang}/events/${event.id}/`}

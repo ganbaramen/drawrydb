@@ -30,6 +30,11 @@ interface Props {
   // and flips `hidden` — it never builds markup, so there is no copy of this
   // component's classes anywhere else to fall out of sync.
   reserveVenue?: boolean;
+  // False for a card that is not inside an ItemGroup — Item renders an <li>
+  // by default, and an orphan <li> draws a list marker. The home page's
+  // next-live card is the only standalone one on the site. Forwarded to
+  // Item through `rest`.
+  listItem?: boolean;
   id?: string;
   class?: string;
   [key: `data-${string}`]: string | undefined;

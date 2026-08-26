@@ -62,6 +62,12 @@ const section = path.split('/')[0];
     </script>
   </head>
   <body class="min-h-dvh">
+    <!--
+      Every page opens with eight focusable controls before <main>, so a
+      keyboard user traversed the whole header on every navigation. This is
+      the first thing in the document and is visually hidden until focused.
+    -->
+    <a href="#main" class="skip-link">{t(lang, 'a11y.skipToContent')}</a>
     <header
       class="bg-background/85 supports-[backdrop-filter]:bg-background/70 sticky top-0 z-40 border-b backdrop-blur"
     >
@@ -103,15 +109,35 @@ const section = path.split('/')[0];
           </nav>
 
           <div class="flex items-center gap-2">
-            <span class="text-muted-foreground inline-flex items-center gap-1 text-xs">
+            <!--
+              The pair is a labelled group, not two loose letters: without a
+              name the link is announced as a bare "EN" with nothing saying
+              it changes the site's language. `lang`/`hreflang` mark the link
+              as pointing at the other language so it isn't pronounced with
+              this page's rules. Both halves are padded to a real pointer
+              target — they used to be the bare 16px glyphs, 4px apart.
+            -->
+            <span
+              class="text-muted-foreground inline-flex items-center text-xs"
+              role="group"
+              aria-label={t(lang, 'nav.language')}
+            >
               {
                 LOCALES.map((l) =>
                   l === lang ? (
-                    <span class="text-foreground font-semibold" aria-current="true">
+                    <span
+                      class="text-foreground inline-flex min-h-6 min-w-6 items-center justify-center px-1 font-semibold"
+                      aria-current="true"
+                    >
                       {l.toUpperCase()}
                     </span>
                   ) : (
-                    <a href={`${base}/${l}/${path}`} class="hover:text-foreground transition-colors">
+                    <a
+                      href={`${base}/${l}/${path}`}
+                      lang={l}
+                      hreflang={l}
+                      class="hover:text-foreground focus-visible:ring-ring/50 inline-flex min-h-6 min-w-6 items-center justify-center rounded px-1 transition-colors outline-none focus-visible:ring-[3px]"
+                    >
                       {l.toUpperCase()}
                     </a>
                   ),
@@ -145,7 +171,17 @@ const section = path.split('/')[0];
       </div>
     </header>
 
-    <main class="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 pt-8 pb-16">
+    <!--
+      tabindex="-1" so the skip link actually moves focus here rather than
+      only the scroll position: a <main> is not focusable on its own, and
+      browsers differ on whether a fragment link resets the focus point.
+      Negative, so it never joins the tab order itself.
+    -->
+    <main
+      id="main"
+      tabindex="-1"
+      class="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 pt-8 pb-16 outline-none"
+    >
       <slot />
     </main>
 
@@ -198,6 +234,11 @@ const section = path.split('/')[0];
         const open = siteNav.dataset.open === 'true';
         siteNav.dataset.open = open ? 'false' : 'true';
         navToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        // Move into the panel on open. The five links sit *before* this
+        // button in the document, so without this a keyboard user's next
+        // Tab leaves the header entirely and the panel they just opened is
+        // only reachable backwards, past two other controls.
+        if (!open) siteNav.querySelector<HTMLElement>('a')?.focus();
       });
 
       // Clicking a link navigates away anyway, but closing first avoids a
@@ -216,7 +257,14 @@ const section = path.split('/')[0];
       });
 
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && siteNav.dataset.open === 'true') closeNav();
+        if (e.key === 'Escape' && siteNav.dataset.open === 'true') {
+          // Focus is inside the panel we are about to hide, so hand it back
+          // to the control that opened it rather than letting it fall to
+          // the document.
+          const inside = siteNav.contains(document.activeElement);
+          closeNav();
+          if (inside) navToggle.focus();
+        }
       });
 
       const root = document.documentElement;
