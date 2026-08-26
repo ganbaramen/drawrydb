@@ -26,6 +26,16 @@ export function initSortableTable(table: HTMLTableElement): void {
     label.type = 'button';
     label.className = 'sortable';
     while (th.firstChild) label.appendChild(th.firstChild);
+    // The indicator lives in its own aria-hidden span rather than in a
+    // ::after on the button. Chrome folds CSS generated content into the
+    // accessible name, so the arrow was being announced as part of the
+    // header — "披露回数 ↑" rather than "披露回数". aria-hidden excludes the
+    // span and its generated content from the name; the sort state is
+    // carried by the <th>'s aria-sort, which is where it belongs.
+    const arrow = document.createElement('span');
+    arrow.className = 'sort-arrow';
+    arrow.setAttribute('aria-hidden', 'true');
+    label.appendChild(arrow);
     th.appendChild(label);
     th.setAttribute('aria-sort', 'none');
 

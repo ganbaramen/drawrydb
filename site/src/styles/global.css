@@ -293,17 +293,23 @@
   @apply cursor-pointer select-none;
 }
 
-.sortable::after {
+/*
+ * The arrow sits on an aria-hidden <span>, not a ::after on the button:
+ * Chrome folds CSS generated content into the accessible name, so a
+ * ::after here made the header announce as "披露回数 ↑". The glyph is
+ * decoration — the sort state is the <th>'s aria-sort.
+ */
+.sort-arrow::after {
   content: "↕";
   @apply text-muted-foreground/50 ml-1 inline-block text-xs;
 }
 
-th[aria-sort="ascending"] .sortable::after {
+th[aria-sort="ascending"] .sort-arrow::after {
   content: "↑";
   @apply text-primary opacity-100;
 }
 
-th[aria-sort="descending"] .sortable::after {
+th[aria-sort="descending"] .sort-arrow::after {
   content: "↓";
   @apply text-primary opacity-100;
 }
