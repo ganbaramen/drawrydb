@@ -12623,18 +12623,29 @@
     },
     {
       "date": "2026-09-20",
-      "title": "ライブ予定あり＠渋谷(昼帯)",
-      "venue": null,
-      "doors": null,
-      "showtime": null,
+      "title": "Drawry. 1st Anniversary Live「Dear, first impression」",
+      "venue": "渋谷Spotify O-Crest",
+      "doors": "11:40",
+      "showtime": "12:15",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
-      "ticket_sales": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/Drawry_0920"
+        }
+      ],
+      "ticket_sales": [
+        {
+          "label": null,
+          "start": "2026-08-31 22:30",
+          "end": null
+        }
+      ],
       "id": "2026-09-20-1",
       "note": null
     },
@@ -12690,6 +12701,23 @@
       "note": null
     },
     {
+      "date": "2026-09-27",
+      "title": "何かしら入るかも",
+      "venue": null,
+      "doors": null,
+      "showtime": null,
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [],
+      "ticket_sales": [],
+      "id": "2026-09-27-1",
+      "note": null
+    },
+    {
       "date": "2026-09-30",
       "title": "主催イベント予定@ Shibuya Milkyway",
       "venue": null,
@@ -12742,10 +12770,10 @@
     },
     {
       "date": "2026-10-11",
-      "title": "ライブ予定あり＠時間未定",
-      "venue": null,
-      "doors": null,
-      "showtime": null,
+      "title": "日ノ目企画presents“SUNDAYRIGHT/WRONG×2”",
+      "venue": "大塚Hearts+/Hearts Next",
+      "doors": "10:15",
+      "showtime": "10:45",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
