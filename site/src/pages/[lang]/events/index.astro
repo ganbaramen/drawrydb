@@ -127,43 +127,51 @@ const setlistFilters = [
       </label>
     </div>
 
-    <!--
-      The site's only search. Typing rewrites this count and hides rows;
-      without a live region a screen-reader user gets silence and no way to
-      know whether anything matched. Polite so it waits for a pause in
-      typing rather than interrupting every keystroke.
-    -->
-    <p
-      id="event-count"
-      class="text-muted-foreground text-sm"
-      data-template={countTemplate}
-      role="status"
-      aria-live="polite"
-      aria-atomic="true"
-    >
+    <p id="event-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
       {t(lang, 'events.count', { n: hasSetlistCount })}
     </p>
+
+    <!--
+      The announcement channel, separate from the visible count above.
+      Putting role="status" on the visible count did not work: VoiceOver on
+      Chrome ignored it entirely — typing spoke only the character echo and
+      changing the filter spoke only the radio, never the new total.
+      Verified by ear.
+
+      This region ships **empty** and is written to on a debounce, which is
+      the pattern VoiceOver does honour: it announces content added to a
+      region that was empty far more reliably than a wholesale replacement
+      of text that was already there. Keeping the live attributes in one
+      place also means no assistive technology announces the count twice.
+    -->
+    <p id="event-announce" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
   </div>
 
-  <ItemGroup id="event-list" data-filter="has" class="gap-2">
+  {/*
+    One list per month, with the heading *outside* it, rather than one list
+    holding headings and cards together. The earlier shape wrapped each
+    heading in a role="presentation" <li> to keep it out of the item count;
+    VoiceOver counted it anyway and announced "1 of 155" — the 143 cards
+    plus the 12 visible headings — disagreeing with the page's own 143件.
+    Heard, not inferred.
+
+    With the heading lifted out, each month is a list of just its cards, so
+    a position is announced against the month a visitor is actually in.
+    #event-list stays the id and keeps data-filter: every rule and query
+    that hangs off it is a descendant selector, so nothing else moves.
+  */}
+  <div id="event-list" data-filter="has" class="flex flex-col gap-2">
     {
       monthKeys.map((key) => (
         <>
-          {/*
-            The group is a <ul>, so a bare <h2> here would be invalid — only
-            <li> may be a child. role="presentation" keeps the wrapper out
-            of the list's item count (so "1 of 143" counts cards, not
-            headings) while the heading inside stays a real heading.
-          */}
-          <li role="presentation">
-            <h2
-              class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold first:pt-0"
-              id={`m-${key}`}
-              data-month={key}
-            >
-              {formatMonth(lang, key)}
-            </h2>
-          </li>
+          <h2
+            class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold first:pt-0"
+            id={`m-${key}`}
+            data-month={key}
+          >
+            {formatMonth(lang, key)}
+          </h2>
+          <ItemGroup class="gap-2" aria-labelledby={`m-${key}`}>
           {eventsByMonth.get(key)!.map((event) => (
             <EventCard
               href={`${base}/${lang}/events/${event.id}/`}
@@ -181,10 +189,11 @@ const setlistFilters = [
               )}
             </EventCard>
           ))}
+          </ItemGroup>
         </>
       ))
     }
-  </ItemGroup>
+  </div>
 
   <script>
     import { fuzzyMatch } from '../../../lib/fuzzy';
@@ -245,10 +254,42 @@ const setlistFilters = [
       headings.forEach((h) => {
         const month = h.dataset.month!;
         const matchesMonth = monthFilter === 'all' || monthFilter === month;
-        h.hidden = !matchesMonth || !monthHasVisible.get(month);
+        const hide = !matchesMonth || !monthHasVisible.get(month);
+        h.hidden = hide;
+        // Each month is its own <ul> now, so an emptied month would leave a
+        // list holding the container's gap open. Hide it with its heading.
+        if (h.nextElementSibling instanceof HTMLElement) h.nextElementSibling.hidden = hide;
       });
 
-      countEl.textContent = template.replace('__N__', String(visible));
+      const text = template.replace('__N__', String(visible));
+      countEl.textContent = text;
+      announce(text);
+    }
+
+    // VoiceOver on Chrome ignored aria-live on the visible count entirely:
+    // typing spoke only the character echo, changing the filter only the
+    // radio. Writing into a region that ships empty is the pattern it does
+    // honour, and clearing first means two identical results still read as
+    // a change rather than being swallowed as "no new content".
+    //
+    // Debounced so a burst of keystrokes produces one announcement at the
+    // end rather than one per character, which is also why the region is
+    // polite: it waits for a pause instead of interrupting the typing echo.
+    const announceEl = document.getElementById('event-announce')!;
+    let announceTimer: number | undefined;
+    // The load-time apply() must not speak: a visitor arriving should hear
+    // the page, not a count read at them before they have done anything.
+    // Only a change the visitor caused is worth announcing.
+    let announcing = false;
+    function announce(text: string) {
+      if (!announcing) return;
+      window.clearTimeout(announceTimer);
+      announceTimer = window.setTimeout(() => {
+        announceEl.textContent = '';
+        window.setTimeout(() => {
+          announceEl.textContent = text;
+        }, 100);
+      }, 500);
     }
 
     radios.forEach((radio) => {
@@ -261,6 +302,7 @@ const setlistFilters = [
     // before this script runs (see the comment above the filters), but
     // heading visibility has no CSS equivalent — sync it once up front.
     apply();
+    announcing = true;
   </script>
 </Layout>
 
