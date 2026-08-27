@@ -12329,8 +12329,89 @@
       "live_end": null,
       "meet_start": "20:50",
       "meet_end": "22:00",
-      "has_setlist": false,
-      "setlist": [],
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "SE(スタンドバイミー)",
+          "note": "",
+          "is_se": true,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "Blooming",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "Begin the Journey!",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "描きかけの空",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "Fly By",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 6,
+          "song": "Into the Blue",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 7,
+          "song": "朝焼けと車窓",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 8,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 9,
+          "song": "Sunlight",
+          "note": "初披露",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 10,
+          "song": "タイムカプセル",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
       "ticket_links": [
         {
           "label": null,
@@ -12883,7 +12964,7 @@
       "translation": null,
       "plays": 96,
       "shows": 95,
-      "shows_since_debut": 143,
+      "shows_since_debut": 144,
       "play_rate": 0.66,
       "first_performed": "2025-09-13",
       "last_performed": "2026-07-27",
@@ -13675,13 +13756,13 @@
       "id": "luminous",
       "name": "ルミナス",
       "translation": "Luminous",
-      "plays": 139,
-      "shows": 139,
-      "shows_since_debut": 143,
+      "plays": 140,
+      "shows": 140,
+      "shows_since_debut": 144,
       "play_rate": 0.97,
       "first_performed": "2025-09-13",
-      "last_performed": "2026-08-24",
-      "current_streak": 45,
+      "last_performed": "2026-08-27",
+      "current_streak": 46,
       "longest_streak": 59,
       "encores": 2,
       "is_se": false,
@@ -14798,6 +14879,14 @@
           "position": 6,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -14813,13 +14902,13 @@
       "id": "blooming",
       "name": "Blooming",
       "translation": null,
-      "plays": 73,
-      "shows": 73,
-      "shows_since_debut": 142,
-      "play_rate": 0.51,
+      "plays": 74,
+      "shows": 74,
+      "shows_since_debut": 143,
+      "play_rate": 0.52,
       "first_performed": "2025-09-20",
-      "last_performed": "2026-08-17",
-      "current_streak": 0,
+      "last_performed": "2026-08-27",
+      "current_streak": 1,
       "longest_streak": 15,
       "encores": 0,
       "is_se": false,
@@ -15408,6 +15497,14 @@
           "position": 2,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -15425,7 +15522,7 @@
       "translation": null,
       "plays": 83,
       "shows": 83,
-      "shows_since_debut": 142,
+      "shows_since_debut": 143,
       "play_rate": 0.58,
       "first_performed": "2025-09-20",
       "last_performed": "2026-08-16",
@@ -16115,7 +16212,7 @@
       "translation": null,
       "plays": 64,
       "shows": 64,
-      "shows_since_debut": 142,
+      "shows_since_debut": 143,
       "play_rate": 0.45,
       "first_performed": "2025-09-20",
       "last_performed": "2026-03-22",
@@ -16646,11 +16743,11 @@
       "translation": "primary",
       "plays": 60,
       "shows": 60,
-      "shows_since_debut": 142,
+      "shows_since_debut": 143,
       "play_rate": 0.42,
       "first_performed": "2025-09-20",
       "last_performed": "2026-08-24",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 8,
       "encores": 0,
       "is_se": false,
@@ -17150,13 +17247,13 @@
       "id": "asayake-to-shasou",
       "name": "朝焼けと車窓",
       "translation": "Morning Glow and the Train Window",
-      "plays": 139,
-      "shows": 139,
-      "shows_since_debut": 142,
+      "plays": 140,
+      "shows": 140,
+      "shows_since_debut": 143,
       "play_rate": 0.98,
       "first_performed": "2025-09-20",
-      "last_performed": "2026-08-24",
-      "current_streak": 1,
+      "last_performed": "2026-08-27",
+      "current_streak": 2,
       "longest_streak": 115,
       "encores": 2,
       "is_se": false,
@@ -18273,6 +18370,14 @@
           "position": 2,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -18290,7 +18395,7 @@
       "translation": null,
       "plays": 20,
       "shows": 20,
-      "shows_since_debut": 126,
+      "shows_since_debut": 127,
       "play_rate": 0.16,
       "first_performed": "2025-10-26",
       "last_performed": "2026-08-22",
@@ -18469,7 +18574,7 @@
       "translation": "A Love Story That Never Begins",
       "plays": 70,
       "shows": 70,
-      "shows_since_debut": 112,
+      "shows_since_debut": 113,
       "play_rate": 0.62,
       "first_performed": "2025-11-24",
       "last_performed": "2026-08-17",
@@ -19055,7 +19160,7 @@
       "translation": "SE(primary)",
       "plays": 6,
       "shows": 6,
-      "shows_since_debut": 94,
+      "shows_since_debut": 95,
       "play_rate": 0.06,
       "first_performed": "2026-01-04",
       "last_performed": "2026-05-03",
@@ -19120,13 +19225,13 @@
       "id": "begin-the-journey",
       "name": "Begin the Journey!",
       "translation": null,
-      "plays": 50,
-      "shows": 50,
-      "shows_since_debut": 91,
+      "plays": 51,
+      "shows": 51,
+      "shows_since_debut": 92,
       "play_rate": 0.55,
       "first_performed": "2026-01-11",
-      "last_performed": "2026-08-22",
-      "current_streak": 0,
+      "last_performed": "2026-08-27",
+      "current_streak": 1,
       "longest_streak": 6,
       "encores": 0,
       "is_se": false,
@@ -19531,6 +19636,14 @@
           "position": 2,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -19548,7 +19661,7 @@
       "translation": null,
       "plays": 43,
       "shows": 41,
-      "shows_since_debut": 91,
+      "shows_since_debut": 92,
       "play_rate": 0.45,
       "first_performed": "2026-01-11",
       "last_performed": "2026-08-22",
@@ -19909,13 +20022,13 @@
       "id": "egakikake-no-sora",
       "name": "描きかけの空",
       "translation": "Egakikake no Sora",
-      "plays": 37,
-      "shows": 37,
-      "shows_since_debut": 75,
-      "play_rate": 0.49,
+      "plays": 38,
+      "shows": 38,
+      "shows_since_debut": 76,
+      "play_rate": 0.5,
       "first_performed": "2026-02-23",
-      "last_performed": "2026-08-24",
-      "current_streak": 2,
+      "last_performed": "2026-08-27",
+      "current_streak": 3,
       "longest_streak": 8,
       "encores": 0,
       "is_se": false,
@@ -20216,6 +20329,14 @@
           "position": 4,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -20233,8 +20354,8 @@
       "translation": null,
       "plays": 9,
       "shows": 9,
-      "shows_since_debut": 62,
-      "play_rate": 0.15,
+      "shows_since_debut": 63,
+      "play_rate": 0.14,
       "first_performed": "2026-03-28",
       "last_performed": "2026-08-17",
       "current_streak": 0,
@@ -20331,11 +20452,11 @@
       "translation": "Stand by Me",
       "plays": 47,
       "shows": 47,
-      "shows_since_debut": 62,
-      "play_rate": 0.76,
+      "shows_since_debut": 63,
+      "play_rate": 0.75,
       "first_performed": "2026-03-28",
       "last_performed": "2026-08-24",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 20,
       "encores": 1,
       "is_se": false,
@@ -20731,13 +20852,13 @@
       "id": "time-capsule",
       "name": "タイムカプセル",
       "translation": "Time Capsule",
-      "plays": 31,
-      "shows": 31,
-      "shows_since_debut": 62,
-      "play_rate": 0.5,
+      "plays": 32,
+      "shows": 32,
+      "shows_since_debut": 63,
+      "play_rate": 0.51,
       "first_performed": "2026-03-28",
-      "last_performed": "2026-08-24",
-      "current_streak": 1,
+      "last_performed": "2026-08-27",
+      "current_streak": 2,
       "longest_streak": 4,
       "encores": 1,
       "is_se": false,
@@ -20990,6 +21111,14 @@
           "position": 7,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 10,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -21007,8 +21136,8 @@
       "translation": null,
       "plays": 15,
       "shows": 15,
-      "shows_since_debut": 61,
-      "play_rate": 0.25,
+      "shows_since_debut": 62,
+      "play_rate": 0.24,
       "first_performed": "2026-03-29",
       "last_performed": "2026-08-17",
       "current_streak": 0,
@@ -21144,13 +21273,13 @@
       "id": "se-stand-by-me",
       "name": "SE(スタンドバイミー)",
       "translation": "SE(Stand by Me)",
-      "plays": 11,
-      "shows": 11,
-      "shows_since_debut": 58,
-      "play_rate": 0.19,
+      "plays": 12,
+      "shows": 12,
+      "shows_since_debut": 59,
+      "play_rate": 0.2,
       "first_performed": "2026-04-11",
-      "last_performed": "2026-08-15",
-      "current_streak": 0,
+      "last_performed": "2026-08-27",
+      "current_streak": 1,
       "longest_streak": 1,
       "encores": 0,
       "is_se": true,
@@ -21243,6 +21372,14 @@
           "position": 1,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": null
@@ -21253,7 +21390,7 @@
       "translation": "SE(A Love Story That Never Begins)",
       "plays": 1,
       "shows": 1,
-      "shows_since_debut": 45,
+      "shows_since_debut": 46,
       "play_rate": 0.02,
       "first_performed": "2026-05-06",
       "last_performed": "2026-05-06",
@@ -21280,8 +21417,8 @@
       "translation": "Ginmaku",
       "plays": 9,
       "shows": 9,
-      "shows_since_debut": 35,
-      "play_rate": 0.26,
+      "shows_since_debut": 36,
+      "play_rate": 0.25,
       "first_performed": "2026-05-30",
       "last_performed": "2026-08-17",
       "current_streak": 0,
@@ -21376,13 +21513,13 @@
       "id": "into-the-blue",
       "name": "Into the Blue",
       "translation": null,
-      "plays": 26,
-      "shows": 26,
-      "shows_since_debut": 27,
+      "plays": 27,
+      "shows": 27,
+      "shows_since_debut": 28,
       "play_rate": 0.96,
       "first_performed": "2026-06-22",
-      "last_performed": "2026-08-24",
-      "current_streak": 11,
+      "last_performed": "2026-08-27",
+      "current_streak": 12,
       "longest_streak": 15,
       "encores": 0,
       "is_se": false,
@@ -21595,6 +21732,14 @@
           "position": 3,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -21610,13 +21755,13 @@
       "id": "fly-by",
       "name": "Fly By",
       "translation": null,
-      "plays": 6,
-      "shows": 6,
-      "shows_since_debut": 10,
-      "play_rate": 0.6,
+      "plays": 7,
+      "shows": 7,
+      "shows_since_debut": 11,
+      "play_rate": 0.64,
       "first_performed": "2026-07-28",
-      "last_performed": "2026-08-22",
-      "current_streak": 0,
+      "last_performed": "2026-08-27",
+      "current_streak": 1,
       "longest_streak": 3,
       "encores": 0,
       "is_se": false,
@@ -21669,6 +21814,14 @@
           "position": 5,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -21679,6 +21832,33 @@
         "choreography": "ナンシー",
         "note": "https://x.com/Drawry0920/status/2082095158775181743\nhttps://x.com/9ra919/status/2082429341968011622"
       }
+    },
+    {
+      "id": "sunlight",
+      "name": "Sunlight",
+      "translation": null,
+      "plays": 1,
+      "shows": 1,
+      "shows_since_debut": 1,
+      "play_rate": 1.0,
+      "first_performed": "2026-08-27",
+      "last_performed": "2026-08-27",
+      "current_streak": 1,
+      "longest_streak": 1,
+      "encores": 0,
+      "is_se": false,
+      "is_interlude": false,
+      "performances": [
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 9,
+          "is_encore": false,
+          "note": "初披露"
+        }
+      ],
+      "credits": null
     }
   ],
   "venues": [
@@ -21895,6 +22075,20 @@
       "capacity": "500人"
     },
     {
+      "id": "shibuya-milkyway",
+      "name": "Shibuya Milkyway",
+      "shows": 3,
+      "first_played": "2026-06-10",
+      "last_played": "2026-08-27",
+      "event_ids": [
+        "2026-06-10-1",
+        "2026-07-28-1",
+        "2026-08-27-1"
+      ],
+      "address": "〒150-0042 東京都渋谷区宇田川町4-7 トウセン宇田川ビル3F",
+      "capacity": "250人"
+    },
+    {
       "id": "shimokitazawa-shelter",
       "name": "下北沢SHELTER",
       "shows": 3,
@@ -21989,19 +22183,6 @@
       ],
       "address": "〒150-0042 東京都渋谷区宇田川町13-16 国際ビルA館B2",
       "capacity": "300人"
-    },
-    {
-      "id": "shibuya-milkyway",
-      "name": "Shibuya Milkyway",
-      "shows": 2,
-      "first_played": "2026-06-10",
-      "last_played": "2026-07-28",
-      "event_ids": [
-        "2026-06-10-1",
-        "2026-07-28-1"
-      ],
-      "address": "〒150-0042 東京都渋谷区宇田川町4-7 トウセン宇田川ビル3F",
-      "capacity": "250人"
     },
     {
       "id": "twinbox-garage",
@@ -23573,6 +23754,6 @@
         }
       }
     ],
-    "uncovered_shows": 14
+    "uncovered_shows": 15
   }
 }

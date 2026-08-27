@@ -437,6 +437,52 @@ per-day times, so this hasn't forced the issue. If it ever does, the fix is in
 `event_days()` already enumerates) rather than the calendar row's `start`,
 which is a real change to how overrides resolve, not a one-line patch.
 
+### Auto-filling `song_details.csv`'s gaps
+
+`add_song_detail_templates()` runs on every `sync_setlists.py` call, right
+after `add_override_templates()`, and does the same job for a different
+file: it appends a `song_details.csv` row for every song that has been
+performed and has no row yet, so the file is the complete list of songs
+worth annotating rather than a list of the ones somebody remembered to add.
+Keyed by `name` — the same key `export_site_data.py` looks a song up by, and
+after `song_renames.csv` has been applied, so a corrected spelling never
+generates a second row for the same song.
+
+It follows all of `add_override_templates()`'s hard-won rules: rewritten
+every run rather than appended to, rows still missing something sorted
+first, and **no existing row's fields ever edited** — only reordered.
+
+Three things are specific to this file:
+
+- **Only `slug` is prefilled, and only for a Latin-script name.** Every
+  Japanese slug here is a *hand romanisation* (`銀幕` → `ginmaku`,
+  `描きかけの空` → `egakikake-no-sora`) that no standard-library call can
+  produce and that a transliteration library would get wrong anyway —
+  readings are ambiguous. `derive_slug()` returns `""` for a non-ASCII name
+  rather than guessing, because the slug becomes the song's permalink and is
+  the one field here that is expensive to change later. Those rows float to
+  the top of the file and are reported as `N/M rows still need a slug`.
+- **The secondary sort key is the row's existing position, not its name.**
+  Sorting alphabetically churned 39 lines of a 27-line file to add one song,
+  which buries the real change in the diff. Existing rows keep their order;
+  new ones land at the end unless they need a slug.
+- **It writes LF, not `csv`'s default CRLF.** This file was hand-maintained
+  before the generator existed and is already LF; `event_overrides.csv` is
+  CRLF only because its template writer created it in the first place. If a
+  spreadsheet ever saves this file back as CRLF the next run converts it
+  once and is stable after.
+
+**It never removes a row for a song that has dropped out of the setlists.**
+A song can be absent from every pasted setlist and still be real — the paste
+archive does not reach back forever, and a B-side may simply not have been
+played in the covered window. Deleting curated credits to satisfy a derived
+list would be destroying hand-typed work.
+
+`SONG_DETAIL_TEMPLATE_FIELDS` duplicates `export_site_data.py`'s
+`SONG_DETAIL_FIELDS` (plus `name`/`slug`) rather than importing it, for the
+same independence reason as `OVERRIDE_TEMPLATE_FIELDS`. Keep them in sync by
+hand.
+
 ### Auto-filling `event_overrides.csv`'s gaps
 
 `add_override_templates()` runs unconditionally on every `sync_setlists.py`

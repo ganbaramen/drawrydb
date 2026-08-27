@@ -61,6 +61,7 @@ POSTS_DIR = os.path.join(INPUT_DIR, "setlist_posts")
 SONG_RENAMES_CSV = os.path.join(INPUT_DIR, "song_renames.csv")
 VENUE_RENAMES_CSV = os.path.join(INPUT_DIR, "venue_renames.csv")
 EVENT_OVERRIDES_CSV = os.path.join(INPUT_DIR, "event_overrides.csv")
+SONG_DETAILS_CSV = os.path.join(INPUT_DIR, "song_details.csv")
 
 CALENDAR_CSV = os.path.join(GENERATED_DIR, "drawry_schedule.csv")
 OUTPUT_CSV = os.path.join(GENERATED_DIR, "setlists.csv")
@@ -769,6 +770,145 @@ def clean_match_title(summary: str) -> str:
     return text[1:-1] if depth == 0 else text
 
 
+SONG_DETAIL_TEMPLATE_FIELDS = [
+    "name",
+    "slug",
+    "translation",
+    "number",
+    "lyrics",
+    "composition",
+    "arrangement",
+    "choreography",
+    "note",
+]
+# Duplicated from export_site_data.py's SONG_DETAIL_FIELDS (plus name/slug)
+# rather than imported, for the same reason OVERRIDE_TEMPLATE_FIELDS is:
+# the scripts are deliberately independent. Keep them in sync by hand.
+
+# A slug is only derivable for a name that is already Latin script. Every
+# Japanese name in this file is a *hand romanisation* — 銀幕 → ginmaku,
+# 描きかけの空 → egakikake-no-sora — which nothing in the standard library
+# can produce and which a transliteration library would get wrong anyway
+# (readings are ambiguous; 銀幕 is not "ginbaku"). So those come through
+# blank for the user to fill in, and the row sorts to the top until they do.
+SLUG_SAFE = re.compile(r"[^a-z0-9]+")
+
+
+def derive_slug(name: str) -> str:
+    """Lowercase-hyphen slug, or "" when the name is not Latin script.
+
+    Mirrors the convention the existing hand-written rows already follow:
+    punctuation dropped, spaces to hyphens, and an SE wrapper flattened the
+    same way its contents are — SE(Moving Lights!) is se-moving-lights.
+    Returning "" rather than guessing keeps a wrong slug out of a URL, which
+    is the one field here that is expensive to change later: it is the
+    song's permalink.
+    """
+    if not name.isascii():
+        return ""
+    slug = SLUG_SAFE.sub("-", name.lower()).strip("-")
+    return slug
+
+
+def add_song_detail_templates(rows: list[dict[str, str]], path: str) -> None:
+    """Add a song_details.csv row for every song that has been performed but
+    has none yet, so the file is the complete list of songs worth annotating.
+
+    Same shape, and the same hard-won rules, as add_override_templates():
+    the file is rewritten every run rather than appended to, rows still
+    missing something sort first, and **no existing row's fields are ever
+    edited** — only reordered. A row hand-filled months ago survives
+    byte-for-byte.
+
+    Keyed by `name`, which is what setlists.csv carries and what
+    export_site_data.py looks a song up by. A rename in song_renames.csv is
+    applied before this sees the name, so a corrected spelling does not
+    generate a second row for the same song.
+
+    Only `slug` is prefilled, and only when the name is Latin script — see
+    derive_slug(). Everything else (translation, track number, the four
+    credits, the source link) is information the setlist post does not
+    contain and nothing here can invent.
+
+    Note what this deliberately does *not* do: it never removes a row for a
+    song that has dropped out of the setlists. A song can be absent from
+    every pasted setlist and still be real — the archive does not reach back
+    forever, and a B-side may simply not have been played yet in the covered
+    window. Deleting curated credits because a song went unplayed would be
+    destroying hand-typed work to satisfy a derived list.
+    """
+    existing_rows: list[dict[str, str]] = []
+    if os.path.exists(path):
+        with open(path, newline="", encoding="utf-8-sig") as fh:
+            reader = csv.DictReader(fh)
+            existing_rows = [
+                {field: (row.get(field) or "").strip() for field in SONG_DETAIL_TEMPLATE_FIELDS}
+                for row in reader
+                if (row.get("name") or "").strip()
+            ]
+    known = {row["name"] for row in existing_rows}
+
+    # Order of first appearance, so a run that adds several songs lists them
+    # in the order they were first played rather than in hash order.
+    performed: list[str] = []
+    for row in rows:
+        song = row["song"]
+        if song not in known and song not in performed:
+            performed.append(song)
+
+    new_rows = [
+        {
+            **{field: "" for field in SONG_DETAIL_TEMPLATE_FIELDS},
+            "name": song,
+            "slug": derive_slug(song),
+        }
+        for song in performed
+    ]
+
+    def needs_anything(row: dict[str, str]) -> bool:
+        # A slug is the one field that actually breaks something when
+        # missing (the song's id falls back to its raw name, so a Japanese
+        # title becomes a percent-encoded URL). Credits are optional by
+        # design — song_credits() renders nothing when they are all blank —
+        # so a row with a slug and no credits is finished, not pending.
+        return not row["slug"]
+
+    # Secondary key is the row's existing position, not its name: sorting
+    # alphabetically instead churned 39 lines of a 22-row file to add one
+    # song, which buries the actual change in a diff and makes every commit
+    # touching this file unreviewable. Existing rows keep their order,
+    # genuinely new ones land at the end — unless they need a slug, in which
+    # case they float to the top with anything else still waiting.
+    all_rows = existing_rows + new_rows
+    order = {id(row): index for index, row in enumerate(all_rows)}
+    all_rows.sort(key=lambda r: (not needs_anything(r), order[id(r)]))
+
+    # LF, not csv's default CRLF. This file is hand-maintained and already
+    # LF; writing CRLF rewrote all 27 lines to add one, which hides the
+    # actual change. (event_overrides.csv is CRLF because it was created by
+    # its template writer in the first place — no existing convention to
+    # keep.) If a spreadsheet ever saves this file back as CRLF, the next
+    # run converts it to LF once and is stable after that.
+    with open(path, "w", newline="", encoding="utf-8-sig") as fh:
+        writer = csv.DictWriter(
+            fh, fieldnames=SONG_DETAIL_TEMPLATE_FIELDS, lineterminator="\n"
+        )
+        writer.writeheader()
+        writer.writerows(all_rows)
+
+    if new_rows:
+        detail = ", ".join(
+            f"{r['name']}" + ("" if r["slug"] else " (needs a slug)") for r in new_rows
+        )
+        print(f"added {len(new_rows)} rows to {rel(path)}: {detail}")
+    incomplete = sum(1 for r in all_rows if needs_anything(r))
+    if incomplete:
+        print(
+            f"{rel(path)}: {incomplete}/{len(all_rows)} rows still need a slug — "
+            f"romanise the name by hand; it becomes the song's URL"
+        )
+
+
 def add_override_templates(
     rows: list[dict[str, str]], calendar: list[dict[str, str]], path: str
 ) -> None:
@@ -1324,6 +1464,7 @@ def main() -> None:
         help="like --missing, including non-show entries",
     )
     parser.add_argument("--overrides", default=EVENT_OVERRIDES_CSV)
+    parser.add_argument("--song-details", default=SONG_DETAILS_CSV)
     args = parser.parse_args()
 
     if not os.path.isdir(args.posts_dir):
@@ -1369,6 +1510,7 @@ def main() -> None:
         report_missing(calendar, rows, date.today(), args.missing_all)
 
     add_override_templates(rows, calendar, args.overrides)
+    add_song_detail_templates(rows, args.song_details)
 
     write_csv(args.output, rows)
     print(f"\nwrote {rel(args.output)}")

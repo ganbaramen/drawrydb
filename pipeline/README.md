@@ -67,7 +67,7 @@ you automatically, so you never have to hunt for which shows are missing data.
 | `data/input/event_overrides.csv` | **yours** | Venue/times the calendar didn't state (rows auto-added) |
 | `data/input/song_renames.csv` | **yours** | Song-name typo merges, `wrong,correct,reason` |
 | `data/input/venue_renames.csv` | **yours** | Venue-name merges, `wrong,correct` |
-| `data/input/song_details.csv` | **yours, optional** | Song slug + translation + credits, `name,slug,translation,number,lyrics,composition,arrangement,choreography,note` |
+| `data/input/song_details.csv` | **yours, optional — rows added for you** | Song slug + translation + credits, `name,slug,translation,number,lyrics,composition,arrangement,choreography,note`. `sync_setlists.py` adds a row for every song that gets performed, so you never have to notice a new one; it fills in the slug when the title is Latin script and leaves it blank when it needs romanising by hand. |
 | `data/input/venue_details.csv` | **yours, optional** | Venue slug + address + capacity, `name,slug,address,capacity` |
 | `data/input/creator_details.csv` | **yours, optional** | Creator slug + X handle, `name,slug,x` |
 | `data/input/event_notes.csv` | **yours, optional** | Freeform note shown on an event's page, `date,match,note` |
@@ -338,6 +338,30 @@ have a slug with no credits filled in yet, which is the current state
 of most rows. Slug and credits share one file, not two, because both are
 exactly one hand-curated row per song — nothing about them is derived
 from setlists.csv/song_stats.csv the way the rest of song_stats.csv is.
+
+**You do not have to add a row when the band plays a new song.**
+`sync_setlists.py` adds it for you on the next run and tells you it did:
+
+```
+added 1 rows to data/input/song_details.csv: Sunlight
+```
+
+The slug is filled in when the title is Latin script (`Sunlight` →
+`sunlight`). A Japanese title needs romanising by hand — the readings are
+ambiguous and the slug is the song's permanent URL, so the script leaves it
+blank rather than guessing, floats that row to the top of the file, and
+says so:
+
+```
+added 1 rows to data/input/song_details.csv: 銀幕 (needs a slug)
+data/input/song_details.csv: 1/23 rows still need a slug — romanise the name by hand; it becomes the song's URL
+```
+
+Until you fill it in, the song still works everywhere; its URL is just the
+raw title, percent-encoded. Everything else — translation, track number,
+credits, the note — is information a setlist post doesn't contain, so those
+stay blank until you type them. Rows are never removed, so a song that
+hasn't been played lately keeps its credits.
 
 ### `event_overrides.csv`
 
