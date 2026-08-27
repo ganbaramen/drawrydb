@@ -56,10 +56,16 @@ for (const event of sorted) {
 // answer entirely, with nothing on screen saying a filter was in force.
 const DEFAULT_FILTER = 'all';
 
+// DEFAULT_FILTER first. The order used to be has/none/all, from when
+// `has` was the default; leaving it that way after the default moved put
+// the selected position last, so the control opened with its highlight at
+// the far end and the two narrowing options to its left — backwards for a
+// segmented control, and backwards for arrow-key order too, since a radio
+// group starts on the checked one and steps outward from there.
 const setlistFilters = [
+  { value: 'all', label: t(lang, 'events.filter.all') },
   { value: 'has', label: t(lang, 'events.filter.has') },
   { value: 'none', label: t(lang, 'events.filter.none') },
-  { value: 'all', label: t(lang, 'events.filter.all') },
 ];
 ---
 
