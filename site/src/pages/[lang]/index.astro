@@ -24,6 +24,11 @@ const recent = recentSetlists(5);
 // JS re-pick using the visitor's JST clock. Without JS the build-time pick
 // below renders unchanged; with JS the card survives day rollovers and
 // slow deploys instead of showing a show that already happened.
+//
+// The re-pick can move the card forward and can remove it entirely once
+// every candidate is past; it can never create one the build did not
+// produce, and does not try. See the script for why that case cannot
+// arise.
 // Pre-formatted dates keep all formatting server-side; the script only
 // chooses between ready-made strings.
 const candidates = events
@@ -41,7 +46,7 @@ const candidates = events
   <h1 class="sr-only">{t(lang, 'home.heading')}</h1>
   {
     next && (
-      <section class="flex flex-col gap-3">
+      <section id="next-live" class="flex flex-col gap-3">
         <SectionHeading class="mt-0">{t(lang, 'home.next')}</SectionHeading>
         <EventCard
           listItem={false}
@@ -68,7 +73,11 @@ const candidates = events
     (() => {
       const payload = document.getElementById('next-live-data');
       const link = document.getElementById('next-live-link');
-      if (!payload || !link) return;
+      const section = document.getElementById('next-live');
+      // No card in the markup means the build already found nothing
+      // upcoming, and this script cannot change that — see the note on
+      // removal below.
+      if (!payload || !link || !section) return;
       const today = new Intl.DateTimeFormat('sv-SE', {
         timeZone: 'Asia/Tokyo',
       }).format(new Date());
@@ -77,7 +86,22 @@ const candidates = events
       // happened at build time — a setlist entered after this page was
       // built still needs the next deploy to disappear from here.
       const next = JSON.parse(payload.textContent).find((e) => e.date >= today);
-      if (!next || link.href.endsWith(`/${next.id}/`)) return;
+      // Every candidate is now in the past: the build's pick has happened
+      // and nothing has replaced it. Drop the whole section rather than
+      // leave a finished show labelled "next live" — the one correction
+      // this re-pick used to be unable to make, since it could only ever
+      // move the card forward.
+      //
+      // Only removal is reachable, never creation. Both clocks are JST and
+      // time only moves forward, so the browser's set of candidates dated
+      // on or after today is always a subset of the build's — if the build
+      // found nothing there is nothing here to find, and the section is not
+      // in the markup to begin with.
+      if (!next) {
+        section.remove();
+        return;
+      }
+      if (link.href.endsWith(`/${next.id}/`)) return;
       link.href = `${link.dataset.base}${next.id}/`;
       link.querySelector('.event-date').textContent = next.dateFormatted;
       link.querySelector('.event-title').textContent = next.title;
