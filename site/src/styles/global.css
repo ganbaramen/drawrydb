@@ -469,3 +469,54 @@ html:not([data-js]) [data-needs-js] {
     @apply flex;
   }
 }
+
+/*
+ * Which theme-toggle icon shows.
+ *
+ * Derived from the same two signals the palette above uses — an explicit
+ * `data-theme`, otherwise `prefers-color-scheme` — rather than toggled by
+ * script. Both icons ship in the markup (the Icon component inlines lucide
+ * SVGs at build time, so there is nothing to swap a `name` for at runtime);
+ * these rules pick one.
+ *
+ * The icon names the theme a click switches *to*, not the current one, so
+ * a light page offers the moon and a dark page the sun.
+ *
+ * Doing it here rather than in the deferred script is what fixes the icon
+ * being briefly wrong on arrival: a visitor whose OS asks for dark used to
+ * get the markup's default moon until the script ran and corrected it. The
+ * entry that recorded this assumed the fix meant deciding the icon before
+ * paint in JavaScript, at the cost of DOM work in the critical path. It
+ * does not — the same cascade that already paints the right palette before
+ * paint can pick the right glyph, for free.
+ *
+ * It also removes a whole class of staleness rather than one instance:
+ * because the glyph is a function of `data-theme`, it cannot disagree with
+ * the palette, whatever happens to storage or to the script.
+ */
+[data-icon-sun] {
+  @apply hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-icon-moon] {
+    @apply hidden;
+  }
+
+  :root:not([data-theme="light"]) [data-icon-sun] {
+    @apply inline-block;
+  }
+}
+
+:root[data-theme="dark"] [data-icon-moon] {
+  @apply hidden;
+}
+
+:root[data-theme="dark"] [data-icon-sun] {
+  @apply inline-block;
+}
+
+/* An explicit light choice wins over the OS asking for dark. */
+:root[data-theme="light"] [data-icon-moon] {
+  @apply inline-block;
+}

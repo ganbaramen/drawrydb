@@ -23,6 +23,14 @@ const ja: Dict = {
   // bare "EN", with nothing saying what following it does.
   'nav.language': '言語',
   'a11y.skipToContent': '本文へスキップ',
+  // Appended, visually hidden, to every link that opens a new tab. The
+  // external-link glyph says so to people who can see it and to nobody
+  // else; this is the same fact in the accessible name.
+  'a11y.newTab': '(新しいタブで開く)',
+  'notFound.title': 'ページが見つかりません',
+  'notFound.body': 'お探しのページは存在しないか、移動した可能性があります。',
+  'notFound.home': 'ホームへ',
+  'notFound.events': 'イベント一覧へ',
   // Shared by the song and venue pages' first/last date rows.
   'common.daysAgo': '{n}日前',
   'theme.toggle': 'テーマを切り替える',
@@ -111,7 +119,7 @@ const ja: Dict = {
   'setLength.length': '尺',
   'setLength.shows': '公演数',
   'setLength.avgSongs': '平均曲数*',
-  'setLength.avgSongsNote': '* SE・Interludeを除く',
+  'setLength.avgSongsNote': '* 平均曲数はSE・Interludeを除く',
   'setLength.withSe': 'SEあり',
   'setLength.withSeDetail': '{count}/{shows} ({pct}%)',
   'setLength.uncovered': '{n}回はライブの開始・終了時刻が不明のため対象外',
@@ -129,6 +137,11 @@ const en: Dict = {
   'nav.toggle': 'Menu',
   'nav.language': 'Language',
   'a11y.skipToContent': 'Skip to content',
+  'a11y.newTab': '(opens in a new tab)',
+  'notFound.title': 'Page not found',
+  'notFound.body': "The page you're looking for doesn't exist, or has moved.",
+  'notFound.home': 'Go to the home page',
+  'notFound.events': 'Go to all events',
   'common.daysAgo': '{n} days ago',
   'theme.toggle': 'Toggle theme',
   'theme.announce.light': 'Switched to light theme',
@@ -208,7 +221,7 @@ const en: Dict = {
   'setLength.length': 'Length',
   'setLength.shows': 'Shows',
   'setLength.avgSongs': 'Avg songs*',
-  'setLength.avgSongsNote': '* Excludes SE/Interlude',
+  'setLength.avgSongsNote': '* Avg songs excludes SE/Interlude',
   'setLength.withSe': 'Has SE',
   'setLength.withSeDetail': '{count}/{shows} ({pct}%)',
   'setLength.uncovered': "{n} shows excluded — calendar doesn't state a live start/end",

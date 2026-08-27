@@ -70,6 +70,20 @@ export function initSortableTable(table: HTMLTableElement): void {
           return ascending ? na - nb : nb - na;
         }
 
+        // Dates compare as plain strings (ISO sorts correctly that way),
+        // but blanks need the same treatment the numeric branch gives
+        // them. Without this an empty date sorts *first* ascending and
+        // last descending — the exact asymmetry B-04 was fixed to remove,
+        // and the site's rule is blanks last in both directions. No date
+        // column is blank today; this is the branch that keeps it true if
+        // one ever is.
+        const aBlank = va === '';
+        const bBlank = vb === '';
+        if (aBlank || bBlank) {
+          if (aBlank && bBlank) return 0;
+          return aBlank ? 1 : -1;
+        }
+
         const cmp = va < vb ? -1 : va > vb ? 1 : 0;
         return ascending ? cmp : -cmp;
       });

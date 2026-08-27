@@ -165,8 +165,15 @@ const section = path.split('/')[0];
               data-announce-light={t(lang, 'theme.announce.light')}
               data-announce-dark={t(lang, 'theme.announce.dark')}
             >
+              {/*
+                Which icon shows is decided by CSS off the same two signals
+                the palette uses (an explicit data-theme, else the OS media
+                query), not by script. Both ship; neither carries `hidden`.
+                See global.css. This is what makes the icon correct at first
+                paint instead of correct one script-tick later.
+              */}
               <Icon name="moon" data-icon-moon />
-              <Icon name="sun" data-icon-sun class="hidden size-[1em] text-base" />
+              <Icon name="sun" data-icon-sun class="size-[1em] text-base" />
             </Button>
             <!--
               What confirms the click. The button carries no aria-pressed:
@@ -229,7 +236,8 @@ const section = path.split('/')[0];
             class="hover:text-foreground underline underline-offset-4 transition-colors"
             href="https://x.com/soreyoriramen"
             target="_blank"
-            rel="noopener noreferrer">ramen (@soreyoriramen)</a
+            rel="noopener noreferrer"
+            >ramen (@soreyoriramen)<span class="sr-only">{t(lang, 'a11y.newTab')}</span></a
           >
         </p>
         <p>
@@ -239,8 +247,9 @@ const section = path.split('/')[0];
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="github" class="size-3.5" />
+            <Icon name="github" class="size-3.5" aria-hidden="true" />
             {t(lang, 'footer.source')}
+            <span class="sr-only">{t(lang, 'a11y.newTab')}</span>
           </a>
         </p>
       </div>
@@ -304,21 +313,9 @@ const section = path.split('/')[0];
       const root = document.documentElement;
       const button = document.getElementById('theme-toggle')!;
       const media = window.matchMedia('(prefers-color-scheme: dark)');
-      // Both icons ship in the markup (lucide SVGs are inlined at build
-      // time by the Icon component, so there's nothing to swap a `name`
-      // for at runtime); syncIcon just picks which one is visible.
-      const moonIcon = button.querySelector('[data-icon-moon]') as SVGElement;
-      const sunIcon = button.querySelector('[data-icon-sun]') as SVGElement;
 
       function effectiveTheme(): 'light' | 'dark' {
         return (root.dataset.theme as 'light' | 'dark' | undefined) ?? (media.matches ? 'dark' : 'light');
-      }
-
-      // Icon shows what clicking it switches *to*, not the current state.
-      function syncIcon() {
-        const dark = effectiveTheme() === 'dark';
-        moonIcon.classList.toggle('hidden', dark);
-        sunIcon.classList.toggle('hidden', !dark);
       }
 
       // The button's accessible name is identical before and after a click,
@@ -351,15 +348,11 @@ const section = path.split('/')[0];
         // instant switch we always had.
         const apply = () => {
           root.dataset.theme = next;
-          // Icon before the write: storing can throw (site data blocked, quota
-          // exhausted) and the palette has already changed by then, so syncing
-          // afterwards left the button showing the old state on a page that
-          // had already switched. Wrapped too, so a failed write costs the
-          // preference and nothing else.
-          syncIcon();
-          // Before the write, for the same reason the icon sync is: storing
-          // can throw, and the palette has already changed by the time it
-          // does. A failed write costs the preference and nothing else.
+          // Before the write: storing can throw, and the palette has
+          // already changed by the time it does. A failed write costs the
+          // preference and nothing else. (The icon needs no ordering care
+          // any more — it follows data-theme in CSS, so it moved on the
+          // line above.)
           announceTheme(next);
           try {
             localStorage.setItem('theme', next);
@@ -388,23 +381,12 @@ const section = path.split('/')[0];
           .catch(() => {});
       });
 
-      // No stored preference means the OS setting still governs — keep the
-      // icon in sync if the visitor changes it while the page is open.
-      media.addEventListener('change', () => {
-        // Deliberately silent: this is the OS changing under a page the
-        // visitor may not be looking at, not something they did here. The
-        // icon still has to keep up, but announcing it would speak at
-        // someone who never touched this control.
-        try {
-          if (localStorage.getItem('theme')) return;
-        } catch {
-          // Storage blocked means no explicit preference can have been
-          // stored, so the OS still governs — sync rather than bail.
-        }
-        syncIcon();
-      });
-
-      syncIcon();
+      // No OS-change listener any more, and no icon sync on load. Both
+      // existed only to keep the button's icon in step with the effective
+      // theme, which CSS now derives from the same two signals the palette
+      // does — so the icon is right at first paint rather than one script
+      // tick later, and it follows a system appearance change live even in
+      // a browser blocking site data.
     </script>
   </body>
 </html>

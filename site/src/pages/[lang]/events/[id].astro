@@ -104,7 +104,8 @@ const meetDurationMinutes =
                 rel="noopener noreferrer"
               >
                 {link.label ?? link.url}
-                <Icon name="external-link" class="size-3 opacity-60" />
+                <Icon name="external-link" class="size-3 opacity-60" aria-hidden="true" />
+                <span class="sr-only">{t(lang, 'a11y.newTab')}</span>
               </a>
             </li>
           ))}
