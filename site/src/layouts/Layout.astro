@@ -150,10 +150,27 @@ const section = path.split('/')[0];
               variant="outline"
               size="icon-sm"
               aria-label={t(lang, 'theme.toggle')}
+              data-announce-light={t(lang, 'theme.announce.light')}
+              data-announce-dark={t(lang, 'theme.announce.dark')}
             >
               <Icon name="moon" data-icon-moon />
               <Icon name="sun" data-icon-sun class="hidden size-[1em] text-base" />
             </Button>
+            <!--
+              What confirms the click. The button carries no aria-pressed:
+              it has three states (light, dark, following the OS) where
+              aria-pressed has two, and its label describes the theme the
+              *next* click gives rather than the current one, so a "pressed"
+              state on it would be answering a different question. The
+              palette change is the confirmation for everyone who can see
+              it; this region is that confirmation for everyone else.
+
+              Same shape as the events index's #event-announce, and for the
+              same reason: it ships empty and is written to, which is the
+              pattern VoiceOver actually honours. Placed outside the button
+              so writing to it never disturbs the button's own name.
+            -->
+            <p id="theme-announce" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
             <Button
               id="nav-toggle"
               type="button"
@@ -287,6 +304,28 @@ const section = path.split('/')[0];
         sunIcon.classList.toggle('hidden', !dark);
       }
 
+      // The button's accessible name is identical before and after a click,
+      // so nothing about the button confirms it did anything. Announce the
+      // theme that is now in force instead.
+      //
+      // Clearing before the write is what makes a repeat announcement
+      // register at all: writing the same string a region already holds is
+      // swallowed as "no new content", which a visitor toggling back and
+      // forth past an OS change would hit. The 100ms gap is the same one
+      // the events index needs — a clear and a write in one frame collapse
+      // into no change having happened.
+      const announceEl = document.getElementById('theme-announce')!;
+      let announceTimer: number | undefined;
+      function announceTheme(theme: 'light' | 'dark') {
+        const text =
+          theme === 'dark' ? button.dataset.announceDark! : button.dataset.announceLight!;
+        window.clearTimeout(announceTimer);
+        announceEl.textContent = '';
+        announceTimer = window.setTimeout(() => {
+          announceEl.textContent = text;
+        }, 100);
+      }
+
       button.addEventListener('click', () => {
         const next = effectiveTheme() === 'dark' ? 'light' : 'dark';
         // Repaint the page through the View Transitions API: the new theme
@@ -301,6 +340,10 @@ const section = path.split('/')[0];
           // had already switched. Wrapped too, so a failed write costs the
           // preference and nothing else.
           syncIcon();
+          // Before the write, for the same reason the icon sync is: storing
+          // can throw, and the palette has already changed by the time it
+          // does. A failed write costs the preference and nothing else.
+          announceTheme(next);
           try {
             localStorage.setItem('theme', next);
           } catch {}
@@ -331,7 +374,17 @@ const section = path.split('/')[0];
       // No stored preference means the OS setting still governs — keep the
       // icon in sync if the visitor changes it while the page is open.
       media.addEventListener('change', () => {
-        if (!localStorage.getItem('theme')) syncIcon();
+        // Deliberately silent: this is the OS changing under a page the
+        // visitor may not be looking at, not something they did here. The
+        // icon still has to keep up, but announcing it would speak at
+        // someone who never touched this control.
+        try {
+          if (localStorage.getItem('theme')) return;
+        } catch {
+          // Storage blocked means no explicit preference can have been
+          // stored, so the OS still governs — sync rather than bail.
+        }
+        syncIcon();
       });
 
       syncIcon();

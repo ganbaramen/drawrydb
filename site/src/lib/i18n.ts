@@ -26,6 +26,12 @@ const ja: Dict = {
   // Shared by the song and venue pages' first/last date rows.
   'common.daysAgo': '{n}日前',
   'theme.toggle': 'テーマを切り替える',
+  // Announced after a click, not used as a label. The button's own name
+  // describes the *next* theme, so it reads identically before and after
+  // and confirms nothing on its own; these say which theme is now in
+  // force. Past tense on purpose — it reports a result, not an offer.
+  'theme.announce.light': 'ライトテーマに切り替えました',
+  'theme.announce.dark': 'ダークテーマに切り替えました',
   'footer.disclaimer':
     'これは非公式のファンサイトです。Drawry. 本人・関係者・公式とは一切関係ありません。',
   'footer.contact': '連絡先：',
@@ -125,6 +131,8 @@ const en: Dict = {
   'a11y.skipToContent': 'Skip to content',
   'common.daysAgo': '{n} days ago',
   'theme.toggle': 'Toggle theme',
+  'theme.announce.light': 'Switched to light theme',
+  'theme.announce.dark': 'Switched to dark theme',
   'footer.disclaimer':
     'This is an unofficial fan project, not affiliated with Drawry. or their management.',
   'footer.contact': 'Contact: ',
