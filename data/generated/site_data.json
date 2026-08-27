@@ -19652,7 +19652,7 @@
         "composition": "小鳥遊カイリ",
         "arrangement": "小鳥遊カイリ",
         "choreography": "ナンシー",
-        "note": "https://x.com/Drawry0920/status/2067926003566166494\nhttps://x.com/nancy_jpn/status/2011806531982090414"
+        "note": "https://x.com/Drawry0920/status/2092953342976942547\nhttps://x.com/nancy_jpn/status/2011806531982090414"
       }
     },
     {
@@ -21858,7 +21858,14 @@
           "note": "初披露"
         }
       ],
-      "credits": null
+      "credits": {
+        "number": "",
+        "lyrics": "OverNote'",
+        "composition": "OverNote'",
+        "arrangement": "OverNote'",
+        "choreography": "ミミミユ",
+        "note": "https://x.com/Drawry0920/status/2092973958991847901"
+      }
     }
   ],
   "venues": [
@@ -22749,6 +22756,37 @@
       ]
     },
     {
+      "id": "mimimiyu",
+      "name": "ミミミユ",
+      "x": "mimimiyu_333",
+      "songs": [
+        {
+          "song_id": "asayake-to-shasou",
+          "song_name": "朝焼けと車窓",
+          "translation": "Morning Glow and the Train Window",
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "egakikake-no-sora",
+          "song_name": "描きかけの空",
+          "translation": "Egakikake no Sora",
+          "roles": [
+            "choreography"
+          ]
+        },
+        {
+          "song_id": "sunlight",
+          "song_name": "Sunlight",
+          "translation": null,
+          "roles": [
+            "choreography"
+          ]
+        }
+      ]
+    },
+    {
       "id": "takanashi-kairi",
       "name": "小鳥遊カイリ",
       "x": "Takanashikairi",
@@ -22809,6 +22847,33 @@
       ]
     },
     {
+      "id": "overnote",
+      "name": "OverNote'",
+      "x": "Over_Note",
+      "songs": [
+        {
+          "song_id": "egakikake-no-sora",
+          "song_name": "描きかけの空",
+          "translation": "Egakikake no Sora",
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        },
+        {
+          "song_id": "sunlight",
+          "song_name": "Sunlight",
+          "translation": null,
+          "roles": [
+            "lyrics",
+            "composition",
+            "arrangement"
+          ]
+        }
+      ]
+    },
+    {
       "id": "yoshimura",
       "name": "Yoshimura",
       "x": "yo32477",
@@ -22827,29 +22892,6 @@
           "translation": "Stand by Me",
           "roles": [
             "lyrics"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "mimimiyu",
-      "name": "ミミミユ",
-      "x": "mimimiyu_333",
-      "songs": [
-        {
-          "song_id": "asayake-to-shasou",
-          "song_name": "朝焼けと車窓",
-          "translation": "Morning Glow and the Train Window",
-          "roles": [
-            "choreography"
-          ]
-        },
-        {
-          "song_id": "egakikake-no-sora",
-          "song_name": "描きかけの空",
-          "translation": "Egakikake no Sora",
-          "roles": [
-            "choreography"
           ]
         }
       ]
@@ -22899,23 +22941,6 @@
           "roles": [
             "lyrics",
             "composition"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "overnote",
-      "name": "OverNote'",
-      "x": "Over_Note",
-      "songs": [
-        {
-          "song_id": "egakikake-no-sora",
-          "song_name": "描きかけの空",
-          "translation": "Egakikake no Sora",
-          "roles": [
-            "lyrics",
-            "composition",
-            "arrangement"
           ]
         }
       ]
