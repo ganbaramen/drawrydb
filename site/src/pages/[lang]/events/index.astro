@@ -47,6 +47,15 @@ for (const event of sorted) {
   eventsByMonth.get(key)!.push(event);
 }
 
+// The index opens on すべて. It used to open on セトリあり, which reads as the
+// right default for an archive — but it hid every *future* show, so someone
+// arriving to check what was coming up saw 143 of 171 events and concluded
+// there was nothing scheduled. The home page's next-live card was the only
+// other route to that answer. Showing everything by default costs a history
+// browser one click; hiding upcoming shows cost the other visitor the
+// answer entirely, with nothing on screen saying a filter was in force.
+const DEFAULT_FILTER = 'all';
+
 const setlistFilters = [
   { value: 'has', label: t(lang, 'events.filter.has') },
   { value: 'none', label: t(lang, 'events.filter.none') },
@@ -111,7 +120,7 @@ const setlistFilters = [
                 type="radio"
                 name="setlist-filter"
                 value={filter.value}
-                checked={filter.value === 'has'}
+                checked={filter.value === DEFAULT_FILTER}
                 class="sr-only"
               />
               {filter.label}
@@ -126,16 +135,23 @@ const setlistFilters = [
           id="month-filter"
           class="border-input bg-card text-foreground focus-visible:border-ring focus-visible:ring-ring/50 h-8 rounded-md border px-2 text-xs shadow-xs outline-none focus-visible:ring-3"
         >
+          {/*
+            Counted against DEFAULT_FILTER, not against has_setlist, so the
+            labels agree with the view actually being delivered. The script
+            recomputes them on its first pass anyway — and this select is
+            not rendered at all without script — but a number that is wrong
+            for the shipped state is worth not writing down.
+          */}
           <option value="all" data-label={t(lang, 'events.month.all')}>
-            {t(lang, 'events.month.all')} ({hasSetlistCount})
+            {t(lang, 'events.month.all')} ({events.length})
           </option>
           {
             monthKeys.map((key) => {
               const label = formatMonth(lang, key);
-              const has = eventsByMonth.get(key)!.filter((e) => e.has_setlist).length;
+              const count = eventsByMonth.get(key)!.length;
               return (
                 <option value={key} data-label={label}>
-                  {label} ({has})
+                  {label} ({count})
                 </option>
               );
             })
@@ -192,7 +208,7 @@ const setlistFilters = [
     at all. It stays because it is the cheapest way to read the active
     filter back from a console.
   */}
-  <div id="event-list" data-filter="has" class="flex flex-col gap-2">
+  <div id="event-list" data-filter={DEFAULT_FILTER} class="flex flex-col gap-2">
     {
       monthKeys.map((key) => (
         <section class="month flex flex-col gap-2" data-month={key}>
