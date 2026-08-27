@@ -1,0 +1,77 @@
+---
+// The site's own not-found page. GitHub Pages serves /404.html for any
+// address under the project that matches no file, so this is the one page
+// whose route is decided by the host rather than by Astro.
+//
+// Rendered in `ja`, the same default the root redirect picks, because the
+// address that missed carries no reliable locale: a typo'd path may have
+// no locale segment at all. The script below upgrades that guess when the
+// path does say `/en/`, which is the common case — a real English URL that
+// has gone stale — but the page is complete and correct without it, so a
+// visitor with no JavaScript still gets a heading, an explanation and two
+// routes back rather than the host's bare default.
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { Button } from '@/components/ui/button';
+import { t } from '../lib/i18n';
+
+const base = import.meta.env.BASE_URL;
+// Both locales' strings ship so the swap below is a text substitution and
+// never a fetch; there are four of them.
+const strings = {
+  ja: {
+    title: t('ja', 'notFound.title'),
+    body: t('ja', 'notFound.body'),
+    home: t('ja', 'notFound.home'),
+    events: t('ja', 'notFound.events'),
+  },
+  en: {
+    title: t('en', 'notFound.title'),
+    body: t('en', 'notFound.body'),
+    home: t('en', 'notFound.home'),
+    events: t('en', 'notFound.events'),
+  },
+};
+---
+
+<Layout title={strings.ja.title} lang="ja" path="">
+  <PageHeader title={strings.ja.title} />
+
+  <p class="text-muted-foreground" data-nf="body">{strings.ja.body}</p>
+
+  <div class="flex flex-wrap gap-2">
+    <Button as="a" href={`${base}/ja/`} variant="outline" data-nf="home">
+      {strings.ja.home}
+    </Button>
+    <Button as="a" href={`${base}/ja/events/`} variant="outline" data-nf="events">
+      {strings.ja.events}
+    </Button>
+  </div>
+
+  <script is:inline define:vars={{ base, strings }}>
+    // Only the page's own copy and its two links are swapped, not the
+    // surrounding shell: the header and footer are rendered server-side in
+    // ja and re-translating them here would mean duplicating every string
+    // in the layout for one page. The language switch in the header still
+    // works, so a visitor who wants the English shell is one click away.
+    if (location.pathname.startsWith(`${base}/en/`)) {
+      const s = strings.en;
+      document.documentElement.lang = 'en';
+      document.title = `${s.title} | DrawryDB.`;
+      const h1 = document.querySelector('h1');
+      if (h1) h1.textContent = s.title;
+      const body = document.querySelector('[data-nf="body"]');
+      if (body) body.textContent = s.body;
+      const home = document.querySelector('[data-nf="home"]');
+      if (home) {
+        home.textContent = s.home;
+        home.setAttribute('href', `${base}/en/`);
+      }
+      const events = document.querySelector('[data-nf="events"]');
+      if (events) {
+        events.textContent = s.events;
+        events.setAttribute('href', `${base}/en/events/`);
+      }
+    }
+  </script>
+</Layout>

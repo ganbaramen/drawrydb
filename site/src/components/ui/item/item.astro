@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 
 type Props = VariantProps<typeof variants> &
   HTMLAttributes<"div"> &
-  HTMLAttributes<"a">
+  HTMLAttributes<"a"> & { listItem?: boolean }
 
 const variants = cva(
   "[a]:hover:bg-muted group/item focus-visible:border-ring focus-visible:ring-ring/50 flex w-full flex-wrap items-center rounded-md border text-sm transition-colors duration-100 outline-none focus-visible:ring-[3px] [a]:transition-colors",
@@ -53,19 +53,30 @@ const {
   variant = "default",
   size = "default",
   href,
+  listItem = true,
   ...props
 } = Astro.props
 
 const Comp = href ? "a" : "div"
+// ItemGroup is a <ul>, so an Item inside one has to be an <li> for the list
+// to have any items at all. Every prop stays on the inner element — the id
+// and data-* hooks the home page's re-pick and the events filter key off
+// are unchanged, and so is `hidden`. Because the <li> is now the flex
+// child, hiding the inner element alone would leave an empty row holding
+// the group's gap open, so global.css collapses the <li> instead (see the
+// #event-list rules). Pass listItem={false} outside a group.
+const Wrapper = listItem ? "li" : Fragment
 ---
 
-<Comp
-  data-slot="item"
-  data-variant={variant}
-  data-size={size}
-  class={cn(variants({ variant, size }), className)}
-  href={href}
-  {...props}
->
-  <slot />
-</Comp>
+<Wrapper>
+  <Comp
+    data-slot="item"
+    data-variant={variant}
+    data-size={size}
+    class={cn(variants({ variant, size }), className)}
+    href={href}
+    {...props}
+  >
+    <slot />
+  </Comp>
+</Wrapper>

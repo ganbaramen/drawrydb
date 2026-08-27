@@ -59,9 +59,24 @@ const section = path.split('/')[0];
           document.documentElement.dataset.theme = stored;
         }
       } catch {}
+
+      // Marks the document as scripted, before first paint and outside the
+      // try above so a storage throw can't skip it. global.css hangs the
+      // narrow-screen nav collapse off this: without it the section links
+      // stay in normal flow and wrap to a second row, because the button
+      // that would reveal them only works if this script ran. Setting it
+      // pre-paint is what keeps a scripted visit from flashing the links
+      // before they collapse.
+      document.documentElement.dataset.js = '';
     </script>
   </head>
   <body class="min-h-dvh">
+    <!--
+      Every page opens with eight focusable controls before <main>, so a
+      keyboard user traversed the whole header on every navigation. This is
+      the first thing in the document and is visually hidden until focused.
+    -->
+    <a href="#main" class="skip-link">{t(lang, 'a11y.skipToContent')}</a>
     <header
       class="bg-background/85 supports-[backdrop-filter]:bg-background/70 sticky top-0 z-40 border-b backdrop-blur"
     >
@@ -75,15 +90,18 @@ const section = path.split('/')[0];
 
         <div class="flex flex-wrap items-center justify-end gap-x-3 gap-y-2">
           <!--
-            Above the `sm` breakpoint this is a plain inline row. Below it,
-            the nav-toggle button below turns it into a dropdown anchored to
-            the header — driven by data-open rather than a class so the
-            script stays a single attribute flip.
+            A plain inline row in the markup, at every width. The dropdown
+            behaviour below the `sm` breakpoint is added by global.css and
+            only when <html> carries data-js, because the button that opens
+            it needs script: hiding the links unconditionally left them
+            unreachable without JavaScript, with a visible, focusable, inert
+            button as the only route to them. Still driven by data-open
+            rather than a class, so the script stays one attribute flip.
           -->
           <nav
             id="site-nav"
             data-open="false"
-            class="flex flex-wrap items-center justify-end gap-0.5 max-sm:bg-popover max-sm:absolute max-sm:top-full max-sm:right-4 max-sm:z-50 max-sm:hidden max-sm:w-48 max-sm:flex-col max-sm:items-stretch max-sm:rounded-lg max-sm:border max-sm:p-1 max-sm:shadow-lg max-sm:data-[open=true]:flex"
+            class="flex flex-wrap items-center justify-end gap-0.5"
           >
             {
               navLinks.map((link) => (
@@ -103,15 +121,35 @@ const section = path.split('/')[0];
           </nav>
 
           <div class="flex items-center gap-2">
-            <span class="text-muted-foreground inline-flex items-center gap-1 text-xs">
+            <!--
+              The pair is a labelled group, not two loose letters: without a
+              name the link is announced as a bare "EN" with nothing saying
+              it changes the site's language. `lang`/`hreflang` mark the link
+              as pointing at the other language so it isn't pronounced with
+              this page's rules. Both halves are padded to a real pointer
+              target — they used to be the bare 16px glyphs, 4px apart.
+            -->
+            <span
+              class="text-muted-foreground inline-flex items-center text-xs"
+              role="group"
+              aria-label={t(lang, 'nav.language')}
+            >
               {
                 LOCALES.map((l) =>
                   l === lang ? (
-                    <span class="text-foreground font-semibold" aria-current="true">
+                    <span
+                      class="text-foreground inline-flex min-h-6 min-w-6 items-center justify-center px-1 font-semibold"
+                      aria-current="true"
+                    >
                       {l.toUpperCase()}
                     </span>
                   ) : (
-                    <a href={`${base}/${l}/${path}`} class="hover:text-foreground transition-colors">
+                    <a
+                      href={`${base}/${l}/${path}`}
+                      lang={l}
+                      hreflang={l}
+                      class="hover:text-foreground focus-visible:ring-ring/50 inline-flex min-h-6 min-w-6 items-center justify-center rounded px-1 transition-colors outline-none focus-visible:ring-[3px]"
+                    >
                       {l.toUpperCase()}
                     </a>
                   ),
@@ -124,16 +162,45 @@ const section = path.split('/')[0];
               variant="outline"
               size="icon-sm"
               aria-label={t(lang, 'theme.toggle')}
+              data-announce-light={t(lang, 'theme.announce.light')}
+              data-announce-dark={t(lang, 'theme.announce.dark')}
             >
+              {/*
+                Which icon shows is decided by CSS off the same two signals
+                the palette uses (an explicit data-theme, else the OS media
+                query), not by script. Both ship; neither carries `hidden`.
+                See global.css. This is what makes the icon correct at first
+                paint instead of correct one script-tick later.
+              */}
               <Icon name="moon" data-icon-moon />
-              <Icon name="sun" data-icon-sun class="hidden size-[1em] text-base" />
+              <Icon name="sun" data-icon-sun class="size-[1em] text-base" />
             </Button>
+            <!--
+              What confirms the click. The button carries no aria-pressed:
+              it has three states (light, dark, following the OS) where
+              aria-pressed has two, and its label describes the theme the
+              *next* click gives rather than the current one, so a "pressed"
+              state on it would be answering a different question. The
+              palette change is the confirmation for everyone who can see
+              it; this region is that confirmation for everyone else.
+
+              Same shape as the events index's #event-announce, and for the
+              same reason: it ships empty and is written to, which is the
+              pattern VoiceOver actually honours. Placed outside the button
+              so writing to it never disturbs the button's own name.
+            -->
+            <p id="theme-announce" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+            <!--
+              No `sm:hidden` here: global.css hides it at every width unless
+              <html> has data-js. A button that cannot do anything should not
+              be in the tab order at all, which is what it was without
+              script.
+            -->
             <Button
               id="nav-toggle"
               type="button"
               variant="outline"
               size="icon-sm"
-              class="sm:hidden"
               aria-label={t(lang, 'nav.toggle')}
               aria-expanded="false"
               aria-controls="site-nav"
@@ -145,7 +212,17 @@ const section = path.split('/')[0];
       </div>
     </header>
 
-    <main class="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 pt-8 pb-16">
+    <!--
+      tabindex="-1" so the skip link actually moves focus here rather than
+      only the scroll position: a <main> is not focusable on its own, and
+      browsers differ on whether a fragment link resets the focus point.
+      Negative, so it never joins the tab order itself.
+    -->
+    <main
+      id="main"
+      tabindex="-1"
+      class="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 pt-8 pb-16 outline-none"
+    >
       <slot />
     </main>
 
@@ -159,7 +236,8 @@ const section = path.split('/')[0];
             class="hover:text-foreground underline underline-offset-4 transition-colors"
             href="https://x.com/soreyoriramen"
             target="_blank"
-            rel="noopener noreferrer">ramen (@soreyoriramen)</a
+            rel="noopener noreferrer"
+            >ramen (@soreyoriramen)<span class="sr-only">{t(lang, 'a11y.newTab')}</span></a
           >
         </p>
         <p>
@@ -169,8 +247,9 @@ const section = path.split('/')[0];
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="github" class="size-3.5" />
+            <Icon name="github" class="size-3.5" aria-hidden="true" />
             {t(lang, 'footer.source')}
+            <span class="sr-only">{t(lang, 'a11y.newTab')}</span>
           </a>
         </p>
       </div>
@@ -198,6 +277,11 @@ const section = path.split('/')[0];
         const open = siteNav.dataset.open === 'true';
         siteNav.dataset.open = open ? 'false' : 'true';
         navToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        // Move into the panel on open. The five links sit *before* this
+        // button in the document, so without this a keyboard user's next
+        // Tab leaves the header entirely and the panel they just opened is
+        // only reachable backwards, past two other controls.
+        if (!open) siteNav.querySelector<HTMLElement>('a')?.focus();
       });
 
       // Clicking a link navigates away anyway, but closing first avoids a
@@ -216,27 +300,44 @@ const section = path.split('/')[0];
       });
 
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && siteNav.dataset.open === 'true') closeNav();
+        if (e.key === 'Escape' && siteNav.dataset.open === 'true') {
+          // Focus is inside the panel we are about to hide, so hand it back
+          // to the control that opened it rather than letting it fall to
+          // the document.
+          const inside = siteNav.contains(document.activeElement);
+          closeNav();
+          if (inside) navToggle.focus();
+        }
       });
 
       const root = document.documentElement;
       const button = document.getElementById('theme-toggle')!;
       const media = window.matchMedia('(prefers-color-scheme: dark)');
-      // Both icons ship in the markup (lucide SVGs are inlined at build
-      // time by the Icon component, so there's nothing to swap a `name`
-      // for at runtime); syncIcon just picks which one is visible.
-      const moonIcon = button.querySelector('[data-icon-moon]') as SVGElement;
-      const sunIcon = button.querySelector('[data-icon-sun]') as SVGElement;
 
       function effectiveTheme(): 'light' | 'dark' {
         return (root.dataset.theme as 'light' | 'dark' | undefined) ?? (media.matches ? 'dark' : 'light');
       }
 
-      // Icon shows what clicking it switches *to*, not the current state.
-      function syncIcon() {
-        const dark = effectiveTheme() === 'dark';
-        moonIcon.classList.toggle('hidden', dark);
-        sunIcon.classList.toggle('hidden', !dark);
+      // The button's accessible name is identical before and after a click,
+      // so nothing about the button confirms it did anything. Announce the
+      // theme that is now in force instead.
+      //
+      // Clearing before the write is what makes a repeat announcement
+      // register at all: writing the same string a region already holds is
+      // swallowed as "no new content", which a visitor toggling back and
+      // forth past an OS change would hit. The 100ms gap is the same one
+      // the events index needs — a clear and a write in one frame collapse
+      // into no change having happened.
+      const announceEl = document.getElementById('theme-announce')!;
+      let announceTimer: number | undefined;
+      function announceTheme(theme: 'light' | 'dark') {
+        const text =
+          theme === 'dark' ? button.dataset.announceDark! : button.dataset.announceLight!;
+        window.clearTimeout(announceTimer);
+        announceEl.textContent = '';
+        announceTimer = window.setTimeout(() => {
+          announceEl.textContent = text;
+        }, 100);
       }
 
       button.addEventListener('click', () => {
@@ -247,12 +348,12 @@ const section = path.split('/')[0];
         // instant switch we always had.
         const apply = () => {
           root.dataset.theme = next;
-          // Icon before the write: storing can throw (site data blocked, quota
-          // exhausted) and the palette has already changed by then, so syncing
-          // afterwards left the button showing the old state on a page that
-          // had already switched. Wrapped too, so a failed write costs the
-          // preference and nothing else.
-          syncIcon();
+          // Before the write: storing can throw, and the palette has
+          // already changed by the time it does. A failed write costs the
+          // preference and nothing else. (The icon needs no ordering care
+          // any more — it follows data-theme in CSS, so it moved on the
+          // line above.)
+          announceTheme(next);
           try {
             localStorage.setItem('theme', next);
           } catch {}
@@ -280,13 +381,12 @@ const section = path.split('/')[0];
           .catch(() => {});
       });
 
-      // No stored preference means the OS setting still governs — keep the
-      // icon in sync if the visitor changes it while the page is open.
-      media.addEventListener('change', () => {
-        if (!localStorage.getItem('theme')) syncIcon();
-      });
-
-      syncIcon();
+      // No OS-change listener any more, and no icon sync on load. Both
+      // existed only to keep the button's icon in step with the effective
+      // theme, which CSS now derives from the same two signals the palette
+      // does — so the icon is right at first paint rather than one script
+      // tick later, and it follows a system appearance change live even in
+      // a browser blocking site data.
     </script>
   </body>
 </html>

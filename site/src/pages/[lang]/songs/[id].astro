@@ -90,11 +90,12 @@ const daysSinceLast = daysSince(today, song.last_performed);
             </MetaRow>
           )}
           {credits.note && (
-            <MetaRow label={t(lang, 'songs.note')}>
+            <MetaRow label={t(lang, 'songs.note')} preLine>
               {autoLink(credits.note).map((chunk) =>
                 chunk.url ? (
                   <a href={chunk.url} target="_blank" rel="noopener noreferrer">
                     {chunk.text}
+                    <span class="sr-only">{t(lang, 'a11y.newTab')}</span>
                   </a>
                 ) : (
                   chunk.text

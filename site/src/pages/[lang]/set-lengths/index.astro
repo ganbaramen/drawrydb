@@ -25,7 +25,7 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
     <Table id="bucket-table">
       <TableHeader>
         <TableRow>
-          <TableHead>{t(lang, 'setLength.length')}</TableHead>
+          <TableHead data-sort-type="number">{t(lang, 'setLength.length')}</TableHead>
           <TableHead class="text-right" data-sort-type="number">{t(lang, 'setLength.shows')}</TableHead>
           <TableHead class="text-right" data-sort-type="number">{t(lang, 'setLength.avgSongs')}</TableHead>
           <TableHead class="text-right" data-sort-type="number">{t(lang, 'setLength.withSe')}</TableHead>
@@ -35,11 +35,20 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
         {
           buckets.map((b) => (
             <TableRow>
-              <TableCell class="font-medium">
+              <TableCell class="font-medium" data-sort-value={b.minutes}>
                 <a href={`${base}/${lang}/set-lengths/${b.minutes}/`}>{formatSetLength(lang, b.minutes)}</a>
               </TableCell>
               <TableCell class="text-right tabular-nums" data-sort-value={b.shows}>{b.shows}</TableCell>
-              <TableCell class="text-right tabular-nums" data-sort-value={b.avg_songs}>{b.avg_songs}</TableCell>
+              {/*
+                Fixed to one decimal rather than printed raw: a bucket
+                averaging exactly 2.0 arrives as the number 2 and rendered
+                as `2` beside neighbours reading `4.8`, `5.7` — a ragged
+                column in a right-aligned tabular-nums context. The sort
+                value stays the raw number.
+              */}
+              <TableCell class="text-right tabular-nums" data-sort-value={b.avg_songs}>
+                {b.avg_songs.toFixed(1)}
+              </TableCell>
               <TableCell
                 class="text-muted-foreground text-right tabular-nums"
                 data-sort-value={b.shows_with_se / b.shows}
@@ -57,7 +66,15 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
     </Table>
   </StatsTable>
 
-  <div class="text-muted-foreground -mt-2 space-y-1 text-xs">
+  {/*
+    Grouped with the table above rather than left as a sibling of it. As a
+    bare sibling it sat almost equidistant between this table and the song
+    matrix below, directly above a checkbox about the same two categories
+    it names — so "excludes SE/Interlude" read as governing that checkbox's
+    table rather than the column it actually annotates. The note text names
+    the column too; the asterisk alone was carrying too much.
+  */}
+  <div class="text-muted-foreground -mt-4 space-y-1 text-xs">
     <p>{t(lang, 'setLength.avgSongsNote')}</p>
     {uncovered_shows > 0 && <p>{t(lang, 'setLength.uncovered', { n: uncovered_shows })}</p>}
   </div>

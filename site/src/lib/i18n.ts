@@ -19,13 +19,36 @@ const ja: Dict = {
   'nav.creators': 'クリエイター',
   'nav.setLength': 'セット尺',
   'nav.toggle': 'メニュー',
+  // Names the JA/EN pair as a group. Without it the link is announced as a
+  // bare "EN", with nothing saying what following it does.
+  'nav.language': '言語',
+  'a11y.skipToContent': '本文へスキップ',
+  // Appended, visually hidden, to every link that opens a new tab. The
+  // external-link glyph says so to people who can see it and to nobody
+  // else; this is the same fact in the accessible name.
+  'a11y.newTab': '(新しいタブで開く)',
+  'notFound.title': 'ページが見つかりません',
+  'notFound.body': 'お探しのページは存在しないか、移動した可能性があります。',
+  'notFound.home': 'ホームへ',
+  'notFound.events': 'イベント一覧へ',
   // Shared by the song and venue pages' first/last date rows.
   'common.daysAgo': '{n}日前',
   'theme.toggle': 'テーマを切り替える',
+  // Announced after a click, not used as a label. The button's own name
+  // describes the *next* theme, so it reads identically before and after
+  // and confirms nothing on its own; these say which theme is now in
+  // force. Past tense on purpose — it reports a result, not an offer.
+  'theme.announce.light': 'ライトテーマに切り替えました',
+  'theme.announce.dark': 'ダークテーマに切り替えました',
   'footer.disclaimer':
     'これは非公式のファンサイトです。Drawry. 本人・関係者・公式とは一切関係ありません。',
   'footer.contact': '連絡先：',
   'footer.source': 'GitHubでソースを見る',
+  // Visually hidden: the home page's own <h1>. Its visible headings are the
+  // two section titles, and which one comes first depends on whether an
+  // upcoming show exists, so without this the document outline started at
+  // an h2 that changed between builds.
+  'home.heading': 'DrawryDB. — Drawry. のライブ記録',
   'home.next': '次のライブ',
   'home.recent': '最近のセットリスト',
   'home.viewAll': 'すべてのイベントを見る',
@@ -96,7 +119,7 @@ const ja: Dict = {
   'setLength.length': '尺',
   'setLength.shows': '公演数',
   'setLength.avgSongs': '平均曲数*',
-  'setLength.avgSongsNote': '* SE・Interludeを除く',
+  'setLength.avgSongsNote': '* 平均曲数はSE・Interludeを除く',
   'setLength.withSe': 'SEあり',
   'setLength.withSeDetail': '{count}/{shows} ({pct}%)',
   'setLength.uncovered': '{n}回はライブの開始・終了時刻が不明のため対象外',
@@ -112,12 +135,22 @@ const en: Dict = {
   'nav.creators': 'Creators',
   'nav.setLength': 'Set Length',
   'nav.toggle': 'Menu',
+  'nav.language': 'Language',
+  'a11y.skipToContent': 'Skip to content',
+  'a11y.newTab': '(opens in a new tab)',
+  'notFound.title': 'Page not found',
+  'notFound.body': "The page you're looking for doesn't exist, or has moved.",
+  'notFound.home': 'Go to the home page',
+  'notFound.events': 'Go to all events',
   'common.daysAgo': '{n} days ago',
   'theme.toggle': 'Toggle theme',
+  'theme.announce.light': 'Switched to light theme',
+  'theme.announce.dark': 'Switched to dark theme',
   'footer.disclaimer':
     'This is an unofficial fan project, not affiliated with Drawry. or their management.',
   'footer.contact': 'Contact: ',
   'footer.source': 'Source on GitHub',
+  'home.heading': 'DrawryDB. — a Drawry. live archive',
   'home.next': 'Next show',
   'home.recent': 'Recent setlists',
   'home.viewAll': 'View all events',
@@ -188,7 +221,7 @@ const en: Dict = {
   'setLength.length': 'Length',
   'setLength.shows': 'Shows',
   'setLength.avgSongs': 'Avg songs*',
-  'setLength.avgSongsNote': '* Excludes SE/Interlude',
+  'setLength.avgSongsNote': '* Avg songs excludes SE/Interlude',
   'setLength.withSe': 'Has SE',
   'setLength.withSeDetail': '{count}/{shows} ({pct}%)',
   'setLength.uncovered': "{n} shows excluded — calendar doesn't state a live start/end",

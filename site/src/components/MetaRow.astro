@@ -6,9 +6,17 @@ import { TableCell, TableHead, TableRow } from '@/components/ui/table';
 
 interface Props {
   label: string;
+  /**
+   * Keep the value's own line breaks instead of collapsing them. Off by
+   * default because almost every value is a single phrase; the song page's
+   * credits note is the exception, and a note holding two source URLs on
+   * separate lines ran them together into one unreadable line without this.
+   * Mirrors what `.event-note` does for event notes.
+   */
+  preLine?: boolean;
 }
 
-const { label } = Astro.props;
+const { label, preLine = false } = Astro.props;
 ---
 
 <TableRow>
@@ -18,7 +26,7 @@ const { label } = Astro.props;
   >
     {label}
   </TableHead>
-  <TableCell class="align-top whitespace-normal">
+  <TableCell class:list={['align-top', preLine ? 'whitespace-pre-line' : 'whitespace-normal']}>
     <slot />
   </TableCell>
 </TableRow>

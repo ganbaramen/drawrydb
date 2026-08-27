@@ -263,25 +263,53 @@
 }
 
 /*
+ * Skip link. Off-screen rather than display:none, so it stays in the tab
+ * order and is the first thing focused on every page; it pulls itself into
+ * the top-left corner once focused. Sits above the sticky header's z-40.
+ */
+.skip-link {
+  @apply bg-background text-foreground ring-ring absolute left-4 z-50 -translate-y-full rounded-md border px-4 py-2 text-sm font-medium shadow-lg transition-transform;
+  top: 0.5rem;
+}
+
+/*
+ * :focus, not :focus-visible — the link is off-screen and unreachable by
+ * pointer, so any focus it gets is a keyboard user who needs to see it.
+ */
+.skip-link:focus {
+  @apply translate-y-0 ring-[3px] outline-none;
+}
+
+/*
  * Sort indicator for lib/sortable-table.ts. The arrow is a pseudo-element
- * so it doesn't affect the header cell's text layout, and the neutral
- * state keeps its space reserved so sorting doesn't shift columns.
+ * so it doesn't affect the button's text layout, and the neutral state
+ * keeps its space reserved so sorting doesn't shift columns.
+ *
+ * The class sits on a <button> inside the <th>, not on the <th> itself:
+ * role="button" on the header cell overrode its columnheader role, which
+ * made the aria-sort on the same element meaningless.
  */
 .sortable {
   @apply cursor-pointer select-none;
 }
 
-.sortable::after {
+/*
+ * The arrow sits on an aria-hidden <span>, not a ::after on the button:
+ * Chrome folds CSS generated content into the accessible name, so a
+ * ::after here made the header announce as "披露回数 ↑". The glyph is
+ * decoration — the sort state is the <th>'s aria-sort.
+ */
+.sort-arrow::after {
   content: "↕";
   @apply text-muted-foreground/50 ml-1 inline-block text-xs;
 }
 
-.sortable[data-sort-dir="asc"]::after {
+th[aria-sort="ascending"] .sort-arrow::after {
   content: "↑";
   @apply text-primary opacity-100;
 }
 
-.sortable[data-sort-dir="desc"]::after {
+th[aria-sort="descending"] .sort-arrow::after {
   content: "↓";
   @apply text-primary opacity-100;
 }
@@ -313,11 +341,182 @@
  * `!hidden` rather than plain [hidden]: the card root is display:flex from
  * a utility class, which outranks the UA sheet's [hidden] { display: none }.
  */
-#event-list [hidden] {
+/*
+ * These hide the <li> rather than the card inside it. ItemGroup is a real
+ * <ul> and the <li> is the flex child, so hiding only the card would leave
+ * an empty row holding the group's gap open. The script still sets `hidden`
+ * on the card itself — that is the hook, `:has()` turns it into the row.
+ */
+#event-list li:has(> [hidden]) {
   @apply !hidden;
 }
 
-#event-list[data-filter="has"] [data-has-setlist="0"],
-#event-list[data-filter="none"] [data-has-setlist="1"] {
+/*
+ * The three-way setlist filter, working in CSS alone.
+ *
+ * Every rule below keys off which radio is `:checked`, so the control is
+ * fully functional with scripts off — rows move, emptied months collapse,
+ * and the visible total swaps to match. It used to key off #event-list's
+ * data-filter attribute, which only the script ever wrote: clicking a
+ * position moved the segmented control's own highlight (that part is
+ * `:has(:checked)` styling on the label) while the list, the count and the
+ * month select all stayed put. A control that appears to have worked and
+ * has not is worse than one that visibly does nothing.
+ *
+ * `main` is the nearest ancestor holding both the radios and the list.
+ * `:checked` is the state, not the `checked` attribute, so this follows the
+ * live control rather than the shipped default.
+ *
+ * With the script running these stay true and simply agree with it: the
+ * script hides on search and month as well, via `hidden`, caught by the
+ * rule above. Adding a fourth filter value means a row rule, a month rule
+ * and a count rule here.
+ */
+main:has(input[name="setlist-filter"][value="has"]:checked)
+  #event-list
+  li:has(> [data-has-setlist="0"]),
+main:has(input[name="setlist-filter"][value="none"]:checked)
+  #event-list
+  li:has(> [data-has-setlist="1"]) {
   @apply !hidden;
+}
+
+/*
+ * A month whose every event is filtered out goes away with its heading.
+ * Each month is one <section class="month"> wrapping both, precisely so
+ * this is one rule rather than a heading rule plus a sibling rule — and so
+ * the script can do it with a single `hidden` too.
+ *
+ * Two months on this data have no setlists at all, so without this the page
+ * opened on two headings above empty space with the first card three
+ * headings down.
+ */
+main:has(input[name="setlist-filter"][value="has"]:checked)
+  #event-list
+  .month:not(:has(li > [data-has-setlist="1"])),
+main:has(input[name="setlist-filter"][value="none"]:checked)
+  #event-list
+  .month:not(:has(li > [data-has-setlist="0"])) {
+  @apply !hidden;
+}
+
+/*
+ * The heading's top padding separates months; the first one needs none.
+ * Keyed on the section rather than the heading because the heading is now
+ * its section's first child, so `:first-child` on it would match every
+ * month. Like the old rule this counts DOM order, not visible order — a
+ * hidden first month leaves the next one padded.
+ */
+#event-list > .month:first-child > .month-heading {
+  @apply pt-0;
+}
+
+/*
+ * The visible count ships one span per filter position; this picks the one
+ * that matches. The script replaces the element's contents wholesale on its
+ * first pass, after which these match nothing — by then the count reflects
+ * search and month as well, which no build-time total can.
+ */
+#event-count [data-count] {
+  @apply hidden;
+}
+
+main:has(input[name="setlist-filter"][value="has"]:checked) #event-count [data-count="has"],
+main:has(input[name="setlist-filter"][value="none"]:checked) #event-count [data-count="none"],
+main:has(input[name="setlist-filter"][value="all"]:checked) #event-count [data-count="all"] {
+  @apply inline;
+}
+
+/*
+ * Controls that only script can operate — the events index's search box and
+ * month select — are not rendered at all without it. An absent control is
+ * honest; a visible, focusable, inert one is not.
+ */
+html:not([data-js]) [data-needs-js] {
+  @apply !hidden;
+}
+
+/*
+ * Narrow-screen navigation, and the one rule that makes it honest.
+ *
+ * The markup ships the section links in normal flow at every width. Only a
+ * scripted document collapses them behind the menu button — `data-js` is set
+ * by the pre-paint script in Layout.astro, so this applies before first paint
+ * and a scripted visit never sees the uncollapsed row.
+ *
+ * Without script the links wrap to a second header row below `sm` and the
+ * button is not rendered at all. That is the whole point: the button's only
+ * behaviour is a click handler, so hiding the links unconditionally left a
+ * visitor with no JavaScript unable to reach events, songs, venues, creators
+ * or set lengths from any page — with a visible, focusable, inert button as
+ * the apparent way in. Every other degradation on this site costs a
+ * convenience; that one cost the navigation.
+ */
+#nav-toggle {
+  @apply hidden;
+}
+
+@media (width < 40rem) {
+  html[data-js] #nav-toggle {
+    @apply inline-flex;
+  }
+
+  html[data-js] #site-nav {
+    @apply bg-popover absolute top-full right-4 z-50 hidden w-48 flex-col items-stretch rounded-lg border p-1 shadow-lg;
+  }
+
+  html[data-js] #site-nav[data-open="true"] {
+    @apply flex;
+  }
+}
+
+/*
+ * Which theme-toggle icon shows.
+ *
+ * Derived from the same two signals the palette above uses — an explicit
+ * `data-theme`, otherwise `prefers-color-scheme` — rather than toggled by
+ * script. Both icons ship in the markup (the Icon component inlines lucide
+ * SVGs at build time, so there is nothing to swap a `name` for at runtime);
+ * these rules pick one.
+ *
+ * The icon names the theme a click switches *to*, not the current one, so
+ * a light page offers the moon and a dark page the sun.
+ *
+ * Doing it here rather than in the deferred script is what fixes the icon
+ * being briefly wrong on arrival: a visitor whose OS asks for dark used to
+ * get the markup's default moon until the script ran and corrected it. The
+ * entry that recorded this assumed the fix meant deciding the icon before
+ * paint in JavaScript, at the cost of DOM work in the critical path. It
+ * does not — the same cascade that already paints the right palette before
+ * paint can pick the right glyph, for free.
+ *
+ * It also removes a whole class of staleness rather than one instance:
+ * because the glyph is a function of `data-theme`, it cannot disagree with
+ * the palette, whatever happens to storage or to the script.
+ */
+[data-icon-sun] {
+  @apply hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-icon-moon] {
+    @apply hidden;
+  }
+
+  :root:not([data-theme="light"]) [data-icon-sun] {
+    @apply inline-block;
+  }
+}
+
+:root[data-theme="dark"] [data-icon-moon] {
+  @apply hidden;
+}
+
+:root[data-theme="dark"] [data-icon-sun] {
+  @apply inline-block;
+}
+
+/* An explicit light choice wins over the OS asking for dark. */
+:root[data-theme="light"] [data-icon-moon] {
+  @apply inline-block;
 }

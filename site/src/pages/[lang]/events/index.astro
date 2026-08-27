@@ -19,6 +19,15 @@ const base = import.meta.env.BASE_URL;
 // Reverse chronological, per DRAWRYDB.md's route plan.
 const sorted = events.slice().reverse();
 const hasSetlistCount = events.filter((event) => event.has_setlist).length;
+// All three totals are rendered up front so the count stays truthful with
+// scripts off: the radios move which one is shown, in CSS. The script
+// replaces the whole element's text on its first pass, so only one of these
+// is ever live at a time.
+const filterCounts: Record<string, number> = {
+  has: hasSetlistCount,
+  none: events.length - hasSetlistCount,
+  all: events.length,
+};
 // Client script reuses this template (with {n} swapped for the live count)
 // so it doesn't need its own copy of the locale's count phrasing.
 const countTemplate = t(lang, 'events.count', { n: '__N__' });
@@ -38,6 +47,15 @@ for (const event of sorted) {
   eventsByMonth.get(key)!.push(event);
 }
 
+// The index opens on すべて. It used to open on セトリあり, which reads as the
+// right default for an archive — but it hid every *future* show, so someone
+// arriving to check what was coming up saw 143 of 171 events and concluded
+// there was nothing scheduled. The home page's next-live card was the only
+// other route to that answer. Showing everything by default costs a history
+// browser one click; hiding upcoming shows cost the other visitor the
+// answer entirely, with nothing on screen saying a filter was in force.
+const DEFAULT_FILTER = 'all';
+
 const setlistFilters = [
   { value: 'has', label: t(lang, 'events.filter.has') },
   { value: 'none', label: t(lang, 'events.filter.none') },
@@ -49,16 +67,24 @@ const setlistFilters = [
   <PageHeader title={t(lang, 'events.title')} />
 
   <!--
-    Default view (セトリあり, すべての月) works with CSS alone before the
-    script below runs / if JS is disabled: the setlist radios' default
-    hides via the list's data-filter attribute, and the month select's
-    default ("all") needs no hiding at all. The script only adds the other
-    setlist views and the month filter itself. Keep the initial
-    data-filter/checked/selected state and the CSS rules below in sync if
-    a filter value is ever added.
+    What works without JavaScript, and what is not offered at all.
+
+    The three-way setlist filter is **fully functional** in CSS: every rule
+    keys off which radio is `:checked`, so switching position moves the rows,
+    collapses months that empty out, and swaps the visible total. It used to
+    key off the list's data-filter attribute, which only the script ever
+    wrote — so a click moved the segmented control's highlight and nothing
+    else, which is worse feedback than none.
+
+    The search box and the month select genuinely cannot work without script,
+    so they carry data-needs-js and global.css does not render them unless
+    <html> has data-js. An absent control is honest; an inert one is not.
+
+    Adding a fourth filter value means adding its count, its row rule and its
+    month rule in global.css.
   -->
   <div class="flex flex-col gap-3">
-    <div class="relative">
+    <div class="relative" data-needs-js>
       <Input
         type="search"
         id="event-search"
@@ -94,7 +120,7 @@ const setlistFilters = [
                 type="radio"
                 name="setlist-filter"
                 value={filter.value}
-                checked={filter.value === 'has'}
+                checked={filter.value === DEFAULT_FILTER}
                 class="sr-only"
               />
               {filter.label}
@@ -103,22 +129,29 @@ const setlistFilters = [
         }
       </div>
 
-      <label class="text-muted-foreground ml-auto inline-flex items-center gap-1.5 text-xs">
+      <label class="text-muted-foreground ml-auto inline-flex items-center gap-1.5 text-xs" data-needs-js>
         {t(lang, 'events.month.label')}
         <select
           id="month-filter"
           class="border-input bg-card text-foreground focus-visible:border-ring focus-visible:ring-ring/50 h-8 rounded-md border px-2 text-xs shadow-xs outline-none focus-visible:ring-3"
         >
+          {/*
+            Counted against DEFAULT_FILTER, not against has_setlist, so the
+            labels agree with the view actually being delivered. The script
+            recomputes them on its first pass anyway — and this select is
+            not rendered at all without script — but a number that is wrong
+            for the shipped state is worth not writing down.
+          */}
           <option value="all" data-label={t(lang, 'events.month.all')}>
-            {t(lang, 'events.month.all')} ({hasSetlistCount})
+            {t(lang, 'events.month.all')} ({events.length})
           </option>
           {
             monthKeys.map((key) => {
               const label = formatMonth(lang, key);
-              const has = eventsByMonth.get(key)!.filter((e) => e.has_setlist).length;
+              const count = eventsByMonth.get(key)!.length;
               return (
                 <option value={key} data-label={label}>
-                  {label} ({has})
+                  {label} ({count})
                 </option>
               );
             })
@@ -128,21 +161,64 @@ const setlistFilters = [
     </div>
 
     <p id="event-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
-      {t(lang, 'events.count', { n: hasSetlistCount })}
+      {
+        setlistFilters.map((filter) => (
+          <span data-count={filter.value}>
+            {t(lang, 'events.count', { n: filterCounts[filter.value] })}
+          </span>
+        ))
+      }
     </p>
+
+    <!--
+      The announcement channel, separate from the visible count above.
+      Putting role="status" on the visible count did not work: VoiceOver on
+      Chrome ignored it entirely — typing spoke only the character echo and
+      changing the filter spoke only the radio, never the new total.
+      Verified by ear.
+
+      This region ships **empty** and is written to on a debounce, which is
+      the pattern VoiceOver does honour: it announces content added to a
+      region that was empty far more reliably than a wholesale replacement
+      of text that was already there. Keeping the live attributes in one
+      place also means no assistive technology announces the count twice.
+    -->
+    <p id="event-announce" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
   </div>
 
-  <ItemGroup id="event-list" data-filter="has" class="gap-2">
+  {/*
+    One list per month, with the heading *outside* it, rather than one list
+    holding headings and cards together. The earlier shape wrapped each
+    heading in a role="presentation" <li> to keep it out of the item count;
+    VoiceOver counted it anyway and announced "1 of 155" — the 143 cards
+    plus the 12 visible headings — disagreeing with the page's own 143件.
+    Heard, not inferred.
+
+    With the heading lifted out, each month is a list of just its cards, so
+    a position is announced against the month a visitor is actually in.
+
+    Heading and list are now wrapped in one <section class="month">, so
+    emptying a month hides both together — one CSS rule with scripts off,
+    one `hidden` flip with them on, instead of a heading rule plus a
+    next-sibling rule that could disagree.
+
+    data-filter is still written by the script but **nothing reads it any
+    more**: the CSS moved to `:has(:checked)` so the live radio is the only
+    thing that decides, which is what makes the filter work without script
+    at all. It stays because it is the cheapest way to read the active
+    filter back from a console.
+  */}
+  <div id="event-list" data-filter={DEFAULT_FILTER} class="flex flex-col gap-2">
     {
       monthKeys.map((key) => (
-        <>
+        <section class="month flex flex-col gap-2" data-month={key}>
           <h2
-            class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold first:pt-0"
+            class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold"
             id={`m-${key}`}
-            data-month={key}
           >
             {formatMonth(lang, key)}
           </h2>
+          <ItemGroup class="gap-2" aria-labelledby={`m-${key}`}>
           {eventsByMonth.get(key)!.map((event) => (
             <EventCard
               href={`${base}/${lang}/events/${event.id}/`}
@@ -160,10 +236,11 @@ const setlistFilters = [
               )}
             </EventCard>
           ))}
-        </>
+          </ItemGroup>
+        </section>
       ))
     }
-  </ItemGroup>
+  </div>
 
   <script>
     import { fuzzyMatch } from '../../../lib/fuzzy';
@@ -172,7 +249,10 @@ const setlistFilters = [
     const countEl = document.getElementById('event-count')!;
     const template = countEl.dataset.template!;
     const items = list.querySelectorAll<HTMLElement>('[data-has-setlist]');
-    const headings = list.querySelectorAll<HTMLElement>('.month-heading');
+    // Each month is one <section class="month"> holding its heading and its
+    // list, so emptying a month hides both in one flip. They used to be
+    // siblings and the heading's next element had to be hidden alongside it.
+    const months = list.querySelectorAll<HTMLElement>('.month');
     const radios = document.querySelectorAll<HTMLInputElement>(
       'input[name="setlist-filter"]',
     );
@@ -221,13 +301,46 @@ const setlistFilters = [
         opt.textContent = `${opt.dataset.label} (${count})`;
       });
 
-      headings.forEach((h) => {
-        const month = h.dataset.month!;
+      months.forEach((section) => {
+        const month = section.dataset.month!;
         const matchesMonth = monthFilter === 'all' || monthFilter === month;
-        h.hidden = !matchesMonth || !monthHasVisible.get(month);
+        section.hidden = !matchesMonth || !monthHasVisible.get(month);
       });
 
-      countEl.textContent = template.replace('__N__', String(visible));
+      // Replaces the three build-time spans (one per filter position) with a
+      // single live string on the first pass. From then on the CSS rules that
+      // pick between them have nothing to match, which is intended: with the
+      // script running, the count reflects search and month too, which no
+      // static total can.
+      const text = template.replace('__N__', String(visible));
+      countEl.textContent = text;
+      announce(text);
+    }
+
+    // VoiceOver on Chrome ignored aria-live on the visible count entirely:
+    // typing spoke only the character echo, changing the filter only the
+    // radio. Writing into a region that ships empty is the pattern it does
+    // honour, and clearing first means two identical results still read as
+    // a change rather than being swallowed as "no new content".
+    //
+    // Debounced so a burst of keystrokes produces one announcement at the
+    // end rather than one per character, which is also why the region is
+    // polite: it waits for a pause instead of interrupting the typing echo.
+    const announceEl = document.getElementById('event-announce')!;
+    let announceTimer: number | undefined;
+    // The load-time apply() must not speak: a visitor arriving should hear
+    // the page, not a count read at them before they have done anything.
+    // Only a change the visitor caused is worth announcing.
+    let announcing = false;
+    function announce(text: string) {
+      if (!announcing) return;
+      window.clearTimeout(announceTimer);
+      announceTimer = window.setTimeout(() => {
+        announceEl.textContent = '';
+        window.setTimeout(() => {
+          announceEl.textContent = text;
+        }, 100);
+      }, 500);
     }
 
     radios.forEach((radio) => {
@@ -236,10 +349,12 @@ const setlistFilters = [
     monthSelect.addEventListener('change', apply);
     searchInput.addEventListener('input', apply);
 
-    // The default view (セトリあり, すべての月) works from CSS/markup alone
-    // before this script runs (see the comment above the filters), but
-    // heading visibility has no CSS equivalent — sync it once up front.
+    // The setlist filter and the month blocks both work from CSS alone (see
+    // the comment above the filters). This first pass takes over: it folds in
+    // search and the month select, which CSS cannot do, and swaps the count
+    // to a live one.
     apply();
+    announcing = true;
   </script>
 </Layout>
 

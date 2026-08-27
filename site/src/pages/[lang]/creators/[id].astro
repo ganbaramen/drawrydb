@@ -34,7 +34,8 @@ const base = import.meta.env.BASE_URL;
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="x.com" class="size-3.5" />@{creator.x}
+            <Icon name="x.com" class="size-3.5" aria-hidden="true" />@{creator.x}
+            <span class="sr-only">{t(lang, 'a11y.newTab')}</span>
           </a>
         </p>
       )

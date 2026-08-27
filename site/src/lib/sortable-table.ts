@@ -16,9 +16,27 @@ export function initSortableTable(table: HTMLTableElement): void {
     const type = th.dataset.sortType;
     if (!type) return;
 
-    th.classList.add('sortable');
-    th.setAttribute('role', 'button');
-    th.setAttribute('tabindex', '0');
+    // A real <button> inside the cell, rather than role="button" on the
+    // <th> itself: that role overrode the cell's implicit columnheader
+    // role, so the header stopped being announced as the column's header
+    // *and* the aria-sort set on the same element became meaningless —
+    // aria-sort is only defined on a column header. The <th> keeps its own
+    // role and carries aria-sort; the button carries the interaction.
+    const label = document.createElement('button');
+    label.type = 'button';
+    label.className = 'sortable';
+    while (th.firstChild) label.appendChild(th.firstChild);
+    // The indicator lives in its own aria-hidden span rather than in a
+    // ::after on the button. Chrome folds CSS generated content into the
+    // accessible name, so the arrow was being announced as part of the
+    // header — "披露回数 ↑" rather than "披露回数". aria-hidden excludes the
+    // span and its generated content from the name; the sort state is
+    // carried by the <th>'s aria-sort, which is where it belongs.
+    const arrow = document.createElement('span');
+    arrow.className = 'sort-arrow';
+    arrow.setAttribute('aria-hidden', 'true');
+    label.appendChild(arrow);
+    th.appendChild(label);
     th.setAttribute('aria-sort', 'none');
 
     const sort = () => {
@@ -26,10 +44,8 @@ export function initSortableTable(table: HTMLTableElement): void {
       activeIndex = index;
 
       headers.forEach((h) => {
-        delete h.dataset.sortDir;
         if (h.dataset.sortType) h.setAttribute('aria-sort', 'none');
       });
-      th.dataset.sortDir = ascending ? 'asc' : 'desc';
       th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
 
       const rows = Array.from(tbody.rows);
@@ -54,18 +70,28 @@ export function initSortableTable(table: HTMLTableElement): void {
           return ascending ? na - nb : nb - na;
         }
 
+        // Dates compare as plain strings (ISO sorts correctly that way),
+        // but blanks need the same treatment the numeric branch gives
+        // them. Without this an empty date sorts *first* ascending and
+        // last descending — the exact asymmetry B-04 was fixed to remove,
+        // and the site's rule is blanks last in both directions. No date
+        // column is blank today; this is the branch that keeps it true if
+        // one ever is.
+        const aBlank = va === '';
+        const bBlank = vb === '';
+        if (aBlank || bBlank) {
+          if (aBlank && bBlank) return 0;
+          return aBlank ? 1 : -1;
+        }
+
         const cmp = va < vb ? -1 : va > vb ? 1 : 0;
         return ascending ? cmp : -cmp;
       });
       rows.forEach((row) => tbody.appendChild(row));
     };
 
-    th.addEventListener('click', sort);
-    th.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        sort();
-      }
-    });
+    // A <button> already answers Enter and Space with a click, so the
+    // keydown handler the <th> needed is gone with it.
+    label.addEventListener('click', sort);
   });
 }
