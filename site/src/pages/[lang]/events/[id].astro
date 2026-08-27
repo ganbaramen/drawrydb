@@ -81,7 +81,11 @@ const meetDurationMinutes =
               {lang === 'ja' ? '）' : ')'}
             </>
           ) : (
-            ` ${t(lang, 'events.liveDuration', { n: durationMinutes })}`
+            // Same locale rule as the bucket branch above: the full-width
+            // pair carries its own side bearing, so a space before （ reads
+            // as a gap. This branch and the 特典会 row below kept an
+            // unconditional space when B-07 fixed the branch above them.
+            `${lang === 'ja' ? '' : ' '}${t(lang, 'events.liveDuration', { n: durationMinutes })}`
           ))}
       </MetaRow>
     )}
@@ -89,7 +93,8 @@ const meetDurationMinutes =
       <MetaRow label={t(lang, 'events.meet')}>
         {event.meet_start}
         {event.meet_end && `${t(lang, 'events.timeRangeSep')}${event.meet_end}`}
-        {meetDurationMinutes !== null && ` ${t(lang, 'events.liveDuration', { n: meetDurationMinutes })}`}
+        {meetDurationMinutes !== null &&
+          `${lang === 'ja' ? '' : ' '}${t(lang, 'events.liveDuration', { n: meetDurationMinutes })}`}
       </MetaRow>
     )}
     {event.ticket_links.length > 0 && (
