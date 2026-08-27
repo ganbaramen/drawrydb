@@ -59,6 +59,15 @@ const section = path.split('/')[0];
           document.documentElement.dataset.theme = stored;
         }
       } catch {}
+
+      // Marks the document as scripted, before first paint and outside the
+      // try above so a storage throw can't skip it. global.css hangs the
+      // narrow-screen nav collapse off this: without it the section links
+      // stay in normal flow and wrap to a second row, because the button
+      // that would reveal them only works if this script ran. Setting it
+      // pre-paint is what keeps a scripted visit from flashing the links
+      // before they collapse.
+      document.documentElement.dataset.js = '';
     </script>
   </head>
   <body class="min-h-dvh">
@@ -81,15 +90,18 @@ const section = path.split('/')[0];
 
         <div class="flex flex-wrap items-center justify-end gap-x-3 gap-y-2">
           <!--
-            Above the `sm` breakpoint this is a plain inline row. Below it,
-            the nav-toggle button below turns it into a dropdown anchored to
-            the header — driven by data-open rather than a class so the
-            script stays a single attribute flip.
+            A plain inline row in the markup, at every width. The dropdown
+            behaviour below the `sm` breakpoint is added by global.css and
+            only when <html> carries data-js, because the button that opens
+            it needs script: hiding the links unconditionally left them
+            unreachable without JavaScript, with a visible, focusable, inert
+            button as the only route to them. Still driven by data-open
+            rather than a class, so the script stays one attribute flip.
           -->
           <nav
             id="site-nav"
             data-open="false"
-            class="flex flex-wrap items-center justify-end gap-0.5 max-sm:bg-popover max-sm:absolute max-sm:top-full max-sm:right-4 max-sm:z-50 max-sm:hidden max-sm:w-48 max-sm:flex-col max-sm:items-stretch max-sm:rounded-lg max-sm:border max-sm:p-1 max-sm:shadow-lg max-sm:data-[open=true]:flex"
+            class="flex flex-wrap items-center justify-end gap-0.5"
           >
             {
               navLinks.map((link) => (
@@ -171,12 +183,17 @@ const section = path.split('/')[0];
               so writing to it never disturbs the button's own name.
             -->
             <p id="theme-announce" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+            <!--
+              No `sm:hidden` here: global.css hides it at every width unless
+              <html> has data-js. A button that cannot do anything should not
+              be in the tab order at all, which is what it was without
+              script.
+            -->
             <Button
               id="nav-toggle"
               type="button"
               variant="outline"
               size="icon-sm"
-              class="sm:hidden"
               aria-label={t(lang, 'nav.toggle')}
               aria-expanded="false"
               aria-controls="site-nav"

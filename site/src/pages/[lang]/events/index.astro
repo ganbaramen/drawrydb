@@ -19,6 +19,15 @@ const base = import.meta.env.BASE_URL;
 // Reverse chronological, per DRAWRYDB.md's route plan.
 const sorted = events.slice().reverse();
 const hasSetlistCount = events.filter((event) => event.has_setlist).length;
+// All three totals are rendered up front so the count stays truthful with
+// scripts off: the radios move which one is shown, in CSS. The script
+// replaces the whole element's text on its first pass, so only one of these
+// is ever live at a time.
+const filterCounts: Record<string, number> = {
+  has: hasSetlistCount,
+  none: events.length - hasSetlistCount,
+  all: events.length,
+};
 // Client script reuses this template (with {n} swapped for the live count)
 // so it doesn't need its own copy of the locale's count phrasing.
 const countTemplate = t(lang, 'events.count', { n: '__N__' });
@@ -49,16 +58,24 @@ const setlistFilters = [
   <PageHeader title={t(lang, 'events.title')} />
 
   <!--
-    Default view (セトリあり, すべての月) works with CSS alone before the
-    script below runs / if JS is disabled: the setlist radios' default
-    hides via the list's data-filter attribute, and the month select's
-    default ("all") needs no hiding at all. The script only adds the other
-    setlist views and the month filter itself. Keep the initial
-    data-filter/checked/selected state and the CSS rules below in sync if
-    a filter value is ever added.
+    What works without JavaScript, and what is not offered at all.
+
+    The three-way setlist filter is **fully functional** in CSS: every rule
+    keys off which radio is `:checked`, so switching position moves the rows,
+    collapses months that empty out, and swaps the visible total. It used to
+    key off the list's data-filter attribute, which only the script ever
+    wrote — so a click moved the segmented control's highlight and nothing
+    else, which is worse feedback than none.
+
+    The search box and the month select genuinely cannot work without script,
+    so they carry data-needs-js and global.css does not render them unless
+    <html> has data-js. An absent control is honest; an inert one is not.
+
+    Adding a fourth filter value means adding its count, its row rule and its
+    month rule in global.css.
   -->
   <div class="flex flex-col gap-3">
-    <div class="relative">
+    <div class="relative" data-needs-js>
       <Input
         type="search"
         id="event-search"
@@ -103,7 +120,7 @@ const setlistFilters = [
         }
       </div>
 
-      <label class="text-muted-foreground ml-auto inline-flex items-center gap-1.5 text-xs">
+      <label class="text-muted-foreground ml-auto inline-flex items-center gap-1.5 text-xs" data-needs-js>
         {t(lang, 'events.month.label')}
         <select
           id="month-filter"
@@ -128,7 +145,13 @@ const setlistFilters = [
     </div>
 
     <p id="event-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
-      {t(lang, 'events.count', { n: hasSetlistCount })}
+      {
+        setlistFilters.map((filter) => (
+          <span data-count={filter.value}>
+            {t(lang, 'events.count', { n: filterCounts[filter.value] })}
+          </span>
+        ))
+      }
     </p>
 
     <!--
@@ -157,17 +180,25 @@ const setlistFilters = [
 
     With the heading lifted out, each month is a list of just its cards, so
     a position is announced against the month a visitor is actually in.
-    #event-list stays the id and keeps data-filter: every rule and query
-    that hangs off it is a descendant selector, so nothing else moves.
+
+    Heading and list are now wrapped in one <section class="month">, so
+    emptying a month hides both together — one CSS rule with scripts off,
+    one `hidden` flip with them on, instead of a heading rule plus a
+    next-sibling rule that could disagree.
+
+    data-filter is still written by the script but **nothing reads it any
+    more**: the CSS moved to `:has(:checked)` so the live radio is the only
+    thing that decides, which is what makes the filter work without script
+    at all. It stays because it is the cheapest way to read the active
+    filter back from a console.
   */}
   <div id="event-list" data-filter="has" class="flex flex-col gap-2">
     {
       monthKeys.map((key) => (
-        <>
+        <section class="month flex flex-col gap-2" data-month={key}>
           <h2
-            class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold first:pt-0"
+            class="month-heading text-muted-foreground scroll-mt-20 pt-4 text-sm font-semibold"
             id={`m-${key}`}
-            data-month={key}
           >
             {formatMonth(lang, key)}
           </h2>
@@ -190,7 +221,7 @@ const setlistFilters = [
             </EventCard>
           ))}
           </ItemGroup>
-        </>
+        </section>
       ))
     }
   </div>
@@ -202,7 +233,10 @@ const setlistFilters = [
     const countEl = document.getElementById('event-count')!;
     const template = countEl.dataset.template!;
     const items = list.querySelectorAll<HTMLElement>('[data-has-setlist]');
-    const headings = list.querySelectorAll<HTMLElement>('.month-heading');
+    // Each month is one <section class="month"> holding its heading and its
+    // list, so emptying a month hides both in one flip. They used to be
+    // siblings and the heading's next element had to be hidden alongside it.
+    const months = list.querySelectorAll<HTMLElement>('.month');
     const radios = document.querySelectorAll<HTMLInputElement>(
       'input[name="setlist-filter"]',
     );
@@ -251,16 +285,17 @@ const setlistFilters = [
         opt.textContent = `${opt.dataset.label} (${count})`;
       });
 
-      headings.forEach((h) => {
-        const month = h.dataset.month!;
+      months.forEach((section) => {
+        const month = section.dataset.month!;
         const matchesMonth = monthFilter === 'all' || monthFilter === month;
-        const hide = !matchesMonth || !monthHasVisible.get(month);
-        h.hidden = hide;
-        // Each month is its own <ul> now, so an emptied month would leave a
-        // list holding the container's gap open. Hide it with its heading.
-        if (h.nextElementSibling instanceof HTMLElement) h.nextElementSibling.hidden = hide;
+        section.hidden = !matchesMonth || !monthHasVisible.get(month);
       });
 
+      // Replaces the three build-time spans (one per filter position) with a
+      // single live string on the first pass. From then on the CSS rules that
+      // pick between them have nothing to match, which is intended: with the
+      // script running, the count reflects search and month too, which no
+      // static total can.
       const text = template.replace('__N__', String(visible));
       countEl.textContent = text;
       announce(text);
@@ -298,9 +333,10 @@ const setlistFilters = [
     monthSelect.addEventListener('change', apply);
     searchInput.addEventListener('input', apply);
 
-    // The default view (セトリあり, すべての月) works from CSS/markup alone
-    // before this script runs (see the comment above the filters), but
-    // heading visibility has no CSS equivalent — sync it once up front.
+    // The setlist filter and the month blocks both work from CSS alone (see
+    // the comment above the filters). This first pass takes over: it folds in
+    // search and the month select, which CSS cannot do, and swaps the count
+    // to a live one.
     apply();
     announcing = true;
   </script>

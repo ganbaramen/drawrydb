@@ -346,17 +346,126 @@ th[aria-sort="descending"] .sort-arrow::after {
  * <ul> and the <li> is the flex child, so hiding only the card would leave
  * an empty row holding the group's gap open. The script still sets `hidden`
  * on the card itself — that is the hook, `:has()` turns it into the row.
- *
- * The second rule is the events index's engineered no-JavaScript default:
- * the list ships data-filter="has" and the matching radio ships checked, so
- * CSS alone produces the same view the script would. Adding a fourth filter
- * value means adding a rule here too.
  */
 #event-list li:has(> [hidden]) {
   @apply !hidden;
 }
 
-#event-list[data-filter="has"] li:has(> [data-has-setlist="0"]),
-#event-list[data-filter="none"] li:has(> [data-has-setlist="1"]) {
+/*
+ * The three-way setlist filter, working in CSS alone.
+ *
+ * Every rule below keys off which radio is `:checked`, so the control is
+ * fully functional with scripts off — rows move, emptied months collapse,
+ * and the visible total swaps to match. It used to key off #event-list's
+ * data-filter attribute, which only the script ever wrote: clicking a
+ * position moved the segmented control's own highlight (that part is
+ * `:has(:checked)` styling on the label) while the list, the count and the
+ * month select all stayed put. A control that appears to have worked and
+ * has not is worse than one that visibly does nothing.
+ *
+ * `main` is the nearest ancestor holding both the radios and the list.
+ * `:checked` is the state, not the `checked` attribute, so this follows the
+ * live control rather than the shipped default.
+ *
+ * With the script running these stay true and simply agree with it: the
+ * script hides on search and month as well, via `hidden`, caught by the
+ * rule above. Adding a fourth filter value means a row rule, a month rule
+ * and a count rule here.
+ */
+main:has(input[name="setlist-filter"][value="has"]:checked)
+  #event-list
+  li:has(> [data-has-setlist="0"]),
+main:has(input[name="setlist-filter"][value="none"]:checked)
+  #event-list
+  li:has(> [data-has-setlist="1"]) {
   @apply !hidden;
+}
+
+/*
+ * A month whose every event is filtered out goes away with its heading.
+ * Each month is one <section class="month"> wrapping both, precisely so
+ * this is one rule rather than a heading rule plus a sibling rule — and so
+ * the script can do it with a single `hidden` too.
+ *
+ * Two months on this data have no setlists at all, so without this the page
+ * opened on two headings above empty space with the first card three
+ * headings down.
+ */
+main:has(input[name="setlist-filter"][value="has"]:checked)
+  #event-list
+  .month:not(:has(li > [data-has-setlist="1"])),
+main:has(input[name="setlist-filter"][value="none"]:checked)
+  #event-list
+  .month:not(:has(li > [data-has-setlist="0"])) {
+  @apply !hidden;
+}
+
+/*
+ * The heading's top padding separates months; the first one needs none.
+ * Keyed on the section rather than the heading because the heading is now
+ * its section's first child, so `:first-child` on it would match every
+ * month. Like the old rule this counts DOM order, not visible order — a
+ * hidden first month leaves the next one padded.
+ */
+#event-list > .month:first-child > .month-heading {
+  @apply pt-0;
+}
+
+/*
+ * The visible count ships one span per filter position; this picks the one
+ * that matches. The script replaces the element's contents wholesale on its
+ * first pass, after which these match nothing — by then the count reflects
+ * search and month as well, which no build-time total can.
+ */
+#event-count [data-count] {
+  @apply hidden;
+}
+
+main:has(input[name="setlist-filter"][value="has"]:checked) #event-count [data-count="has"],
+main:has(input[name="setlist-filter"][value="none"]:checked) #event-count [data-count="none"],
+main:has(input[name="setlist-filter"][value="all"]:checked) #event-count [data-count="all"] {
+  @apply inline;
+}
+
+/*
+ * Controls that only script can operate — the events index's search box and
+ * month select — are not rendered at all without it. An absent control is
+ * honest; a visible, focusable, inert one is not.
+ */
+html:not([data-js]) [data-needs-js] {
+  @apply !hidden;
+}
+
+/*
+ * Narrow-screen navigation, and the one rule that makes it honest.
+ *
+ * The markup ships the section links in normal flow at every width. Only a
+ * scripted document collapses them behind the menu button — `data-js` is set
+ * by the pre-paint script in Layout.astro, so this applies before first paint
+ * and a scripted visit never sees the uncollapsed row.
+ *
+ * Without script the links wrap to a second header row below `sm` and the
+ * button is not rendered at all. That is the whole point: the button's only
+ * behaviour is a click handler, so hiding the links unconditionally left a
+ * visitor with no JavaScript unable to reach events, songs, venues, creators
+ * or set lengths from any page — with a visible, focusable, inert button as
+ * the apparent way in. Every other degradation on this site costs a
+ * convenience; that one cost the navigation.
+ */
+#nav-toggle {
+  @apply hidden;
+}
+
+@media (width < 40rem) {
+  html[data-js] #nav-toggle {
+    @apply inline-flex;
+  }
+
+  html[data-js] #site-nav {
+    @apply bg-popover absolute top-full right-4 z-50 hidden w-48 flex-col items-stretch rounded-lg border p-1 shadow-lg;
+  }
+
+  html[data-js] #site-nav[data-open="true"] {
+    @apply flex;
+  }
 }
