@@ -12670,17 +12670,22 @@
     },
     {
       "date": "2026-09-15",
-      "title": "ライブ入る可能性あり",
-      "venue": null,
-      "doors": null,
-      "showtime": null,
+      "title": "#ﾆｷﾌﾟﾚ『カンシャサイ。-秋-』",
+      "venue": "渋谷7会場サーキット",
+      "doors": "17:00",
+      "showtime": "17:30",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
+      "ticket_links": [
+        {
+          "label": "※9月1日(火)12:00 - 9/15(火)12:00まで",
+          "url": "https://t-dv.com/20260915_nikipre"
+        }
+      ],
       "ticket_sales": [],
       "id": "2026-09-15-1",
       "note": null
