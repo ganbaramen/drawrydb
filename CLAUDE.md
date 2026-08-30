@@ -684,6 +684,32 @@ were — a title change says nothing about whether those also changed, and
 this doesn't try to guess at that too. Reported unconditionally (not gated
 by `--quiet`) as `override renamed {date}: {old!r} -> {new!r}`.
 
+## Hiding unannounced events (`is_announced()`)
+
+`export_site_data.py` drops any event with no `venue` and no setlist before
+writing `site_data.json` — no card, no event page, not eligible as the home
+page's next live. The calendar holds days open with placeholder entries
+(`ライブ予定あり`, `何かしら入るかも`, `大阪遠征(対バンイベント)@時間未定`) that
+`is_show()` correctly keeps — they *are* live dates — but that give a visitor
+nothing to act on. Their titles have no marker in common; the one thing they
+all lack is a venue. 9 events at the time of writing (171 -> 162).
+
+**A real show can be venue-less too**, which is the trap: `parse_venue()` only
+reads the description's `@venue` line, and a multi-venue circuit event may
+describe its venues in prose instead (2026-10-25's `会場：下北沢シャングリラ/…`
+spread over two lines). The fix is a `venue` override, not a change to the
+filter — `add_override_templates()` already generates the row (a blank venue
+is a venue gap), so it's a matter of typing the venue in. If a genuinely
+announced show goes missing from the site, check `event_overrides.csv` first.
+Note the resolved value will keep tripping `export_calendar.py`'s
+`VENUE_AMBIGUOUS` warning forever, same as 2026-10-11's `大塚Hearts+/Hearts
+Next` — the venue really is a list here, and that warning is the price of not
+guessing one.
+
+Ids (`YYYY-MM-DD-N`) are assigned **before** the filter runs, so hiding an
+event never renumbers the others sharing its date; an id is a permalink, and a
+placeholder that later becomes a real show would otherwise shift them.
+
 ## Coverage reporting
 
 `--missing` answers "which shows lack a setlist". Two things make it useful

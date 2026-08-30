@@ -358,6 +358,29 @@ def sort_key(row: dict[str, str]) -> str:
     return row.get("live_start") or row.get("showtime") or row.get("doors") or "~"
 
 
+def is_announced(event: dict) -> bool:
+    """A venue is the heuristic for "this show has actually been announced".
+
+    The calendar carries placeholder entries for days the band is holding open
+    — "ライブ予定あり", "何かしら入るかも", "大阪遠征(対バンイベント)@時間未定" —
+    which pass is_show() (they *are* live dates) but have nothing a visitor can
+    act on. There is no reliable marker in the title prose for those; the one
+    thing they consistently lack is a venue, and every genuinely announced show
+    names one. So a venue-less event is treated as not yet announced and left
+    out of the site data entirely — no card, no page, and not eligible to be
+    the home page's next live.
+
+    A multi-venue event (a circuit festival, say) can end up venue-less for a
+    different reason: parse_venue() only reads the description's "@venue" line,
+    and some of those describe the venues in prose instead. That is what
+    event_overrides.csv's `venue` is for — filling it in is what keeps such an
+    event visible, so check there first if a real show goes missing from the
+    site. has_setlist events are never hidden: their venue comes from the
+    setlist post, which always names one.
+    """
+    return bool(event["venue"]) or event["has_setlist"]
+
+
 def build_events() -> list[dict]:
     calendar = read_csv("drawry_schedule.csv")
     shows = read_csv("shows.csv")
@@ -442,11 +465,16 @@ def build_events() -> list[dict]:
     events = []
     for date in sorted(by_date):
         day_events = sorted(by_date[date], key=lambda e: (e["sort_key"], e["title"]))
+        # Ids are assigned before the announced filter runs, so hiding an
+        # event never renumbers the ones it shares a date with — an event's
+        # url is its permalink, and a placeholder that later turns into a real
+        # show would otherwise shift every later event on that day.
         for n, event in enumerate(day_events, start=1):
             event["id"] = f"{date}-{n}"
             del event["sort_key"]
             events.append(event)
 
+    events = [event for event in events if is_announced(event)]
     events.sort(key=lambda e: e["id"])
     apply_event_notes(events, load_event_notes())
     return events
