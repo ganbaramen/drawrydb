@@ -12531,8 +12531,81 @@
       "live_end": "12:00",
       "meet_start": "12:50",
       "meet_end": "14:10",
-      "has_setlist": false,
-      "setlist": [],
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "SE(Moving Lights!)",
+          "note": "",
+          "is_se": true,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "Moving Lights!",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "Interlude",
+          "note": "",
+          "is_se": false,
+          "is_interlude": true,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "Into the Blue",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "ラブストーリーが始まらない",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 6,
+          "song": "Draw a line",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 7,
+          "song": "Sunlight",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 8,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 9,
+          "song": "タイムカプセル",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
       "ticket_links": [
         {
           "label": null,
@@ -13017,8 +13090,8 @@
       "translation": null,
       "plays": 96,
       "shows": 95,
-      "shows_since_debut": 145,
-      "play_rate": 0.66,
+      "shows_since_debut": 146,
+      "play_rate": 0.65,
       "first_performed": "2025-09-13",
       "last_performed": "2026-07-27",
       "current_streak": 0,
@@ -13809,13 +13882,13 @@
       "id": "luminous",
       "name": "ルミナス",
       "translation": "Luminous",
-      "plays": 141,
-      "shows": 141,
-      "shows_since_debut": 145,
+      "plays": 142,
+      "shows": 142,
+      "shows_since_debut": 146,
       "play_rate": 0.97,
       "first_performed": "2025-09-13",
-      "last_performed": "2026-08-28",
-      "current_streak": 47,
+      "last_performed": "2026-08-29",
+      "current_streak": 48,
       "longest_streak": 59,
       "encores": 2,
       "is_se": false,
@@ -14948,6 +15021,14 @@
           "position": 8,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -14965,11 +15046,11 @@
       "translation": null,
       "plays": 75,
       "shows": 75,
-      "shows_since_debut": 144,
+      "shows_since_debut": 145,
       "play_rate": 0.52,
       "first_performed": "2025-09-20",
       "last_performed": "2026-08-28",
-      "current_streak": 2,
+      "current_streak": 0,
       "longest_streak": 15,
       "encores": 0,
       "is_se": false,
@@ -15589,13 +15670,13 @@
       "id": "moving-lights",
       "name": "Moving Lights!",
       "translation": null,
-      "plays": 83,
-      "shows": 83,
-      "shows_since_debut": 144,
+      "plays": 84,
+      "shows": 84,
+      "shows_since_debut": 145,
       "play_rate": 0.58,
       "first_performed": "2025-09-20",
-      "last_performed": "2026-08-16",
-      "current_streak": 0,
+      "last_performed": "2026-08-29",
+      "current_streak": 1,
       "longest_streak": 10,
       "encores": 1,
       "is_se": false,
@@ -16264,6 +16345,14 @@
           "position": 2,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -16281,7 +16370,7 @@
       "translation": null,
       "plays": 64,
       "shows": 64,
-      "shows_since_debut": 144,
+      "shows_since_debut": 145,
       "play_rate": 0.44,
       "first_performed": "2025-09-20",
       "last_performed": "2026-03-22",
@@ -16812,8 +16901,8 @@
       "translation": "primary",
       "plays": 60,
       "shows": 60,
-      "shows_since_debut": 144,
-      "play_rate": 0.42,
+      "shows_since_debut": 145,
+      "play_rate": 0.41,
       "first_performed": "2025-09-20",
       "last_performed": "2026-08-24",
       "current_streak": 0,
@@ -17318,11 +17407,11 @@
       "translation": "Morning Glow and the Train Window",
       "plays": 141,
       "shows": 141,
-      "shows_since_debut": 144,
-      "play_rate": 0.98,
+      "shows_since_debut": 145,
+      "play_rate": 0.97,
       "first_performed": "2025-09-20",
       "last_performed": "2026-08-28",
-      "current_streak": 3,
+      "current_streak": 0,
       "longest_streak": 115,
       "encores": 2,
       "is_se": false,
@@ -18470,13 +18559,13 @@
       "id": "se-moving-lights",
       "name": "SE(Moving Lights!)",
       "translation": null,
-      "plays": 20,
-      "shows": 20,
-      "shows_since_debut": 128,
+      "plays": 21,
+      "shows": 21,
+      "shows_since_debut": 129,
       "play_rate": 0.16,
       "first_performed": "2025-10-26",
-      "last_performed": "2026-08-22",
-      "current_streak": 0,
+      "last_performed": "2026-08-29",
+      "current_streak": 1,
       "longest_streak": 2,
       "encores": 0,
       "is_se": true,
@@ -18641,6 +18730,14 @@
           "position": 1,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": null
@@ -18649,13 +18746,13 @@
       "id": "love-story-ga-hajimaranai",
       "name": "ラブストーリーが始まらない",
       "translation": "A Love Story That Never Begins",
-      "plays": 70,
-      "shows": 70,
-      "shows_since_debut": 114,
-      "play_rate": 0.61,
+      "plays": 71,
+      "shows": 71,
+      "shows_since_debut": 115,
+      "play_rate": 0.62,
       "first_performed": "2025-11-24",
-      "last_performed": "2026-08-17",
-      "current_streak": 0,
+      "last_performed": "2026-08-29",
+      "current_streak": 1,
       "longest_streak": 16,
       "encores": 0,
       "is_se": false,
@@ -19220,6 +19317,14 @@
           "position": 3,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -19237,7 +19342,7 @@
       "translation": "SE(primary)",
       "plays": 6,
       "shows": 6,
-      "shows_since_debut": 96,
+      "shows_since_debut": 97,
       "play_rate": 0.06,
       "first_performed": "2026-01-04",
       "last_performed": "2026-05-03",
@@ -19304,8 +19409,8 @@
       "translation": null,
       "plays": 51,
       "shows": 51,
-      "shows_since_debut": 93,
-      "play_rate": 0.55,
+      "shows_since_debut": 94,
+      "play_rate": 0.54,
       "first_performed": "2026-01-11",
       "last_performed": "2026-08-27",
       "current_streak": 0,
@@ -19736,13 +19841,13 @@
       "id": "interlude",
       "name": "Interlude",
       "translation": null,
-      "plays": 43,
-      "shows": 41,
-      "shows_since_debut": 93,
-      "play_rate": 0.44,
+      "plays": 44,
+      "shows": 42,
+      "shows_since_debut": 94,
+      "play_rate": 0.45,
       "first_performed": "2026-01-11",
-      "last_performed": "2026-08-22",
-      "current_streak": 0,
+      "last_performed": "2026-08-29",
+      "current_streak": 1,
       "longest_streak": 4,
       "encores": 0,
       "is_se": false,
@@ -20091,6 +20196,14 @@
           "position": 3,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": null
@@ -20101,7 +20214,7 @@
       "translation": "Egakikake no Sora",
       "plays": 38,
       "shows": 38,
-      "shows_since_debut": 77,
+      "shows_since_debut": 78,
       "play_rate": 0.49,
       "first_performed": "2026-02-23",
       "last_performed": "2026-08-27",
@@ -20429,13 +20542,13 @@
       "id": "draw-a-line",
       "name": "Draw a line",
       "translation": null,
-      "plays": 9,
-      "shows": 9,
-      "shows_since_debut": 64,
-      "play_rate": 0.14,
+      "plays": 10,
+      "shows": 10,
+      "shows_since_debut": 65,
+      "play_rate": 0.15,
       "first_performed": "2026-03-28",
-      "last_performed": "2026-08-17",
-      "current_streak": 0,
+      "last_performed": "2026-08-29",
+      "current_streak": 1,
       "longest_streak": 1,
       "encores": 0,
       "is_se": false,
@@ -20512,6 +20625,14 @@
           "position": 4,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -20529,11 +20650,11 @@
       "translation": "Stand by Me",
       "plays": 48,
       "shows": 48,
-      "shows_since_debut": 64,
-      "play_rate": 0.75,
+      "shows_since_debut": 65,
+      "play_rate": 0.74,
       "first_performed": "2026-03-28",
       "last_performed": "2026-08-28",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 20,
       "encores": 1,
       "is_se": false,
@@ -20937,13 +21058,13 @@
       "id": "time-capsule",
       "name": "タイムカプセル",
       "translation": "Time Capsule",
-      "plays": 32,
-      "shows": 32,
-      "shows_since_debut": 64,
-      "play_rate": 0.5,
+      "plays": 33,
+      "shows": 33,
+      "shows_since_debut": 65,
+      "play_rate": 0.51,
       "first_performed": "2026-03-28",
-      "last_performed": "2026-08-27",
-      "current_streak": 0,
+      "last_performed": "2026-08-29",
+      "current_streak": 1,
       "longest_streak": 4,
       "encores": 1,
       "is_se": false,
@@ -21204,6 +21325,14 @@
           "position": 10,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 9,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -21221,8 +21350,8 @@
       "translation": null,
       "plays": 15,
       "shows": 15,
-      "shows_since_debut": 63,
-      "play_rate": 0.24,
+      "shows_since_debut": 64,
+      "play_rate": 0.23,
       "first_performed": "2026-03-29",
       "last_performed": "2026-08-17",
       "current_streak": 0,
@@ -21360,7 +21489,7 @@
       "translation": "SE(Stand by Me)",
       "plays": 12,
       "shows": 12,
-      "shows_since_debut": 60,
+      "shows_since_debut": 61,
       "play_rate": 0.2,
       "first_performed": "2026-04-11",
       "last_performed": "2026-08-27",
@@ -21475,7 +21604,7 @@
       "translation": "SE(A Love Story That Never Begins)",
       "plays": 1,
       "shows": 1,
-      "shows_since_debut": 47,
+      "shows_since_debut": 48,
       "play_rate": 0.02,
       "first_performed": "2026-05-06",
       "last_performed": "2026-05-06",
@@ -21502,11 +21631,11 @@
       "translation": "Ginmaku",
       "plays": 10,
       "shows": 10,
-      "shows_since_debut": 37,
-      "play_rate": 0.27,
+      "shows_since_debut": 38,
+      "play_rate": 0.26,
       "first_performed": "2026-05-30",
       "last_performed": "2026-08-28",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 2,
       "encores": 0,
       "is_se": false,
@@ -21606,13 +21735,13 @@
       "id": "into-the-blue",
       "name": "Into the Blue",
       "translation": null,
-      "plays": 28,
-      "shows": 28,
-      "shows_since_debut": 29,
+      "plays": 29,
+      "shows": 29,
+      "shows_since_debut": 30,
       "play_rate": 0.97,
       "first_performed": "2026-06-22",
-      "last_performed": "2026-08-28",
-      "current_streak": 13,
+      "last_performed": "2026-08-29",
+      "current_streak": 14,
       "longest_streak": 15,
       "encores": 0,
       "is_se": false,
@@ -21841,6 +21970,14 @@
           "position": 3,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -21858,11 +21995,11 @@
       "translation": null,
       "plays": 8,
       "shows": 8,
-      "shows_since_debut": 12,
-      "play_rate": 0.67,
+      "shows_since_debut": 13,
+      "play_rate": 0.62,
       "first_performed": "2026-07-28",
       "last_performed": "2026-08-28",
-      "current_streak": 2,
+      "current_streak": 0,
       "longest_streak": 3,
       "encores": 0,
       "is_se": false,
@@ -21946,14 +22083,14 @@
       "id": "sunlight",
       "name": "Sunlight",
       "translation": null,
-      "plays": 2,
-      "shows": 2,
-      "shows_since_debut": 2,
+      "plays": 3,
+      "shows": 3,
+      "shows_since_debut": 3,
       "play_rate": 1.0,
       "first_performed": "2026-08-27",
-      "last_performed": "2026-08-28",
-      "current_streak": 2,
-      "longest_streak": 2,
+      "last_performed": "2026-08-29",
+      "current_streak": 3,
+      "longest_streak": 3,
       "encores": 0,
       "is_se": false,
       "is_interlude": false,
@@ -21973,6 +22110,14 @@
           "position": 6,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -21989,9 +22134,9 @@
     {
       "id": "shinjuku-marz",
       "name": "新宿MARZ",
-      "shows": 14,
+      "shows": 15,
       "first_played": "2025-10-03",
-      "last_played": "2026-06-28",
+      "last_played": "2026-08-29",
       "event_ids": [
         "2025-10-03-1",
         "2025-10-26-2",
@@ -22006,7 +22151,8 @@
         "2026-05-05-1",
         "2026-05-15-1",
         "2026-06-03-1",
-        "2026-06-28-1"
+        "2026-06-28-1",
+        "2026-08-29-1"
       ],
       "address": "〒160-0021 東京都新宿区歌舞伎町2-45-1 第1トキワビルB1F",
       "capacity": "250人"
@@ -23301,9 +23447,9 @@
       },
       {
         "minutes": 30,
-        "shows": 38,
+        "shows": 39,
         "avg_songs": 6.8,
-        "shows_with_se": 32,
+        "shows_with_se": 33,
         "event_ids": [
           "2025-09-23-2",
           "2025-10-03-1",
@@ -23342,7 +23488,8 @@
           "2026-08-16-1",
           "2026-08-17-1",
           "2026-08-24-1",
-          "2026-08-28-1"
+          "2026-08-28-1",
+          "2026-08-29-1"
         ]
       }
     ],
@@ -23368,7 +23515,7 @@
           },
           "30": {
             "count": 25,
-            "eligible": 38
+            "eligible": 39
           }
         }
       },
@@ -23392,8 +23539,8 @@
             "eligible": 75
           },
           "30": {
-            "count": 37,
-            "eligible": 38
+            "count": 38,
+            "eligible": 39
           }
         }
       },
@@ -23418,7 +23565,7 @@
           },
           "30": {
             "count": 23,
-            "eligible": 38
+            "eligible": 39
           }
         }
       },
@@ -23442,8 +23589,8 @@
             "eligible": 75
           },
           "30": {
-            "count": 26,
-            "eligible": 38
+            "count": 27,
+            "eligible": 39
           }
         }
       },
@@ -23468,7 +23615,7 @@
           },
           "30": {
             "count": 37,
-            "eligible": 38
+            "eligible": 39
           }
         }
       },
@@ -23493,7 +23640,7 @@
           },
           "30": {
             "count": 23,
-            "eligible": 38
+            "eligible": 39
           }
         }
       },
@@ -23518,7 +23665,7 @@
           },
           "30": {
             "count": 19,
-            "eligible": 38
+            "eligible": 39
           }
         }
       },
@@ -23542,8 +23689,8 @@
             "eligible": 65
           },
           "30": {
-            "count": 5,
-            "eligible": 33
+            "count": 6,
+            "eligible": 34
           }
         }
       },
@@ -23567,8 +23714,8 @@
             "eligible": 59
           },
           "30": {
-            "count": 20,
-            "eligible": 27
+            "count": 21,
+            "eligible": 28
           }
         }
       },
@@ -23593,7 +23740,7 @@
           },
           "30": {
             "count": 1,
-            "eligible": 25
+            "eligible": 26
           }
         }
       },
@@ -23618,7 +23765,7 @@
           },
           "30": {
             "count": 12,
-            "eligible": 23
+            "eligible": 24
           }
         }
       },
@@ -23642,8 +23789,8 @@
             "eligible": 47
           },
           "30": {
-            "count": 8,
-            "eligible": 23
+            "count": 9,
+            "eligible": 24
           }
         }
       },
@@ -23668,7 +23815,7 @@
           },
           "30": {
             "count": 8,
-            "eligible": 22
+            "eligible": 23
           }
         }
       },
@@ -23693,7 +23840,7 @@
           },
           "30": {
             "count": 16,
-            "eligible": 18
+            "eligible": 19
           }
         }
       },
@@ -23717,8 +23864,8 @@
             "eligible": 29
           },
           "30": {
-            "count": 7,
-            "eligible": 18
+            "count": 8,
+            "eligible": 19
           }
         }
       },
@@ -23742,8 +23889,8 @@
             "eligible": 29
           },
           "30": {
-            "count": 9,
-            "eligible": 18
+            "count": 10,
+            "eligible": 19
           }
         }
       },
@@ -23768,7 +23915,7 @@
           },
           "30": {
             "count": 3,
-            "eligible": 18
+            "eligible": 19
           }
         }
       },
@@ -23793,7 +23940,7 @@
           },
           "30": {
             "count": 4,
-            "eligible": 18
+            "eligible": 19
           }
         }
       },
@@ -23818,7 +23965,7 @@
           },
           "30": {
             "count": 0,
-            "eligible": 15
+            "eligible": 16
           }
         }
       },
@@ -23843,7 +23990,7 @@
           },
           "30": {
             "count": 4,
-            "eligible": 13
+            "eligible": 14
           }
         }
       },
@@ -23867,8 +24014,8 @@
             "eligible": 8
           },
           "30": {
-            "count": 7,
-            "eligible": 7
+            "count": 8,
+            "eligible": 8
           }
         }
       },
@@ -23893,7 +24040,7 @@
           },
           "30": {
             "count": 3,
-            "eligible": 4
+            "eligible": 5
           }
         }
       },
@@ -23917,8 +24064,8 @@
             "eligible": 0
           },
           "30": {
-            "count": 1,
-            "eligible": 1
+            "count": 2,
+            "eligible": 2
           }
         }
       }
