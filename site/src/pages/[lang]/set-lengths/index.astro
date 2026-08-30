@@ -16,6 +16,9 @@ export function getStaticPaths() {
 const { lang } = Astro.props as { lang: Lang };
 const base = import.meta.env.BASE_URL;
 const { buckets, songs, uncovered_shows } = setLengthStats;
+// Client script reuses this template (with {n} swapped for the live count),
+// same pattern as the songs index and the events list's filter count.
+const countTemplate = t(lang, 'songs.count', { n: '__N__' });
 ---
 
 <Layout title={t(lang, 'setLength.title')} lang={lang} path="set-lengths/">
@@ -81,7 +84,12 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
 
   <section class="flex flex-col gap-3">
     <SectionHeading>{t(lang, 'setLength.songDistribution')}</SectionHeading>
-    <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
+      <p id="distribution-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
+        {t(lang, 'songs.count', { n: songs.length })}
+      </p>
+    </div>
 
     <StatsTable>
       <Table id="song-distribution-table">
@@ -140,11 +148,17 @@ const { buckets, songs, uncovered_shows } = setLengthStats;
 
     const checkbox = document.getElementById('include-special') as HTMLInputElement;
     const rows = document.querySelectorAll<HTMLTableRowElement>('#song-distribution-table tbody tr');
+    const countEl = document.getElementById('distribution-count')!;
+    const template = countEl.dataset.template!;
 
     function apply() {
+      let visible = 0;
       rows.forEach((row) => {
-        row.hidden = !checkbox.checked && row.dataset.special === '1';
+        const show = checkbox.checked || row.dataset.special === '0';
+        row.hidden = !show;
+        if (show) visible++;
       });
+      countEl.textContent = template.replace('__N__', String(visible));
     }
 
     checkbox.addEventListener('change', apply);
