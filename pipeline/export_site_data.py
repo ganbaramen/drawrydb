@@ -358,6 +358,31 @@ def sort_key(row: dict[str, str]) -> str:
     return row.get("live_start") or row.get("showtime") or row.get("doors") or "~"
 
 
+def load_venue_renames() -> dict[str, str]:
+    """data/input/venue_renames.csv (wrong,correct) — the same file
+    sync_setlists.py applies to setlists.csv's venue column.
+
+    A show's venue comes from its setlist post, so a confirmed rename has
+    already been applied by the time it reaches this script. An event with no
+    setlist yet — every upcoming show — gets its venue from the calendar
+    description instead, which never passes through that step, so the same
+    venue reads e.g. "渋谷Spotify O-Crest" while it's upcoming and
+    "Spotify O-Crest" once its setlist is in. Applying the renames here too
+    makes the name settled from the moment the show is announced, and lets an
+    upcoming event link to its venue page (site data.ts matches a venue by
+    name, and the venues list is built from the post-derived spellings).
+    """
+    path = os.path.join(INPUT_DIR, "venue_renames.csv")
+    if not os.path.exists(path):
+        return {}
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        return {
+            row["wrong"].strip(): row["correct"].strip()
+            for row in csv.DictReader(fh)
+            if row.get("wrong") and row.get("correct")
+        }
+
+
 def is_announced(event: dict) -> bool:
     """A venue is the heuristic for "this show has actually been announced".
 
@@ -385,6 +410,7 @@ def build_events() -> list[dict]:
     calendar = read_csv("drawry_schedule.csv")
     shows = read_csv("shows.csv")
     setlists = read_csv("setlists.csv")
+    venue_renames = load_venue_renames()
 
     songs_by_uid_date: dict[tuple[str, str], list[dict]] = {}
     for row in setlists:
@@ -447,7 +473,7 @@ def build_events() -> list[dict]:
             {
                 "date": date,
                 "title": clean_title(row["summary"]),
-                "venue": row["venue"] or None,
+                "venue": venue_renames.get(row["venue"], row["venue"]) or None,
                 "doors": row["doors"] or None,
                 "showtime": row["showtime"] or None,
                 "live_start": row["live_start"] or None,

@@ -307,6 +307,18 @@ posted text is more likely to appear verbatim in the calendar `description`
 than a canonicalized name would be, so correcting before matching could make
 matching worse, not better.
 
+`venue_renames.csv` is applied a **second** time, in `export_site_data.py`'s
+`load_venue_renames()`. A show's venue comes from its setlist post and has
+already been renamed by `sync_setlists.py` before this script sees it, but an
+event with no setlist yet — i.e. every upcoming show — takes its venue from
+the calendar description, which never passes through that step. Without this
+the same room read `渋谷Spotify O-Crest` while upcoming and `Spotify O-Crest`
+once its setlist landed. Applied only to the calendar-sourced branch of
+`build_events()` (the shows.csv branch is already renamed), after
+`apply_overrides()` has run in `export_calendar.py`. It also makes an upcoming
+event *link* to its venue page: `data.ts`'s `getVenue()` matches by name, and
+the venues list is built from the post-derived spellings.
+
 ### Venue clustering (`venue_review.csv`)
 
 The single-threshold `report_typos()` approach (fuzzy ratio, one gate) doesn't
