@@ -12858,18 +12858,29 @@
     },
     {
       "date": "2026-09-30",
-      "title": "主催イベント予定@ Shibuya Milkyway",
+      "title": "Drawry.主催3カ月連続フリーライブ「描きかけの夏」vol.3",
       "venue": "Shibuya Milkyway",
-      "doors": "18:30",
-      "showtime": "19:00",
+      "doors": "18:45",
+      "showtime": "19:10",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
-      "ticket_sales": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/Drawry_summer3"
+        }
+      ],
+      "ticket_sales": [
+        {
+          "label": null,
+          "start": "2026-08-31 22:15",
+          "end": null
+        }
+      ],
       "id": "2026-09-30-1",
       "note": null
     },
