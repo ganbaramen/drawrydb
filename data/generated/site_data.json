@@ -12715,8 +12715,8 @@
       "showtime": "18:00",
       "live_start": "19:25",
       "live_end": "19:50",
-      "meet_start": null,
-      "meet_end": null,
+      "meet_start": "21:00",
+      "meet_end": "22:00",
       "has_setlist": false,
       "setlist": [],
       "ticket_links": [
