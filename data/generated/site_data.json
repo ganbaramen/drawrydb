@@ -12942,6 +12942,34 @@
       "note": null
     },
     {
+      "date": "2026-09-22",
+      "title": "さくまる。presents『 Told To Meet! vol.1 』",
+      "venue": "LiveHouse浜松窓枠",
+      "doors": "11:20",
+      "showtime": "11:50",
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/toldtomeet01"
+        }
+      ],
+      "ticket_sales": [
+        {
+          "label": null,
+          "start": "2026-09-04 22:00",
+          "end": null
+        }
+      ],
+      "id": "2026-09-22-1",
+      "note": null
+    },
+    {
       "date": "2026-09-30",
       "title": "Drawry.主催3カ月連続フリーライブ「描きかけの夏」vol.3",
       "venue": "Shibuya Milkyway",
