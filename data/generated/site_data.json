@@ -13019,6 +13019,28 @@
       "note": null
     },
     {
+      "date": "2026-09-23",
+      "title": "SPARK 2026 in YAMANAKAKO",
+      "venue": "山中湖交流プラザきらら",
+      "doors": "09:00",
+      "showtime": "10:00",
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://ticketdive.com/event/spark2026yamanakako"
+        }
+      ],
+      "ticket_sales": [],
+      "id": "2026-09-23-1",
+      "note": null
+    },
+    {
       "date": "2026-09-30",
       "title": "Drawry.主催3カ月連続フリーライブ「描きかけの夏」vol.3",
       "venue": "Shibuya Milkyway",
