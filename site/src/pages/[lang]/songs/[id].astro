@@ -153,6 +153,16 @@ const daysSinceLast = daysSince(today, song.last_performed);
           longest: song.longest_streak,
         })}
       </MetaRow>
+      {song.opened > 0 && (
+        <MetaRow label={t(lang, 'songs.opened')}>
+          {t(lang, 'songs.playsCount', { n: song.opened })}
+        </MetaRow>
+      )}
+      {song.closed > 0 && (
+        <MetaRow label={t(lang, 'songs.closed')}>
+          {t(lang, 'songs.playsCount', { n: song.closed })}
+        </MetaRow>
+      )}
       {song.encores > 0 && (
         <MetaRow label={t(lang, 'songs.encores')}>
           {t(lang, 'songs.playsCount', { n: song.encores })}

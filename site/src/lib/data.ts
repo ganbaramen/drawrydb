@@ -92,6 +92,12 @@ export interface Song {
   current_streak: number;
   longest_streak: number;
   encores: number;
+  // How many shows this song opened / closed, counting over SE and Interlude
+  // (an SE is the walk-on tape, an Interlude a link between songs) and
+  // counting the encore as the closer — see build_stats() in
+  // pipeline/sync_setlists.py. Always 0 for an SE or Interlude itself.
+  opened: number;
+  closed: number;
   is_se: boolean;
   is_interlude: boolean;
   performances: Performance[];

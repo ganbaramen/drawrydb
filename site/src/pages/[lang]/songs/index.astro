@@ -55,6 +55,8 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
           <TableHead data-sort-type="date">{t(lang, 'songs.debut')}</TableHead>
           <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.plays')}</TableHead>
           <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.playRate')}</TableHead>
+          <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.openedShort')}</TableHead>
+          <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.closedShort')}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -73,6 +75,12 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
               <TableCell class="text-right tabular-nums" data-sort-value={song.plays}>{song.plays}</TableCell>
               <TableCell class="text-right tabular-nums" data-sort-value={song.play_rate}>
                 {Math.round(song.play_rate * 100)}%
+              </TableCell>
+              <TableCell class="text-right tabular-nums text-muted-foreground" data-sort-value={song.opened}>
+                {song.opened}
+              </TableCell>
+              <TableCell class="text-right tabular-nums text-muted-foreground" data-sort-value={song.closed}>
+                {song.closed}
               </TableCell>
             </TableRow>
           ))

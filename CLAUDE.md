@@ -400,6 +400,17 @@ It is a **maintainer-facing column only** — it stays in `song_stats.csv` and i
 `export_site_data.py` shipped it to the browser until 2026-08-25, where no page
 ever read it; don't re-add it without a page that actually shows something.
 
+`opened` / `closed` (song_stats) count the shows a song started and ended,
+**both computed over SE and Interlude** — an SE is the walk-on tape and an
+Interlude a link between songs, so a set written `01. SE(…) / 02. Moving
+Lights!` opened on Moving Lights!; counting the SE would make most sets look
+like they opened on the same "song". Same exemption `avg_songs` makes, and
+both columns are always 0 for an SE or Interlude itself. The **closer counts
+the encore** — it's the song the audience actually went home on, not the last
+of the main set. A set consisting only of SE/Interlude would contribute to
+neither, though none exists; `sum(opened) == sum(closed) == the show count` is
+the check that says so.
+
 `shows_since_debut` / `play_rate` (song_stats) exist because raw `plays` isn't
 a fair comparison across songs with different debut dates — a song that's been
 in the set since day one racks up plays just by being older. `shows_since_debut`

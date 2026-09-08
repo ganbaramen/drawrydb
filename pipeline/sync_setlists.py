@@ -536,6 +536,30 @@ def build_stats(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[
     marked: dict[str, str] = {}
     flags: dict[str, tuple[str, str]] = {}
     all_shows: set[tuple[str, str, str]] = set()
+    openers: Counter[str] = Counter()
+    closers: Counter[str] = Counter()
+
+    # Which song a set opened and closed on, counted over SE and Interlude
+    # (user-specified) — an SE is the walk-on tape and an Interlude a link
+    # between songs, so a set that starts `01. SE(…) / 02. Moving Lights!`
+    # opened on Moving Lights!, and counting the SE instead would make every
+    # such set look like it opened on the same "song". Same exemption
+    # avg_songs makes. A set that is *only* SE/Interlude has no opener or
+    # closer and contributes to neither.
+    #
+    # The closer is the last song played, encore included — the encore is
+    # what the audience actually went home on. A show's own rows are already
+    # in running order (build_rows sorts by position within a show), so this
+    # reads the ends of the group directly rather than re-sorting.
+    for songs in group_shows(rows).values():
+        real = [
+            row["song"]
+            for row in songs
+            if row["is_se"] != "yes" and row["is_interlude"] != "yes"
+        ]
+        if real:
+            openers[real[0]] += 1
+            closers[real[-1]] += 1
 
     for row in rows:
         song, when = row["song"], row["event_date"]
@@ -580,6 +604,8 @@ def build_stats(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[
                 "last_performed": last[song],
                 "debut_confirmed": "yes" if confirmed else "no",
                 "encores": str(encores[song]),
+                "opened": str(openers[song]),
+                "closed": str(closers[song]),
                 "is_se": flags[song][0],
                 "is_interlude": flags[song][1],
             }

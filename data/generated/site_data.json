@@ -13490,6 +13490,8 @@
       "current_streak": 0,
       "longest_streak": 15,
       "encores": 0,
+      "opened": 18,
+      "closed": 0,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -14116,6 +14118,8 @@
       "current_streak": 1,
       "longest_streak": 31,
       "encores": 2,
+      "opened": 56,
+      "closed": 29,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -14910,6 +14914,8 @@
       "current_streak": 0,
       "longest_streak": 10,
       "encores": 1,
+      "opened": 28,
+      "closed": 1,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -15616,6 +15622,8 @@
       "current_streak": 0,
       "longest_streak": 18,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": true,
       "is_interlude": false,
       "performances": [
@@ -16155,6 +16163,8 @@
       "current_streak": 0,
       "longest_streak": 8,
       "encores": 0,
+      "opened": 10,
+      "closed": 38,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -16661,6 +16671,8 @@
       "current_streak": 53,
       "longest_streak": 58,
       "encores": 2,
+      "opened": 0,
+      "closed": 20,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -17863,6 +17875,8 @@
       "current_streak": 0,
       "longest_streak": 115,
       "encores": 2,
+      "opened": 3,
+      "closed": 10,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -19049,6 +19063,8 @@
       "current_streak": 0,
       "longest_streak": 2,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": true,
       "is_interlude": false,
       "performances": [
@@ -19244,6 +19260,8 @@
       "current_streak": 0,
       "longest_streak": 16,
       "encores": 0,
+      "opened": 10,
+      "closed": 0,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -19862,6 +19880,8 @@
       "current_streak": 0,
       "longest_streak": 1,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": true,
       "is_interlude": false,
       "performances": [
@@ -19929,6 +19949,8 @@
       "current_streak": 0,
       "longest_streak": 6,
       "encores": 0,
+      "opened": 1,
+      "closed": 0,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -20371,6 +20393,8 @@
       "current_streak": 0,
       "longest_streak": 4,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": false,
       "is_interlude": true,
       "performances": [
@@ -20750,6 +20774,8 @@
       "current_streak": 0,
       "longest_streak": 8,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -21096,6 +21122,8 @@
       "current_streak": 0,
       "longest_streak": 1,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -21202,6 +21230,8 @@
       "current_streak": 0,
       "longest_streak": 20,
       "encores": 1,
+      "opened": 18,
+      "closed": 27,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -21636,6 +21666,8 @@
       "current_streak": 0,
       "longest_streak": 4,
       "encores": 1,
+      "opened": 0,
+      "closed": 25,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -21942,6 +21974,8 @@
       "current_streak": 0,
       "longest_streak": 2,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": true,
       "is_interlude": false,
       "performances": [
@@ -22089,6 +22123,8 @@
       "current_streak": 0,
       "longest_streak": 1,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": true,
       "is_interlude": false,
       "performances": [
@@ -22204,6 +22240,8 @@
       "current_streak": 0,
       "longest_streak": 1,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": true,
       "is_interlude": false,
       "performances": [
@@ -22231,6 +22269,8 @@
       "current_streak": 0,
       "longest_streak": 2,
       "encores": 0,
+      "opened": 6,
+      "closed": 0,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -22353,6 +22393,8 @@
       "current_streak": 0,
       "longest_streak": 18,
       "encores": 0,
+      "opened": 2,
+      "closed": 1,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -22651,6 +22693,8 @@
       "current_streak": 0,
       "longest_streak": 3,
       "encores": 0,
+      "opened": 0,
+      "closed": 0,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -22749,6 +22793,8 @@
       "current_streak": 0,
       "longest_streak": 7,
       "encores": 0,
+      "opened": 0,
+      "closed": 1,
       "is_se": false,
       "is_interlude": false,
       "performances": [

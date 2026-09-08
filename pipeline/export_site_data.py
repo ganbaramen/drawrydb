@@ -634,6 +634,8 @@ def build_songs(events: list[dict]) -> list[dict]:
                 "current_streak": current_streak,
                 "longest_streak": longest_streak,
                 "encores": int(row["encores"]),
+                "opened": int(row["opened"]),
+                "closed": int(row["closed"]),
                 "is_se": row["is_se"] == "yes",
                 "is_interlude": row["is_interlude"] == "yes",
                 "performances": performances,
