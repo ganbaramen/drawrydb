@@ -1,0 +1,76 @@
+---
+// The "which columns to show" menu for a stats table — a <details> disclosure
+// holding one checkbox per optional column.
+//
+// A <details> rather than a scripted popover so it opens and closes with no
+// JavaScript at all; only the *effect* of the checkboxes needs script (see
+// lib/column-picker.ts), and until that runs the table already shows each
+// column's server-rendered default, so the page is never wrong, just not yet
+// adjustable.
+//
+// Columns are identified by a `key` that must match the data-column on the
+// matching <th>/<td> — that string is the whole contract between this menu,
+// the table markup, and the localStorage record of what the reader chose.
+export interface Column {
+  key: string;
+  label: string;
+  on: boolean;
+}
+
+interface Props {
+  label: string;
+  columns: Column[];
+  /** localStorage key the chosen set is remembered under. */
+  storageKey: string;
+}
+
+const { label, columns, storageKey } = Astro.props;
+---
+
+<details
+  class="column-picker relative"
+  data-storage-key={storageKey}
+  data-defaults={columns
+    .filter((column) => column.on)
+    .map((column) => column.key)
+    .join(',')}
+>
+  <summary
+    class="text-muted-foreground hover:text-foreground inline-flex cursor-pointer list-none items-center gap-1.5 text-sm transition-colors"
+  >
+    {label}
+    <span aria-hidden="true" class="column-picker-arrow text-xs">▾</span>
+  </summary>
+  <div
+    class="bg-background border-input absolute z-10 mt-1 flex min-w-40 flex-col gap-1.5 rounded-md border p-3 shadow-md"
+  >
+    {
+      columns.map((column) => (
+        <label class="text-muted-foreground hover:text-foreground inline-flex cursor-pointer items-center gap-2 text-sm whitespace-nowrap transition-colors">
+          <input
+            type="checkbox"
+            class="border-input text-primary focus-visible:ring-ring/50 accent-primary size-4 rounded-sm border focus-visible:ring-3"
+            data-column-toggle={column.key}
+            checked={column.on}
+          />
+          {column.label}
+        </label>
+      ))
+    }
+  </div>
+</details>
+
+<style>
+  /* Safari still paints the default disclosure triangle without this, which
+     would sit next to the ▾ span. */
+  .column-picker > summary::-webkit-details-marker {
+    display: none;
+  }
+  .column-picker[open] .column-picker-arrow {
+    transform: rotate(180deg);
+  }
+  .column-picker-arrow {
+    display: inline-block;
+    transition: transform 150ms;
+  }
+</style>

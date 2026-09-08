@@ -67,7 +67,33 @@ Two things there are not stock and will be clobbered by a careless
 `src/components/` holds the compositions built on top: `EventCard` (every
 event-ish list row, on Fulldev's `Item`), `MetaTable`/`MetaRow` (the detail
 pages' label/value tables), `PageHeader`, `SectionHeading`, `SpecialFilter`,
-`CreditNames`.
+`ColumnPicker`, `CreditNames`.
+
+### `ColumnPicker` — optional stats columns
+
+The songs index kept four fixed columns (#, name, debut, plays) and put
+everything else behind a `<details>` menu of checkboxes, because adding
+`opened`/`closed` outright made the table noisy and there are more per-song
+stats worth offering. Every stat in `song_stats.csv` is offered; only
+`play_rate` defaults on. A stat being narrow-interest is a reason to default
+it off, not to leave it out.
+
+Three things it does deliberately:
+
+- **A `<details>`, not a scripted popover**, so it opens with no JavaScript.
+  Only the checkboxes' *effect* needs script (`lib/column-picker.ts`), and
+  until that runs the table shows each column's server-rendered default —
+  never wrong, just not yet adjustable.
+- **Cells are hidden, never removed.** `lib/sortable-table.ts` sorts by
+  `cells[index]`; pulling a `<td>` out of the row would silently misalign
+  every column after it. The `hidden` attribute keeps the index stable.
+- **It nudges `window`'s resize event after a toggle.** `lib/table-scroll.ts`
+  recomputes its edge shadows on scroll or resize only, and switching a
+  column off changes `scrollWidth` without either.
+
+A column's `key` is the contract between the menu, the `data-column` on its
+`<th>`/`<td>`, and localStorage. Renaming one silently resets that column for
+every reader who had toggled it.
 
 `EventCard`'s `.event-date` / `.event-title` / `.event-venue` classes are
 **script hooks, not styling** — the home page's inline "next live" script

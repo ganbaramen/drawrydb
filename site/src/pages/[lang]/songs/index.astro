@@ -2,9 +2,10 @@
 import Layout from '../../../layouts/Layout.astro';
 import PageHeader from '../../../components/PageHeader.astro';
 import SpecialFilter from '../../../components/SpecialFilter.astro';
+import ColumnPicker, { type Column } from '../../../components/ColumnPicker.astro';
 import StatsTable from '../../../components/StatsTable.astro';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { songs } from '../../../lib/data';
+import { songs, type Song } from '../../../lib/data';
 import { formatTrackNumber, songDisplayName, urlSafe } from '../../../lib/format';
 import { LOCALES, t, type Lang } from '../../../lib/i18n';
 
@@ -31,6 +32,98 @@ const sorted = songs.slice().sort((a, b) => {
   if (nb === null) return -1;
   return na - nb;
 });
+
+// The optional columns, in the order they appear to the right of the four
+// fixed ones (#, name, debut, plays). Every stat song_stats.csv carries is
+// offered here rather than only the ones that fit comfortably — the whole
+// point of the picker is that the reader decides which handful to look at,
+// so a stat being narrow-interest is a reason to default it off, not to
+// leave it out. `on` is the server-rendered default for a first-time
+// reader; lib/column-picker.ts overrides it from localStorage after that.
+//
+// `key` is the contract with the markup and with localStorage: it goes on
+// both the <th> and every <td> as data-column, and is what gets persisted.
+// Renaming one silently resets that column for everyone who had toggled it.
+type StatColumn = Column & {
+  sortType: 'number' | 'date';
+  value: (song: Song) => string | number;
+  text: (song: Song) => string;
+};
+
+const columns: StatColumn[] = [
+  {
+    key: 'play_rate',
+    label: t(lang, 'songs.playRate'),
+    on: true,
+    sortType: 'number',
+    value: (song) => song.play_rate,
+    text: (song) => `${Math.round(song.play_rate * 100)}%`,
+  },
+  {
+    key: 'opened',
+    label: t(lang, 'songs.opened'),
+    on: false,
+    sortType: 'number',
+    value: (song) => song.opened,
+    text: (song) => String(song.opened),
+  },
+  {
+    key: 'closed',
+    label: t(lang, 'songs.closed'),
+    on: false,
+    sortType: 'number',
+    value: (song) => song.closed,
+    text: (song) => String(song.closed),
+  },
+  {
+    key: 'shows',
+    label: t(lang, 'songs.showsShort'),
+    on: false,
+    sortType: 'number',
+    value: (song) => song.shows,
+    text: (song) => String(song.shows),
+  },
+  {
+    key: 'last_performed',
+    label: t(lang, 'songs.lastPerformedShort'),
+    on: false,
+    sortType: 'date',
+    value: (song) => song.last_performed,
+    text: (song) => song.last_performed,
+  },
+  {
+    key: 'current_streak',
+    label: t(lang, 'songs.streakShort'),
+    on: false,
+    sortType: 'number',
+    value: (song) => song.current_streak,
+    text: (song) => String(song.current_streak),
+  },
+  {
+    key: 'longest_streak',
+    label: t(lang, 'songs.longestStreakShort'),
+    on: false,
+    sortType: 'number',
+    value: (song) => song.longest_streak,
+    text: (song) => String(song.longest_streak),
+  },
+  {
+    key: 'encores',
+    label: t(lang, 'songs.encores'),
+    on: false,
+    sortType: 'number',
+    value: (song) => song.encores,
+    text: (song) => String(song.encores),
+  },
+];
+
+// The menu shows each column's full label; the header cell shows a short one
+// where the full name would widen the table for no gain (最初の曲 -> 最初).
+const headings: Record<string, string> = {
+  opened: t(lang, 'songs.openedShort'),
+  closed: t(lang, 'songs.closedShort'),
+};
+
 // Client script reuses this template (with {n} swapped for the live count),
 // same pattern as the events list's filter count.
 const countTemplate = t(lang, 'songs.count', { n: '__N__' });
@@ -40,7 +133,14 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
   <PageHeader title={t(lang, 'songs.title')} />
 
   <div class="flex flex-wrap items-center justify-between gap-2">
-    <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
+    <div class="flex flex-wrap items-center gap-4">
+      <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
+      <ColumnPicker
+        label={t(lang, 'songs.columns')}
+        columns={columns}
+        storageKey="drawrydb:songs-columns"
+      />
+    </div>
     <p id="songs-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
       {t(lang, 'songs.count', { n: songs.length })}
     </p>
@@ -54,9 +154,18 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
           <TableHead>{t(lang, 'songs.name')}</TableHead>
           <TableHead data-sort-type="date">{t(lang, 'songs.debut')}</TableHead>
           <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.plays')}</TableHead>
-          <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.playRate')}</TableHead>
-          <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.openedShort')}</TableHead>
-          <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.closedShort')}</TableHead>
+          {
+            columns.map((column) => (
+              <TableHead
+                class="text-right"
+                data-sort-type={column.sortType}
+                data-column={column.key}
+                hidden={!column.on}
+              >
+                {headings[column.key] ?? column.label}
+              </TableHead>
+            ))
+          }
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -73,15 +182,16 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
                 {song.first_performed}
               </TableCell>
               <TableCell class="text-right tabular-nums" data-sort-value={song.plays}>{song.plays}</TableCell>
-              <TableCell class="text-right tabular-nums" data-sort-value={song.play_rate}>
-                {Math.round(song.play_rate * 100)}%
-              </TableCell>
-              <TableCell class="text-right tabular-nums text-muted-foreground" data-sort-value={song.opened}>
-                {song.opened}
-              </TableCell>
-              <TableCell class="text-right tabular-nums text-muted-foreground" data-sort-value={song.closed}>
-                {song.closed}
-              </TableCell>
+              {columns.map((column) => (
+                <TableCell
+                  class="text-muted-foreground text-right tabular-nums"
+                  data-sort-value={column.value(song)}
+                  data-column={column.key}
+                  hidden={!column.on}
+                >
+                  {column.text(song)}
+                </TableCell>
+              ))}
             </TableRow>
           ))
         }
@@ -91,7 +201,11 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
 
   <script>
     import { initSortableTable } from '../../../lib/sortable-table';
-    initSortableTable(document.getElementById('songs-table') as HTMLTableElement);
+    import { initColumnPicker } from '../../../lib/column-picker';
+
+    const table = document.getElementById('songs-table') as HTMLTableElement;
+    initSortableTable(table);
+    initColumnPicker(document.querySelector('.column-picker') as HTMLElement, table);
 
     const checkbox = document.getElementById('include-special') as HTMLInputElement;
     const rows = document.querySelectorAll<HTMLTableRowElement>('#songs-table tbody tr');
