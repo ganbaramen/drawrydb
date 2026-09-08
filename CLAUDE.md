@@ -816,6 +816,14 @@ rather than noise:
   events. Extend `NON_SHOW_MARKERS` as new kinds appear — but prefer a false
   positive (a non-show left in the list) over hiding a real gap, since the list
   exists for the user to eyeball.
+  - Solo-member events are all titled `【<member name><kind>】…`, and the
+    *kind* is what varies: `ソロイベント`, `出演イベント`, `ソロ出演`
+    (2026-09-12, added on request — the group wasn't playing). Each needed its
+    own marker. Matching the member's name instead would catch them all at
+    once, but it's a person, not a statement of intent, and would also hide a
+    real group show that happened to name them; check any new variant against
+    the whole calendar before adding it, as `ソロ出演` was (one match, the
+    right one).
 - `NON_SHOW_SUFFIXES` is matched with `endswith`, not `in`, specifically to
   separate `…「First Lines」リリース` (a product release, user-confirmed not an
   event) from `【リリースイベント】タワーレコード新宿店` (an in-store appearance

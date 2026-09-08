@@ -13076,23 +13076,6 @@
     },
     {
       "date": "2026-09-12",
-      "title": "RAY Presents「#MOD_SHIBUYA」",
-      "venue": "OPENBASE SHIBUYA",
-      "doors": null,
-      "showtime": null,
-      "live_start": "13:00",
-      "live_end": "13:30",
-      "meet_start": null,
-      "meet_end": null,
-      "has_setlist": false,
-      "setlist": [],
-      "ticket_links": [],
-      "ticket_sales": [],
-      "id": "2026-09-12-1",
-      "note": null
-    },
-    {
-      "date": "2026-09-12",
       "title": "「SELENE PRINCESS」#81",
       "venue": "白金高輪SELENE b2",
       "doors": "09:45",
@@ -13116,7 +13099,7 @@
           "end": null
         }
       ],
-      "id": "2026-09-12-2",
+      "id": "2026-09-12-1",
       "note": null
     },
     {
