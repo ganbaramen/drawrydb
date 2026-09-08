@@ -239,13 +239,25 @@ a day can share a `showtime`. Don't drop them from the sort key.
 
 ### Deduping
 
-Key is `(event_date, venue)`, first paste wins. Overlapping pastes are the
-expected workflow, not an error. If the same key appears with a *different*
-song list, that's reported as a conflict (truncated or edited post) rather than
-silently resolved.
+Key is `(event_date, venue, post_event_name)` — the same tuple `show_key()`
+uses — first paste wins. Overlapping pastes are the expected workflow, not an
+error; a re-paste of the same show repeats the event name verbatim, so it
+still dedupes. If the same key appears with a *different* song list, that's
+reported as a conflict (truncated or edited post) rather than silently
+resolved.
 
-Known limit: two genuinely different shows on the same date at the same venue
-would collide. Hasn't happened; a 昼/夜 double-header would trigger it.
+The event name joined the key on **2026-09-08**. It was `(event_date, venue)`,
+and the "known limit" recorded here — two genuinely different shows on one
+date at one venue collide — stopped being hypothetical: 2026-09-05 at
+草ぶえの丘 the band got a surprise second slot on the same bill, posted as its
+own 【セットリスト】 with its own name (`「くさのねフェスティバル2026追加ステージ」`
+vs `「くさのねフェスティバル2026」`). Under the old key the extra set was
+swallowed as a duplicate paste and reported only as `conflict: … two pastes
+disagree`. **If a pasted setlist goes missing, that conflict line is the
+tell** — check whether it's really two shows before assuming a bad paste.
+
+A 昼/夜 double-header is still the case that would break this, if both sets
+were posted under the *identical* event name. Nothing has hit that yet.
 
 ### Song naming decisions (user-specified)
 
@@ -392,8 +404,8 @@ ever read it; don't re-add it without a page that actually shows something.
 a fair comparison across songs with different debut dates — a song that's been
 in the set since day one racks up plays just by being older. `shows_since_debut`
 counts all shows (not just this song's) with `event_date >= first_performed`;
-`play_rate = shows / shows_since_debut`. Both counted by `(event_date, venue)`
-pairs, not bare date, so a double-header day counts as two eligible shows.
+`play_rate = shows / shows_since_debut`. Both counted by `show_key()` tuples,
+not bare date, so a double-header day counts as two eligible shows.
 
 `venue_stats.csv` is built from `setlists.csv`'s `venue` column (post-derived),
 not the calendar's — the calendar can have the ambiguous multi-venue problem
@@ -401,7 +413,8 @@ above; the post never does, it always names one specific venue.
 
 `set_length_stats.csv` buckets shows by `live_end - live_start` from the
 calendar (`show_duration()`), rounded to the nearest 5 minutes
-(`length_bucket()`). Coverage is inherently partial — only 78/141 shows have
+(`length_bucket()`). **Only the show that owns the calendar slot is
+bucketed** — see `slot_owners()` below. Coverage is inherently partial — only 78/141 shows have
 both times in the calendar as of writing — and the report says so explicitly
 rather than pretending full coverage. **`avg_songs` excludes SE and Interlude**
 (user-specified) — they're categories, not song choices, and would otherwise
@@ -410,10 +423,52 @@ left including them (still informative there). `most_common_songs` per bucket
 is each song's *rate within that bucket* (`plays_in_bucket / shows_in_bucket`), not a
 raw count, so buckets with different show counts stay comparable.
 
+### `slot_owners()` — who the calendar's live slot belongs to
+
+A calendar event states one 開場/開演/ライブ slot, and normally one show sits in
+it. When two shows share one `(event_uid, event_date)` — the band gets a
+second, unscheduled set on the same bill (2026-09-05 草ぶえの丘) — that slot
+describes the **scheduled** set, and the extra one's real time is recorded
+nowhere. So the extra set gets **blank `live_start`/`live_end`** in
+`shows.csv` and no `length_bucket`, and is excluded from
+`set_length_stats.csv`. `doors`/`showtime`/`meet_*` still apply to both:
+those are the whole event's, and true for either show.
+
+The owner is picked by **plain containment of the posted event name in the
+calendar summary** — `「くさのねフェスティバル2026」` is inside
+`【イベント】「くさのねフェスティバル2026」`, while the longer
+`「…2026追加ステージ」` is not. Not a fuzzy score, deliberately: it either
+identifies exactly one show or it doesn't, and if it doesn't (no match, or
+several) the first show in sort order keeps the slot, so the result never
+depends on paste order. **The test is only applied to shows that actually
+share a slot** — an unshared show always owns its own, so the common case of
+a post naming the event differently from the calendar is untouched.
+
+`export_site_data.py` suppresses the extra set's `meet_start`/`meet_end` for
+the same reason — the event's 特典会 slot belongs to the scheduled show. It
+detects the case from `shows.csv` alone (two rows on one `(event_uid,
+event_date)`, and this one's `live_start` is the blank one) rather than
+needing a new column. `doors`/`showtime` stay on both: those really are the
+whole day's.
+
+Two consequences worth knowing:
+
+- Letting *both* shows claim the slot (the first version of this) filed a
+  2-song extra stage as evidence about 25-minute sets; dropping the duration
+  from *both* then lost the scheduled set's real, correct bucket. Owning it
+  is what gets both right.
+- `export_site_data.py` orders a day's events by
+  `live_start or showtime or doors`, so a blank `live_start` would have sorted
+  the extra set *before* the show it followed (falling back to the event's
+  09:55 showtime) and renumbered both permalinks. `build_events()` therefore
+  falls back to the **calendar row's** `live_start` for ordering only — the
+  displayed times stay blank.
+
 ## `shows.csv` — the canonical show list
 
 Every stats function that needs "which shows exist" was independently
-re-grouping `setlists.csv` by `(event_date, venue)` — `build_stats()`,
+re-grouping `setlists.csv` by `(event_date, venue)` (now
+`(event_date, venue, post_event_name)`) — `build_stats()`,
 `build_set_length_stats()`, `build_shows()`, `main()`'s own `shows = {...}`
 set. `build_shows()` materializes that grouping into `shows.csv`, one row per
 real performance, to directly answer "which show was at which venue" as a
@@ -428,9 +483,10 @@ it, and threading one through purely to reuse a richer return value would
 couple song stats to calendar availability for no gain. Sharing the key, not
 the row shape, is the part that was actually duplicated.
 
-(`build_venue_stats()` is *not* one of these call sites, despite an earlier
-version of this section listing it — it groups by venue with a set of dates,
-never by `(event_date, venue)`.)
+(`build_venue_stats()` groups by venue, but its per-venue set *is* keyed by
+`show_key()` as of 2026-09-08 — it used to hold bare dates, on the premise
+that "within a venue the date alone identifies the show," which the
+2026-09-05 extra stage falsified. It undercounted that venue by one.)
 
 `venue` in `shows.csv` comes from `setlists.csv`, not `drawry_schedule.csv` —
 deliberately. The venue-ambiguity investigation (see above) established that
@@ -695,6 +751,34 @@ Venue and every time field on a renamed row are left exactly as they
 were — a title change says nothing about whether those also changed, and
 this doesn't try to guess at that too. Reported unconditionally (not gated
 by `--quiet`) as `override renamed {date}: {old!r} -> {new!r}`.
+
+## `(date, venue)` is not a show — in `export_site_data.py` either
+
+Three functions there mapped `(date, venue) -> event id` to link a
+`shows.csv`/`setlists.csv` row back to the page built from it
+(`build_songs()`, `build_venues()`, `build_set_length_stats()`). A dict
+comprehension means **last one wins**, so once two shows shared a date and
+venue (2026-09-05 草ぶえの丘) every row of the *scheduled* set silently linked
+to the *extra stage's* page: the scheduled set's 25-min bucket was drawn on
+the extra stage's card, its songs' "played at" links pointed at the wrong
+event, and the venue page listed one id twice and the other never.
+`build_set_length_stats()` had it worse — its `songs_by_show` merged both
+setlists, counting a 10-song set.
+
+All three now go through `event_ids_by_show()`, keyed by
+**`(date, venue, title)`**. `title` is `show_title()`, the same
+`post_event_name`-else-`calendar_summary` fallback `build_events()` uses to
+title the page, so the three fields identify a show exactly —
+`(date, venue, post_event_name)` is already the key shows are built on.
+
+**Ordering is by event id** (`event_id_sort_key()`, which splits the trailing
+number so a date's 10th event doesn't sort before its 2nd). These listings
+used to inherit whatever order their source dict happened to have —
+`bucket_by_show` sorted by `(date, venue, title)`, so a day's two shows came
+out ordered by *venue name*; `event_ids_by_venue` sorted by date alone, so
+same-day shows fell back to `shows.csv` order. Both disagreed visibly with
+the events list, which orders by id. The id is the only thing that carries
+the order the shows were actually played.
 
 ## Hiding unannounced events (`is_announced()`)
 

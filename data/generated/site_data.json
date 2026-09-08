@@ -12873,14 +12873,53 @@
     },
     {
       "date": "2026-09-05",
-      "title": "くさのねアイドルフェスティバル前夜祭",
-      "venue": "flagship FUNABASHI",
-      "doors": "18:30",
-      "showtime": "19:00",
+      "title": "くさのねフェスティバル2026追加ステージ",
+      "venue": "草ぶえの丘(千葉 佐倉)",
+      "doors": "09:30",
+      "showtime": "09:55",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "Into the Blue",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "Sunlight",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://kusanoneidolfes.com/#ticket"
+        }
+      ],
+      "ticket_sales": [],
+      "id": "2026-09-05-2",
+      "note": null
+    },
+    {
+      "date": "2026-09-05",
+      "title": "くさのねアイドルフェスティバル前夜祭",
+      "venue": "flagship FUNABASHI",
+      "doors": "18:30",
+      "showtime": "19:00",
+      "live_start": "19:00",
+      "live_end": "19:25",
+      "meet_start": "20:50",
+      "meet_end": "22:00",
       "has_setlist": true,
       "setlist": [
         {
@@ -12945,7 +12984,7 @@
           "end": null
         }
       ],
-      "id": "2026-09-05-2",
+      "id": "2026-09-05-3",
       "note": null
     },
     {
@@ -13345,8 +13384,8 @@
       "translation": null,
       "plays": 96,
       "shows": 95,
-      "shows_since_debut": 151,
-      "play_rate": 0.63,
+      "shows_since_debut": 152,
+      "play_rate": 0.62,
       "first_performed": "2025-09-13",
       "last_performed": "2026-07-27",
       "current_streak": 0,
@@ -14139,7 +14178,7 @@
       "translation": "Luminous",
       "plays": 147,
       "shows": 147,
-      "shows_since_debut": 151,
+      "shows_since_debut": 152,
       "play_rate": 0.97,
       "first_performed": "2025-09-13",
       "last_performed": "2026-09-06",
@@ -15310,7 +15349,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-09-05-2",
+          "event_id": "2026-09-05-3",
           "date": "2026-09-05",
           "venue": "flagship FUNABASHI",
           "position": 4,
@@ -15341,7 +15380,7 @@
       "translation": null,
       "plays": 75,
       "shows": 75,
-      "shows_since_debut": 150,
+      "shows_since_debut": 151,
       "play_rate": 0.5,
       "first_performed": "2025-09-20",
       "last_performed": "2026-08-28",
@@ -15967,8 +16006,8 @@
       "translation": null,
       "plays": 85,
       "shows": 85,
-      "shows_since_debut": 150,
-      "play_rate": 0.57,
+      "shows_since_debut": 151,
+      "play_rate": 0.56,
       "first_performed": "2025-09-20",
       "last_performed": "2026-09-05",
       "current_streak": 0,
@@ -16673,7 +16712,7 @@
       "translation": null,
       "plays": 65,
       "shows": 65,
-      "shows_since_debut": 150,
+      "shows_since_debut": 151,
       "play_rate": 0.43,
       "first_performed": "2025-09-20",
       "last_performed": "2026-09-06",
@@ -17212,7 +17251,7 @@
       "translation": "primary",
       "plays": 60,
       "shows": 60,
-      "shows_since_debut": 150,
+      "shows_since_debut": 151,
       "play_rate": 0.4,
       "first_performed": "2025-09-20",
       "last_performed": "2026-08-24",
@@ -17718,8 +17757,8 @@
       "translation": "Morning Glow and the Train Window",
       "plays": 145,
       "shows": 145,
-      "shows_since_debut": 150,
-      "play_rate": 0.97,
+      "shows_since_debut": 151,
+      "play_rate": 0.96,
       "first_performed": "2025-09-20",
       "last_performed": "2026-09-06",
       "current_streak": 3,
@@ -18873,7 +18912,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-09-05-2",
+          "event_id": "2026-09-05-3",
           "date": "2026-09-05",
           "venue": "flagship FUNABASHI",
           "position": 5,
@@ -18904,7 +18943,7 @@
       "translation": null,
       "plays": 22,
       "shows": 22,
-      "shows_since_debut": 134,
+      "shows_since_debut": 135,
       "play_rate": 0.16,
       "first_performed": "2025-10-26",
       "last_performed": "2026-09-05",
@@ -19099,8 +19138,8 @@
       "translation": "A Love Story That Never Begins",
       "plays": 74,
       "shows": 74,
-      "shows_since_debut": 120,
-      "play_rate": 0.62,
+      "shows_since_debut": 121,
+      "play_rate": 0.61,
       "first_performed": "2025-11-24",
       "last_performed": "2026-09-06",
       "current_streak": 2,
@@ -19717,7 +19756,7 @@
       "translation": "SE(primary)",
       "plays": 6,
       "shows": 6,
-      "shows_since_debut": 102,
+      "shows_since_debut": 103,
       "play_rate": 0.06,
       "first_performed": "2026-01-04",
       "last_performed": "2026-05-03",
@@ -19784,8 +19823,8 @@
       "translation": null,
       "plays": 52,
       "shows": 52,
-      "shows_since_debut": 99,
-      "play_rate": 0.53,
+      "shows_since_debut": 100,
+      "play_rate": 0.52,
       "first_performed": "2026-01-11",
       "last_performed": "2026-09-05",
       "current_streak": 0,
@@ -20226,7 +20265,7 @@
       "translation": null,
       "plays": 45,
       "shows": 43,
-      "shows_since_debut": 99,
+      "shows_since_debut": 100,
       "play_rate": 0.43,
       "first_performed": "2026-01-11",
       "last_performed": "2026-09-05",
@@ -20605,7 +20644,7 @@
       "translation": "Egakikake no Sora",
       "plays": 40,
       "shows": 40,
-      "shows_since_debut": 83,
+      "shows_since_debut": 84,
       "play_rate": 0.48,
       "first_performed": "2026-02-23",
       "last_performed": "2026-09-05",
@@ -20951,7 +20990,7 @@
       "translation": null,
       "plays": 10,
       "shows": 10,
-      "shows_since_debut": 70,
+      "shows_since_debut": 71,
       "play_rate": 0.14,
       "first_performed": "2026-03-28",
       "last_performed": "2026-08-29",
@@ -21057,8 +21096,8 @@
       "translation": "Stand by Me",
       "plays": 51,
       "shows": 51,
-      "shows_since_debut": 70,
-      "play_rate": 0.73,
+      "shows_since_debut": 71,
+      "play_rate": 0.72,
       "first_performed": "2026-03-28",
       "last_performed": "2026-09-06",
       "current_streak": 3,
@@ -21460,7 +21499,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-09-05-2",
+          "event_id": "2026-09-05-3",
           "date": "2026-09-05",
           "venue": "flagship FUNABASHI",
           "position": 6,
@@ -21491,8 +21530,8 @@
       "translation": "Time Capsule",
       "plays": 35,
       "shows": 35,
-      "shows_since_debut": 70,
-      "play_rate": 0.5,
+      "shows_since_debut": 71,
+      "play_rate": 0.49,
       "first_performed": "2026-03-28",
       "last_performed": "2026-09-06",
       "current_streak": 1,
@@ -21797,7 +21836,7 @@
       "translation": null,
       "plays": 16,
       "shows": 16,
-      "shows_since_debut": 69,
+      "shows_since_debut": 70,
       "play_rate": 0.23,
       "first_performed": "2026-03-29",
       "last_performed": "2026-08-31",
@@ -21944,7 +21983,7 @@
       "translation": "SE(Stand by Me)",
       "plays": 12,
       "shows": 12,
-      "shows_since_debut": 66,
+      "shows_since_debut": 67,
       "play_rate": 0.18,
       "first_performed": "2026-04-11",
       "last_performed": "2026-08-27",
@@ -22059,7 +22098,7 @@
       "translation": "SE(A Love Story That Never Begins)",
       "plays": 1,
       "shows": 1,
-      "shows_since_debut": 53,
+      "shows_since_debut": 54,
       "play_rate": 0.02,
       "first_performed": "2026-05-06",
       "last_performed": "2026-05-06",
@@ -22086,8 +22125,8 @@
       "translation": "Ginmaku",
       "plays": 12,
       "shows": 12,
-      "shows_since_debut": 43,
-      "play_rate": 0.28,
+      "shows_since_debut": 44,
+      "play_rate": 0.27,
       "first_performed": "2026-05-30",
       "last_performed": "2026-09-05",
       "current_streak": 0,
@@ -22185,7 +22224,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-09-05-2",
+          "event_id": "2026-09-05-3",
           "date": "2026-09-05",
           "venue": "flagship FUNABASHI",
           "position": 1,
@@ -22206,9 +22245,9 @@
       "id": "into-the-blue",
       "name": "Into the Blue",
       "translation": null,
-      "plays": 33,
-      "shows": 33,
-      "shows_since_debut": 35,
+      "plays": 34,
+      "shows": 34,
+      "shows_since_debut": 36,
       "play_rate": 0.94,
       "first_performed": "2026-06-22",
       "last_performed": "2026-09-06",
@@ -22469,6 +22508,14 @@
         {
           "event_id": "2026-09-05-2",
           "date": "2026-09-05",
+          "venue": "草ぶえの丘(千葉 佐倉)",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-05-3",
+          "date": "2026-09-05",
           "venue": "flagship FUNABASHI",
           "position": 3,
           "is_encore": false,
@@ -22498,8 +22545,8 @@
       "translation": null,
       "plays": 9,
       "shows": 9,
-      "shows_since_debut": 18,
-      "play_rate": 0.5,
+      "shows_since_debut": 19,
+      "play_rate": 0.47,
       "first_performed": "2026-07-28",
       "last_performed": "2026-09-05",
       "current_streak": 0,
@@ -22573,7 +22620,7 @@
           "note": ""
         },
         {
-          "event_id": "2026-09-05-2",
+          "event_id": "2026-09-05-3",
           "date": "2026-09-05",
           "venue": "flagship FUNABASHI",
           "position": 2,
@@ -22594,14 +22641,14 @@
       "id": "sunlight",
       "name": "Sunlight",
       "translation": null,
-      "plays": 6,
-      "shows": 6,
-      "shows_since_debut": 8,
-      "play_rate": 0.75,
+      "plays": 7,
+      "shows": 7,
+      "shows_since_debut": 9,
+      "play_rate": 0.78,
       "first_performed": "2026-08-27",
       "last_performed": "2026-09-06",
-      "current_streak": 1,
-      "longest_streak": 5,
+      "current_streak": 7,
+      "longest_streak": 7,
       "encores": 0,
       "is_se": false,
       "is_interlude": false,
@@ -22643,6 +22690,14 @@
           "date": "2026-09-02",
           "venue": "代官山 SPACEODD",
           "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-05-2",
+          "date": "2026-09-05",
+          "venue": "草ぶえの丘(千葉 佐倉)",
+          "position": 2,
           "is_encore": false,
           "note": ""
         },
@@ -22952,6 +23007,20 @@
       "capacity": "360人"
     },
     {
+      "id": "草ぶえの丘(千葉 佐倉)",
+      "name": "草ぶえの丘(千葉 佐倉)",
+      "shows": 3,
+      "first_played": "2026-09-05",
+      "last_played": "2026-09-06",
+      "event_ids": [
+        "2026-09-05-1",
+        "2026-09-05-2",
+        "2026-09-06-1"
+      ],
+      "address": null,
+      "capacity": null
+    },
+    {
       "id": "aoyama-rizm",
       "name": "青山RizM",
       "shows": 3,
@@ -23068,19 +23137,6 @@
       ],
       "address": "〒170-0004 東京都豊島区北大塚2-16-8 バロックコート大塚B1F",
       "capacity": "180人"
-    },
-    {
-      "id": "草ぶえの丘(千葉 佐倉)",
-      "name": "草ぶえの丘(千葉 佐倉)",
-      "shows": 2,
-      "first_played": "2026-09-05",
-      "last_played": "2026-09-06",
-      "event_ids": [
-        "2026-09-05-1",
-        "2026-09-06-1"
-      ],
-      "address": null,
-      "capacity": null
     },
     {
       "id": "kanda-square-hall",
@@ -23233,7 +23289,7 @@
       "first_played": "2026-09-05",
       "last_played": "2026-09-05",
       "event_ids": [
-        "2026-09-05-2"
+        "2026-09-05-3"
       ],
       "address": null,
       "capacity": null
@@ -23937,7 +23993,7 @@
       },
       {
         "minutes": 25,
-        "shows": 79,
+        "shows": 80,
         "avg_songs": 5.8,
         "shows_with_se": 65,
         "event_ids": [
@@ -23961,8 +24017,8 @@
           "2025-12-01-1",
           "2025-12-06-1",
           "2025-12-13-1",
-          "2025-12-20-2",
           "2025-12-20-1",
+          "2025-12-20-2",
           "2025-12-25-1",
           "2025-12-29-1",
           "2025-12-30-1",
@@ -24019,6 +24075,7 @@
           "2026-08-31-1",
           "2026-09-02-1",
           "2026-09-05-1",
+          "2026-09-05-3",
           "2026-09-06-1"
         ]
       },
@@ -24088,7 +24145,7 @@
           },
           "25": {
             "count": 53,
-            "eligible": 79
+            "eligible": 80
           },
           "30": {
             "count": 25,
@@ -24112,8 +24169,8 @@
             "eligible": 16
           },
           "25": {
-            "count": 77,
-            "eligible": 79
+            "count": 78,
+            "eligible": 80
           },
           "30": {
             "count": 38,
@@ -24138,7 +24195,7 @@
           },
           "25": {
             "count": 29,
-            "eligible": 79
+            "eligible": 80
           },
           "30": {
             "count": 23,
@@ -24163,7 +24220,7 @@
           },
           "25": {
             "count": 38,
-            "eligible": 79
+            "eligible": 80
           },
           "30": {
             "count": 27,
@@ -24187,8 +24244,8 @@
             "eligible": 16
           },
           "25": {
-            "count": 78,
-            "eligible": 79
+            "count": 79,
+            "eligible": 80
           },
           "30": {
             "count": 37,
@@ -24213,7 +24270,7 @@
           },
           "25": {
             "count": 34,
-            "eligible": 79
+            "eligible": 80
           },
           "30": {
             "count": 23,
@@ -24238,7 +24295,7 @@
           },
           "25": {
             "count": 39,
-            "eligible": 79
+            "eligible": 80
           },
           "30": {
             "count": 19,
@@ -24263,7 +24320,7 @@
           },
           "25": {
             "count": 9,
-            "eligible": 69
+            "eligible": 70
           },
           "30": {
             "count": 6,
@@ -24288,7 +24345,7 @@
           },
           "25": {
             "count": 40,
-            "eligible": 63
+            "eligible": 64
           },
           "30": {
             "count": 21,
@@ -24313,7 +24370,7 @@
           },
           "25": {
             "count": 4,
-            "eligible": 52
+            "eligible": 53
           },
           "30": {
             "count": 1,
@@ -24338,7 +24395,7 @@
           },
           "25": {
             "count": 27,
-            "eligible": 51
+            "eligible": 52
           },
           "30": {
             "count": 12,
@@ -24363,7 +24420,7 @@
           },
           "25": {
             "count": 21,
-            "eligible": 51
+            "eligible": 52
           },
           "30": {
             "count": 9,
@@ -24388,7 +24445,7 @@
           },
           "25": {
             "count": 20,
-            "eligible": 38
+            "eligible": 39
           },
           "30": {
             "count": 8,
@@ -24412,8 +24469,8 @@
             "eligible": 9
           },
           "25": {
-            "count": 26,
-            "eligible": 33
+            "count": 27,
+            "eligible": 34
           },
           "30": {
             "count": 16,
@@ -24438,7 +24495,7 @@
           },
           "25": {
             "count": 0,
-            "eligible": 33
+            "eligible": 34
           },
           "30": {
             "count": 8,
@@ -24463,7 +24520,7 @@
           },
           "25": {
             "count": 17,
-            "eligible": 33
+            "eligible": 34
           },
           "30": {
             "count": 10,
@@ -24488,7 +24545,7 @@
           },
           "25": {
             "count": 8,
-            "eligible": 33
+            "eligible": 34
           },
           "30": {
             "count": 3,
@@ -24513,7 +24570,7 @@
           },
           "25": {
             "count": 4,
-            "eligible": 31
+            "eligible": 32
           },
           "30": {
             "count": 4,
@@ -24538,7 +24595,7 @@
           },
           "25": {
             "count": 1,
-            "eligible": 21
+            "eligible": 22
           },
           "30": {
             "count": 0,
@@ -24562,8 +24619,8 @@
             "eligible": 9
           },
           "25": {
-            "count": 3,
-            "eligible": 13
+            "count": 4,
+            "eligible": 14
           },
           "30": {
             "count": 4,
@@ -24587,8 +24644,8 @@
             "eligible": 9
           },
           "25": {
-            "count": 10,
-            "eligible": 12
+            "count": 11,
+            "eligible": 13
           },
           "30": {
             "count": 8,
@@ -24612,8 +24669,8 @@
             "eligible": 3
           },
           "25": {
-            "count": 1,
-            "eligible": 6
+            "count": 2,
+            "eligible": 7
           },
           "30": {
             "count": 3,
@@ -24638,7 +24695,7 @@
           },
           "25": {
             "count": 3,
-            "eligible": 4
+            "eligible": 5
           },
           "30": {
             "count": 2,

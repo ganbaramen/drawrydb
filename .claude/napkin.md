@@ -38,6 +38,42 @@ this is about *how to work here without repeating mistakes*.
   "impossibly" fails, print `_parser.parse(pat)` and check where groups
   actually close before suspecting the engine.
 
+- **Widened `show_key()` without grepping for every place the tuple was
+  unpacked.** `build_stats()` had a bare `for when, _ in all_shows`, which
+  only blew up after the first three call sites were fixed — and the crash
+  was below the tail of the output I was reading, so a run that had already
+  failed looked like it succeeded. When changing a shared key's arity, grep
+  the unpack sites (`for .*, .* in`) too, not just the constructors, and read
+  the *exit code*, not the last 8 lines.
+- **Fixing the key wasn't the whole fix.** Two other things silently assumed
+  one-show-per-(date, venue): `build_venue_stats()` counted a set of bare
+  dates (undercounted the venue by one) and `set_length_stats` let a 2-song
+  extra stage inherit its bill's 25-minute slot. A grouping change ripples
+  into every stat derived from that grouping — check each one's own premise
+  comment, which is usually where the stale assumption is written down.
+- **Reached for "exclude both" when the real answer was "decide which one."**
+  Two shows shared one calendar slot; rather than work out which owned it I
+  dropped the duration from both, which threw away the scheduled set's
+  correct bucket to avoid a wrong one on the extra. The distinguishing
+  evidence was sitting in `calendar_summary` the whole time (plain substring
+  containment of the posted event name). Symmetric exclusion looks safe and
+  is actually a second, quieter data loss — look for the discriminator first.
+- **Fixed the key in one script and stopped.** `export_site_data.py` had the
+  same `(date, venue)` assumption in *four* places (three id lookups plus a
+  song-count grouping), all silently wrong the moment two shows shared a
+  venue on a day — a dict comprehension just lets the last one win, no error.
+  After changing what a key means, grep the *other* scripts for the old tuple
+  shape, not just the one you edited.
+- **Trusted a stat I hadn't re-derived after an unrelated change.** Read the
+  25-min bucket going 79 -> 80 as my bug; it was `export_calendar.py` picking
+  up an override that gave a show real live times. Check whether an input
+  changed before treating a moved number as a regression.
+- **Blanking a field can change sort order downstream.** Emptying the extra
+  set's `live_start` made the site's `live_start or showtime or doors` chain
+  fall back to the event's *earlier* showtime, which would have sorted it
+  ahead of the set it followed and renumbered permalinks. Grep for who reads
+  a field before emptying it — display and ordering often share one column.
+
 - **An `import.meta.glob(..., {eager: true})` wildcard emits every matched
   file.** Fulldev's stock `ui/icon` globs all of lucide-static and
   simple-icons; installing it grew `dist/` from ~15MB to 38MB (23MB of

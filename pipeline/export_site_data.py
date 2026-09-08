@@ -23,6 +23,7 @@ import json
 import os
 import re
 import sys
+from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INPUT_DIR = os.path.join(ROOT, "data", "input")
@@ -352,6 +353,38 @@ def apply_event_notes(events: list[dict], notes: list[dict[str, str]]) -> None:
         candidates[0]["note"] = row["note"]
 
 
+def show_title(row: dict[str, str]) -> str:
+    """The display title of a show, from a shows.csv or setlists.csv row.
+
+    The posted event name wins; a show with none falls back to the calendar's
+    summary. Shared by build_events() and build_set_length_stats() so the
+    latter can look an event id back up by (date, venue, title) — those three
+    identify a show exactly, since (date, venue, post_event_name) is already
+    the dedupe key sync_setlists.py builds shows on.
+    """
+    return unwrap_quotes(row["post_event_name"]) or clean_title(row["calendar_summary"])
+
+
+def event_ids_by_show(events: list[dict]) -> dict[tuple[str, str, str], str]:
+    """(date, venue, title) -> event id, for linking a shows.csv or
+    setlists.csv row back to the page built from it.
+
+    Keyed by all three because (date, venue) is not a show: a bill can give
+    the band a second, unscheduled set at the same venue on the same day, and
+    keyed by the pair those two collapse — last one wins, so every row of the
+    scheduled set silently linked to the extra stage's page instead.
+    """
+    return {(e["date"], e["venue"], e["title"]): e["id"] for e in events if e["has_setlist"]}
+
+
+def event_id_sort_key(event_id: str) -> tuple[str, int]:
+    """Order ids the way the events list does — the order the shows were
+    played. Splits the trailing number off so a date's 10th event doesn't
+    sort before its 2nd."""
+    date, _, number = event_id.rpartition("-")
+    return (date, int(number))
+
+
 def sort_key(row: dict[str, str]) -> str:
     """Same fallback chain the pipeline uses elsewhere for same-day
     ordering: the band's own slot, then the event's showtime, then doors."""
@@ -412,10 +445,13 @@ def build_events() -> list[dict]:
     setlists = read_csv("setlists.csv")
     venue_renames = load_venue_renames()
 
-    songs_by_uid_date: dict[tuple[str, str], list[dict]] = {}
+    # Keyed the same way sync_setlists.py's show_key() groups a show — uid and
+    # date alone would merge two sets played at one venue on one day (an extra
+    # unscheduled slot on the same bill) into a single scrambled setlist.
+    songs_by_show: dict[tuple[str, str, str], list[dict]] = {}
     for row in setlists:
-        key = (row["event_uid"], row["event_date"])
-        songs_by_uid_date.setdefault(key, []).append(row)
+        key = (row["event_uid"], row["event_date"], row["post_event_name"])
+        songs_by_show.setdefault(key, []).append(row)
 
     linked_uids = {row["event_uid"] for row in shows if row["event_uid"]}
     # shows.csv has no description or meet_start/meet_end columns (see
@@ -424,24 +460,34 @@ def build_events() -> list[dict]:
     # times come from the calendar row via event_uid instead.
     description_by_uid = {row["uid"]: row["description"] for row in calendar}
     calendar_by_uid = {row["uid"]: row for row in calendar}
+    # Two shows on one (uid, date) means one calendar event covered a
+    # scheduled set plus a surprise extra one (sync_setlists.py's
+    # slot_owners()). The event's 特典会 slot belongs to the scheduled show —
+    # the same reason the extra set has no live_start of its own — so the
+    # extra one shows no meet times rather than repeating the other's.
+    # doors/showtime stay on both: those really are the whole day's.
+    shows_per_slot = Counter((row["event_uid"], row["event_date"]) for row in shows)
 
     # One entry per real show, plus one per calendar event that should have a
     # setlist but doesn't have one linked yet (past gap or future show).
     by_date: dict[str, list[dict]] = {}
     for row in shows:
         cal_row = calendar_by_uid.get(row["event_uid"], {})
+        owns_slot = (
+            shows_per_slot[(row["event_uid"], row["event_date"])] == 1
+            or bool(row["live_start"])
+        )
         by_date.setdefault(row["event_date"], []).append(
             {
                 "date": row["event_date"],
-                "title": unwrap_quotes(row["post_event_name"])
-                or clean_title(row["calendar_summary"]),
+                "title": show_title(row),
                 "venue": row["venue"],
                 "doors": row["doors"] or None,
                 "showtime": row["showtime"] or None,
                 "live_start": row["live_start"] or None,
                 "live_end": row["live_end"] or None,
-                "meet_start": cal_row.get("meet_start") or None,
-                "meet_end": cal_row.get("meet_end") or None,
+                "meet_start": (cal_row.get("meet_start") if owns_slot else "") or None,
+                "meet_end": (cal_row.get("meet_end") if owns_slot else "") or None,
                 "has_setlist": True,
                 "setlist": [
                     {
@@ -453,7 +499,9 @@ def build_events() -> list[dict]:
                         "is_encore": song["is_encore"] == "yes",
                     }
                     for song in sorted(
-                        songs_by_uid_date.get((row["event_uid"], row["event_date"]), []),
+                        songs_by_show.get(
+                            (row["event_uid"], row["event_date"], row["post_event_name"]), []
+                        ),
                         key=lambda s: int(s["position"]),
                     )
                 ],
@@ -461,7 +509,15 @@ def build_events() -> list[dict]:
                 "ticket_sales": parse_ticket_sales(
                     description_by_uid.get(row["event_uid"], ""), row["event_date"]
                 ),
-                "sort_key": sort_key(row),
+                # Ordered by the calendar's live_start even when the show
+                # itself has none: an extra set sharing a bill's slot carries
+                # no live_start of its own (sync_setlists.py's slot_owners()),
+                # and falling back to the event's showtime would sort it
+                # *before* the scheduled set it followed, and churn the ids
+                # both events' permalinks are built from.
+                "sort_key": sort_key(
+                    {**row, "live_start": row["live_start"] or cal_row.get("live_start", "")}
+                ),
             }
         )
 
@@ -520,15 +576,13 @@ def build_songs(events: list[dict]) -> list[dict]:
     setlists = read_csv("setlists.csv")
     details = load_details("song_details.csv", SONG_DETAIL_FIELDS)
 
-    event_id_by_date_venue = {
-        (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
-    }
+    event_ids = event_ids_by_show(events)
 
     performances_by_song: dict[str, list[dict]] = {}
     for row in setlists:
         performances_by_song.setdefault(row["song"], []).append(
             {
-                "event_id": event_id_by_date_venue[(row["event_date"], row["venue"])],
+                "event_id": event_ids[(row["event_date"], row["venue"], show_title(row))],
                 "date": row["event_date"],
                 "venue": row["venue"],
                 "position": int(row["position"]),
@@ -663,15 +717,17 @@ def build_venues(events: list[dict]) -> list[dict]:
     shows = read_csv("shows.csv")
     details = load_details("venue_details.csv", VENUE_DETAIL_FIELDS)
 
-    event_id_by_date_venue = {
-        (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
-    }
+    event_ids = event_ids_by_show(events)
 
     event_ids_by_venue: dict[str, list[str]] = {}
-    for row in sorted(shows, key=lambda r: r["event_date"]):
+    for row in shows:
         event_ids_by_venue.setdefault(row["venue"], []).append(
-            event_id_by_date_venue[(row["event_date"], row["venue"])]
+            event_ids[(row["event_date"], row["venue"], show_title(row))]
         )
+    # Sorted by id rather than by date alone: two shows at one venue on one
+    # day tie on date, and the id carries the order they were played.
+    for ids in event_ids_by_venue.values():
+        ids.sort(key=event_id_sort_key)
 
     venues = []
     for row in stats:
@@ -712,25 +768,29 @@ def build_set_length_stats(events: list[dict]) -> dict:
     # (see CLAUDE.md's shows_since_debut/play_rate section).
     first_performed = {row["song"]: row["first_performed"] for row in read_csv("song_stats.csv")}
     details = load_details("song_details.csv", SONG_DETAIL_FIELDS)
-    event_id_by_date_venue = {
-        (e["date"], e["venue"]): e["id"] for e in events if e["has_setlist"]
-    }
+    # Keyed by the whole show — (date, venue) is not one, since a bill can give
+    # the band two sets at one venue on one day. Keyed that way the two
+    # collided: the pair's *last* event id won, so the scheduled set's bucket
+    # was drawn on the extra stage's card, and songs_by_show merged both
+    # setlists into one 10-song count.
+    event_id_by_show = event_ids_by_show(events)
 
     bucket_by_show = {
-        (row["event_date"], row["venue"]): row["length_bucket"]
+        (row["event_date"], row["venue"], show_title(row)): row["length_bucket"]
         for row in shows
         if row["length_bucket"]
     }
 
-    songs_by_show: dict[tuple[str, str], list[dict]] = {}
+    songs_by_show: dict[tuple[str, str, str], list[dict]] = {}
     for row in setlists:
-        songs_by_show.setdefault((row["event_date"], row["venue"]), []).append(row)
+        key = (row["event_date"], row["venue"], show_title(row))
+        songs_by_show.setdefault(key, []).append(row)
 
     bucket_info: dict[str, dict] = {}
     song_counts: dict[str, dict[str, int]] = {}
     bucket_dates: dict[str, list[str]] = {}
     for key, bucket in sorted(bucket_by_show.items()):
-        date, _venue = key
+        date, _venue, _title = key
         songs = songs_by_show.get(key, [])
         info = bucket_info.setdefault(
             bucket, {"shows": 0, "real_songs": 0, "with_se": 0, "event_ids": []}
@@ -742,7 +802,7 @@ def build_set_length_stats(events: list[dict]) -> dict:
             1 for s in songs if s["is_se"] != "yes" and s["is_interlude"] != "yes"
         )
         info["with_se"] += 1 if any(s["is_se"] == "yes" for s in songs) else 0
-        info["event_ids"].append(event_id_by_date_venue[key])
+        info["event_ids"].append(event_id_by_show[key])
         bucket_dates.setdefault(bucket, []).append(date)
         counts = song_counts.setdefault(bucket, {})
         for s in songs:
@@ -755,6 +815,14 @@ def build_set_length_stats(events: list[dict]) -> dict:
     # all, letting the site format "20分"/"20 min" from the number.
     bucket_keys = sorted(bucket_info, key=lambda b: int(b.split()[0]))
     minutes_by_key = {b: int(b.split()[0]) for b in bucket_keys}
+
+    # Ordered by event id — the same order the events list uses — so a day's
+    # shows read in the order they were played. The grouping loop above walks
+    # bucket_by_show sorted by (date, venue, title), which on a day with two
+    # shows orders them by venue name instead, and that disagreed visibly
+    # with every other listing on the site.
+    for info in bucket_info.values():
+        info["event_ids"].sort(key=event_id_sort_key)
 
     buckets = [
         {

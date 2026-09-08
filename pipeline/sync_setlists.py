@@ -416,7 +416,7 @@ def build_rows(
 
             iso, uid, summary, times = resolve_date(post, calendar, today)
             songs = tuple(song for _, song, _, _, _ in post["songs"])
-            key = (iso, post["venue"])
+            key = (iso, post["venue"], post["event_name"])
             if key in seen:
                 duplicates += 1
                 if seen[key] != songs:
@@ -493,8 +493,9 @@ def build_rows(
     }
 
 
-def show_key(row: dict[str, str]) -> tuple[str, str]:
-    """What identifies one performance in setlists.csv: (event_date, venue).
+def show_key(row: dict[str, str]) -> tuple[str, str, str]:
+    """What identifies one performance in setlists.csv:
+    (event_date, venue, post_event_name).
 
     A show exists only implicitly there — setlists.csv is one row per *song*,
     and a show is the group of rows sharing this key. Several functions here
@@ -502,15 +503,23 @@ def show_key(row: dict[str, str]) -> tuple[str, str]:
     all go through this, so "what counts as one show" is defined in exactly
     one place. Date alone is not enough — the band plays two events on a day
     regularly (see CLAUDE.md's year-inference section).
+
+    (event_date, venue) alone wasn't enough either: a bill can give the band a
+    second, unscheduled slot at the same venue on the same day, posted as its
+    own 【セットリスト】 with its own event name (2026-09-05 草ぶえの丘,
+    "…2026" and "…2026追加ステージ"). Keyed by date+venue those two sets
+    collided and the extra one was dropped as a duplicate paste. The post's
+    event name is what separates them; re-pastes of the *same* show repeat it
+    verbatim, so deduping overlapping pastes still works.
     """
-    return (row["event_date"], row["venue"])
+    return (row["event_date"], row["venue"], row["post_event_name"])
 
 
-def group_shows(rows: list[dict[str, str]]) -> dict[tuple[str, str], list[dict[str, str]]]:
+def group_shows(rows: list[dict[str, str]]) -> dict[tuple[str, str, str], list[dict[str, str]]]:
     """setlists.csv rows grouped into one list per show, insertion-ordered
     (so the first row of each group is that set's opener, which callers rely
     on for the show's event_uid/calendar_summary)."""
-    by_show: dict[tuple[str, str], list[dict[str, str]]] = {}
+    by_show: dict[tuple[str, str, str], list[dict[str, str]]] = {}
     for row in rows:
         by_show.setdefault(show_key(row), []).append(row)
     return by_show
@@ -525,7 +534,7 @@ def build_stats(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[
     last: dict[str, str] = {}
     marked: dict[str, str] = {}
     flags: dict[str, tuple[str, str]] = {}
-    all_shows: set[tuple[str, str]] = set()
+    all_shows: set[tuple[str, str, str]] = set()
 
     for row in rows:
         song, when = row["song"], row["event_date"]
@@ -558,7 +567,7 @@ def build_stats(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[
         # Of all the shows that happened on or after this song's debut, what
         # share actually included it? Fairer than a raw play count for
         # comparing an old staple against a track introduced last month.
-        eligible = sum(1 for when, _ in all_shows if when >= first[song])
+        eligible = sum(1 for when, *_ in all_shows if when >= first[song])
         stats.append(
             {
                 "song": song,
@@ -589,6 +598,48 @@ def build_stats(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], list[
     return stats, notes
 
 
+def slot_owners(by_show: dict[tuple[str, str, str], list[dict[str, str]]]) -> set[tuple[str, str, str]]:
+    """Which shows own their calendar event's live slot.
+
+    A calendar event states one 開場/開演/ライブ slot. Normally one show sits in
+    it. But the band can get a second, unscheduled set on the same bill at the
+    same venue on the same day (2026-09-05 草ぶえの丘, `「くさのねフェスティバル
+    2026追加ステージ」` alongside `「くさのねフェスティバル2026」`) — one calendar
+    row, two shows. The slot describes the *scheduled* one; the extra set's
+    real time is simply not recorded anywhere, so it must not inherit it.
+
+    The calendar's own summary picks the owner: the scheduled show's posted
+    event name appears inside it (`【イベント】「くさのねフェスティバル2026」`),
+    while an extra stage's name — a longer string with a suffix — does not.
+    That's plain containment, not a fuzzy score, so it either identifies
+    exactly one show or it doesn't. If it doesn't (no match, or several),
+    the first show in sort order keeps the slot, which at least keeps the
+    choice deterministic rather than depending on paste order.
+
+    Shows that don't share a slot with anything always own theirs — the
+    containment test is never applied to them, so a post whose event name is
+    written differently from the calendar summary (the common case) is
+    unaffected.
+    """
+    by_slot: dict[tuple[str, str], list[tuple[str, str, str]]] = {}
+    for key, songs in sorted(by_show.items()):
+        by_slot.setdefault((songs[0]["event_uid"], key[0]), []).append(key)
+
+    owners = set()
+    for keys in by_slot.values():
+        if len(keys) == 1:
+            owners.add(keys[0])
+            continue
+        named = [
+            key
+            for key in keys
+            if by_show[key][0]["post_event_name"]
+            and by_show[key][0]["post_event_name"] in by_show[key][0]["calendar_summary"]
+        ]
+        owners.add(named[0] if len(named) == 1 else keys[0])
+    return owners
+
+
 def build_shows(
     rows: list[dict[str, str]], calendar: list[dict[str, str]]
 ) -> list[dict[str, str]]:
@@ -608,12 +659,20 @@ def build_shows(
     """
     calendar_by_uid = {row["uid"]: row for row in calendar}
     by_show = group_shows(rows)
+    owners = slot_owners(by_show)
 
     shows = []
-    for (when, venue), songs in sorted(by_show.items()):
+    for key, songs in sorted(by_show.items()):
+        when, venue, _event_name = key
         first = songs[0]
         cal_row = calendar_by_uid.get(first["event_uid"], {})
-        minutes = show_duration(cal_row)
+        # A show that doesn't own its calendar slot has no live_start/live_end
+        # of its own — the calendar's belong to the scheduled set, and this
+        # one's real time isn't recorded anywhere. doors/showtime/meet_* are
+        # the whole event's and stay: they're true for both shows.
+        live_start = cal_row.get("live_start", "") if key in owners else ""
+        live_end = cal_row.get("live_end", "") if key in owners else ""
+        minutes = show_duration(cal_row) if key in owners else None
         shows.append(
             {
                 "event_date": when,
@@ -627,8 +686,8 @@ def build_shows(
                 "encores": str(sum(1 for s in songs if s["is_encore"] == "yes")),
                 "doors": cal_row.get("doors", ""),
                 "showtime": cal_row.get("showtime", ""),
-                "live_start": cal_row.get("live_start", ""),
-                "live_end": cal_row.get("live_end", ""),
+                "live_start": live_start,
+                "live_end": live_end,
                 "length_bucket": length_bucket(minutes) if minutes is not None else "",
                 "source_file": ", ".join(
                     sorted({s["source_file"] for s in songs})
@@ -659,16 +718,17 @@ def build_venue_stats(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     calendar's — the post always names one specific venue, so it carries none
     of the calendar description's "duo MUSIC EXCHANGE&SHIBUYA RING" ambiguity.
     """
-    # setlists.csv already dedupes to one row-group per (event_date, venue), so
-    # within a venue the date alone identifies the show.
-    shows: dict[str, set[str]] = {}
+    # Counted by show_key(), not by date: a venue can host two Drawry. sets in
+    # one day (a bill giving them a second, unscheduled slot — 2026-09-05
+    # 草ぶえの丘), and those are two shows there, not one.
+    shows: dict[str, set[tuple[str, str, str]]] = {}
     first: dict[str, str] = {}
     last: dict[str, str] = {}
     for row in rows:
         venue, when = row["venue"], row["event_date"]
         if not venue:
             continue
-        shows.setdefault(venue, set()).add(when)
+        shows.setdefault(venue, set()).add(show_key(row))
         first[venue] = min(when, first.get(venue, when))
         last[venue] = max(when, last.get(venue, when))
 
@@ -1111,15 +1171,24 @@ def build_set_length_stats(
     which songs turn up most often.
 
     Coverage is partial — only shows whose calendar entry states both times.
+
+    A calendar event states *one* live slot, so when two shows share one
+    (uid, date) — the band gets a second, unscheduled set on the same bill
+    (2026-09-05 草ぶえの丘) — only the show that owns that slot is bucketed
+    (`slot_owners()`); the extra set has no known duration and is excluded,
+    rather than filing a 2-song extra stage as evidence about 25-minute sets.
+    It still counts as a show everywhere else.
     """
     calendar_by_uid = {row["uid"]: row for row in calendar}
     by_show = group_shows(rows)
+    owners = slot_owners(by_show)
 
     buckets: dict[str, dict] = {}
     unmatched = 0
-    for (when, venue), songs in by_show.items():
+    for key, songs in by_show.items():
+        when, venue, _event_name = key
         uid = songs[0]["event_uid"]
-        minutes = show_duration(calendar_by_uid.get(uid, {}))
+        minutes = show_duration(calendar_by_uid.get(uid, {})) if key in owners else None
         if minutes is None:
             unmatched += 1
             continue
@@ -1494,7 +1563,7 @@ def main() -> None:
         print(f"  numbering typo in post: {odd}")
     for note in report["talk_notes"]:
         print(f"  {note}")
-    for event_date, venue in unmatched:
+    for event_date, venue, _event_name in unmatched:
         print(f"  no calendar event for {event_date} @ {venue or '?'}")
     for wrong, count in sorted(report["applied"].items()):
         print(f"  renamed {wrong!r} → {song_renames[wrong]!r} ({count}x)")
