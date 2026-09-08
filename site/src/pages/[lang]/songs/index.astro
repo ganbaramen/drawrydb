@@ -34,12 +34,20 @@ const sorted = songs.slice().sort((a, b) => {
 });
 
 // The optional columns, in the order they appear to the right of the four
-// fixed ones (#, name, debut, plays). Every stat song_stats.csv carries is
-// offered here rather than only the ones that fit comfortably — the whole
-// point of the picker is that the reader decides which handful to look at,
-// so a stat being narrow-interest is a reason to default it off, not to
-// leave it out. `on` is the server-rendered default for a first-time
+// fixed ones (#, name, debut, plays). Nearly every stat song_stats.csv
+// carries is offered here rather than only the ones that fit comfortably —
+// the whole point of the picker is that the reader decides which handful to
+// look at, so a stat being narrow-interest is a reason to default it off,
+// not to leave it out. `on` is the server-rendered default for a first-time
 // reader; lib/column-picker.ts overrides it from localStorage after that.
+//
+// `shows` is the exception, deliberately left out: it differs from `plays`
+// only when a song was played twice in one show, which is 2 songs of 23 and
+// 3 shows of 152 (Dear,History at the debut show, Interlude twice over —
+// those being two different interludes under one name). A column that reads
+// identically on 21 of 23 rows is noise. It stays in song_stats.csv, and
+// play_rate — which is built on it, not on plays — still reports it on a
+// song's own page.
 //
 // `key` is the contract with the markup and with localStorage: it goes on
 // both the <th> and every <td> as data-column, and is what gets persisted.
@@ -74,14 +82,6 @@ const columns: StatColumn[] = [
     sortType: 'number',
     value: (song) => song.closed,
     text: (song) => String(song.closed),
-  },
-  {
-    key: 'shows',
-    label: t(lang, 'songs.showsShort'),
-    on: false,
-    sortType: 'number',
-    value: (song) => song.shows,
-    text: (song) => String(song.shows),
   },
   {
     key: 'last_performed',
