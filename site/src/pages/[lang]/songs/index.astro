@@ -132,18 +132,23 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
 <Layout title={t(lang, 'songs.title')} lang={lang} path="songs/">
   <PageHeader title={t(lang, 'songs.title')} />
 
-  <div class="flex flex-wrap items-center justify-between gap-2">
-    <div class="flex flex-wrap items-center gap-4">
-      <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
+  {/* The checkbox and the column menu are both small muted controls, so they
+      sit on opposite ends of the row rather than side by side, where they
+      read as one pair of similar things. The menu is also a bordered chip,
+      and being flush with the table's right edge marks it as acting on the
+      table's shape rather than on which rows it holds. */}
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <SpecialFilter label={t(lang, 'songs.includeSpecial')} />
+    <div class="flex items-center gap-3">
+      <p id="songs-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
+        {t(lang, 'songs.count', { n: songs.length })}
+      </p>
       <ColumnPicker
         label={t(lang, 'songs.columns')}
         columns={columns}
         storageKey="drawrydb:songs-columns"
       />
     </div>
-    <p id="songs-count" class="text-muted-foreground text-sm" data-template={countTemplate}>
-      {t(lang, 'songs.count', { n: songs.length })}
-    </p>
   </div>
 
   <StatsTable>

@@ -36,13 +36,13 @@ const { label, columns, storageKey } = Astro.props;
     .join(',')}
 >
   <summary
-    class="text-muted-foreground hover:text-foreground inline-flex cursor-pointer list-none items-center gap-1.5 text-sm transition-colors"
+    class="border-input text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:ring-ring/50 inline-flex cursor-pointer list-none items-center gap-1.5 rounded-md border px-2.5 py-1 text-sm transition-colors focus-visible:ring-3"
   >
     {label}
     <span aria-hidden="true" class="column-picker-arrow text-xs">▾</span>
   </summary>
   <div
-    class="bg-background border-input absolute z-10 mt-1 flex min-w-40 flex-col gap-1.5 rounded-md border p-3 shadow-md"
+    class="bg-background border-input absolute right-0 z-10 mt-1 flex min-w-40 flex-col gap-1.5 rounded-md border p-3 shadow-md"
   >
     {
       columns.map((column) => (
