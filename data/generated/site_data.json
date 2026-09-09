@@ -13287,6 +13287,34 @@
       "note": null
     },
     {
+      "date": "2026-10-05",
+      "title": "UNIVERSE企画  4th anniversary『NEW ORDER #無銭NIGHT』",
+      "venue": "新宿MARZ",
+      "doors": "18:30",
+      "showtime": "19:00",
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/oa9p1"
+        }
+      ],
+      "ticket_sales": [
+        {
+          "label": null,
+          "start": "2026-09-10 22:00",
+          "end": null
+        }
+      ],
+      "id": "2026-10-05-1",
+      "note": null
+    },
+    {
       "date": "2026-10-11",
       "title": "日ノ目企画presents“SUNDAYRIGHT/WRONG×2”",
       "venue": "大塚Hearts+/Hearts Next",
@@ -13301,6 +13329,28 @@
       "ticket_links": [],
       "ticket_sales": [],
       "id": "2026-10-11-1",
+      "note": null
+    },
+    {
+      "date": "2026-10-12",
+      "title": "さとモンFES 2026 おいでよ愉快ななかまたち 今年は2会場だよ！",
+      "venue": "duo MUSIC EXCHANGE × spotfiy O-CREST",
+      "doors": "18:30",
+      "showtime": "19:00",
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/satomonfes2026"
+        }
+      ],
+      "ticket_sales": [],
+      "id": "2026-10-12-1",
       "note": null
     },
     {
