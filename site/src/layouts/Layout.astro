@@ -53,8 +53,16 @@ const section = path.split('/')[0];
       // is the correct fallback either way, and it is what an exception here
       // produces anyway — but only if it does not take the rest of the script
       // with it.
+      //
+      // The key is namespaced because localStorage is scoped to the origin,
+      // not the path: this site is one project among several under
+      // ganbaramen.github.io, and a bare 'theme' is shared with all of them.
+      // The old bare key is still read as a fallback so nobody who chose a
+      // theme before this change is silently reverted to following their OS;
+      // the toggle migrates them on their next click. Safe to drop that
+      // fallback, and the removeItem below, once enough time has passed.
       try {
-        const stored = localStorage.getItem('theme');
+        const stored = localStorage.getItem('drawrydb:theme') ?? localStorage.getItem('theme');
         if (stored === 'light' || stored === 'dark') {
           document.documentElement.dataset.theme = stored;
         }
@@ -355,7 +363,10 @@ const section = path.split('/')[0];
           // line above.)
           announceTheme(next);
           try {
-            localStorage.setItem('theme', next);
+            localStorage.setItem('drawrydb:theme', next);
+            // Migrates anyone still on the pre-namespacing key, so the
+            // fallback read in the pre-paint script has a finite life.
+            localStorage.removeItem('theme');
           } catch {}
         };
         if (

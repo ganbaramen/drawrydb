@@ -3,10 +3,16 @@
 // holding one checkbox per optional column.
 //
 // A <details> rather than a scripted popover so it opens and closes with no
-// JavaScript at all; only the *effect* of the checkboxes needs script (see
-// lib/column-picker.ts), and until that runs the table already shows each
-// column's server-rendered default, so the page is never wrong, just not yet
-// adjustable.
+// JavaScript at all — and, since the rules emitted below decide every
+// column's visibility from its checkbox's :checked state, the checkboxes
+// work without script too. That is the site's standing rule, the one the
+// events index's setlist filter was rebuilt around: make the control
+// genuinely work without script where that is possible, and don't render it
+// where it isn't. A menu that opened onto seven live-looking checkboxes and
+// did nothing was the most convincing false affordance the site had.
+//
+// Script is left with two jobs that CSS cannot do: restoring the reader's
+// remembered set on arrival, and nudging the scroll shadows afterwards.
 //
 // Columns are identified by a `key` that must match the data-column on the
 // matching <th>/<td> — that string is the whole contract between this menu,
@@ -25,7 +31,30 @@ interface Props {
 }
 
 const { label, columns, storageKey } = Astro.props;
+
+// One rule per column, keyed off the checkbox rather than off anything
+// script writes, so the menu works with no JavaScript at all.
+//
+// The cells carry no `hidden` attribute: Tailwind's preflight sets
+// `[hidden] { display: none !important }`, which no author rule of ours can
+// override, so shipping `hidden` for the off-by-default columns made them
+// permanently invisible and the whole menu inert. The checkbox's own
+// `checked` attribute carries the server-rendered default instead, and these
+// rules read it — which means visibility depends on `:has()`, the same
+// dependency the events index's setlist filter already has.
+//
+// `is:inline` keeps Astro's scoping off it: the cells these rules target
+// live in the page's table, not inside this component, so a scoped selector
+// would match nothing.
+const rules = columns
+  .map(
+    (column) => `
+main:has(.column-picker input[data-column-toggle="${column.key}"]:not(:checked)) [data-column="${column.key}"] { display: none; }`,
+  )
+  .join('');
 ---
+
+<style is:inline set:html={rules}></style>
 
 <details
   class="column-picker relative"

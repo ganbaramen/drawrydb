@@ -161,12 +161,7 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
           <TableHead class="text-right" data-sort-type="number">{t(lang, 'songs.plays')}</TableHead>
           {
             columns.map((column) => (
-              <TableHead
-                class="text-right"
-                data-sort-type={column.sortType}
-                data-column={column.key}
-                hidden={!column.on}
-              >
+              <TableHead class="text-right" data-sort-type={column.sortType} data-column={column.key}>
                 {headings[column.key] ?? column.label}
               </TableHead>
             ))
@@ -192,7 +187,6 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
                   class="text-muted-foreground text-right tabular-nums"
                   data-sort-value={column.value(song)}
                   data-column={column.key}
-                  hidden={!column.on}
                 >
                   {column.text(song)}
                 </TableCell>
@@ -210,7 +204,7 @@ const countTemplate = t(lang, 'songs.count', { n: '__N__' });
 
     const table = document.getElementById('songs-table') as HTMLTableElement;
     initSortableTable(table);
-    initColumnPicker(document.querySelector('.column-picker') as HTMLElement, table);
+    initColumnPicker(document.querySelector('.column-picker') as HTMLElement);
 
     const checkbox = document.getElementById('include-special') as HTMLInputElement;
     const rows = document.querySelectorAll<HTMLTableRowElement>('#songs-table tbody tr');

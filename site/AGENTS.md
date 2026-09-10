@@ -80,13 +80,25 @@ it off, not to leave it out.
 
 Three things it does deliberately:
 
-- **A `<details>`, not a scripted popover**, so it opens with no JavaScript.
-  Only the checkboxes' *effect* needs script (`lib/column-picker.ts`), and
-  until that runs the table shows each column's server-rendered default —
-  never wrong, just not yet adjustable.
-- **Cells are hidden, never removed.** `lib/sortable-table.ts` sorts by
-  `cells[index]`; pulling a `<td>` out of the row would silently misalign
-  every column after it. The `hidden` attribute keeps the index stable.
+- **It works with no JavaScript.** A `<details>` opens without script, and
+  the component emits one `main:has(input[data-column-toggle="…"]:not(:checked))`
+  rule per column, so the checkboxes decide visibility in CSS. Script is left
+  with the two jobs CSS cannot do: restoring the reader's remembered set, and
+  nudging the scroll shadows. This is the same rule the events index's
+  setlist filter was rebuilt around — make the control genuinely work without
+  script where that is possible, don't render it where it isn't. It shipped
+  the other way first (opened onto seven inert checkboxes) and that was a
+  filed defect.
+- **The cells carry no `hidden` attribute.** Tailwind's preflight sets
+  `[hidden] { display: none !important }`, which no author rule can override
+  — shipping `hidden` for the off-by-default columns made them permanently
+  invisible and the whole menu inert. **This cost a debugging round; don't
+  reintroduce it.** The checkbox's `checked` attribute carries the default
+  instead, which is also why visibility depends on `:has()`, exactly as the
+  events index's filter does.
+- **Nothing removes a cell from a row.** `lib/sortable-table.ts` sorts by
+  `cells[index]`; pulling a `<td>` out would silently misalign every column
+  after it. `display: none` keeps the index stable.
 - **It nudges `window`'s resize event after a toggle.** `lib/table-scroll.ts`
   recomputes its edge shadows on scroll or resize only, and switching a
   column off changes `scrollWidth` without either.

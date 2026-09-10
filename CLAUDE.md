@@ -791,6 +791,19 @@ same-day shows fell back to `shows.csv` order. Both disagreed visibly with
 the events list, which orders by id. The id is the only thing that carries
 the order the shows were actually played.
 
+## Stored preferences in the browser
+
+Two, and they are named on different conventions for a historical reason worth
+knowing: the theme under `drawrydb:theme`, the songs index's chosen columns
+under `drawrydb:songs-columns`. The theme was a bare `theme` until it was
+renamed — `localStorage` is scoped to the *origin*, not the path, and this
+site is one project among several under `ganbaramen.github.io`, so a bare key
+was shared with all of them. `Layout.astro`'s pre-paint script still reads the
+old key as a fallback and the toggle removes it on the next click, so nobody
+who had chosen a theme gets silently reverted. **That fallback and the
+`removeItem` beside it can be deleted once enough time has passed** — they
+have no other purpose.
+
 ## Hiding unannounced events (`is_announced()`)
 
 `export_site_data.py` drops any event with no `venue` and no setlist before

@@ -1,12 +1,15 @@
-// Wires a <ColumnPicker> up to its table: each checkbox hides or shows every
-// cell carrying the matching data-column, and the chosen set is remembered
-// per reader in localStorage.
+// Wires a <ColumnPicker> up to its table.
 //
-// Cells are hidden with the `hidden` attribute rather than removed, so the
-// column index every <td> sits at never changes — lib/sortable-table.ts sorts
-// by `cells[index]`, and pulling cells out of the row would silently
-// misalign it.
-export function initColumnPicker(picker: HTMLElement, table: HTMLTableElement): void {
+// Showing and hiding is *not* done here: ColumnPicker.astro emits one pair of
+// CSS rules per column, keyed off each checkbox's :checked state, so the menu
+// works with no script at all. This file only does the two things CSS cannot:
+// remember the chosen set per reader, and tell the scroll shadows that the
+// table changed width.
+//
+// Nothing ever removes a cell from a row. lib/sortable-table.ts sorts by
+// `cells[index]`, so a column that came out of the markup would silently
+// misalign every column after it; `display: none` keeps the index intact.
+export function initColumnPicker(picker: HTMLElement): void {
   const defaults = new Set((picker.dataset.defaults || '').split(',').filter(Boolean));
   const storageKey = picker.dataset.storageKey;
   const toggles = Array.from(
@@ -34,31 +37,26 @@ export function initColumnPicker(picker: HTMLElement, table: HTMLTableElement): 
     }
   }
 
-  function apply(chosen: Set<string>): void {
-    toggles.forEach((toggle) => {
-      const key = toggle.dataset.columnToggle!;
-      const on = chosen.has(key);
-      toggle.checked = on;
-      table.querySelectorAll<HTMLElement>(`[data-column="${key}"]`).forEach((cell) => {
-        cell.hidden = !on;
-      });
-    });
-    // Showing or hiding a column changes the table's scrollWidth without a
-    // window resize, and lib/table-scroll.ts only recomputes its edge shadows
-    // on scroll or resize — without this nudge they'd claim the table still
-    // overflows after the columns that overflowed it were switched off.
+  // Showing or hiding a column changes the table's scrollWidth without a
+  // window resize, and lib/table-scroll.ts only recomputes its edge shadows
+  // on scroll or resize — without this nudge they'd claim the table still
+  // overflows after the columns that overflowed it were switched off.
+  function nudgeScrollShadows(): void {
     window.dispatchEvent(new Event('resize'));
   }
 
   toggles.forEach((toggle) => {
     toggle.addEventListener('change', () => {
-      const chosen = new Set(
-        toggles.filter((t) => t.checked).map((t) => t.dataset.columnToggle!),
-      );
-      save(chosen);
-      apply(chosen);
+      save(new Set(toggles.filter((t) => t.checked).map((t) => t.dataset.columnToggle!)));
+      nudgeScrollShadows();
     });
   });
 
-  apply(read());
+  // Restoring the remembered set is the one thing that has to move the
+  // controls; from there the CSS follows them.
+  const chosen = read();
+  toggles.forEach((toggle) => {
+    toggle.checked = chosen.has(toggle.dataset.columnToggle!);
+  });
+  nudgeScrollShadows();
 }
