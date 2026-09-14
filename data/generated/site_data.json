@@ -13425,6 +13425,28 @@
       "ticket_sales": [],
       "id": "2026-10-26-1",
       "note": null
+    },
+    {
+      "date": "2026-11-03",
+      "title": "秋葉原アイドルサーキット vol.6",
+      "venue": "秋葉原複数会場",
+      "doors": null,
+      "showtime": null,
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "http://atjam.jp/event/detail/DbkgzaqxsvLuKHXuU849"
+        }
+      ],
+      "ticket_sales": [],
+      "id": "2026-11-03-1",
+      "note": null
     }
   ],
   "songs": [
