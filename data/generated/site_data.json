@@ -13337,13 +13337,18 @@
       "venue": "大塚Hearts+/Hearts Next",
       "doors": "10:15",
       "showtime": "10:45",
-      "live_start": null,
-      "live_end": null,
-      "meet_start": null,
-      "meet_end": null,
+      "live_start": "11:20",
+      "live_end": "11:45",
+      "meet_start": "13:15",
+      "meet_end": "14:15",
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/hnm1011ohpn"
+        }
+      ],
       "ticket_sales": [],
       "id": "2026-10-11-1",
       "note": null
