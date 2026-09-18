@@ -13355,6 +13355,28 @@
     },
     {
       "date": "2026-10-12",
+      "title": "AFTERS Presents「CAKES & ALE」",
+      "venue": "GARRET udagawa",
+      "doors": "11:40",
+      "showtime": "12:00",
+      "live_start": "17:15",
+      "live_end": "17:40",
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/cakes_ale"
+        }
+      ],
+      "ticket_sales": [],
+      "id": "2026-10-12-1",
+      "note": null
+    },
+    {
+      "date": "2026-10-12",
       "title": "さとモンFES 2026 おいでよ愉快ななかまたち 今年は2会場だよ！",
       "venue": "duo MUSIC EXCHANGE × spotfiy O-CREST",
       "doors": "18:30",
@@ -13372,7 +13394,7 @@
         }
       ],
       "ticket_sales": [],
-      "id": "2026-10-12-1",
+      "id": "2026-10-12-2",
       "note": null
     },
     {
