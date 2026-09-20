@@ -13526,19 +13526,58 @@
       "note": null
     },
     {
-      "date": "2026-10-04",
-      "title": "ライブ予定あり(夕方までに終わります)",
-      "venue": "渋谷REXがあります。",
-      "doors": null,
-      "showtime": null,
+      "date": "2026-10-03",
+      "title": "SOVA presents「TRY SOVA」",
+      "venue": "下北沢MOSAiC",
+      "doors": "11:15",
+      "showtime": "11:45",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
-      "ticket_sales": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/TRY_SOVA"
+        }
+      ],
+      "ticket_sales": [
+        {
+          "label": null,
+          "start": "2026-09-21 22:15",
+          "end": null
+        }
+      ],
+      "id": "2026-10-03-1",
+      "note": null
+    },
+    {
+      "date": "2026-10-04",
+      "title": "「SELENE PRINCESS」#83(夕方までに終わります)",
+      "venue": "渋谷REXがあります。",
+      "doors": "09:45",
+      "showtime": "10:00",
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://livepocket.jp/e/selepri_1004"
+        }
+      ],
+      "ticket_sales": [
+        {
+          "label": null,
+          "start": "2026-09-21 21:00",
+          "end": null
+        }
+      ],
       "id": "2026-10-04-1",
       "note": null
     },
