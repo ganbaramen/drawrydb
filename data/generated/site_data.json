@@ -13640,16 +13640,27 @@
       "date": "2026-10-18",
       "title": "Drawry.主催イベント「build a family in Osaka」supported by こぐまカリー(年内ラスト遠征予定)",
       "venue": "LIVE SPACE CONPASS",
-      "doors": null,
-      "showtime": null,
+      "doors": "10:30",
+      "showtime": "11:00",
       "live_start": null,
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
       "has_setlist": false,
       "setlist": [],
-      "ticket_links": [],
-      "ticket_sales": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/build_a_family_Osaka"
+        }
+      ],
+      "ticket_sales": [
+        {
+          "label": null,
+          "start": "2026-09-21 22:30",
+          "end": null
+        }
+      ],
       "id": "2026-10-18-1",
       "note": null
     },
