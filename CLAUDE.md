@@ -213,6 +213,69 @@ reported to the user with an empty `event_uid` rather than dropped.
 
 Implication: **the calendar must be refreshed before parsing recent posts.**
 
+**A month/day matches two calendar entries once the archive spans a year**,
+and until 2026-09-22 `resolve_date()` broke on that: it took the most recent
+occurrence that had already happened, so a 2025 post whose month/day also
+existed in 2026 was filed under 2026. Dormant for a year, then the band's
+first anniversary put `2026-09-20` on the calendar beside the `2025-09-20`
+debut — *at the same venue* — and three 2025 shows moved into 2026, the debut
+live among them. Seven songs' `first_performed` went with them: the two
+earliest shows had been filed into the future, so they stopped counting as
+the earliest.
+
+Two signals now pin the year, both of which were already in the data and
+being thrown away:
+
+- **The paste file's name is its capture date** (`capture_date()`), and a
+  paste cannot contain a show that had not happened yet — so it is an upper
+  bound on every post inside it. This is what separates the debut from the
+  anniversary. Verified across the archive before relying on it: 12 files,
+  158 posts, none newer than its own file. A file not named `YYYY-MM-DD.txt`
+  returns `None` and loses the bound rather than guessing.
+- **The weekday the post prints** (`pick_year()`). `9月20日(土)` is 2025;
+  2026-09-20 was a Sunday. `DATE_LINE` was capturing everything inside those
+  parentheses except the one character that mattered — it now has named
+  groups, because the venue's position shifts the moment anything is added
+  in front of it.
+
+**The weekday is a preference, not a filter**, and this matters: three posts
+in the archive print the wrong weekday. When no candidate year agrees, the
+chosen date stands and the disagreement is reported as `weekday typo in
+post`. Both surviving cases confirm the date rather than the post —
+`日ノ目企画presents“TUESDAYFLIGHT”` falls on a date that really is a 火曜日,
+and 9月23日 was 秋分の日, a Tuesday holiday. **Don't promote it to a hard
+filter** without re-checking those; a typo would throw the show's date away.
+
+The weekday audit is worth re-running after touching either function — it
+compares every show's assigned date against the weekday its own post printed,
+and is the only check that catches a wrong *year* (counts and the dropped-line
+audit both look healthy while a show sits in the wrong one):
+
+```python
+import sys, glob, os, csv; sys.path.insert(0, 'pipeline')
+from datetime import date
+import sync_setlists as s
+posted = {}
+for path in sorted(glob.glob('data/input/setlist_posts/*.txt')):
+    for body in s.split_posts(open(path, encoding='utf-8').read()):
+        for line in body:
+            m = s.DATE_LINE.match(line)
+            if m:
+                posted[(os.path.basename(path), int(m.group('month')),
+                        int(m.group('day')))] = m.group('weekday') or ''
+                break
+rows = list(csv.DictReader(open('data/generated/setlists.csv', encoding='utf-8-sig')))
+for (d, venue, name), src in sorted({(r['event_date'], r['venue'],
+        r['post_event_name']): r['source_file'] for r in rows}.items()):
+    y, mo, dy = map(int, d.split('-'))
+    actual = s.WEEKDAYS[date(y, mo, dy).weekday()]
+    if posted.get((src, mo, dy)) not in ('', None, actual):
+        print(f"{d} is ({actual}) but its post says ({posted[(src, mo, dy)]}) — {venue}")
+```
+
+Expected output: the three known post typos (2025-09-23 twice, 2025-12-30)
+and nothing else. Anything new is a year that resolved wrong.
+
 Matching runs against an event's **whole span**, not just its start day
 (`event_days()`), because a two-day festival is a single calendar entry that
 gets one setlist post per day. There were 3 multi-day events out of 199, and
@@ -866,7 +929,7 @@ There's no test suite. After touching either parser:
 
 ```sh
 python3 pipeline/export_calendar.py            # expect "up to date" on a no-op run
-python3 pipeline/sync_setlists.py              # 141 shows, 1021 songs (raw post count varies with paste-file layout)
+python3 pipeline/sync_setlists.py              # 157 shows, 1141 songs (raw post count varies with paste-file layout)
 python3 pipeline/sync_setlists.py --missing    # coverage + typo flags
 ```
 

@@ -168,3 +168,34 @@ this is about *how to work here without repeating mistakes*.
   re-picks on the visitor's JST clock; build-time choice stays as no-JS
   fallback. Static files unchanged; only setlist-entry staleness still
   needs a deploy.
+
+## 2026-09-22 — the year-inference bug
+
+- **A latent bug woke up when the data crossed a year boundary.**
+  `resolve_date()` preferred "the most recent past occurrence" of a post's
+  month/day. Correct while the calendar held one year; the moment the band's
+  first anniversary landed on the same month/day as the 2025 debut, three
+  2025 shows silently moved to 2026. **Counts and the dropped-line audit
+  both looked perfectly healthy the whole time** — a show in the wrong year
+  is still a show. Only a weekday check finds it.
+- **The signal was in the source and being discarded.** Every post prints
+  `(土)`; `DATE_LINE` matched the parentheses and captured everything in them
+  except the weekday. Before inventing a heuristic, check what the source
+  already says.
+- **The user's framing was right but needed one turn of the screw.** "Use the
+  filename to determine the year" — the filename is the *capture date*, not
+  the show's year (a 2026-08-17 paste contains 2025 posts). As an *upper
+  bound* it's exactly right and fixes all three cases on its own. Verify such
+  an assumption before building on it: 12 files, 158 posts, none newer than
+  its own file.
+- **Preference, not filter.** Three posts print the wrong weekday, so a hard
+  weekday filter would have thrown those dates away. Chose: prefer an
+  agreeing year, otherwise keep the date and report. Both survivors turned
+  out to corroborate the date — an event named TUESDAYFLIGHT on a 火曜日, and
+  9月23日 = 秋分の日.
+- **Named groups when a regex gains a capture.** Adding the weekday would
+  have shifted the venue from group 3 to group 4 silently.
+- Knock-on worth checking after any date change: `first_performed` moved for
+  seven songs, because the two earliest shows had been filed into the
+  *future* and so never counted as earliest. A wrong date corrupts every
+  derived stat, not just the row.
