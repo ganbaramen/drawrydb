@@ -10,8 +10,25 @@
       "live_end": "12:40",
       "meet_start": "13:00",
       "meet_end": "14:00",
-      "has_setlist": false,
-      "setlist": [],
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "Dear,History",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
       "ticket_links": [
         {
           "label": null,
@@ -24,7 +41,7 @@
     },
     {
       "date": "2025-09-20",
-      "title": "Drawry.デビューライブ「first impression」@渋谷Spotify O-Crest",
+      "title": "Drawry.デビューライブ「first impression」",
       "venue": "Spotify O-Crest",
       "doors": "11:40",
       "showtime": "12:15",
@@ -32,8 +49,73 @@
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
-      "has_setlist": false,
-      "setlist": [],
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "SE",
+          "note": "",
+          "is_se": true,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "Dear,History",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "Blooming",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "Moving Lights!",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 6,
+          "song": "朝焼けと車窓",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 7,
+          "song": "プライマリ",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 8,
+          "song": "Dear,History",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": true
+        }
+      ],
       "ticket_links": [
         {
           "label": null,
@@ -54,8 +136,57 @@
       "live_end": "12:10",
       "meet_start": "13:55",
       "meet_end": "14:55",
-      "has_setlist": false,
-      "setlist": [],
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "SE",
+          "note": "",
+          "is_se": true,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "Dear,History",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "朝焼けと車窓",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "Moving Lights!",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 6,
+          "song": "プライマリ",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
       "ticket_links": [
         {
           "label": null,
@@ -13146,51 +13277,6 @@
       "note": null
     },
     {
-      "date": "2026-09-13",
-      "title": "airattic presents 「ATTIC PARADE」",
-      "venue": "Veats SHIBUYA",
-      "doors": "17:00",
-      "showtime": "17:30",
-      "live_start": null,
-      "live_end": null,
-      "meet_start": null,
-      "meet_end": null,
-      "has_setlist": true,
-      "setlist": [
-        {
-          "position": 1,
-          "song": "Dear,History",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 2,
-          "song": "ルミナス",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        }
-      ],
-      "ticket_links": [
-        {
-          "label": null,
-          "url": "https://t-dv.com/First_and_Last"
-        }
-      ],
-      "ticket_sales": [
-        {
-          "label": null,
-          "start": "2026-08-01 22:30",
-          "end": null
-        }
-      ],
-      "id": "2026-09-13-2",
-      "note": null
-    },
-    {
       "date": "2026-09-15",
       "title": "#ﾆｷﾌﾟﾚ『カンシャサイ。-秋-』",
       "venue": "渋谷Star lounge",
@@ -13279,7 +13365,7 @@
     },
     {
       "date": "2026-09-19",
-      "title": "「SELENE STADIUM」(夕方までに終わります)",
+      "title": "SELENE STADIUM",
       "venue": "白金高輪SELENE b2",
       "doors": "10:00",
       "showtime": "10:15",
@@ -13287,8 +13373,73 @@
       "live_end": null,
       "meet_start": null,
       "meet_end": null,
-      "has_setlist": false,
-      "setlist": [],
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "SE(Moving Lights!)",
+          "note": "",
+          "is_se": true,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "Moving Lights!",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "Interlude",
+          "note": "",
+          "is_se": false,
+          "is_interlude": true,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "Into the Blue",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "朝焼けと車窓",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 6,
+          "song": "描きかけの空",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 7,
+          "song": "ラブストーリーが始まらない",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 8,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
       "ticket_links": [
         {
           "label": null,
@@ -13307,7 +13458,7 @@
     },
     {
       "date": "2026-09-20",
-      "title": "Drawry.デビューライブ「first impression」",
+      "title": "Drawry. 1st Anniversary Live「Dear, first impression」",
       "venue": "Spotify O-Crest",
       "doors": "11:40",
       "showtime": "12:15",
@@ -13319,7 +13470,7 @@
       "setlist": [
         {
           "position": 1,
-          "song": "SE",
+          "song": "SE(スタンドバイミー)",
           "note": "",
           "is_se": true,
           "is_interlude": false,
@@ -13375,7 +13526,63 @@
         },
         {
           "position": 8,
-          "song": "Dear,History",
+          "song": "銀幕",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 9,
+          "song": "Fly By",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 10,
+          "song": "Into the Blue",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 11,
+          "song": "ラブストーリーが始まらない",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 12,
+          "song": "Draw a line",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 13,
+          "song": "描きかけの空",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 14,
+          "song": "タイムカプセル",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 15,
+          "song": "スタンドバイミー",
           "note": "",
           "is_se": false,
           "is_interlude": false,
@@ -13396,72 +13603,6 @@
         }
       ],
       "id": "2026-09-20-1",
-      "note": null
-    },
-    {
-      "date": "2026-09-21",
-      "title": "ソノウチ",
-      "venue": "恵比寿CreAto",
-      "doors": null,
-      "showtime": null,
-      "live_start": null,
-      "live_end": null,
-      "meet_start": null,
-      "meet_end": null,
-      "has_setlist": true,
-      "setlist": [
-        {
-          "position": 1,
-          "song": "SE",
-          "note": "",
-          "is_se": true,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 2,
-          "song": "Dear,History",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 3,
-          "song": "朝焼けと車窓",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 4,
-          "song": "ルミナス",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 5,
-          "song": "Moving Lights!",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        },
-        {
-          "position": 6,
-          "song": "プライマリ",
-          "note": "",
-          "is_se": false,
-          "is_interlude": false,
-          "is_encore": false
-        }
-      ],
-      "ticket_links": [],
-      "ticket_sales": [],
-      "id": "2026-09-21-1",
       "note": null
     },
     {
@@ -13784,659 +13925,55 @@
   ],
   "songs": [
     {
-      "id": "blooming",
-      "name": "Blooming",
-      "translation": null,
-      "plays": 76,
-      "shows": 76,
-      "shows_since_debut": 155,
-      "play_rate": 0.49,
-      "first_performed": "2025-09-23",
-      "last_performed": "2026-09-20",
-      "current_streak": 0,
-      "longest_streak": 15,
-      "encores": 0,
-      "opened": 19,
-      "closed": 0,
-      "is_se": false,
-      "is_interlude": false,
-      "performances": [
-        {
-          "event_id": "2025-09-23-2",
-          "date": "2025-09-23",
-          "venue": "SHIBUYA RING",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-09-27-1",
-          "date": "2025-09-27",
-          "venue": "SHIBUYA CYCLONE",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-03-1",
-          "date": "2025-10-03",
-          "venue": "新宿MARZ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-05-1",
-          "date": "2025-10-05",
-          "venue": "Flowers Loft",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-11-1",
-          "date": "2025-10-11",
-          "venue": "TwinBoxGARAGE",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-12-1",
-          "date": "2025-10-12",
-          "venue": "下北沢MOSAiC",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-18-1",
-          "date": "2025-10-18",
-          "venue": "恵比寿CreAto",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-18-2",
-          "date": "2025-10-18",
-          "venue": "大塚Hearts Next",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-19-1",
-          "date": "2025-10-19",
-          "venue": "Spotify O-Crest",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-21-1",
-          "date": "2025-10-21",
-          "venue": "大塚Hearts+",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-24-1",
-          "date": "2025-10-24",
-          "venue": "Flowers Loft",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-26-2",
-          "date": "2025-10-26",
-          "venue": "新宿MARZ",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-27-1",
-          "date": "2025-10-27",
-          "venue": "新宿MARZ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-01-1",
-          "date": "2025-11-01",
-          "venue": "四谷LOTUS",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-02-1",
-          "date": "2025-11-02",
-          "venue": "大塚Hearts+",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-03-1",
-          "date": "2025-11-03",
-          "venue": "TwinBoxGARAGE",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-08-1",
-          "date": "2025-11-08",
-          "venue": "下北沢MOSAiC",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-09-1",
-          "date": "2025-11-09",
-          "venue": "Flowers Loft",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-10-1",
-          "date": "2025-11-10",
-          "venue": "大塚Hearts+",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-11-1",
-          "date": "2025-11-11",
-          "venue": "高円寺HIGH",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-14-1",
-          "date": "2025-11-14",
-          "venue": "新宿MARZ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-16-1",
-          "date": "2025-11-16",
-          "venue": "Flowers Loft",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-23-1",
-          "date": "2025-11-23",
-          "venue": "Spotify O-Crest",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-24-1",
-          "date": "2025-11-24",
-          "venue": "下北沢MOSAiC",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-30-1",
-          "date": "2025-11-30",
-          "venue": "SUPERNOVA KAWASAKI",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-01-1",
-          "date": "2025-12-01",
-          "venue": "渋谷WOMB",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-08-1",
-          "date": "2025-12-08",
-          "venue": "新宿MARZ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-13-1",
-          "date": "2025-12-13",
-          "venue": "下北沢MOSAiC",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-14-1",
-          "date": "2025-12-14",
-          "venue": "表参道GROUND",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-20-1",
-          "date": "2025-12-20",
-          "venue": "青山RizM",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-21-1",
-          "date": "2025-12-21",
-          "venue": "SHIBUYA CYCLONE",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-28-1",
-          "date": "2025-12-28",
-          "venue": "DESEO mini with VILLAGE VANGUARD",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-29-1",
-          "date": "2025-12-29",
-          "venue": "YOANI LIVE STATION",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-30-1",
-          "date": "2025-12-30",
-          "venue": "大塚Hearts+",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-04-1",
-          "date": "2026-01-04",
-          "venue": "Spotify O-nest",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-07-1",
-          "date": "2026-01-07",
-          "venue": "新宿MARZ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-09-1",
-          "date": "2026-01-09",
-          "venue": "新宿MARZ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-15-1",
-          "date": "2026-01-15",
-          "venue": "DESEO mini with VILLAGE VANGUARD",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-18-1",
-          "date": "2026-01-18",
-          "venue": "大塚Hearts Next",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-05-1",
-          "date": "2026-02-05",
-          "venue": "渋谷チェルシーホテル",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-11-1",
-          "date": "2026-02-11",
-          "venue": "下北沢MOSAiC",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-15-1",
-          "date": "2026-02-15",
-          "venue": "恵比寿CreAto",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-17-1",
-          "date": "2026-02-17",
-          "venue": "Flowers Loft",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-21-1",
-          "date": "2026-02-21",
-          "venue": "DESEO mini with VILLAGE VANGUARD",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-22-1",
-          "date": "2026-02-22",
-          "venue": "池袋リヴォイス",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-08-1",
-          "date": "2026-03-08",
-          "venue": "新宿MARZ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-14-1",
-          "date": "2026-03-14",
-          "venue": "Flowers Loft",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-15-1",
-          "date": "2026-03-15",
-          "venue": "下北沢SHELTER",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-20-1",
-          "date": "2026-03-20",
-          "venue": "タワーレコード新宿店",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-28-1",
-          "date": "2026-03-28",
-          "venue": "Spotify O-Crest",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-04-1",
-          "date": "2026-04-04",
-          "venue": "下北沢MOSAiC",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-11-1",
-          "date": "2026-04-11",
-          "venue": "大塚FUTURE:",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-18-1",
-          "date": "2026-04-18",
-          "venue": "いわき湯本温泉 旅館こいと",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-25-1",
-          "date": "2026-04-25",
-          "venue": "下北沢MOSAiC",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-29-1",
-          "date": "2026-04-29",
-          "venue": "新宿LOFT",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-06-1",
-          "date": "2026-05-06",
-          "venue": "下北沢シャングリラ",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-15-1",
-          "date": "2026-05-15",
-          "venue": "新宿MARZ",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-17-1",
-          "date": "2026-05-17",
-          "venue": "青山RizM",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-23-1",
-          "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-30-1",
-          "date": "2026-05-30",
-          "venue": "Spotify O-Crest",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-06-1",
-          "date": "2026-06-06",
-          "venue": "下北沢シャングリラ",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-07-1",
-          "date": "2026-06-07",
-          "venue": "下北沢MOSAiC",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-14-1",
-          "date": "2026-06-14",
-          "venue": "新宿LOFT",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-22-1",
-          "date": "2026-06-22",
-          "venue": "下北沢SHELTER",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-27-1",
-          "date": "2026-06-27",
-          "venue": "TFTホール300",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-28-1",
-          "date": "2026-06-28",
-          "venue": "新宿MARZ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-12-1",
-          "date": "2026-07-12",
-          "venue": "Studio Freedom",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-18-1",
-          "date": "2026-07-18",
-          "venue": "心斎橋SUNHALL",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-25-1",
-          "date": "2026-07-25",
-          "venue": "SHIBUYA RING",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-27-1",
-          "date": "2026-07-27",
-          "venue": "下北沢シャングリラ",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-28-1",
-          "date": "2026-07-28",
-          "venue": "Shibuya Milkyway",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-17-1",
-          "date": "2026-08-17",
-          "venue": "渋谷近未来会館",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-27-1",
-          "date": "2026-08-27",
-          "venue": "Shibuya Milkyway",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-28-1",
-          "date": "2026-08-28",
-          "venue": "渋谷近未来会館",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-12-1",
-          "date": "2026-09-12",
-          "venue": "白金高輪SELENE b2",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-20-1",
-          "date": "2026-09-20",
-          "venue": "Spotify O-Crest",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        }
-      ],
-      "credits": {
-        "number": "6",
-        "lyrics": "ヒノハルキ",
-        "composition": "ヒノハルキ",
-        "arrangement": "ヒノハルキ",
-        "choreography": "MaHO",
-        "note": "https://x.com/Drawry0920/status/2033885556615332339"
-      }
-    },
-    {
       "id": "dear-history",
       "name": "Dear,History",
       "translation": null,
-      "plays": 96,
-      "shows": 95,
-      "shows_since_debut": 155,
+      "plays": 97,
+      "shows": 96,
+      "shows_since_debut": 157,
       "play_rate": 0.61,
-      "first_performed": "2025-09-23",
-      "last_performed": "2026-09-21",
-      "current_streak": 2,
+      "first_performed": "2025-09-13",
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
       "longest_streak": 31,
       "encores": 2,
-      "opened": 56,
+      "opened": 57,
       "closed": 29,
       "is_se": false,
       "is_interlude": false,
       "performances": [
+        {
+          "event_id": "2025-09-13-1",
+          "date": "2025-09-13",
+          "venue": "Veats SHIBUYA",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-20-1",
+          "date": "2025-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-20-1",
+          "date": "2025-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 8,
+          "is_encore": true,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-21-1",
+          "date": "2025-09-21",
+          "venue": "恵比寿CreAto",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
         {
           "event_id": "2025-09-23-1",
           "date": "2025-09-23",
@@ -15174,33 +14711,9 @@
           "note": ""
         },
         {
-          "event_id": "2026-09-13-2",
-          "date": "2026-09-13",
-          "venue": "Veats SHIBUYA",
-          "position": 1,
-          "is_encore": false,
-          "note": ""
-        },
-        {
           "event_id": "2026-09-20-1",
           "date": "2026-09-20",
           "venue": "Spotify O-Crest",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-20-1",
-          "date": "2026-09-20",
-          "venue": "Spotify O-Crest",
-          "position": 8,
-          "is_encore": true,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-21-1",
-          "date": "2026-09-21",
-          "venue": "恵比寿CreAto",
           "position": 2,
           "is_encore": false,
           "note": ""
@@ -15216,23 +14729,1919 @@
       }
     },
     {
+      "id": "luminous",
+      "name": "ルミナス",
+      "translation": "Luminous",
+      "plays": 151,
+      "shows": 151,
+      "shows_since_debut": 157,
+      "play_rate": 0.96,
+      "first_performed": "2025-09-13",
+      "last_performed": "2026-09-20",
+      "current_streak": 4,
+      "longest_streak": 59,
+      "encores": 2,
+      "opened": 0,
+      "closed": 21,
+      "is_se": false,
+      "is_interlude": false,
+      "performances": [
+        {
+          "event_id": "2025-09-13-1",
+          "date": "2025-09-13",
+          "venue": "Veats SHIBUYA",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-20-1",
+          "date": "2025-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-21-1",
+          "date": "2025-09-21",
+          "venue": "恵比寿CreAto",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-23-1",
+          "date": "2025-09-23",
+          "venue": "新宿LOFT",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-23-2",
+          "date": "2025-09-23",
+          "venue": "SHIBUYA RING",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-27-1",
+          "date": "2025-09-27",
+          "venue": "SHIBUYA CYCLONE",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-28-1",
+          "date": "2025-09-28",
+          "venue": "Flowers Loft",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-03-1",
+          "date": "2025-10-03",
+          "venue": "新宿MARZ",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-05-1",
+          "date": "2025-10-05",
+          "venue": "Flowers Loft",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-11-1",
+          "date": "2025-10-11",
+          "venue": "TwinBoxGARAGE",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-12-1",
+          "date": "2025-10-12",
+          "venue": "下北沢MOSAiC",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-13-1",
+          "date": "2025-10-13",
+          "venue": "神田CLUB F#",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-18-1",
+          "date": "2025-10-18",
+          "venue": "恵比寿CreAto",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-18-2",
+          "date": "2025-10-18",
+          "venue": "大塚Hearts Next",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-19-1",
+          "date": "2025-10-19",
+          "venue": "Spotify O-Crest",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-21-1",
+          "date": "2025-10-21",
+          "venue": "大塚Hearts+",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-24-1",
+          "date": "2025-10-24",
+          "venue": "Flowers Loft",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-26-1",
+          "date": "2025-10-26",
+          "venue": "SHIBUYA RING",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-26-2",
+          "date": "2025-10-26",
+          "venue": "新宿MARZ",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-27-1",
+          "date": "2025-10-27",
+          "venue": "新宿MARZ",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-01-1",
+          "date": "2025-11-01",
+          "venue": "四谷LOTUS",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-02-1",
+          "date": "2025-11-02",
+          "venue": "大塚Hearts+",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-03-1",
+          "date": "2025-11-03",
+          "venue": "TwinBoxGARAGE",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-08-1",
+          "date": "2025-11-08",
+          "venue": "下北沢MOSAiC",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-09-1",
+          "date": "2025-11-09",
+          "venue": "Flowers Loft",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-10-1",
+          "date": "2025-11-10",
+          "venue": "大塚Hearts+",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-11-1",
+          "date": "2025-11-11",
+          "venue": "高円寺HIGH",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-14-1",
+          "date": "2025-11-14",
+          "venue": "新宿MARZ",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-16-1",
+          "date": "2025-11-16",
+          "venue": "Flowers Loft",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-22-1",
+          "date": "2025-11-22",
+          "venue": "新宿LOFT",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-23-1",
+          "date": "2025-11-23",
+          "venue": "Spotify O-Crest",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-24-1",
+          "date": "2025-11-24",
+          "venue": "下北沢MOSAiC",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-29-1",
+          "date": "2025-11-29",
+          "venue": "ベルサール渋谷ガーデン",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-30-2",
+          "date": "2025-11-30",
+          "venue": "四谷LOTUS",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-01-1",
+          "date": "2025-12-01",
+          "venue": "渋谷WOMB",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-06-1",
+          "date": "2025-12-06",
+          "venue": "SHIBUYA RING",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-08-1",
+          "date": "2025-12-08",
+          "venue": "新宿MARZ",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-13-1",
+          "date": "2025-12-13",
+          "venue": "下北沢MOSAiC",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-14-1",
+          "date": "2025-12-14",
+          "venue": "表参道GROUND",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-20-1",
+          "date": "2025-12-20",
+          "venue": "青山RizM",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-20-2",
+          "date": "2025-12-20",
+          "venue": "下北沢ADRIFT",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-21-1",
+          "date": "2025-12-21",
+          "venue": "SHIBUYA CYCLONE",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-25-1",
+          "date": "2025-12-25",
+          "venue": "Flowers Loft",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-28-1",
+          "date": "2025-12-28",
+          "venue": "DESEO mini with VILLAGE VANGUARD",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-29-1",
+          "date": "2025-12-29",
+          "venue": "YOANI LIVE STATION",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-30-1",
+          "date": "2025-12-30",
+          "venue": "大塚Hearts+",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-31-1",
+          "date": "2025-12-31",
+          "venue": "下北沢シャングリラ",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-03-1",
+          "date": "2026-01-03",
+          "venue": "Spotify O-WEST",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-04-1",
+          "date": "2026-01-04",
+          "venue": "Spotify O-nest",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-07-1",
+          "date": "2026-01-07",
+          "venue": "新宿MARZ",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-09-1",
+          "date": "2026-01-09",
+          "venue": "新宿MARZ",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-11-1",
+          "date": "2026-01-11",
+          "venue": "下北沢MOSAiC",
+          "position": 9,
+          "is_encore": true,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-12-1",
+          "date": "2026-01-12",
+          "venue": "DESEO mini with VILLAGE VANGUARD",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-15-1",
+          "date": "2026-01-15",
+          "venue": "DESEO mini with VILLAGE VANGUARD",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-17-1",
+          "date": "2026-01-17",
+          "venue": "Spotify O-Crest",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-18-1",
+          "date": "2026-01-18",
+          "venue": "大塚Hearts Next",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-23-1",
+          "date": "2026-01-23",
+          "venue": "京都ROKA",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-27-1",
+          "date": "2026-01-27",
+          "venue": "新宿Marble",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-01-1",
+          "date": "2026-02-01",
+          "venue": "銀座BASE GRANBELL",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-05-1",
+          "date": "2026-02-05",
+          "venue": "渋谷チェルシーホテル",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-07-1",
+          "date": "2026-02-07",
+          "venue": "青山RizM",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-11-1",
+          "date": "2026-02-11",
+          "venue": "下北沢MOSAiC",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-14-1",
+          "date": "2026-02-14",
+          "venue": "白金高輪SELENE b2",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-17-1",
+          "date": "2026-02-17",
+          "venue": "Flowers Loft",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-21-1",
+          "date": "2026-02-21",
+          "venue": "DESEO mini with VILLAGE VANGUARD",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-22-1",
+          "date": "2026-02-22",
+          "venue": "池袋リヴォイス",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-23-1",
+          "date": "2026-02-23",
+          "venue": "SHIBUYA DESEO",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-28-1",
+          "date": "2026-02-28",
+          "venue": "大塚Hearts+",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-01-1",
+          "date": "2026-03-01",
+          "venue": "四谷LOTUS",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-02-1",
+          "date": "2026-03-02",
+          "venue": "渋谷近未来会館",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-07-1",
+          "date": "2026-03-07",
+          "venue": "渋谷CLUB CRAWL",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-08-1",
+          "date": "2026-03-08",
+          "venue": "新宿MARZ",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-10-1",
+          "date": "2026-03-10",
+          "venue": "渋谷近未来会館",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-14-1",
+          "date": "2026-03-14",
+          "venue": "Flowers Loft",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-15-1",
+          "date": "2026-03-15",
+          "venue": "下北沢SHELTER",
+          "position": 12,
+          "is_encore": true,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-20-1",
+          "date": "2026-03-20",
+          "venue": "タワーレコード新宿店",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-20-2",
+          "date": "2026-03-20",
+          "venue": "銀座BASE GRANBELL",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-21-1",
+          "date": "2026-03-21",
+          "venue": "SHIBUYA RING",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-22-1",
+          "date": "2026-03-22",
+          "venue": "Flowers Loft",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-28-1",
+          "date": "2026-03-28",
+          "venue": "Spotify O-Crest",
+          "position": 10,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-29-1",
+          "date": "2026-03-29",
+          "venue": "Flowers Loft",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-04-1",
+          "date": "2026-04-04",
+          "venue": "下北沢MOSAiC",
+          "position": 9,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-05-1",
+          "date": "2026-04-05",
+          "venue": "Flowers Loft",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-11-1",
+          "date": "2026-04-11",
+          "venue": "大塚FUTURE:",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-18-1",
+          "date": "2026-04-18",
+          "venue": "いわき湯本温泉 旅館こいと",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-19-1",
+          "date": "2026-04-19",
+          "venue": "いわき湯本温泉 旅館こいと",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-22-1",
+          "date": "2026-04-22",
+          "venue": "SHIBUYA CLUB QUATTRO",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-24-1",
+          "date": "2026-04-24",
+          "venue": "新宿MARZ",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-25-1",
+          "date": "2026-04-25",
+          "venue": "下北沢MOSAiC",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-26-1",
+          "date": "2026-04-26",
+          "venue": "Flowers Loft",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-29-1",
+          "date": "2026-04-29",
+          "venue": "新宿LOFT",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-30-1",
+          "date": "2026-04-30",
+          "venue": "新宿MARZ",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-02-1",
+          "date": "2026-05-02",
+          "venue": "銀座BASE GRANBELL",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-03-1",
+          "date": "2026-05-03",
+          "venue": "下北沢SHELTER",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-06-1",
+          "date": "2026-05-06",
+          "venue": "下北沢シャングリラ",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-08-1",
+          "date": "2026-05-08",
+          "venue": "京都ROKA",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-09-1",
+          "date": "2026-05-09",
+          "venue": "アメリカ村BEYOND",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-13-1",
+          "date": "2026-05-13",
+          "venue": "渋谷WOMB",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-15-1",
+          "date": "2026-05-15",
+          "venue": "新宿MARZ",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-17-1",
+          "date": "2026-05-17",
+          "venue": "青山RizM",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-20-1",
+          "date": "2026-05-20",
+          "venue": "SHIBUYA CLUB QUATTRO",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-23-1",
+          "date": "2026-05-23",
+          "venue": "三崎公園野外音楽堂",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-24-1",
+          "date": "2026-05-24",
+          "venue": "三崎公園野外音楽堂",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-28-1",
+          "date": "2026-05-28",
+          "venue": "渋谷近未来会館",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-30-1",
+          "date": "2026-05-30",
+          "venue": "Spotify O-Crest",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-03-1",
+          "date": "2026-06-03",
+          "venue": "新宿MARZ",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-06-1",
+          "date": "2026-06-06",
+          "venue": "下北沢シャングリラ",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-07-1",
+          "date": "2026-06-07",
+          "venue": "下北沢MOSAiC",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-10-1",
+          "date": "2026-06-10",
+          "venue": "Shibuya Milkyway",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-13-1",
+          "date": "2026-06-13",
+          "venue": "銀座BASE GRANBELL",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-14-1",
+          "date": "2026-06-14",
+          "venue": "新宿LOFT",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-21-1",
+          "date": "2026-06-21",
+          "venue": "渋谷音楽堂",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-22-1",
+          "date": "2026-06-22",
+          "venue": "下北沢SHELTER",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-25-1",
+          "date": "2026-06-25",
+          "venue": "渋谷近未来会館",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-27-1",
+          "date": "2026-06-27",
+          "venue": "TFTホール300",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-28-1",
+          "date": "2026-06-28",
+          "venue": "新宿MARZ",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-02-1",
+          "date": "2026-07-02",
+          "venue": "SHIBUYA PLEASURE PLEASURE",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-04-1",
+          "date": "2026-07-04",
+          "venue": "渋谷WOMB",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-05-1",
+          "date": "2026-07-05",
+          "venue": "KANDA SQUARE HALL",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-09-1",
+          "date": "2026-07-09",
+          "venue": "新代田FEVER",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-11-1",
+          "date": "2026-07-11",
+          "venue": "渋谷チェルシーホテル",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-12-1",
+          "date": "2026-07-12",
+          "venue": "Studio Freedom",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-17-1",
+          "date": "2026-07-17",
+          "venue": "アメリカ村DROP",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-18-1",
+          "date": "2026-07-18",
+          "venue": "心斎橋SUNHALL",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-19-1",
+          "date": "2026-07-19",
+          "venue": "アメリカ村BEYOND",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-22-1",
+          "date": "2026-07-22",
+          "venue": "Zirco Tokyo",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-25-1",
+          "date": "2026-07-25",
+          "venue": "SHIBUYA RING",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-26-1",
+          "date": "2026-07-26",
+          "venue": "銀座BASE GRANBELL",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-27-1",
+          "date": "2026-07-27",
+          "venue": "下北沢シャングリラ",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-28-1",
+          "date": "2026-07-28",
+          "venue": "Shibuya Milkyway",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-02-1",
+          "date": "2026-08-02",
+          "venue": "下北沢MOSAiC",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-09-1",
+          "date": "2026-08-09",
+          "venue": "下北沢MOSAiC",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-10-1",
+          "date": "2026-08-10",
+          "venue": "渋谷GRIT",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-13-1",
+          "date": "2026-08-13",
+          "venue": "恵比寿CreAto",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-15-1",
+          "date": "2026-08-15",
+          "venue": "お台場R地区",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-16-1",
+          "date": "2026-08-16",
+          "venue": "LIVLIV(静岡ARTIE)",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-17-1",
+          "date": "2026-08-17",
+          "venue": "渋谷近未来会館",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-22-1",
+          "date": "2026-08-22",
+          "venue": "時事通信ホール",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-24-1",
+          "date": "2026-08-24",
+          "venue": "渋谷近未来会館",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-28-1",
+          "date": "2026-08-28",
+          "venue": "渋谷近未来会館",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-29-1",
+          "date": "2026-08-29",
+          "venue": "新宿MARZ",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-31-1",
+          "date": "2026-08-31",
+          "venue": "SHIBUYA RING",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-02-1",
+          "date": "2026-09-02",
+          "venue": "代官山 SPACEODD",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-05-1",
+          "date": "2026-09-05",
+          "venue": "草ぶえの丘(千葉 佐倉)",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-05-3",
+          "date": "2026-09-05",
+          "venue": "flagship FUNABASHI",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-06-1",
+          "date": "2026-09-06",
+          "venue": "草ぶえの丘(千葉 佐倉)",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-13-1",
+          "date": "2026-09-13",
+          "venue": "Shibuya Milkyway",
+          "position": 9,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-15-1",
+          "date": "2026-09-15",
+          "venue": "渋谷Star lounge",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-19-1",
+          "date": "2026-09-19",
+          "venue": "白金高輪SELENE b2",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        }
+      ],
+      "credits": {
+        "number": "4",
+        "lyrics": "シジマフミ",
+        "composition": "シジマフミ",
+        "arrangement": "シジマフミ",
+        "choreography": "SERINA",
+        "note": "https://x.com/Drawry0920/status/1979831133203476597"
+      }
+    },
+    {
+      "id": "blooming",
+      "name": "Blooming",
+      "translation": null,
+      "plays": 77,
+      "shows": 77,
+      "shows_since_debut": 156,
+      "play_rate": 0.49,
+      "first_performed": "2025-09-20",
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
+      "longest_streak": 15,
+      "encores": 0,
+      "opened": 19,
+      "closed": 0,
+      "is_se": false,
+      "is_interlude": false,
+      "performances": [
+        {
+          "event_id": "2025-09-20-1",
+          "date": "2025-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-23-2",
+          "date": "2025-09-23",
+          "venue": "SHIBUYA RING",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-27-1",
+          "date": "2025-09-27",
+          "venue": "SHIBUYA CYCLONE",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-03-1",
+          "date": "2025-10-03",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-05-1",
+          "date": "2025-10-05",
+          "venue": "Flowers Loft",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-11-1",
+          "date": "2025-10-11",
+          "venue": "TwinBoxGARAGE",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-12-1",
+          "date": "2025-10-12",
+          "venue": "下北沢MOSAiC",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-18-1",
+          "date": "2025-10-18",
+          "venue": "恵比寿CreAto",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-18-2",
+          "date": "2025-10-18",
+          "venue": "大塚Hearts Next",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-19-1",
+          "date": "2025-10-19",
+          "venue": "Spotify O-Crest",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-21-1",
+          "date": "2025-10-21",
+          "venue": "大塚Hearts+",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-24-1",
+          "date": "2025-10-24",
+          "venue": "Flowers Loft",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-26-2",
+          "date": "2025-10-26",
+          "venue": "新宿MARZ",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-10-27-1",
+          "date": "2025-10-27",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-01-1",
+          "date": "2025-11-01",
+          "venue": "四谷LOTUS",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-02-1",
+          "date": "2025-11-02",
+          "venue": "大塚Hearts+",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-03-1",
+          "date": "2025-11-03",
+          "venue": "TwinBoxGARAGE",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-08-1",
+          "date": "2025-11-08",
+          "venue": "下北沢MOSAiC",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-09-1",
+          "date": "2025-11-09",
+          "venue": "Flowers Loft",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-10-1",
+          "date": "2025-11-10",
+          "venue": "大塚Hearts+",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-11-1",
+          "date": "2025-11-11",
+          "venue": "高円寺HIGH",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-14-1",
+          "date": "2025-11-14",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-16-1",
+          "date": "2025-11-16",
+          "venue": "Flowers Loft",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-23-1",
+          "date": "2025-11-23",
+          "venue": "Spotify O-Crest",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-24-1",
+          "date": "2025-11-24",
+          "venue": "下北沢MOSAiC",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-11-30-1",
+          "date": "2025-11-30",
+          "venue": "SUPERNOVA KAWASAKI",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-01-1",
+          "date": "2025-12-01",
+          "venue": "渋谷WOMB",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-08-1",
+          "date": "2025-12-08",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-13-1",
+          "date": "2025-12-13",
+          "venue": "下北沢MOSAiC",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-14-1",
+          "date": "2025-12-14",
+          "venue": "表参道GROUND",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-20-1",
+          "date": "2025-12-20",
+          "venue": "青山RizM",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-21-1",
+          "date": "2025-12-21",
+          "venue": "SHIBUYA CYCLONE",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-28-1",
+          "date": "2025-12-28",
+          "venue": "DESEO mini with VILLAGE VANGUARD",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-29-1",
+          "date": "2025-12-29",
+          "venue": "YOANI LIVE STATION",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-12-30-1",
+          "date": "2025-12-30",
+          "venue": "大塚Hearts+",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-04-1",
+          "date": "2026-01-04",
+          "venue": "Spotify O-nest",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-07-1",
+          "date": "2026-01-07",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-09-1",
+          "date": "2026-01-09",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-15-1",
+          "date": "2026-01-15",
+          "venue": "DESEO mini with VILLAGE VANGUARD",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-01-18-1",
+          "date": "2026-01-18",
+          "venue": "大塚Hearts Next",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-05-1",
+          "date": "2026-02-05",
+          "venue": "渋谷チェルシーホテル",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-11-1",
+          "date": "2026-02-11",
+          "venue": "下北沢MOSAiC",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-15-1",
+          "date": "2026-02-15",
+          "venue": "恵比寿CreAto",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-17-1",
+          "date": "2026-02-17",
+          "venue": "Flowers Loft",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-21-1",
+          "date": "2026-02-21",
+          "venue": "DESEO mini with VILLAGE VANGUARD",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-02-22-1",
+          "date": "2026-02-22",
+          "venue": "池袋リヴォイス",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-08-1",
+          "date": "2026-03-08",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-14-1",
+          "date": "2026-03-14",
+          "venue": "Flowers Loft",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-15-1",
+          "date": "2026-03-15",
+          "venue": "下北沢SHELTER",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-20-1",
+          "date": "2026-03-20",
+          "venue": "タワーレコード新宿店",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-03-28-1",
+          "date": "2026-03-28",
+          "venue": "Spotify O-Crest",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-04-1",
+          "date": "2026-04-04",
+          "venue": "下北沢MOSAiC",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-11-1",
+          "date": "2026-04-11",
+          "venue": "大塚FUTURE:",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-18-1",
+          "date": "2026-04-18",
+          "venue": "いわき湯本温泉 旅館こいと",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-25-1",
+          "date": "2026-04-25",
+          "venue": "下北沢MOSAiC",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-04-29-1",
+          "date": "2026-04-29",
+          "venue": "新宿LOFT",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-06-1",
+          "date": "2026-05-06",
+          "venue": "下北沢シャングリラ",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-15-1",
+          "date": "2026-05-15",
+          "venue": "新宿MARZ",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-17-1",
+          "date": "2026-05-17",
+          "venue": "青山RizM",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-23-1",
+          "date": "2026-05-23",
+          "venue": "三崎公園野外音楽堂",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-05-30-1",
+          "date": "2026-05-30",
+          "venue": "Spotify O-Crest",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-06-1",
+          "date": "2026-06-06",
+          "venue": "下北沢シャングリラ",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-07-1",
+          "date": "2026-06-07",
+          "venue": "下北沢MOSAiC",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-14-1",
+          "date": "2026-06-14",
+          "venue": "新宿LOFT",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-22-1",
+          "date": "2026-06-22",
+          "venue": "下北沢SHELTER",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-27-1",
+          "date": "2026-06-27",
+          "venue": "TFTホール300",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-06-28-1",
+          "date": "2026-06-28",
+          "venue": "新宿MARZ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-12-1",
+          "date": "2026-07-12",
+          "venue": "Studio Freedom",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-18-1",
+          "date": "2026-07-18",
+          "venue": "心斎橋SUNHALL",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-25-1",
+          "date": "2026-07-25",
+          "venue": "SHIBUYA RING",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-27-1",
+          "date": "2026-07-27",
+          "venue": "下北沢シャングリラ",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-07-28-1",
+          "date": "2026-07-28",
+          "venue": "Shibuya Milkyway",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-17-1",
+          "date": "2026-08-17",
+          "venue": "渋谷近未来会館",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-27-1",
+          "date": "2026-08-27",
+          "venue": "Shibuya Milkyway",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-08-28-1",
+          "date": "2026-08-28",
+          "venue": "渋谷近未来会館",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-12-1",
+          "date": "2026-09-12",
+          "venue": "白金高輪SELENE b2",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        }
+      ],
+      "credits": {
+        "number": "6",
+        "lyrics": "ヒノハルキ",
+        "composition": "ヒノハルキ",
+        "arrangement": "ヒノハルキ",
+        "choreography": "MaHO",
+        "note": "https://x.com/Drawry0920/status/2033885556615332339"
+      }
+    },
+    {
       "id": "moving-lights",
       "name": "Moving Lights!",
       "translation": null,
-      "plays": 85,
-      "shows": 85,
-      "shows_since_debut": 155,
-      "play_rate": 0.55,
-      "first_performed": "2025-09-23",
-      "last_performed": "2026-09-21",
+      "plays": 87,
+      "shows": 87,
+      "shows_since_debut": 156,
+      "play_rate": 0.56,
+      "first_performed": "2025-09-20",
+      "last_performed": "2026-09-20",
       "current_streak": 2,
       "longest_streak": 10,
       "encores": 1,
-      "opened": 28,
+      "opened": 29,
       "closed": 1,
       "is_se": false,
       "is_interlude": false,
       "performances": [
+        {
+          "event_id": "2025-09-20-1",
+          "date": "2025-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-21-1",
+          "date": "2025-09-21",
+          "venue": "恵比寿CreAto",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
         {
           "event_id": "2025-09-23-1",
           "date": "2025-09-23",
@@ -15898,18 +17307,18 @@
           "note": ""
         },
         {
-          "event_id": "2026-09-20-1",
-          "date": "2026-09-20",
-          "venue": "Spotify O-Crest",
-          "position": 4,
+          "event_id": "2026-09-19-1",
+          "date": "2026-09-19",
+          "venue": "白金高輪SELENE b2",
+          "position": 2,
           "is_encore": false,
           "note": ""
         },
         {
-          "event_id": "2026-09-21-1",
-          "date": "2026-09-21",
-          "venue": "恵比寿CreAto",
-          "position": 5,
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 4,
           "is_encore": false,
           "note": ""
         }
@@ -15929,18 +17338,34 @@
       "translation": null,
       "plays": 65,
       "shows": 65,
-      "shows_since_debut": 155,
+      "shows_since_debut": 156,
       "play_rate": 0.42,
-      "first_performed": "2025-09-23",
-      "last_performed": "2026-09-21",
-      "current_streak": 2,
-      "longest_streak": 16,
+      "first_performed": "2025-09-20",
+      "last_performed": "2026-09-06",
+      "current_streak": 0,
+      "longest_streak": 18,
       "encores": 0,
       "opened": 0,
       "closed": 0,
       "is_se": true,
       "is_interlude": false,
       "performances": [
+        {
+          "event_id": "2025-09-20-1",
+          "date": "2025-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-21-1",
+          "date": "2025-09-21",
+          "venue": "恵比寿CreAto",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
+        },
         {
           "event_id": "2025-09-23-1",
           "date": "2025-09-23",
@@ -16444,22 +17869,6 @@
           "position": 1,
           "is_encore": false,
           "note": ""
-        },
-        {
-          "event_id": "2026-09-20-1",
-          "date": "2026-09-20",
-          "venue": "Spotify O-Crest",
-          "position": 1,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-21-1",
-          "date": "2026-09-21",
-          "venue": "恵比寿CreAto",
-          "position": 1,
-          "is_encore": false,
-          "note": ""
         }
       ],
       "credits": null
@@ -16468,13 +17877,13 @@
       "id": "primary",
       "name": "プライマリ",
       "translation": "primary",
-      "plays": 60,
-      "shows": 60,
-      "shows_since_debut": 155,
+      "plays": 61,
+      "shows": 61,
+      "shows_since_debut": 156,
       "play_rate": 0.39,
-      "first_performed": "2025-09-23",
-      "last_performed": "2026-09-21",
-      "current_streak": 2,
+      "first_performed": "2025-09-20",
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
       "longest_streak": 8,
       "encores": 0,
       "opened": 10,
@@ -16482,6 +17891,22 @@
       "is_se": false,
       "is_interlude": false,
       "performances": [
+        {
+          "event_id": "2025-09-20-1",
+          "date": "2025-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-21-1",
+          "date": "2025-09-21",
+          "venue": "恵比寿CreAto",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
         {
           "event_id": "2025-09-23-1",
           "date": "2025-09-23",
@@ -16953,14 +18378,6 @@
           "position": 7,
           "is_encore": false,
           "note": ""
-        },
-        {
-          "event_id": "2026-09-21-1",
-          "date": "2026-09-21",
-          "venue": "恵比寿CreAto",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
         }
       ],
       "credits": {
@@ -16973,1243 +18390,39 @@
       }
     },
     {
-      "id": "luminous",
-      "name": "ルミナス",
-      "translation": "Luminous",
-      "plays": 149,
-      "shows": 149,
-      "shows_since_debut": 155,
-      "play_rate": 0.96,
-      "first_performed": "2025-09-23",
-      "last_performed": "2026-09-21",
-      "current_streak": 4,
-      "longest_streak": 56,
-      "encores": 2,
-      "opened": 0,
-      "closed": 20,
-      "is_se": false,
-      "is_interlude": false,
-      "performances": [
-        {
-          "event_id": "2025-09-23-1",
-          "date": "2025-09-23",
-          "venue": "新宿LOFT",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-09-23-2",
-          "date": "2025-09-23",
-          "venue": "SHIBUYA RING",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-09-27-1",
-          "date": "2025-09-27",
-          "venue": "SHIBUYA CYCLONE",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-09-28-1",
-          "date": "2025-09-28",
-          "venue": "Flowers Loft",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-03-1",
-          "date": "2025-10-03",
-          "venue": "新宿MARZ",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-05-1",
-          "date": "2025-10-05",
-          "venue": "Flowers Loft",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-11-1",
-          "date": "2025-10-11",
-          "venue": "TwinBoxGARAGE",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-12-1",
-          "date": "2025-10-12",
-          "venue": "下北沢MOSAiC",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-13-1",
-          "date": "2025-10-13",
-          "venue": "神田CLUB F#",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-18-1",
-          "date": "2025-10-18",
-          "venue": "恵比寿CreAto",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-18-2",
-          "date": "2025-10-18",
-          "venue": "大塚Hearts Next",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-19-1",
-          "date": "2025-10-19",
-          "venue": "Spotify O-Crest",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-21-1",
-          "date": "2025-10-21",
-          "venue": "大塚Hearts+",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-24-1",
-          "date": "2025-10-24",
-          "venue": "Flowers Loft",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-26-1",
-          "date": "2025-10-26",
-          "venue": "SHIBUYA RING",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-26-2",
-          "date": "2025-10-26",
-          "venue": "新宿MARZ",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-10-27-1",
-          "date": "2025-10-27",
-          "venue": "新宿MARZ",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-01-1",
-          "date": "2025-11-01",
-          "venue": "四谷LOTUS",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-02-1",
-          "date": "2025-11-02",
-          "venue": "大塚Hearts+",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-03-1",
-          "date": "2025-11-03",
-          "venue": "TwinBoxGARAGE",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-08-1",
-          "date": "2025-11-08",
-          "venue": "下北沢MOSAiC",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-09-1",
-          "date": "2025-11-09",
-          "venue": "Flowers Loft",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-10-1",
-          "date": "2025-11-10",
-          "venue": "大塚Hearts+",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-11-1",
-          "date": "2025-11-11",
-          "venue": "高円寺HIGH",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-14-1",
-          "date": "2025-11-14",
-          "venue": "新宿MARZ",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-16-1",
-          "date": "2025-11-16",
-          "venue": "Flowers Loft",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-22-1",
-          "date": "2025-11-22",
-          "venue": "新宿LOFT",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-23-1",
-          "date": "2025-11-23",
-          "venue": "Spotify O-Crest",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-24-1",
-          "date": "2025-11-24",
-          "venue": "下北沢MOSAiC",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-29-1",
-          "date": "2025-11-29",
-          "venue": "ベルサール渋谷ガーデン",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-11-30-2",
-          "date": "2025-11-30",
-          "venue": "四谷LOTUS",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-01-1",
-          "date": "2025-12-01",
-          "venue": "渋谷WOMB",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-06-1",
-          "date": "2025-12-06",
-          "venue": "SHIBUYA RING",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-08-1",
-          "date": "2025-12-08",
-          "venue": "新宿MARZ",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-13-1",
-          "date": "2025-12-13",
-          "venue": "下北沢MOSAiC",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-14-1",
-          "date": "2025-12-14",
-          "venue": "表参道GROUND",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-20-1",
-          "date": "2025-12-20",
-          "venue": "青山RizM",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-20-2",
-          "date": "2025-12-20",
-          "venue": "下北沢ADRIFT",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-21-1",
-          "date": "2025-12-21",
-          "venue": "SHIBUYA CYCLONE",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-25-1",
-          "date": "2025-12-25",
-          "venue": "Flowers Loft",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-28-1",
-          "date": "2025-12-28",
-          "venue": "DESEO mini with VILLAGE VANGUARD",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-29-1",
-          "date": "2025-12-29",
-          "venue": "YOANI LIVE STATION",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-30-1",
-          "date": "2025-12-30",
-          "venue": "大塚Hearts+",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2025-12-31-1",
-          "date": "2025-12-31",
-          "venue": "下北沢シャングリラ",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-03-1",
-          "date": "2026-01-03",
-          "venue": "Spotify O-WEST",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-04-1",
-          "date": "2026-01-04",
-          "venue": "Spotify O-nest",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-07-1",
-          "date": "2026-01-07",
-          "venue": "新宿MARZ",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-09-1",
-          "date": "2026-01-09",
-          "venue": "新宿MARZ",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-11-1",
-          "date": "2026-01-11",
-          "venue": "下北沢MOSAiC",
-          "position": 9,
-          "is_encore": true,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-12-1",
-          "date": "2026-01-12",
-          "venue": "DESEO mini with VILLAGE VANGUARD",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-15-1",
-          "date": "2026-01-15",
-          "venue": "DESEO mini with VILLAGE VANGUARD",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-17-1",
-          "date": "2026-01-17",
-          "venue": "Spotify O-Crest",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-18-1",
-          "date": "2026-01-18",
-          "venue": "大塚Hearts Next",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-23-1",
-          "date": "2026-01-23",
-          "venue": "京都ROKA",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-01-27-1",
-          "date": "2026-01-27",
-          "venue": "新宿Marble",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-01-1",
-          "date": "2026-02-01",
-          "venue": "銀座BASE GRANBELL",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-05-1",
-          "date": "2026-02-05",
-          "venue": "渋谷チェルシーホテル",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-07-1",
-          "date": "2026-02-07",
-          "venue": "青山RizM",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-11-1",
-          "date": "2026-02-11",
-          "venue": "下北沢MOSAiC",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-14-1",
-          "date": "2026-02-14",
-          "venue": "白金高輪SELENE b2",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-17-1",
-          "date": "2026-02-17",
-          "venue": "Flowers Loft",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-21-1",
-          "date": "2026-02-21",
-          "venue": "DESEO mini with VILLAGE VANGUARD",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-22-1",
-          "date": "2026-02-22",
-          "venue": "池袋リヴォイス",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-23-1",
-          "date": "2026-02-23",
-          "venue": "SHIBUYA DESEO",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-02-28-1",
-          "date": "2026-02-28",
-          "venue": "大塚Hearts+",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-01-1",
-          "date": "2026-03-01",
-          "venue": "四谷LOTUS",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-02-1",
-          "date": "2026-03-02",
-          "venue": "渋谷近未来会館",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-07-1",
-          "date": "2026-03-07",
-          "venue": "渋谷CLUB CRAWL",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-08-1",
-          "date": "2026-03-08",
-          "venue": "新宿MARZ",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-10-1",
-          "date": "2026-03-10",
-          "venue": "渋谷近未来会館",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-14-1",
-          "date": "2026-03-14",
-          "venue": "Flowers Loft",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-15-1",
-          "date": "2026-03-15",
-          "venue": "下北沢SHELTER",
-          "position": 12,
-          "is_encore": true,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-20-1",
-          "date": "2026-03-20",
-          "venue": "タワーレコード新宿店",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-20-2",
-          "date": "2026-03-20",
-          "venue": "銀座BASE GRANBELL",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-21-1",
-          "date": "2026-03-21",
-          "venue": "SHIBUYA RING",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-22-1",
-          "date": "2026-03-22",
-          "venue": "Flowers Loft",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-28-1",
-          "date": "2026-03-28",
-          "venue": "Spotify O-Crest",
-          "position": 10,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-03-29-1",
-          "date": "2026-03-29",
-          "venue": "Flowers Loft",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-04-1",
-          "date": "2026-04-04",
-          "venue": "下北沢MOSAiC",
-          "position": 9,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-05-1",
-          "date": "2026-04-05",
-          "venue": "Flowers Loft",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-11-1",
-          "date": "2026-04-11",
-          "venue": "大塚FUTURE:",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-18-1",
-          "date": "2026-04-18",
-          "venue": "いわき湯本温泉 旅館こいと",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-19-1",
-          "date": "2026-04-19",
-          "venue": "いわき湯本温泉 旅館こいと",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-22-1",
-          "date": "2026-04-22",
-          "venue": "SHIBUYA CLUB QUATTRO",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-24-1",
-          "date": "2026-04-24",
-          "venue": "新宿MARZ",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-25-1",
-          "date": "2026-04-25",
-          "venue": "下北沢MOSAiC",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-26-1",
-          "date": "2026-04-26",
-          "venue": "Flowers Loft",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-29-1",
-          "date": "2026-04-29",
-          "venue": "新宿LOFT",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-04-30-1",
-          "date": "2026-04-30",
-          "venue": "新宿MARZ",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-02-1",
-          "date": "2026-05-02",
-          "venue": "銀座BASE GRANBELL",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-03-1",
-          "date": "2026-05-03",
-          "venue": "下北沢SHELTER",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-06-1",
-          "date": "2026-05-06",
-          "venue": "下北沢シャングリラ",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-08-1",
-          "date": "2026-05-08",
-          "venue": "京都ROKA",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-09-1",
-          "date": "2026-05-09",
-          "venue": "アメリカ村BEYOND",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-13-1",
-          "date": "2026-05-13",
-          "venue": "渋谷WOMB",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-15-1",
-          "date": "2026-05-15",
-          "venue": "新宿MARZ",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-17-1",
-          "date": "2026-05-17",
-          "venue": "青山RizM",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-20-1",
-          "date": "2026-05-20",
-          "venue": "SHIBUYA CLUB QUATTRO",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-23-1",
-          "date": "2026-05-23",
-          "venue": "三崎公園野外音楽堂",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-24-1",
-          "date": "2026-05-24",
-          "venue": "三崎公園野外音楽堂",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-28-1",
-          "date": "2026-05-28",
-          "venue": "渋谷近未来会館",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-05-30-1",
-          "date": "2026-05-30",
-          "venue": "Spotify O-Crest",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-03-1",
-          "date": "2026-06-03",
-          "venue": "新宿MARZ",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-06-1",
-          "date": "2026-06-06",
-          "venue": "下北沢シャングリラ",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-07-1",
-          "date": "2026-06-07",
-          "venue": "下北沢MOSAiC",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-10-1",
-          "date": "2026-06-10",
-          "venue": "Shibuya Milkyway",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-13-1",
-          "date": "2026-06-13",
-          "venue": "銀座BASE GRANBELL",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-14-1",
-          "date": "2026-06-14",
-          "venue": "新宿LOFT",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-21-1",
-          "date": "2026-06-21",
-          "venue": "渋谷音楽堂",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-22-1",
-          "date": "2026-06-22",
-          "venue": "下北沢SHELTER",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-25-1",
-          "date": "2026-06-25",
-          "venue": "渋谷近未来会館",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-27-1",
-          "date": "2026-06-27",
-          "venue": "TFTホール300",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-06-28-1",
-          "date": "2026-06-28",
-          "venue": "新宿MARZ",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-02-1",
-          "date": "2026-07-02",
-          "venue": "SHIBUYA PLEASURE PLEASURE",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-04-1",
-          "date": "2026-07-04",
-          "venue": "渋谷WOMB",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-05-1",
-          "date": "2026-07-05",
-          "venue": "KANDA SQUARE HALL",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-09-1",
-          "date": "2026-07-09",
-          "venue": "新代田FEVER",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-11-1",
-          "date": "2026-07-11",
-          "venue": "渋谷チェルシーホテル",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-12-1",
-          "date": "2026-07-12",
-          "venue": "Studio Freedom",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-17-1",
-          "date": "2026-07-17",
-          "venue": "アメリカ村DROP",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-18-1",
-          "date": "2026-07-18",
-          "venue": "心斎橋SUNHALL",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-19-1",
-          "date": "2026-07-19",
-          "venue": "アメリカ村BEYOND",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-22-1",
-          "date": "2026-07-22",
-          "venue": "Zirco Tokyo",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-25-1",
-          "date": "2026-07-25",
-          "venue": "SHIBUYA RING",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-26-1",
-          "date": "2026-07-26",
-          "venue": "銀座BASE GRANBELL",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-27-1",
-          "date": "2026-07-27",
-          "venue": "下北沢シャングリラ",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-07-28-1",
-          "date": "2026-07-28",
-          "venue": "Shibuya Milkyway",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-02-1",
-          "date": "2026-08-02",
-          "venue": "下北沢MOSAiC",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-09-1",
-          "date": "2026-08-09",
-          "venue": "下北沢MOSAiC",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-10-1",
-          "date": "2026-08-10",
-          "venue": "渋谷GRIT",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-13-1",
-          "date": "2026-08-13",
-          "venue": "恵比寿CreAto",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-15-1",
-          "date": "2026-08-15",
-          "venue": "お台場R地区",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-16-1",
-          "date": "2026-08-16",
-          "venue": "LIVLIV(静岡ARTIE)",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-17-1",
-          "date": "2026-08-17",
-          "venue": "渋谷近未来会館",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-22-1",
-          "date": "2026-08-22",
-          "venue": "時事通信ホール",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-24-1",
-          "date": "2026-08-24",
-          "venue": "渋谷近未来会館",
-          "position": 6,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-27-1",
-          "date": "2026-08-27",
-          "venue": "Shibuya Milkyway",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-28-1",
-          "date": "2026-08-28",
-          "venue": "渋谷近未来会館",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-29-1",
-          "date": "2026-08-29",
-          "venue": "新宿MARZ",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-08-31-1",
-          "date": "2026-08-31",
-          "venue": "SHIBUYA RING",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-02-1",
-          "date": "2026-09-02",
-          "venue": "代官山 SPACEODD",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-05-1",
-          "date": "2026-09-05",
-          "venue": "草ぶえの丘(千葉 佐倉)",
-          "position": 8,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-05-3",
-          "date": "2026-09-05",
-          "venue": "flagship FUNABASHI",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-06-1",
-          "date": "2026-09-06",
-          "venue": "草ぶえの丘(千葉 佐倉)",
-          "position": 3,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-13-1",
-          "date": "2026-09-13",
-          "venue": "Shibuya Milkyway",
-          "position": 9,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-13-2",
-          "date": "2026-09-13",
-          "venue": "Veats SHIBUYA",
-          "position": 2,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-15-1",
-          "date": "2026-09-15",
-          "venue": "渋谷Star lounge",
-          "position": 7,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-20-1",
-          "date": "2026-09-20",
-          "venue": "Spotify O-Crest",
-          "position": 5,
-          "is_encore": false,
-          "note": ""
-        },
-        {
-          "event_id": "2026-09-21-1",
-          "date": "2026-09-21",
-          "venue": "恵比寿CreAto",
-          "position": 4,
-          "is_encore": false,
-          "note": ""
-        }
-      ],
-      "credits": {
-        "number": "4",
-        "lyrics": "シジマフミ",
-        "composition": "シジマフミ",
-        "arrangement": "シジマフミ",
-        "choreography": "SERINA",
-        "note": "https://x.com/Drawry0920/status/1979831133203476597"
-      }
-    },
-    {
       "id": "asayake-to-shasou",
       "name": "朝焼けと車窓",
       "translation": "Morning Glow and the Train Window",
-      "plays": 148,
-      "shows": 148,
-      "shows_since_debut": 155,
-      "play_rate": 0.95,
-      "first_performed": "2025-09-23",
-      "last_performed": "2026-09-21",
+      "plays": 150,
+      "shows": 150,
+      "shows_since_debut": 156,
+      "play_rate": 0.96,
+      "first_performed": "2025-09-20",
+      "last_performed": "2026-09-20",
       "current_streak": 8,
-      "longest_streak": 113,
+      "longest_streak": 115,
       "encores": 2,
       "opened": 3,
       "closed": 10,
       "is_se": false,
       "is_interlude": false,
       "performances": [
+        {
+          "event_id": "2025-09-20-1",
+          "date": "2025-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2025-09-21-1",
+          "date": "2025-09-21",
+          "venue": "恵比寿CreAto",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
+        },
         {
           "event_id": "2025-09-23-1",
           "date": "2025-09-23",
@@ -19379,18 +19592,18 @@
           "note": ""
         },
         {
-          "event_id": "2026-09-20-1",
-          "date": "2026-09-20",
-          "venue": "Spotify O-Crest",
-          "position": 6,
+          "event_id": "2026-09-19-1",
+          "date": "2026-09-19",
+          "venue": "白金高輪SELENE b2",
+          "position": 5,
           "is_encore": false,
           "note": ""
         },
         {
-          "event_id": "2026-09-21-1",
-          "date": "2026-09-21",
-          "venue": "恵比寿CreAto",
-          "position": 3,
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 6,
           "is_encore": false,
           "note": ""
         }
@@ -19408,12 +19621,12 @@
       "id": "se-moving-lights",
       "name": "SE(Moving Lights!)",
       "translation": null,
-      "plays": 22,
-      "shows": 22,
-      "shows_since_debut": 141,
+      "plays": 23,
+      "shows": 23,
+      "shows_since_debut": 140,
       "play_rate": 0.16,
       "first_performed": "2025-10-26",
-      "last_performed": "2026-09-05",
+      "last_performed": "2026-09-19",
       "current_streak": 0,
       "longest_streak": 2,
       "encores": 0,
@@ -19597,6 +19810,14 @@
           "position": 1,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-19-1",
+          "date": "2026-09-19",
+          "venue": "白金高輪SELENE b2",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": null
@@ -19605,13 +19826,13 @@
       "id": "love-story-ga-hajimaranai",
       "name": "ラブストーリーが始まらない",
       "translation": "A Love Story That Never Begins",
-      "plays": 76,
-      "shows": 76,
-      "shows_since_debut": 127,
-      "play_rate": 0.6,
+      "plays": 78,
+      "shows": 78,
+      "shows_since_debut": 126,
+      "play_rate": 0.62,
       "first_performed": "2025-11-24",
-      "last_performed": "2026-09-15",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 4,
       "longest_streak": 16,
       "encores": 0,
       "opened": 10,
@@ -20226,6 +20447,22 @@
           "position": 3,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-19-1",
+          "date": "2026-09-19",
+          "venue": "白金高輪SELENE b2",
+          "position": 7,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 11,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -20243,7 +20480,7 @@
       "translation": "SE(primary)",
       "plays": 6,
       "shows": 6,
-      "shows_since_debut": 109,
+      "shows_since_debut": 108,
       "play_rate": 0.06,
       "first_performed": "2026-01-04",
       "last_performed": "2026-05-03",
@@ -20312,7 +20549,7 @@
       "translation": null,
       "plays": 55,
       "shows": 55,
-      "shows_since_debut": 106,
+      "shows_since_debut": 105,
       "play_rate": 0.52,
       "first_performed": "2026-01-11",
       "last_performed": "2026-09-15",
@@ -20778,12 +21015,12 @@
       "id": "interlude",
       "name": "Interlude",
       "translation": null,
-      "plays": 45,
-      "shows": 43,
-      "shows_since_debut": 106,
-      "play_rate": 0.41,
+      "plays": 46,
+      "shows": 44,
+      "shows_since_debut": 105,
+      "play_rate": 0.42,
       "first_performed": "2026-01-11",
-      "last_performed": "2026-09-05",
+      "last_performed": "2026-09-19",
       "current_streak": 0,
       "longest_streak": 4,
       "encores": 0,
@@ -21151,6 +21388,14 @@
           "position": 3,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-19-1",
+          "date": "2026-09-19",
+          "venue": "白金高輪SELENE b2",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": null
@@ -21159,13 +21404,13 @@
       "id": "egakikake-no-sora",
       "name": "描きかけの空",
       "translation": "Egakikake no Sora",
-      "plays": 40,
-      "shows": 40,
-      "shows_since_debut": 90,
-      "play_rate": 0.44,
+      "plays": 42,
+      "shows": 42,
+      "shows_since_debut": 89,
+      "play_rate": 0.47,
       "first_performed": "2026-02-23",
-      "last_performed": "2026-09-05",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 2,
       "longest_streak": 8,
       "encores": 0,
       "opened": 0,
@@ -21492,6 +21737,22 @@
           "position": 6,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-19-1",
+          "date": "2026-09-19",
+          "venue": "白金高輪SELENE b2",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 13,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -21507,13 +21768,13 @@
       "id": "draw-a-line",
       "name": "Draw a line",
       "translation": null,
-      "plays": 11,
-      "shows": 11,
-      "shows_since_debut": 77,
-      "play_rate": 0.14,
+      "plays": 12,
+      "shows": 12,
+      "shows_since_debut": 76,
+      "play_rate": 0.16,
       "first_performed": "2026-03-28",
-      "last_performed": "2026-09-13",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
       "longest_streak": 1,
       "encores": 0,
       "opened": 0,
@@ -21608,6 +21869,14 @@
           "position": 6,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 12,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -21623,17 +21892,17 @@
       "id": "stand-by-me",
       "name": "スタンドバイミー",
       "translation": "Stand by Me",
-      "plays": 53,
-      "shows": 53,
-      "shows_since_debut": 77,
-      "play_rate": 0.69,
+      "plays": 54,
+      "shows": 54,
+      "shows_since_debut": 76,
+      "play_rate": 0.71,
       "first_performed": "2026-03-28",
-      "last_performed": "2026-09-13",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
       "longest_streak": 20,
-      "encores": 1,
+      "encores": 2,
       "opened": 18,
-      "closed": 29,
+      "closed": 30,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -22060,6 +22329,14 @@
           "position": 12,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 15,
+          "is_encore": true,
+          "note": ""
         }
       ],
       "credits": {
@@ -22075,13 +22352,13 @@
       "id": "time-capsule",
       "name": "タイムカプセル",
       "translation": "Time Capsule",
-      "plays": 37,
-      "shows": 37,
-      "shows_since_debut": 77,
-      "play_rate": 0.48,
+      "plays": 38,
+      "shows": 38,
+      "shows_since_debut": 76,
+      "play_rate": 0.5,
       "first_performed": "2026-03-28",
-      "last_performed": "2026-09-15",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
       "longest_streak": 4,
       "encores": 1,
       "opened": 0,
@@ -22384,6 +22661,14 @@
           "position": 8,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 14,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -22401,7 +22686,7 @@
       "translation": null,
       "plays": 18,
       "shows": 18,
-      "shows_since_debut": 76,
+      "shows_since_debut": 75,
       "play_rate": 0.24,
       "first_performed": "2026-03-29",
       "last_performed": "2026-09-15",
@@ -22564,13 +22849,13 @@
       "id": "se-stand-by-me",
       "name": "SE(スタンドバイミー)",
       "translation": "SE(Stand by Me)",
-      "plays": 13,
-      "shows": 13,
-      "shows_since_debut": 73,
-      "play_rate": 0.18,
+      "plays": 14,
+      "shows": 14,
+      "shows_since_debut": 72,
+      "play_rate": 0.19,
       "first_performed": "2026-04-11",
-      "last_performed": "2026-09-12",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
       "longest_streak": 1,
       "encores": 0,
       "opened": 0,
@@ -22681,6 +22966,14 @@
           "position": 1,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": null
@@ -22691,7 +22984,7 @@
       "translation": "SE(A Love Story That Never Begins)",
       "plays": 1,
       "shows": 1,
-      "shows_since_debut": 60,
+      "shows_since_debut": 59,
       "play_rate": 0.02,
       "first_performed": "2026-05-06",
       "last_performed": "2026-05-06",
@@ -22718,13 +23011,13 @@
       "id": "ginmaku",
       "name": "銀幕",
       "translation": "Ginmaku",
-      "plays": 14,
-      "shows": 14,
-      "shows_since_debut": 50,
-      "play_rate": 0.28,
+      "plays": 15,
+      "shows": 15,
+      "shows_since_debut": 49,
+      "play_rate": 0.31,
       "first_performed": "2026-05-30",
-      "last_performed": "2026-09-15",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
       "longest_streak": 2,
       "encores": 0,
       "opened": 7,
@@ -22843,6 +23136,14 @@
           "position": 4,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 8,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -22858,13 +23159,13 @@
       "id": "into-the-blue",
       "name": "Into the Blue",
       "translation": null,
-      "plays": 35,
-      "shows": 35,
-      "shows_since_debut": 42,
-      "play_rate": 0.83,
+      "plays": 37,
+      "shows": 37,
+      "shows_since_debut": 41,
+      "play_rate": 0.9,
       "first_performed": "2026-06-22",
-      "last_performed": "2026-09-13",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 2,
       "longest_streak": 18,
       "encores": 0,
       "opened": 2,
@@ -23151,6 +23452,22 @@
           "position": 4,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-19-1",
+          "date": "2026-09-19",
+          "venue": "白金高輪SELENE b2",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 10,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -23166,13 +23483,13 @@
       "id": "fly-by",
       "name": "Fly By",
       "translation": null,
-      "plays": 11,
-      "shows": 11,
-      "shows_since_debut": 25,
-      "play_rate": 0.44,
+      "plays": 12,
+      "shows": 12,
+      "shows_since_debut": 24,
+      "play_rate": 0.5,
       "first_performed": "2026-07-28",
-      "last_performed": "2026-09-13",
-      "current_streak": 0,
+      "last_performed": "2026-09-20",
+      "current_streak": 1,
       "longest_streak": 3,
       "encores": 0,
       "opened": 0,
@@ -23267,6 +23584,14 @@
           "position": 3,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-20-1",
+          "date": "2026-09-20",
+          "venue": "Spotify O-Crest",
+          "position": 9,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -23284,8 +23609,8 @@
       "translation": null,
       "plays": 9,
       "shows": 9,
-      "shows_since_debut": 15,
-      "play_rate": 0.6,
+      "shows_since_debut": 14,
+      "play_rate": 0.64,
       "first_performed": "2026-08-27",
       "last_performed": "2026-09-15",
       "current_streak": 0,
@@ -23452,6 +23777,24 @@
       "capacity": "170人"
     },
     {
+      "id": "spotify-o-crest",
+      "name": "Spotify O-Crest",
+      "shows": 7,
+      "first_played": "2025-09-20",
+      "last_played": "2026-09-20",
+      "event_ids": [
+        "2025-09-20-1",
+        "2025-10-19-1",
+        "2025-11-23-1",
+        "2026-01-17-1",
+        "2026-03-28-1",
+        "2026-05-30-1",
+        "2026-09-20-1"
+      ],
+      "address": "〒150-0043 東京都渋谷区道玄坂2-14-8 5F",
+      "capacity": "250人"
+    },
+    {
       "id": "shibuya-kinmirai-kaikan",
       "name": "渋谷近未来会館",
       "shows": 7,
@@ -23485,23 +23828,6 @@
       ],
       "address": "〒150-0043 東京都渋谷区道玄坂2-21-7 第8矢澤ビル 2F 3F",
       "capacity": "200人"
-    },
-    {
-      "id": "spotify-o-crest",
-      "name": "Spotify O-Crest",
-      "shows": 6,
-      "first_played": "2025-10-19",
-      "last_played": "2026-09-20",
-      "event_ids": [
-        "2025-10-19-1",
-        "2025-11-23-1",
-        "2026-01-17-1",
-        "2026-03-28-1",
-        "2026-05-30-1",
-        "2026-09-20-1"
-      ],
-      "address": "〒150-0043 東京都渋谷区道玄坂2-14-8 5F",
-      "capacity": "250人"
     },
     {
       "id": "otsuka-hearts-plus",
@@ -23584,13 +23910,13 @@
       "id": "ebisu-creato",
       "name": "恵比寿CreAto",
       "shows": 4,
-      "first_played": "2025-10-18",
-      "last_played": "2026-09-21",
+      "first_played": "2025-09-21",
+      "last_played": "2026-08-13",
       "event_ids": [
+        "2025-09-21-1",
         "2025-10-18-1",
         "2026-02-15-1",
-        "2026-08-13-1",
-        "2026-09-21-1"
+        "2026-08-13-1"
       ],
       "address": "〒150-0011 東京都渋谷区東3丁目14-19 オークヒルズ B1F",
       "capacity": null
@@ -23665,6 +23991,20 @@
       ],
       "address": "〒150-0042 東京都渋谷区宇田川町4-7 トウセン宇田川ビルB1",
       "capacity": "360人"
+    },
+    {
+      "id": "shirokanetakanawa-selene-b2",
+      "name": "白金高輪SELENE b2",
+      "shows": 3,
+      "first_played": "2026-02-14",
+      "last_played": "2026-09-19",
+      "event_ids": [
+        "2026-02-14-1",
+        "2026-09-12-1",
+        "2026-09-19-1"
+      ],
+      "address": "〒108-0073 東京都港区三田5-2-30 SELENE STUDIO",
+      "capacity": null
     },
     {
       "id": "草ぶえの丘(千葉 佐倉)",
@@ -23799,19 +24139,6 @@
       "capacity": "180人"
     },
     {
-      "id": "shirokanetakanawa-selene-b2",
-      "name": "白金高輪SELENE b2",
-      "shows": 2,
-      "first_played": "2026-02-14",
-      "last_played": "2026-09-12",
-      "event_ids": [
-        "2026-02-14-1",
-        "2026-09-12-1"
-      ],
-      "address": "〒108-0073 東京都港区三田5-2-30 SELENE STUDIO",
-      "capacity": null
-    },
-    {
       "id": "kanda-square-hall",
       "name": "KANDA SQUARE HALL",
       "shows": 1,
@@ -23923,10 +24250,10 @@
       "id": "veats-shibuya",
       "name": "Veats SHIBUYA",
       "shows": 1,
-      "first_played": "2026-09-13",
-      "last_played": "2026-09-13",
+      "first_played": "2025-09-13",
+      "last_played": "2025-09-13",
       "event_ids": [
-        "2026-09-13-2"
+        "2025-09-13-1"
       ],
       "address": "〒150-0042 東京都渋谷区宇田川町33-1 グランド東京渋谷ビルB1・B2",
       "capacity": "600人"
@@ -24632,6 +24959,15 @@
   "set_length_stats": {
     "buckets": [
       {
+        "minutes": 10,
+        "shows": 1,
+        "avg_songs": 2.0,
+        "shows_with_se": 0,
+        "event_ids": [
+          "2025-09-13-1"
+        ]
+      },
+      {
         "minutes": 20,
         "shows": 17,
         "avg_songs": 4.8,
@@ -24658,10 +24994,11 @@
       },
       {
         "minutes": 25,
-        "shows": 79,
+        "shows": 80,
         "avg_songs": 5.8,
-        "shows_with_se": 64,
+        "shows_with_se": 65,
         "event_ids": [
+          "2025-09-21-1",
           "2025-09-23-1",
           "2025-09-27-1",
           "2025-09-28-1",
@@ -24800,16 +25137,45 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 1,
+            "eligible": 1
+          },
           "20": {
             "count": 6,
             "eligible": 17
           },
           "25": {
-            "count": 52,
-            "eligible": 79
+            "count": 53,
+            "eligible": 80
           },
           "30": {
             "count": 25,
+            "eligible": 40
+          }
+        }
+      },
+      {
+        "id": "luminous",
+        "name": "ルミナス",
+        "translation": "Luminous",
+        "is_se": false,
+        "is_interlude": false,
+        "rates": {
+          "10": {
+            "count": 1,
+            "eligible": 1
+          },
+          "20": {
+            "count": 15,
+            "eligible": 17
+          },
+          "25": {
+            "count": 78,
+            "eligible": 80
+          },
+          "30": {
+            "count": 39,
             "eligible": 40
           }
         }
@@ -24821,13 +25187,17 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 0,
             "eligible": 17
           },
           "25": {
-            "count": 28,
-            "eligible": 79
+            "count": 29,
+            "eligible": 80
           },
           "30": {
             "count": 23,
@@ -24842,37 +25212,20 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 11,
             "eligible": 17
           },
           "25": {
-            "count": 37,
-            "eligible": 79
+            "count": 38,
+            "eligible": 80
           },
           "30": {
             "count": 27,
-            "eligible": 40
-          }
-        }
-      },
-      {
-        "id": "luminous",
-        "name": "ルミナス",
-        "translation": "Luminous",
-        "is_se": false,
-        "is_interlude": false,
-        "rates": {
-          "20": {
-            "count": 15,
-            "eligible": 17
-          },
-          "25": {
-            "count": 77,
-            "eligible": 79
-          },
-          "30": {
-            "count": 39,
             "eligible": 40
           }
         }
@@ -24884,13 +25237,17 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 15,
             "eligible": 17
           },
           "25": {
-            "count": 78,
-            "eligible": 79
+            "count": 79,
+            "eligible": 80
           },
           "30": {
             "count": 38,
@@ -24905,13 +25262,17 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 7,
             "eligible": 17
           },
           "25": {
             "count": 34,
-            "eligible": 79
+            "eligible": 80
           },
           "30": {
             "count": 23,
@@ -24926,13 +25287,17 @@
         "is_se": true,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 1,
             "eligible": 17
           },
           "25": {
-            "count": 38,
-            "eligible": 79
+            "count": 39,
+            "eligible": 80
           },
           "30": {
             "count": 19,
@@ -24947,6 +25312,10 @@
         "is_se": true,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 7,
             "eligible": 17
@@ -24968,6 +25337,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 3,
             "eligible": 15
@@ -24989,6 +25362,10 @@
         "is_se": true,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 0,
             "eligible": 12
@@ -25010,6 +25387,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 5,
             "eligible": 12
@@ -25031,6 +25412,10 @@
         "is_se": false,
         "is_interlude": true,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 8,
             "eligible": 12
@@ -25052,6 +25437,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 4,
             "eligible": 11
@@ -25073,6 +25462,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 4,
             "eligible": 10
@@ -25094,6 +25487,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 0,
             "eligible": 10
@@ -25115,6 +25512,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 1,
             "eligible": 10
@@ -25136,6 +25537,10 @@
         "is_se": true,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 0,
             "eligible": 10
@@ -25157,6 +25562,10 @@
         "is_se": true,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 4,
             "eligible": 10
@@ -25178,6 +25587,10 @@
         "is_se": true,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 0,
             "eligible": 10
@@ -25199,6 +25612,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 0,
             "eligible": 10
@@ -25220,6 +25637,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 9,
             "eligible": 10
@@ -25241,6 +25662,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 2,
             "eligible": 4
@@ -25262,6 +25687,10 @@
         "is_se": false,
         "is_interlude": false,
         "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
           "20": {
             "count": 0,
             "eligible": 1
