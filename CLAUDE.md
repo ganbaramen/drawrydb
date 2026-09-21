@@ -929,7 +929,7 @@ There's no test suite. After touching either parser:
 
 ```sh
 python3 pipeline/export_calendar.py            # expect "up to date" on a no-op run
-python3 pipeline/sync_setlists.py              # 157 shows, 1141 songs (raw post count varies with paste-file layout)
+python3 pipeline/sync_setlists.py              # 157 shows, 1148 songs (raw post count varies with paste-file layout)
 python3 pipeline/sync_setlists.py --missing    # coverage + typo flags
 ```
 
