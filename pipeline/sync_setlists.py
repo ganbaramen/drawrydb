@@ -100,8 +100,21 @@ COLUMNS = [
 ]
 
 SETLIST_HEADER = "【セットリスト】"
-# "8月16日(日)@ LIVLIV(静岡ARTIE)" -> month, day, venue
-DATE_LINE = re.compile(r"^(\d{1,2})月(\d{1,2})日\s*(?:[（(][^）)]*[）)])?\s*(?:[@＠]\s*(.*))?$")
+# Monday-first, matching date.weekday(), so WEEKDAYS[d.weekday()] is the
+# character a post would print for d.
+WEEKDAYS = "月火水木金土日"
+# "8月16日(日)@ LIVLIV(静岡ARTIE)" -> month, day, weekday, venue.
+#
+# The weekday is captured but the parenthesised group stays permissive
+# ([^）)]* after it) — every post in the archive writes a bare weekday there,
+# but a post that writes anything else must still match the line, or its
+# whole setlist is dropped. Named groups because the venue's position shifts
+# the moment anything is added in front of it.
+DATE_LINE = re.compile(
+    r"^(?P<month>\d{1,2})月(?P<day>\d{1,2})日\s*"
+    r"(?:[（(]\s*(?P<weekday>[月火水木金土日])?[^）)]*[）)])?\s*"
+    r"(?:[@＠]\s*(?P<venue>.*))?$"
+)
 # "01. SE(Draw a Story)" / "1.曲名" / "M1. 曲名"
 SONG_LINE = re.compile(r"^[MmＭ]?\s*(\d{1,2})\s*[.。、．)）:：]\s*(.+)$")
 # "En. Moving Lights!" / "Encore: 曲名" / "アンコール1. 曲名" — encores are not
@@ -216,8 +229,9 @@ def parse_post(body: list[str], source: str) -> dict | None:
     if header is None:
         return None
 
-    month, day = int(header.group(1)), int(header.group(2))
-    venue = (header.group(3) or "").strip()
+    month, day = int(header.group("month")), int(header.group("day"))
+    venue = (header.group("venue") or "").strip()
+    weekday = header.group("weekday") or ""
 
     songs: list[tuple[int, str, bool, str, bool]] = []
     name_parts: list[str] = []
@@ -261,6 +275,7 @@ def parse_post(body: list[str], source: str) -> dict | None:
     return {
         "month": month,
         "day": day,
+        "weekday": weekday,
         "venue": venue,
         "event_name": " ".join(name_parts).strip(),
         "songs": songs,
@@ -339,14 +354,72 @@ def match_score(post: dict, row: dict[str, str]) -> float:
     return score
 
 
+def capture_date(source: str) -> date | None:
+    """The date a paste file was taken, from its own name ("2026-09-20.txt").
+
+    Used as an upper bound on every post inside it: a paste cannot contain a
+    show that had not happened yet. That is what separates the 2025 debut
+    shows from their 2026 anniversary counterparts, whose month/day collide.
+    A file named anything else just returns None and loses the bound rather
+    than guessing.
+    """
+    try:
+        return date.fromisoformat(os.path.splitext(source)[0])
+    except ValueError:
+        return None
+
+
+def candidate_years(month: int, day: int, horizon: date) -> list[date]:
+    """Every year this month/day could mean, newest first, none after horizon."""
+    years = range(horizon.year + 1, horizon.year - 3, -1)
+    out = []
+    for year in years:
+        try:
+            when = date(year, month, day)
+        except ValueError:  # 2月29日 in a common year
+            continue
+        if when <= horizon:
+            out.append(when)
+    return out
+
+
+def pick_year(days: list[date], weekday: str) -> tuple[date, bool]:
+    """Choose among same-month/day candidates, newest first.
+
+    The posted weekday pins the year outright when it agrees with exactly one
+    candidate — 9月20日(土) is 2025, not 2026, because 2026-09-20 was a Sunday.
+    It is a preference and not a filter because the posts do contain weekday
+    typos (three in the archive), and a typo must not throw the date away.
+    Returns the choice and whether the weekday corroborated it.
+    """
+    if weekday:
+        agreeing = [when for when in days if WEEKDAYS[when.weekday()] == weekday]
+        if agreeing:
+            return max(agreeing), True
+    return max(days), False
+
+
 def resolve_date(
-    post: dict, calendar: list[dict[str, str]], today: date
-) -> tuple[str, str, str, dict[str, str]]:
+    post: dict, calendar: list[dict[str, str]], today: date, captured: date | None = None
+) -> tuple[str, str, str, dict[str, str], str]:
     """Posts carry no year. Use the calendar as the oracle, else nearest past.
 
-    Returns (iso_date, event_uid, calendar_summary, {live_start, showtime}).
+    Two things narrow the year before the calendar is consulted, because a
+    month/day matches *both* years as soon as the calendar holds more than one
+    — which it has since the band's first anniversary, and which silently
+    moved the 2025 debut shows into 2026 until this existed:
+
+    - `captured`, the paste file's own date, is an upper bound. A post cannot
+      describe a show that had not happened when the paste was taken.
+    - the weekday printed in the post pins the year directly (`pick_year`).
+
+    Returns (iso_date, event_uid, calendar_summary, {live_start, showtime},
+    warning) — warning is "" unless the posted weekday disagrees with the date
+    that was chosen anyway.
     """
     month, day = post["month"], post["day"]
+    weekday = post.get("weekday") or ""
+    horizon = min(today, captured) if captured else today
     # Match anywhere inside an event's span, not just its start day: a two-day
     # festival is one calendar entry but gets a setlist post per day.
     matches = [
@@ -356,9 +429,10 @@ def resolve_date(
         if day_of.month == month and day_of.day == day
     ]
     if matches:
-        # Prefer the most recent occurrence that has already happened.
-        past = [pair for pair in matches if pair[0] <= today]
-        day_of = max(pair[0] for pair in (past or matches))
+        # Prefer the most recent occurrence that had already happened when the
+        # paste was taken; the weekday breaks the tie between years.
+        past = [pair for pair in matches if pair[0] <= horizon]
+        day_of, confirmed = pick_year([pair[0] for pair in (past or matches)], weekday)
         # A date alone is not always unique — the band plays two events on the
         # same day fairly often. Pick by venue and event name in that case.
         same_day = [row for when, row in matches if when == day_of]
@@ -375,17 +449,37 @@ def resolve_date(
                 "live_start": best.get("live_start", ""),
                 "showtime": best.get("showtime", "") or best.get("doors", ""),
             },
+            weekday_warning(day_of, weekday, confirmed, post),
         )
 
-    for year in (today.year, today.year - 1, today.year + 1):
-        try:
-            candidate = date(year, month, day)
-        except ValueError:
-            continue
-        if candidate <= today:
-            return candidate.isoformat(), "", "", {"live_start": "", "showtime": ""}
     empty = {"live_start": "", "showtime": ""}
-    return date(today.year - 1, month, day).isoformat(), "", "", empty
+    days = candidate_years(month, day, horizon)
+    if days:
+        day_of, confirmed = pick_year(days, weekday)
+        return (
+            day_of.isoformat(),
+            "",
+            "",
+            empty,
+            weekday_warning(day_of, weekday, confirmed, post),
+        )
+    return date(horizon.year - 1, month, day).isoformat(), "", "", empty, ""
+
+
+def weekday_warning(day_of: date, weekday: str, confirmed: bool, post: dict) -> str:
+    """Report a post whose weekday contradicts the date settled on.
+
+    Always a mismatch in the source rather than a resolution failure — by the
+    time this runs, no candidate year agreed with the post. Three real cases
+    are posts that simply printed the wrong day of the week.
+    """
+    if not weekday or confirmed or WEEKDAYS[day_of.weekday()] == weekday:
+        return ""
+    return (
+        f"weekday typo in post: {post['source']} says "
+        f"{post['month']}月{post['day']}日({weekday}) "
+        f"but {day_of.isoformat()} is a {WEEKDAYS[day_of.weekday()]}曜日"
+    )
 
 
 def build_rows(
@@ -403,9 +497,11 @@ def build_rows(
     conflicts: list[str] = []
     numbering: list[str] = []
     talk_notes: list[str] = []
+    weekday_typos: list[str] = []
 
     for path in sorted(glob.glob(os.path.join(posts_dir, "*.txt"))):
         source = os.path.basename(path)
+        captured = capture_date(source)
         with open(path, encoding="utf-8") as fh:
             bodies = split_posts(fh.read())
         for body in bodies:
@@ -415,7 +511,11 @@ def build_rows(
                 continue
             parsed += 1
 
-            iso, uid, summary, times = resolve_date(post, calendar, today)
+            iso, uid, summary, times, warning = resolve_date(
+                post, calendar, today, captured
+            )
+            if warning:
+                weekday_typos.append(warning)
             songs = tuple(song for _, song, _, _, _ in post["songs"])
             key = (iso, post["venue"], post["event_name"])
             if key in seen:
@@ -489,6 +589,7 @@ def build_rows(
         "conflicts": conflicts,
         "numbering": numbering,
         "talk_notes": talk_notes,
+        "weekday_typos": weekday_typos,
         "applied": applied,
         "venues_applied": venues_applied,
     }
@@ -1588,6 +1689,8 @@ def main() -> None:
         print(f"  conflict: {conflict}")
     for odd in report["numbering"]:
         print(f"  numbering typo in post: {odd}")
+    for odd in report["weekday_typos"]:
+        print(f"  {odd}")
     for note in report["talk_notes"]:
         print(f"  {note}")
     for event_date, venue, _event_name in unmatched:
