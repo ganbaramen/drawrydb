@@ -89,6 +89,21 @@ OVERRIDE_CLEAR = "-"
 # shapes ("4月18日(土),19日(日)@ ...", plain "9/8(月)20:00より…" with no venue at
 # all for non-shows).
 VENUE_LINE = re.compile(r"[@＠]\s*(.+)")
+# What may precede the "@" on a line for it to be *this* event's venue line:
+# nothing, or a date. Descriptions regularly open with a sentence about some
+# other band's show — "夜帯にponderosa may bloom…@渋谷REXがあります。" — and a
+# bare search for "@" took that as the venue, trailing Japanese and all. Three
+# events had a venue lifted out of prose that way; 2026-10-04 was a real show
+# whose own venue line sat two lines further down.
+#
+# The comma branch is the two-day form, "4月18日(土),19日(日)@…", which is a
+# real venue line and must not be read as prose.
+VENUE_DATE_PREFIX = re.compile(
+    r"^(?:\d{4}年)?\d{1,2}月\d{1,2}日"
+    r"(?:\s*[（(][^）)]*[）)])?"
+    r"(?:\s*[,、]\s*\d{1,2}日(?:\s*[（(][^）)]*[）)])?)*"
+    r"\s*$"
+)
 # A venue string joining multiple names is ambiguous — real examples:
 # "duo MUSIC EXCHANGE&SHIBUYA RING" (a shared bill, band played only one),
 # "下北沢シャングリラ / MOSAiC / ERA / Flowers LOFT" (a rotating multi-venue
@@ -268,12 +283,31 @@ def parse_slots(description: str) -> dict[str, str]:
 
 
 def parse_venue(description: str) -> str:
-    """Pull the venue out of the description's "@venue" line, if present."""
-    for line in description.split("\n")[:3]:
+    """Pull the venue out of the description's "@venue" line, if present.
+
+    A date in front of the "@" is what marks the line as this event's own
+    ("10月4日(日)@ 白金高輪SELENEb2"), and such a line wins wherever it sits —
+    the description's first lines are often prose, sometimes prose that
+    mentions another band's venue. An "@" with prose in front of it is not a
+    venue line at all and is skipped rather than trusted.
+
+    A bare "@venue" line in the opening three is still accepted, since 11
+    events state the venue that way and carry no date line at all; it is the
+    fallback rather than the first choice.
+    """
+    fallback = ""
+    for index, line in enumerate(description.split("\n")):
         match = VENUE_LINE.search(line)
-        if match:
-            return match.group(1).strip()
-    return ""
+        if not match:
+            continue
+        before = line[: match.start()].strip()
+        if before:
+            if VENUE_DATE_PREFIX.match(before):
+                return match.group(1).strip()
+            continue
+        if index < 3 and not fallback:
+            fallback = match.group(1).strip()
+    return fallback
 
 
 def parse_dt(value: str, params: dict[str, str]) -> tuple[datetime | date, bool]:

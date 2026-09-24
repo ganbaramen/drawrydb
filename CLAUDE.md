@@ -72,6 +72,26 @@ original verbatim.
   - Requiring a digit after the label keeps `特典会：バレンタインコスプレ` and
     `ライブ会場：…` out.
 - `parse_venue()` reads the description's `@venue` line into `venue` (156/199).
+  **What precedes the `@` on that line decides whether it is a venue at all**:
+  nothing, or a date (`10月4日(日)@ 白金高輪SELENEb2`, `2026年1月9日(金)@新宿MARZ`,
+  and the two-day form `4月18日(土),19日(日)@…`). Anything else is prose and is
+  skipped. The descriptions open often enough with a sentence about *another*
+  band's show — `夜帯にponderosa may bloom…@渋谷REXがあります。` — that a bare
+  search for `@` lifted the venue out of that sentence, trailing Japanese
+  included. Three events were wrong that way; 2026-10-04 was a real announced
+  show whose own venue line sat two lines below the prose.
+  - A date-prefixed line wins **wherever it sits**, not just in the opening
+    three lines — that is what finds the real one past the prose, and it also
+    picked up 2026-01-03/04, whose date line is on line 4 and which had been
+    leaning on a hand-typed override to supply what the description said all
+    along.
+  - A bare `@venue` line in the first three lines is still accepted as a
+    *fallback*: 11 events state the venue that way and have no date line.
+  - Measured before changing it, parser-to-parser on the raw descriptions
+    (not against `drawry_schedule.csv`, which has already absorbed the
+    overrides — that comparison is meaningless here): 5 of 228 events move,
+    all five in the right direction. Re-run that comparison rather than a
+    stored-column diff if this is ever touched again.
   A description naming multiple venues at once is common, not a one-off:
   `&`-joined shared bills (`duo MUSIC EXCHANGE&SHIBUYA RING`), `/`-joined
   rotating circuit events (`下北沢シャングリラ / MOSAiC / ERA / Flowers LOFT`),
@@ -273,8 +293,12 @@ for (d, venue, name), src in sorted({(r['event_date'], r['venue'],
         print(f"{d} is ({actual}) but its post says ({posted[(src, mo, dy)]}) — {venue}")
 ```
 
-Expected output: the three known post typos (2025-09-23 twice, 2025-12-30)
-and nothing else. Anything new is a year that resolved wrong.
+Expected output: the four known post typos — 2025-09-23 (twice), 2025-12-30,
+2026-09-23 — and nothing else. Anything new is a year that resolved wrong.
+Each of the four is corroborated as a *post* typo rather than a bad date:
+`TUESDAYFLIGHT` falls on a real 火曜日, 9月23日 2025 was 秋分の日 (a Tuesday),
+and 「SPARK 2026 in YAMANAKAKO」 is on the calendar for 2026-09-23 with a
+paste file named for that same day.
 
 Matching runs against an event's **whole span**, not just its start day
 (`event_days()`), because a two-day festival is a single calendar entry that
