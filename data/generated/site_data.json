@@ -13369,10 +13369,10 @@
       "venue": "白金高輪SELENE b2",
       "doors": "10:00",
       "showtime": "10:15",
-      "live_start": null,
-      "live_end": null,
-      "meet_start": null,
-      "meet_end": null,
+      "live_start": "13:40",
+      "live_end": "14:05",
+      "meet_start": "14:25",
+      "meet_end": "15:45",
       "has_setlist": true,
       "setlist": [
         {
@@ -25254,9 +25254,9 @@
       },
       {
         "minutes": 25,
-        "shows": 81,
+        "shows": 82,
         "avg_songs": 5.8,
-        "shows_with_se": 65,
+        "shows_with_se": 66,
         "event_ids": [
           "2025-09-21-1",
           "2025-09-23-1",
@@ -25338,6 +25338,7 @@
           "2026-09-05-1",
           "2026-09-05-3",
           "2026-09-06-1",
+          "2026-09-19-1",
           "2026-09-22-1"
         ]
       },
@@ -25412,7 +25413,7 @@
           },
           "25": {
             "count": 53,
-            "eligible": 81
+            "eligible": 82
           },
           "30": {
             "count": 25,
@@ -25440,8 +25441,8 @@
             "eligible": 17
           },
           "25": {
-            "count": 79,
-            "eligible": 81
+            "count": 80,
+            "eligible": 82
           },
           "30": {
             "count": 39,
@@ -25470,7 +25471,7 @@
           },
           "25": {
             "count": 30,
-            "eligible": 81
+            "eligible": 82
           },
           "30": {
             "count": 23,
@@ -25498,8 +25499,8 @@
             "eligible": 17
           },
           "25": {
-            "count": 38,
-            "eligible": 81
+            "count": 39,
+            "eligible": 82
           },
           "30": {
             "count": 27,
@@ -25527,8 +25528,8 @@
             "eligible": 17
           },
           "25": {
-            "count": 80,
-            "eligible": 81
+            "count": 81,
+            "eligible": 82
           },
           "30": {
             "count": 38,
@@ -25557,7 +25558,7 @@
           },
           "25": {
             "count": 34,
-            "eligible": 81
+            "eligible": 82
           },
           "30": {
             "count": 23,
@@ -25586,7 +25587,7 @@
           },
           "25": {
             "count": 39,
-            "eligible": 81
+            "eligible": 82
           },
           "30": {
             "count": 19,
@@ -25614,8 +25615,8 @@
             "eligible": 17
           },
           "25": {
-            "count": 9,
-            "eligible": 71
+            "count": 10,
+            "eligible": 72
           },
           "30": {
             "count": 6,
@@ -25643,8 +25644,8 @@
             "eligible": 15
           },
           "25": {
-            "count": 41,
-            "eligible": 65
+            "count": 42,
+            "eligible": 66
           },
           "30": {
             "count": 22,
@@ -25673,7 +25674,7 @@
           },
           "25": {
             "count": 4,
-            "eligible": 54
+            "eligible": 55
           },
           "30": {
             "count": 1,
@@ -25702,7 +25703,7 @@
           },
           "25": {
             "count": 27,
-            "eligible": 53
+            "eligible": 54
           },
           "30": {
             "count": 13,
@@ -25730,8 +25731,8 @@
             "eligible": 12
           },
           "25": {
-            "count": 21,
-            "eligible": 53
+            "count": 22,
+            "eligible": 54
           },
           "30": {
             "count": 9,
@@ -25759,8 +25760,8 @@
             "eligible": 11
           },
           "25": {
-            "count": 20,
-            "eligible": 40
+            "count": 21,
+            "eligible": 41
           },
           "30": {
             "count": 8,
@@ -25789,7 +25790,7 @@
           },
           "25": {
             "count": 28,
-            "eligible": 35
+            "eligible": 36
           },
           "30": {
             "count": 16,
@@ -25818,7 +25819,7 @@
           },
           "25": {
             "count": 0,
-            "eligible": 35
+            "eligible": 36
           },
           "30": {
             "count": 8,
@@ -25847,7 +25848,7 @@
           },
           "25": {
             "count": 18,
-            "eligible": 35
+            "eligible": 36
           },
           "30": {
             "count": 11,
@@ -25876,7 +25877,7 @@
           },
           "25": {
             "count": 8,
-            "eligible": 35
+            "eligible": 36
           },
           "30": {
             "count": 4,
@@ -25905,7 +25906,7 @@
           },
           "25": {
             "count": 4,
-            "eligible": 33
+            "eligible": 34
           },
           "30": {
             "count": 4,
@@ -25934,7 +25935,7 @@
           },
           "25": {
             "count": 1,
-            "eligible": 23
+            "eligible": 24
           },
           "30": {
             "count": 0,
@@ -25963,7 +25964,7 @@
           },
           "25": {
             "count": 4,
-            "eligible": 15
+            "eligible": 16
           },
           "30": {
             "count": 5,
@@ -25991,8 +25992,8 @@
             "eligible": 10
           },
           "25": {
-            "count": 11,
-            "eligible": 14
+            "count": 12,
+            "eligible": 15
           },
           "30": {
             "count": 8,
@@ -26021,7 +26022,7 @@
           },
           "25": {
             "count": 2,
-            "eligible": 8
+            "eligible": 9
           },
           "30": {
             "count": 3,
@@ -26050,7 +26051,7 @@
           },
           "25": {
             "count": 3,
-            "eligible": 6
+            "eligible": 7
           },
           "30": {
             "count": 3,
@@ -26088,6 +26089,6 @@
         }
       }
     ],
-    "uncovered_shows": 19
+    "uncovered_shows": 18
   }
 }
