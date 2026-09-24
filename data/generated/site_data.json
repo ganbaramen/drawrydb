@@ -13768,6 +13768,34 @@
       "note": null
     },
     {
+      "date": "2026-10-10",
+      "title": "INFINITY LIVE presents『ECHOES』",
+      "venue": "Flowers Loft",
+      "doors": "18:00",
+      "showtime": "18:20",
+      "live_start": null,
+      "live_end": null,
+      "meet_start": null,
+      "meet_end": null,
+      "has_setlist": false,
+      "setlist": [],
+      "ticket_links": [
+        {
+          "label": null,
+          "url": "https://t-dv.com/20261010_night"
+        }
+      ],
+      "ticket_sales": [
+        {
+          "label": null,
+          "start": "2026-09-24 22:00",
+          "end": null
+        }
+      ],
+      "id": "2026-10-10-1",
+      "note": null
+    },
+    {
       "date": "2026-10-11",
       "title": "日ノ目企画presents“SUNDAYRIGHT/WRONG×2”",
       "venue": "大塚Hearts+/Hearts Next",
