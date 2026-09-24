@@ -13615,8 +13615,57 @@
       "live_end": "14:10",
       "meet_start": "14:40",
       "meet_end": "15:50",
-      "has_setlist": false,
-      "setlist": [],
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "スタンドバイミー",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "朝焼けと車窓",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "ラブストーリーが始まらない",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "プライマリ",
+          "note": "拡張イントロ",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 6,
+          "song": "タイムカプセル",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
       "ticket_links": [
         {
           "label": null,
@@ -13643,8 +13692,49 @@
       "live_end": "17:30",
       "meet_start": "17:50",
       "meet_end": "19:00",
-      "has_setlist": false,
-      "setlist": [],
+      "has_setlist": true,
+      "setlist": [
+        {
+          "position": 1,
+          "song": "SE(Into the Blue)",
+          "note": "",
+          "is_se": true,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 2,
+          "song": "Into the Blue",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 3,
+          "song": "朝焼けと車窓",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 4,
+          "song": "ルミナス",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        },
+        {
+          "position": 5,
+          "song": "Sunlight",
+          "note": "",
+          "is_se": false,
+          "is_interlude": false,
+          "is_encore": false
+        }
+      ],
       "ticket_links": [
         {
           "label": null,
@@ -13958,11 +14048,11 @@
       "translation": null,
       "plays": 97,
       "shows": 96,
-      "shows_since_debut": 157,
-      "play_rate": 0.61,
+      "shows_since_debut": 159,
+      "play_rate": 0.6,
       "first_performed": "2025-09-13",
       "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 31,
       "encores": 2,
       "opened": 57,
@@ -14760,13 +14850,13 @@
       "id": "luminous",
       "name": "ルミナス",
       "translation": "Luminous",
-      "plays": 151,
-      "shows": 151,
-      "shows_since_debut": 157,
+      "plays": 153,
+      "shows": 153,
+      "shows_since_debut": 159,
       "play_rate": 0.96,
       "first_performed": "2025-09-13",
-      "last_performed": "2026-09-20",
-      "current_streak": 4,
+      "last_performed": "2026-09-23",
+      "current_streak": 6,
       "longest_streak": 59,
       "encores": 2,
       "opened": 0,
@@ -15981,6 +16071,22 @@
           "position": 5,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-22-1",
+          "date": "2026-09-22",
+          "venue": "LiveHouse浜松窓枠",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-23-1",
+          "date": "2026-09-23",
+          "venue": "山中湖交流プラザきらら",
+          "position": 4,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -15998,11 +16104,11 @@
       "translation": null,
       "plays": 77,
       "shows": 77,
-      "shows_since_debut": 156,
+      "shows_since_debut": 158,
       "play_rate": 0.49,
       "first_performed": "2025-09-20",
       "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 15,
       "encores": 0,
       "opened": 19,
@@ -16642,11 +16748,11 @@
       "translation": null,
       "plays": 87,
       "shows": 87,
-      "shows_since_debut": 156,
-      "play_rate": 0.56,
+      "shows_since_debut": 158,
+      "play_rate": 0.55,
       "first_performed": "2025-09-20",
       "last_performed": "2026-09-20",
-      "current_streak": 2,
+      "current_streak": 0,
       "longest_streak": 10,
       "encores": 1,
       "opened": 29,
@@ -17366,8 +17472,8 @@
       "translation": null,
       "plays": 65,
       "shows": 65,
-      "shows_since_debut": 156,
-      "play_rate": 0.42,
+      "shows_since_debut": 158,
+      "play_rate": 0.41,
       "first_performed": "2025-09-20",
       "last_performed": "2026-09-06",
       "current_streak": 0,
@@ -17905,13 +18011,13 @@
       "id": "primary",
       "name": "プライマリ",
       "translation": "primary",
-      "plays": 61,
-      "shows": 61,
-      "shows_since_debut": 156,
+      "plays": 62,
+      "shows": 62,
+      "shows_since_debut": 158,
       "play_rate": 0.39,
       "first_performed": "2025-09-20",
-      "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "last_performed": "2026-09-22",
+      "current_streak": 0,
       "longest_streak": 8,
       "encores": 0,
       "opened": 10,
@@ -18406,6 +18512,14 @@
           "position": 7,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-22-1",
+          "date": "2026-09-22",
+          "venue": "LiveHouse浜松窓枠",
+          "position": 4,
+          "is_encore": false,
+          "note": "拡張イントロ"
         }
       ],
       "credits": {
@@ -18421,13 +18535,13 @@
       "id": "asayake-to-shasou",
       "name": "朝焼けと車窓",
       "translation": "Morning Glow and the Train Window",
-      "plays": 150,
-      "shows": 150,
-      "shows_since_debut": 156,
+      "plays": 152,
+      "shows": 152,
+      "shows_since_debut": 158,
       "play_rate": 0.96,
       "first_performed": "2025-09-20",
-      "last_performed": "2026-09-20",
-      "current_streak": 8,
+      "last_performed": "2026-09-23",
+      "current_streak": 10,
       "longest_streak": 115,
       "encores": 2,
       "opened": 3,
@@ -19634,6 +19748,22 @@
           "position": 6,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-22-1",
+          "date": "2026-09-22",
+          "venue": "LiveHouse浜松窓枠",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
+        },
+        {
+          "event_id": "2026-09-23-1",
+          "date": "2026-09-23",
+          "venue": "山中湖交流プラザきらら",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -19651,7 +19781,7 @@
       "translation": null,
       "plays": 23,
       "shows": 23,
-      "shows_since_debut": 140,
+      "shows_since_debut": 142,
       "play_rate": 0.16,
       "first_performed": "2025-10-26",
       "last_performed": "2026-09-19",
@@ -19854,13 +19984,13 @@
       "id": "love-story-ga-hajimaranai",
       "name": "ラブストーリーが始まらない",
       "translation": "A Love Story That Never Begins",
-      "plays": 78,
-      "shows": 78,
-      "shows_since_debut": 126,
+      "plays": 79,
+      "shows": 79,
+      "shows_since_debut": 128,
       "play_rate": 0.62,
       "first_performed": "2025-11-24",
-      "last_performed": "2026-09-20",
-      "current_streak": 4,
+      "last_performed": "2026-09-22",
+      "current_streak": 0,
       "longest_streak": 16,
       "encores": 0,
       "opened": 10,
@@ -20491,6 +20621,14 @@
           "position": 11,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-22-1",
+          "date": "2026-09-22",
+          "venue": "LiveHouse浜松窓枠",
+          "position": 3,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -20508,8 +20646,8 @@
       "translation": "SE(primary)",
       "plays": 6,
       "shows": 6,
-      "shows_since_debut": 108,
-      "play_rate": 0.06,
+      "shows_since_debut": 110,
+      "play_rate": 0.05,
       "first_performed": "2026-01-04",
       "last_performed": "2026-05-03",
       "current_streak": 0,
@@ -20577,8 +20715,8 @@
       "translation": null,
       "plays": 55,
       "shows": 55,
-      "shows_since_debut": 105,
-      "play_rate": 0.52,
+      "shows_since_debut": 107,
+      "play_rate": 0.51,
       "first_performed": "2026-01-11",
       "last_performed": "2026-09-15",
       "current_streak": 0,
@@ -21045,8 +21183,8 @@
       "translation": null,
       "plays": 46,
       "shows": 44,
-      "shows_since_debut": 105,
-      "play_rate": 0.42,
+      "shows_since_debut": 107,
+      "play_rate": 0.41,
       "first_performed": "2026-01-11",
       "last_performed": "2026-09-19",
       "current_streak": 0,
@@ -21431,14 +21569,14 @@
     {
       "id": "egakikake-no-sora",
       "name": "描きかけの空",
-      "translation": "Egakikake no Sora",
+      "translation": "An Unfinished Sky",
       "plays": 42,
       "shows": 42,
-      "shows_since_debut": 89,
-      "play_rate": 0.47,
+      "shows_since_debut": 91,
+      "play_rate": 0.46,
       "first_performed": "2026-02-23",
       "last_performed": "2026-09-20",
-      "current_streak": 2,
+      "current_streak": 0,
       "longest_streak": 8,
       "encores": 0,
       "opened": 0,
@@ -21789,7 +21927,7 @@
         "composition": "OverNote'",
         "arrangement": "OverNote'",
         "choreography": "ミミミユ",
-        "note": "https://x.com/Drawry0920/status/2036745128799539403"
+        "note": "https://x.com/Drawry0920/status/2101530936123007082"
       }
     },
     {
@@ -21798,11 +21936,11 @@
       "translation": null,
       "plays": 12,
       "shows": 12,
-      "shows_since_debut": 76,
-      "play_rate": 0.16,
+      "shows_since_debut": 78,
+      "play_rate": 0.15,
       "first_performed": "2026-03-28",
       "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 1,
       "encores": 0,
       "opened": 0,
@@ -21920,16 +22058,16 @@
       "id": "stand-by-me",
       "name": "スタンドバイミー",
       "translation": "Stand by Me",
-      "plays": 54,
-      "shows": 54,
-      "shows_since_debut": 76,
+      "plays": 55,
+      "shows": 55,
+      "shows_since_debut": 78,
       "play_rate": 0.71,
       "first_performed": "2026-03-28",
-      "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "last_performed": "2026-09-22",
+      "current_streak": 0,
       "longest_streak": 20,
       "encores": 2,
-      "opened": 18,
+      "opened": 19,
       "closed": 30,
       "is_se": false,
       "is_interlude": false,
@@ -22365,6 +22503,14 @@
           "position": 15,
           "is_encore": true,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-22-1",
+          "date": "2026-09-22",
+          "venue": "LiveHouse浜松窓枠",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -22380,17 +22526,17 @@
       "id": "time-capsule",
       "name": "タイムカプセル",
       "translation": "Time Capsule",
-      "plays": 38,
-      "shows": 38,
-      "shows_since_debut": 76,
+      "plays": 39,
+      "shows": 39,
+      "shows_since_debut": 78,
       "play_rate": 0.5,
       "first_performed": "2026-03-28",
-      "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "last_performed": "2026-09-22",
+      "current_streak": 0,
       "longest_streak": 4,
       "encores": 1,
       "opened": 0,
-      "closed": 26,
+      "closed": 27,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -22697,6 +22843,14 @@
           "position": 14,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-22-1",
+          "date": "2026-09-22",
+          "venue": "LiveHouse浜松窓枠",
+          "position": 6,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -22714,8 +22868,8 @@
       "translation": null,
       "plays": 18,
       "shows": 18,
-      "shows_since_debut": 75,
-      "play_rate": 0.24,
+      "shows_since_debut": 77,
+      "play_rate": 0.23,
       "first_performed": "2026-03-29",
       "last_performed": "2026-09-15",
       "current_streak": 0,
@@ -22879,11 +23033,11 @@
       "translation": "SE(Stand by Me)",
       "plays": 14,
       "shows": 14,
-      "shows_since_debut": 72,
+      "shows_since_debut": 74,
       "play_rate": 0.19,
       "first_performed": "2026-04-11",
       "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 1,
       "encores": 0,
       "opened": 0,
@@ -23012,7 +23166,7 @@
       "translation": "SE(A Love Story That Never Begins)",
       "plays": 1,
       "shows": 1,
-      "shows_since_debut": 59,
+      "shows_since_debut": 61,
       "play_rate": 0.02,
       "first_performed": "2026-05-06",
       "last_performed": "2026-05-06",
@@ -23041,11 +23195,11 @@
       "translation": "Ginmaku",
       "plays": 15,
       "shows": 15,
-      "shows_since_debut": 49,
-      "play_rate": 0.31,
+      "shows_since_debut": 51,
+      "play_rate": 0.29,
       "first_performed": "2026-05-30",
       "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 2,
       "encores": 0,
       "opened": 7,
@@ -23187,16 +23341,16 @@
       "id": "into-the-blue",
       "name": "Into the Blue",
       "translation": null,
-      "plays": 37,
-      "shows": 37,
-      "shows_since_debut": 41,
-      "play_rate": 0.9,
+      "plays": 38,
+      "shows": 38,
+      "shows_since_debut": 43,
+      "play_rate": 0.88,
       "first_performed": "2026-06-22",
-      "last_performed": "2026-09-20",
-      "current_streak": 2,
+      "last_performed": "2026-09-23",
+      "current_streak": 1,
       "longest_streak": 18,
       "encores": 0,
-      "opened": 2,
+      "opened": 3,
       "closed": 1,
       "is_se": false,
       "is_interlude": false,
@@ -23496,6 +23650,14 @@
           "position": 10,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-23-1",
+          "date": "2026-09-23",
+          "venue": "山中湖交流プラザきらら",
+          "position": 2,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -23513,11 +23675,11 @@
       "translation": null,
       "plays": 12,
       "shows": 12,
-      "shows_since_debut": 24,
-      "play_rate": 0.5,
+      "shows_since_debut": 26,
+      "play_rate": 0.46,
       "first_performed": "2026-07-28",
       "last_performed": "2026-09-20",
-      "current_streak": 1,
+      "current_streak": 0,
       "longest_streak": 3,
       "encores": 0,
       "opened": 0,
@@ -23635,17 +23797,17 @@
       "id": "sunlight",
       "name": "Sunlight",
       "translation": null,
-      "plays": 9,
-      "shows": 9,
-      "shows_since_debut": 14,
-      "play_rate": 0.64,
+      "plays": 10,
+      "shows": 10,
+      "shows_since_debut": 16,
+      "play_rate": 0.62,
       "first_performed": "2026-08-27",
-      "last_performed": "2026-09-15",
-      "current_streak": 0,
+      "last_performed": "2026-09-23",
+      "current_streak": 1,
       "longest_streak": 7,
       "encores": 0,
       "opened": 0,
-      "closed": 1,
+      "closed": 2,
       "is_se": false,
       "is_interlude": false,
       "performances": [
@@ -23720,6 +23882,14 @@
           "position": 5,
           "is_encore": false,
           "note": ""
+        },
+        {
+          "event_id": "2026-09-23-1",
+          "date": "2026-09-23",
+          "venue": "山中湖交流プラザきらら",
+          "position": 5,
+          "is_encore": false,
+          "note": ""
         }
       ],
       "credits": {
@@ -23730,6 +23900,35 @@
         "choreography": "ミミミユ",
         "note": "https://x.com/Drawry0920/status/2092973958991847901"
       }
+    },
+    {
+      "id": "se-into-the-blue",
+      "name": "SE(Into the Blue)",
+      "translation": null,
+      "plays": 1,
+      "shows": 1,
+      "shows_since_debut": 1,
+      "play_rate": 1.0,
+      "first_performed": "2026-09-23",
+      "last_performed": "2026-09-23",
+      "current_streak": 1,
+      "longest_streak": 1,
+      "encores": 0,
+      "opened": 0,
+      "closed": 0,
+      "is_se": true,
+      "is_interlude": false,
+      "performances": [
+        {
+          "event_id": "2026-09-23-1",
+          "date": "2026-09-23",
+          "venue": "山中湖交流プラザきらら",
+          "position": 1,
+          "is_encore": false,
+          "note": ""
+        }
+      ],
+      "credits": null
     }
   ],
   "venues": [
@@ -24191,6 +24390,18 @@
       "capacity": "250人"
     },
     {
+      "id": "LiveHouse浜松窓枠",
+      "name": "LiveHouse浜松窓枠",
+      "shows": 1,
+      "first_played": "2026-09-22",
+      "last_played": "2026-09-22",
+      "event_ids": [
+        "2026-09-22-1"
+      ],
+      "address": null,
+      "capacity": null
+    },
+    {
       "id": "shibuya-deseo",
       "name": "SHIBUYA DESEO",
       "shows": 1,
@@ -24405,6 +24616,18 @@
       ],
       "address": "〒170-0004 東京都豊島区北大塚2-13-1 ba07 B1F",
       "capacity": "350人"
+    },
+    {
+      "id": "山中湖交流プラザきらら",
+      "name": "山中湖交流プラザきらら",
+      "shows": 1,
+      "first_played": "2026-09-23",
+      "last_played": "2026-09-23",
+      "event_ids": [
+        "2026-09-23-1"
+      ],
+      "address": null,
+      "capacity": null
     },
     {
       "id": "shinsaibashi-sunhall",
@@ -24692,7 +24915,7 @@
         {
           "song_id": "egakikake-no-sora",
           "song_name": "描きかけの空",
-          "translation": "Egakikake no Sora",
+          "translation": "An Unfinished Sky",
           "roles": [
             "choreography"
           ]
@@ -24775,7 +24998,7 @@
         {
           "song_id": "egakikake-no-sora",
           "song_name": "描きかけの空",
-          "translation": "Egakikake no Sora",
+          "translation": "An Unfinished Sky",
           "roles": [
             "lyrics",
             "composition",
@@ -24996,6 +25219,15 @@
         ]
       },
       {
+        "minutes": 15,
+        "shows": 1,
+        "avg_songs": 4.0,
+        "shows_with_se": 1,
+        "event_ids": [
+          "2026-09-23-1"
+        ]
+      },
+      {
         "minutes": 20,
         "shows": 17,
         "avg_songs": 4.8,
@@ -25022,7 +25254,7 @@
       },
       {
         "minutes": 25,
-        "shows": 80,
+        "shows": 81,
         "avg_songs": 5.8,
         "shows_with_se": 65,
         "event_ids": [
@@ -25105,7 +25337,8 @@
           "2026-09-02-1",
           "2026-09-05-1",
           "2026-09-05-3",
-          "2026-09-06-1"
+          "2026-09-06-1",
+          "2026-09-22-1"
         ]
       },
       {
@@ -25169,13 +25402,17 @@
             "count": 1,
             "eligible": 1
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 6,
             "eligible": 17
           },
           "25": {
             "count": 53,
-            "eligible": 80
+            "eligible": 81
           },
           "30": {
             "count": 25,
@@ -25194,13 +25431,17 @@
             "count": 1,
             "eligible": 1
           },
+          "15": {
+            "count": 1,
+            "eligible": 1
+          },
           "20": {
             "count": 15,
             "eligible": 17
           },
           "25": {
-            "count": 78,
-            "eligible": 80
+            "count": 79,
+            "eligible": 81
           },
           "30": {
             "count": 39,
@@ -25219,13 +25460,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 0,
             "eligible": 17
           },
           "25": {
-            "count": 29,
-            "eligible": 80
+            "count": 30,
+            "eligible": 81
           },
           "30": {
             "count": 23,
@@ -25244,13 +25489,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 11,
             "eligible": 17
           },
           "25": {
             "count": 38,
-            "eligible": 80
+            "eligible": 81
           },
           "30": {
             "count": 27,
@@ -25269,13 +25518,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 1,
+            "eligible": 1
+          },
           "20": {
             "count": 15,
             "eligible": 17
           },
           "25": {
-            "count": 79,
-            "eligible": 80
+            "count": 80,
+            "eligible": 81
           },
           "30": {
             "count": 38,
@@ -25294,13 +25547,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 7,
             "eligible": 17
           },
           "25": {
             "count": 34,
-            "eligible": 80
+            "eligible": 81
           },
           "30": {
             "count": 23,
@@ -25319,13 +25576,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 1,
             "eligible": 17
           },
           "25": {
             "count": 39,
-            "eligible": 80
+            "eligible": 81
           },
           "30": {
             "count": 19,
@@ -25344,13 +25605,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 7,
             "eligible": 17
           },
           "25": {
             "count": 9,
-            "eligible": 70
+            "eligible": 71
           },
           "30": {
             "count": 6,
@@ -25369,13 +25634,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 3,
             "eligible": 15
           },
           "25": {
-            "count": 40,
-            "eligible": 64
+            "count": 41,
+            "eligible": 65
           },
           "30": {
             "count": 22,
@@ -25394,13 +25663,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 0,
             "eligible": 12
           },
           "25": {
             "count": 4,
-            "eligible": 53
+            "eligible": 54
           },
           "30": {
             "count": 1,
@@ -25419,13 +25692,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 5,
             "eligible": 12
           },
           "25": {
             "count": 27,
-            "eligible": 52
+            "eligible": 53
           },
           "30": {
             "count": 13,
@@ -25444,13 +25721,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 8,
             "eligible": 12
           },
           "25": {
             "count": 21,
-            "eligible": 52
+            "eligible": 53
           },
           "30": {
             "count": 9,
@@ -25461,7 +25742,7 @@
       {
         "id": "egakikake-no-sora",
         "name": "描きかけの空",
-        "translation": "Egakikake no Sora",
+        "translation": "An Unfinished Sky",
         "is_se": false,
         "is_interlude": false,
         "rates": {
@@ -25469,13 +25750,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 4,
             "eligible": 11
           },
           "25": {
             "count": 20,
-            "eligible": 39
+            "eligible": 40
           },
           "30": {
             "count": 8,
@@ -25494,13 +25779,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 4,
             "eligible": 10
           },
           "25": {
-            "count": 27,
-            "eligible": 34
+            "count": 28,
+            "eligible": 35
           },
           "30": {
             "count": 16,
@@ -25519,13 +25808,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 0,
             "eligible": 10
           },
           "25": {
             "count": 0,
-            "eligible": 34
+            "eligible": 35
           },
           "30": {
             "count": 8,
@@ -25544,13 +25837,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 1,
             "eligible": 10
           },
           "25": {
-            "count": 17,
-            "eligible": 34
+            "count": 18,
+            "eligible": 35
           },
           "30": {
             "count": 11,
@@ -25569,13 +25866,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 0,
             "eligible": 10
           },
           "25": {
             "count": 8,
-            "eligible": 34
+            "eligible": 35
           },
           "30": {
             "count": 4,
@@ -25594,13 +25895,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 4,
             "eligible": 10
           },
           "25": {
             "count": 4,
-            "eligible": 32
+            "eligible": 33
           },
           "30": {
             "count": 4,
@@ -25619,13 +25924,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 0,
             "eligible": 10
           },
           "25": {
             "count": 1,
-            "eligible": 22
+            "eligible": 23
           },
           "30": {
             "count": 0,
@@ -25644,13 +25953,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 0,
             "eligible": 10
           },
           "25": {
             "count": 4,
-            "eligible": 14
+            "eligible": 15
           },
           "30": {
             "count": 5,
@@ -25669,13 +25982,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 1,
+            "eligible": 1
+          },
           "20": {
             "count": 9,
             "eligible": 10
           },
           "25": {
             "count": 11,
-            "eligible": 13
+            "eligible": 14
           },
           "30": {
             "count": 8,
@@ -25694,13 +26011,17 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 0,
+            "eligible": 1
+          },
           "20": {
             "count": 2,
             "eligible": 4
           },
           "25": {
             "count": 2,
-            "eligible": 7
+            "eligible": 8
           },
           "30": {
             "count": 3,
@@ -25719,17 +26040,50 @@
             "count": 0,
             "eligible": 0
           },
+          "15": {
+            "count": 1,
+            "eligible": 1
+          },
           "20": {
             "count": 0,
             "eligible": 1
           },
           "25": {
             "count": 3,
-            "eligible": 5
+            "eligible": 6
           },
           "30": {
             "count": 3,
             "eligible": 3
+          }
+        }
+      },
+      {
+        "id": "se-into-the-blue",
+        "name": "SE(Into the Blue)",
+        "translation": null,
+        "is_se": true,
+        "is_interlude": false,
+        "rates": {
+          "10": {
+            "count": 0,
+            "eligible": 0
+          },
+          "15": {
+            "count": 1,
+            "eligible": 1
+          },
+          "20": {
+            "count": 0,
+            "eligible": 0
+          },
+          "25": {
+            "count": 0,
+            "eligible": 0
+          },
+          "30": {
+            "count": 0,
+            "eligible": 0
           }
         }
       }
