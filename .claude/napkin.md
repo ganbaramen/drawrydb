@@ -199,3 +199,31 @@ this is about *how to work here without repeating mistakes*.
   seven songs, because the two earliest shows had been filed into the
   *future* and so never counted as earliest. A wrong date corrupts every
   derived stat, not just the row.
+
+## 2026-09-25 — venue lifted out of prose
+
+- **`parse_venue()` searched for `@` anywhere in the first 3 lines.** The
+  calendar's descriptions open with prose often enough — and that prose
+  mentions *other bands' venues* — that three events took their venue from a
+  sentence: `夜帯にponderosa may bloom…@渋谷REXがあります。` became the venue,
+  trailing `があります。` and all. The discriminator is what sits *before* the
+  `@`: nothing, or a date. Look at what precedes a match, not just what it
+  captured.
+- **I compared the new parser against `drawry_schedule.csv`'s venue column
+  and got 35 "changes", nearly all of them fake** — that column has already
+  had `event_overrides.csv` applied, so I was diffing a raw parse against a
+  post-override value. This is the *exact* contaminated-baseline mistake
+  already in this napkin from the backfill work, made again. **Parser changes
+  must be measured parser-to-parser on the raw input.** Redone that way: 5 of
+  228, all improvements.
+- **Widening a search window can fix things the bug was hiding.** Letting a
+  date-prefixed line win anywhere (not just lines 0-2) also gave 2026-01-03/04
+  the venue their description had stated on line 4 all along; they had been
+  leaning on hand-typed overrides nobody knew were load-bearing.
+- **`export_calendar.py --offline` replays the cached feed.** Use it for any
+  parser change so the diff is the change, not whatever the live calendar did
+  since. I nearly ran the networked version by reflex.
+- The weekday audit added on 2026-09-22 immediately earned itself: a 4th post
+  typo (2026-09-23 printed (日) for a Wednesday) showed up in the user's new
+  setlists and was confirmed a typo, not a bad year, from the calendar plus
+  the paste filename.
